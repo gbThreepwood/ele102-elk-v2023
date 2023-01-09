@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+
+
+
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Additional material for lesson 9 &mdash; ELE102 Microcontroller course v1.1.0 documentation</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    
+
+<link rel="stylesheet" href="../../_static/css/basicstrap-base.css" type="text/css" />
+<link rel="stylesheet" id="current-theme" href="../../_static/css/bootstrap3/bootstrap.min.css" type="text/css" />
+<link rel="stylesheet" id="current-adjust-theme" type="text/css" />
+
+<link rel="stylesheet" href="../../_static/css/font-awesome.min.css">
+
+<style type="text/css">
+  body {
+    padding-top: 60px;
+    padding-bottom: 40px;
+  }
+</style>
+
+<link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
+<link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+<link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+<link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
+<link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
+    
+<script type="text/javascript">
+  var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:    '../../',
+            VERSION:     'v1.1.0',
+            COLLAPSE_INDEX: false,
+            FILE_SUFFIX: '.html',
+            HAS_SOURCE:  true
+  };
+</script>
+    <script type="text/javascript" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/js/jquery.min.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/sphinx_highlight.js"></script>
+    <script type="text/javascript" src="../../_static/js/bootstrap3.min.js"></script>
+<script type="text/javascript" src="../../_static/js/jquery.cookie.min.js"></script>
+<script type="text/javascript" src="../../_static/js/basicstrap.js"></script>
+<script type="text/javascript">
+</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="top" title="ELE102 Microcontroller course v1.1.0 documentation" href="../../index.html" />
+    <link rel="next" title="Additional material for lesson 10" href="L10_additional.html" />
+    <link rel="prev" title="Additional material for lesson 8" href="L8_additional.html" /> 
+  </head>
+  <body role="document">
+    <div id="navbar-top" class="navbar navbar-fixed-top navbar-default" role="navigation" aria-label="top navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="../../index.html">ELE102 Microcontroller course v1.1.0 documentation</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+              <li class="dropdown visible-xs">
+                <a role="button" id="localToc" data-toggle="dropdown" data-target="#" href="#">Table Of Contents <b class="caret"></b></a>
+                <ul class="dropdown-menu localtoc sp-localtoc" role="menu" aria-labelledby="localToc">
+                <ul>
+<li><a class="reference internal" href="#">Additional material for lesson 9</a><ul>
+<li><a class="reference internal" href="#changing-the-variable-through-its-adress-pointers">Changing the variable through its adress: Pointers</a><ul>
+<li><a class="reference internal" href="#exercise-blink-a-led-connected-to-pin-8">Exercise: blink a LED connected to pin 8</a></li>
+<li><a class="reference internal" href="#reading-and-manipulating-single-bits">Reading and manipulating single bits</a></li>
+<li><a class="reference internal" href="#exercise-analyze-the-above-example">Exercise: analyze the above example</a></li>
+<li><a class="reference internal" href="#exercise-read-a-digital-input-on-pin-a5">Exercise: read a digital input on pin A5</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#determine-ram-memory-usage">Determine RAM memory usage</a></li>
+<li><a class="reference internal" href="#exercise-determine-stack-usage">Exercise: determine stack usage</a></li>
+<li><a class="reference internal" href="#using-the-eeprom">Using the EEPROM</a><ul>
+<li><a class="reference internal" href="#manage-the-memory-stucture-for-complex-projects">Manage the memory stucture for complex projects</a></li>
+<li><a class="reference internal" href="#nand-flash">NAND Flash</a></li>
+<li><a class="reference internal" href="#nor-flash">NOR Flash</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#using-external-memory">Using external memory</a><ul>
+<li><a class="reference internal" href="#external-eeprom">External EEPROM</a></li>
+<li><a class="reference internal" href="#sd-card">SD-card</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#special-memory-types">Special memory types</a><ul>
+<li><a class="reference internal" href="#historical-memory-types">Historical memory types</a></li>
+<li><a class="reference internal" href="#random-access-memory-ram">Random access memory (RAM)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+                </ul>
+              </li>
+
+            
+              <li><a href="L8_additional.html" title="Additional material for lesson 8" accesskey="P">previous </a></li>
+              <li><a href="L10_additional.html" title="Additional material for lesson 10" accesskey="N">next </a></li>
+              <li><a href="../../genindex.html" title="General Index" accesskey="I">index </a></li>
+            
+
+            <li class="visible-xs">
+                <form class="search form-search form-inline navbar-form navbar-right sp-searchbox" action="../../search.html" method="get">
+                  <div class="input-append input-group">
+                    <input type="text" class="search-query form-control" name="q" placeholder="Search...">
+                    <span class="input-group-btn">
+                    <input type="submit" class="btn" value="Go" />
+                    </span>
+                  </div>
+                  <input type="hidden" name="check_keywords" value="yes" />
+                  <input type="hidden" name="area" value="default" />
+                </form>
+            </li>
+
+            
+
+          </ul>
+
+        </div>
+      </div>
+    </div>
+    
+
+    <!-- container -->
+    <div class="container-fluid">
+
+      <!-- row -->
+      <div class="row">
+         
+<div class="col-md-3 hidden-xs" id="sidebar-wrapper">
+  <div class="sidebar hidden-xs" role="navigation" aria-label="main navigation">
+<h3><a href="../../index.html">Table of Contents</a></h3>
+<p class="caption" role="heading"><span class="caption-text">Lessons:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons/L0_Introduction_elk.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons/software_hardware_preparations.html">Software and hardware preparations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons/L1a_UC_intro.html">Lesson 1a: What is a Microcontroller</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons/L1b_Arduino_intro.html">Lesson 1b: Introduction to Arduino</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons/L2_digital_io.html">Lesson 2: Digital I/O</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons/L3_digital_io_and_timing.html">Lesson 3: Use of digital I/O and timing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons/L4_dac_pwm.html">Lesson 4: Analog output (PWM)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons/L5_adc.html">Lesson 5: Analog to digital conversion (ADC)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons/L6_serial_io.html">Lesson 6: Serial I/O</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons/L7_timer_interrupt.html">Lesson 7: Timers and interrupts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons/L8_LC_display.html">Lesson 8: LC-Display</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons/L9_memory_and_architecture.html">Lesson 9: Memory and MCU architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons/L10_motor_drive.html">Lesson 10: Motor drive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons/L12_communication.html">Lesson 11: Communication Protocols</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons/L11_VS_Arduino.html">Lesson 12: PC (C#) - Arduino Communication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons/L13_repetition.html">Lesson 13: Repetition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons/course_summary.html">Course summary</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Additional material:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="L1_additional.html">Additional material lesson 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="L2_additional.html">Additional material lesson 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="L3_additional.html">Additional material lesson 3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="L4_additional.html">Additional material lesson 4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="L5_additional.html">Additional material lesson 5</a></li>
+<li class="toctree-l1"><a class="reference internal" href="L6_additional.html">Additional material lesson 6</a></li>
+<li class="toctree-l1"><a class="reference internal" href="L7_additional.html">Additional material lesson 7</a></li>
+<li class="toctree-l1"><a class="reference internal" href="L8_additional.html">Additional material lesson 8</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Additional material lesson 9</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#changing-the-variable-through-its-adress-pointers">Changing the variable through its adress: Pointers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#exercise-blink-a-led-connected-to-pin-8">Exercise: blink a LED connected to pin 8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#reading-and-manipulating-single-bits">Reading and manipulating single bits</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#exercise-analyze-the-above-example">Exercise: analyze the above example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#exercise-read-a-digital-input-on-pin-a5">Exercise: read a digital input on pin A5</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#determine-ram-memory-usage">Determine RAM memory usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#exercise-determine-stack-usage">Exercise: determine stack usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#using-the-eeprom">Using the EEPROM</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#manage-the-memory-stucture-for-complex-projects">Manage the memory stucture for complex projects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nand-flash">NAND Flash</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nor-flash">NOR Flash</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#using-external-memory">Using external memory</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#external-eeprom">External EEPROM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sd-card">SD-card</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#special-memory-types">Special memory types</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#historical-memory-types">Historical memory types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#random-access-memory-ram">Random access memory (RAM)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="L10_additional.html">Additional material lesson 10</a></li>
+<li class="toctree-l1"><a class="reference internal" href="L11_additional.html">Additional material lesson 11</a></li>
+<li class="toctree-l1"><a class="reference internal" href="L12_additional.html">Additional material lesson 12</a></li>
+<li class="toctree-l1"><a class="reference internal" href="L13_additional.html">Additional material lesson 13</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Projects:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Appendices/Additionals.html">Mix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Projects/ir_communication.html">Infrared remote</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Projects/adaptive_line_enhancer.html">Adaptive line enhancer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Projects/audio_processing.html">Audio processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Projects/RC_car.html">Cool Project: RC Car (Bluetooth or Joystick)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Projects/Robotarm.html">Cool Project: Simple Robot Arm (Bluetooth or Joystick)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Projects/dc_motor_control.html">DC motor control</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Projects/digital_piano.html">Digital piano</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Projects/digital_synth.html">Digital synth</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Projects/dtmf_generator.html">DTMF generator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Projects/frequency_estimator.html">Frequency estimator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Projects/induction_motor_control.html">Induction motor control</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Projects/lorawan.html">LoRaWan</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Projects/phase_displacement.html">Phase displacement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Projects/phase_locked_loop.html">Phase locked loop (PLL)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Projects/phasor_estimation.html">Phasor estimation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Projects/radio_transmitter.html">Radio transmitter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Projects/stepper_motor_control.html">Stepper motor control</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Projects/synchroscope.html">Synchroscope</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Projects/thyristor_controller.html">Thyristor controller</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Appendices:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Appendices/low_power_operation.html">Low power operation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Appendices/stacks_queues_lists.html">Stacks, Queues, Lists</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Appendices/assembly_programming.html">Assembly programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Appendices/digital_filters.html">Digital filters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Appendices/floating_point_numbers.html">Floating point numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Appendices/kalman_filter.html">Kalman filter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Appendices/the_build_process.html">The build process</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Appendices/direct_register_manipulations.html">Direct register manipulation</a></li>
+</ul>
+
+<div id="searchbox" role="search">
+  <h3>Quick search</h3>
+  <form class="search form-inline" action="../../search.html" method="get">
+      <div class="input-append input-group">
+        <input type="text" class="search-query form-control" name="q" placeholder="Search...">
+        <span class="input-group-btn">
+        <input type="submit" class="btn" value="Go" />
+        </span>
+      </div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="L8_additional.html"
+                          title="previous chapter">Additional material for lesson 8</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="L10_additional.html"
+                          title="next chapter">Additional material for lesson 10</a></p>
+  </div>
+  </div>
+</div> 
+        
+
+        <div class="col-md-9" id="content-wrapper">
+          <div class="document" role="main">
+            <div class="documentwrapper">
+              <div class="bodywrapper">
+                <div class="body">
+                  
+  <section id="additional-material-for-lesson-9">
+<h1>Additional material for lesson 9<a class="headerlink" href="#additional-material-for-lesson-9" title="Permalink to this heading">¶</a></h1>
+<section id="changing-the-variable-through-its-adress-pointers">
+<span id="l9-memory-pointer"></span><h2>Changing the variable through its adress: Pointers<a class="headerlink" href="#changing-the-variable-through-its-adress-pointers" title="Permalink to this heading">¶</a></h2>
+<p>Create a pointer to memory address 0x002b:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">uint8_t</span><span class="w"> </span><span class="o">*</span><span class="n">port_d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">uint8_t</span><span class="o">*</span><span class="p">)</span><span class="mh">0x002b</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Write a 1 to bit number 4 (note the asterisk <code class="code docutils literal notranslate"><span class="pre">*</span></code> in front of the variable name):</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="o">*</span><span class="n">port_d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mb">0b00001000</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Without the asterisk we are changing the contents of the variable, rather than the memory location to which it points:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">port_d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mb">0b00001000</span><span class="p">;</span><span class="w"> </span><span class="c1">// Attempts to set the variable to point to memory address 0x0008. Don&#39;t do this!</span>
+</pre></div>
+</div>
+<p>The following example illustrates how to blink a LED connected to pin 3 on the Arduino UNO:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Arduino.h&gt;</span><span class="cp"></span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="kt">uint8_t</span><span class="w"> </span><span class="o">*</span><span class="n">port_d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">uint8_t</span><span class="o">*</span><span class="p">)</span><span class="mh">0x002b</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 4</span><span class="kt">uint8_t</span><span class="w"> </span><span class="o">*</span><span class="n">ddr_d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">uint8_t</span><span class="o">*</span><span class="p">)</span><span class="mh">0x002a</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 5</span><span class="kt">uint8_t</span><span class="w"> </span><span class="o">*</span><span class="n">pin_d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">uint8_t</span><span class="o">*</span><span class="p">)</span><span class="mh">0x0029</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 6</span>
+<span class="linenos"> 7</span><span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos"> 8</span>
+<span class="linenos"> 9</span><span class="w">  </span><span class="c1">// Configure pin 4 as output</span>
+<span class="linenos">10</span><span class="w">  </span><span class="o">*</span><span class="n">ddr_d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mb">0b00001000</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">11</span><span class="p">}</span><span class="w"></span>
+<span class="linenos">12</span>
+<span class="linenos">13</span><span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos">14</span>
+<span class="linenos">15</span><span class="w">  </span><span class="c1">// Set bit 4 (pin 3) high, all other pins low</span>
+<span class="linenos">16</span><span class="w">  </span><span class="o">*</span><span class="n">port_d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mb">0b00001000</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">17</span>
+<span class="linenos">18</span><span class="w">  </span><span class="n">delay</span><span class="p">(</span><span class="mi">500</span><span class="p">);</span><span class="w"></span>
+<span class="linenos">19</span>
+<span class="linenos">20</span><span class="w">  </span><span class="c1">// Set all pins (including bit 4 / pin 3) low</span>
+<span class="linenos">21</span><span class="w">  </span><span class="o">*</span><span class="n">port_d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mb">0b00000000</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">22</span>
+<span class="linenos">23</span><span class="w">  </span><span class="n">delay</span><span class="p">(</span><span class="mi">500</span><span class="p">);</span><span class="w"></span>
+<span class="linenos">24</span><span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Note that the register accesses modify all the bits in the register. E.g. if pin 5 was high before, it will be written low even though we are only interested in modifying pin 3. This can be solved by first reading the register and using some logic operations before writing back to the register.</p>
+<section id="exercise-blink-a-led-connected-to-pin-8">
+<h3>Exercise: blink a LED connected to pin 8<a class="headerlink" href="#exercise-blink-a-led-connected-to-pin-8" title="Permalink to this heading">¶</a></h3>
+<ol class="arabic simple">
+<li><p>Use the Arduino UNO pinout diagram to figure out which port (bank of I/O pins) that pin 8 is connected to.</p></li>
+<li><p>Use the datasheet of the Atmega328p (page 280) to figure out the memory addresses of the registers which controls the bank of pins of which pin 8 is a member. Use the addresses in parentheses.</p></li>
+<li><p>Write a short explanation in your own words about the difference between the addresses in parentheses and the ones without.</p></li>
+<li><p>Modify the program in the previous example to blink a LED connected to pin 8.</p></li>
+</ol>
+</section>
+<section id="reading-and-manipulating-single-bits">
+<h3>Reading and manipulating single bits<a class="headerlink" href="#reading-and-manipulating-single-bits" title="Permalink to this heading">¶</a></h3>
+<p>In order to manipulate single bits of a register we have to read the register, make changes using logic operations, and finally write back the result.</p>
+<p>A very useful operator for this purpose is the left bit shift (<code class="code docutils literal notranslate"><span class="pre">&lt;&lt;</span></code>) operator. It allows us to shift a binary value to the left (a right shift operator <code class="code docutils literal notranslate"><span class="pre">&gt;&gt;</span></code> is also available).</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span><span class="w"> </span><span class="c1">// The value of &#39;b&#39; is 1 shifted 3 places to the left, i.e. 0b1000, or 8 in decimal.</span>
+</pre></div>
+</div>
+<p>Additionally the bitwise and (<code class="code docutils literal notranslate"><span class="pre">&amp;</span></code>), the bitwise or (<code class="code docutils literal notranslate"><span class="pre">|</span></code>), the bitwise xor (<code class="code docutils literal notranslate"><span class="pre">^</span></code>), and the bitwise not (<code class="code docutils literal notranslate"><span class="pre">~</span></code>) can be used in clever ways to set, clear, or flip the state of single bits while leaving the other bits untouched.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Arduino.h&gt;</span><span class="cp"></span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="kt">uint8_t</span><span class="w"> </span><span class="o">*</span><span class="n">port_d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">uint8_t</span><span class="o">*</span><span class="p">)</span><span class="mh">0x002b</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 4</span><span class="kt">uint8_t</span><span class="w"> </span><span class="o">*</span><span class="n">ddr_d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">uint8_t</span><span class="o">*</span><span class="p">)</span><span class="mh">0x002a</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 5</span><span class="kt">uint8_t</span><span class="w"> </span><span class="o">*</span><span class="n">pin_d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">uint8_t</span><span class="o">*</span><span class="p">)</span><span class="mh">0x0029</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 6</span>
+<span class="linenos"> 7</span><span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos"> 8</span>
+<span class="linenos"> 9</span><span class="w">  </span><span class="c1">// Configure pin 4 as output</span>
+<span class="linenos">10</span><span class="w">  </span><span class="o">*</span><span class="n">ddr_d</span><span class="w"> </span><span class="o">|=</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span><span class="w"></span>
+<span class="linenos">11</span>
+<span class="linenos">12</span><span class="w">  </span><span class="c1">// Configure pin 5 as input</span>
+<span class="linenos">13</span><span class="w">  </span><span class="o">*</span><span class="n">ddr_d</span><span class="w"> </span><span class="o">|=</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">4</span><span class="p">);</span><span class="w"></span>
+<span class="linenos">14</span><span class="p">}</span><span class="w"></span>
+<span class="linenos">15</span>
+<span class="linenos">16</span><span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos">17</span>
+<span class="linenos">18</span><span class="w">  </span><span class="c1">// Set bit 3 high, while not touching any other bits</span>
+<span class="linenos">19</span><span class="w">  </span><span class="o">*</span><span class="n">port_d</span><span class="w"> </span><span class="o">|=</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span><span class="w"></span>
+<span class="linenos">20</span>
+<span class="linenos">21</span><span class="w">  </span><span class="c1">// Read the state of bit 4</span>
+<span class="linenos">22</span><span class="w">  </span><span class="k">if</span><span class="p">(((</span><span class="o">*</span><span class="n">pin_d</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="mi">4</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mh">0x01</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">){</span><span class="w"></span>
+<span class="linenos">23</span><span class="w">    </span><span class="n">delay</span><span class="p">(</span><span class="mi">800</span><span class="p">);</span><span class="w"></span>
+<span class="linenos">24</span><span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="linenos">25</span><span class="w">  </span><span class="k">else</span><span class="p">{</span><span class="w"></span>
+<span class="linenos">26</span><span class="w">    </span><span class="n">delay</span><span class="p">(</span><span class="mi">200</span><span class="p">);</span><span class="w"></span>
+<span class="linenos">27</span><span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="linenos">28</span>
+<span class="linenos">29</span><span class="w">  </span><span class="c1">// Set bit 3 low, while not touching any other bits</span>
+<span class="linenos">30</span><span class="w">  </span><span class="o">*</span><span class="n">port_d</span><span class="w"> </span><span class="o">&amp;=</span><span class="w"> </span><span class="o">~</span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span><span class="w"></span>
+<span class="linenos">31</span>
+<span class="linenos">32</span><span class="w">  </span><span class="n">delay</span><span class="p">(</span><span class="mi">200</span><span class="p">);</span><span class="w"></span>
+<span class="linenos">33</span><span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="exercise-analyze-the-above-example">
+<h3>Exercise: analyze the above example<a class="headerlink" href="#exercise-analyze-the-above-example" title="Permalink to this heading">¶</a></h3>
+<ol class="arabic simple">
+<li><p>Verify the operation of the above code listing by testing it on a Arduino UNO. Connect a push button with pull-down resistor to pin 4, and a LED to pin 3.</p></li>
+<li><p>Use your knowledge about digital electronics to analyze the above code listing. Especially the lines which read or manipulate the registers. Consider the case that PORD = 0b11000000, PIND = 0, and DDRD = 0, before the program starts. Write down your explanation for each statement.</p></li>
+</ol>
+</section>
+<section id="exercise-read-a-digital-input-on-pin-a5">
+<h3>Exercise: read a digital input on pin A5<a class="headerlink" href="#exercise-read-a-digital-input-on-pin-a5" title="Permalink to this heading">¶</a></h3>
+<p>The analog input pins can be reconfigured to work as digital input or output pins. In this exercise you are going to use the pin A5 as a digital input by means of direct manipulation of the memory registers.</p>
+<ol class="arabic simple">
+<li><p>Use the pinout diagram, and the datasheet of the Atmega328p to figure out the memory addresses of the registers which controls the bank of pins of which pin A5 is a member.</p></li>
+<li><p>Configure pin A5 as an input.</p></li>
+<li><p>Read the state of the A5 pin, and blink a LED if A5 is high. If A5 is low the blinking should stop and the LED should be low. You may use the normal <code class="code docutils literal notranslate"><span class="pre">digitalWrite()</span></code> function for the LED control.</p></li>
+</ol>
+</section>
+</section>
+<section id="determine-ram-memory-usage">
+<h2>Determine RAM memory usage<a class="headerlink" href="#determine-ram-memory-usage" title="Permalink to this heading">¶</a></h2>
+<p>In many applications it is not possible to determine the RAM usage during compile time. It might depend on the amount of external input that the micocontroller receives.</p>
+<p>The compiler defines some symbols that may be used to compute the RAM usage at run time.</p>
+<p><cite>__heap_start</cite>
+<cite>__brkval</cite></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">extern</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">__bss_end</span><span class="p">;</span><span class="w"></span>
+<span class="k">extern</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">__heap_start</span><span class="p">;</span><span class="w"></span>
+<span class="k">extern</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">__brkval</span><span class="p">;</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">freeMemory</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">free_memory</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">  </span><span class="k">if</span><span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="n">__brkval</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">free_memory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="o">&amp;</span><span class="n">free_memory</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="o">&amp;</span><span class="n">__bss_end</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="k">else</span><span class="w"></span>
+<span class="w">    </span><span class="n">free_memory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="o">&amp;</span><span class="n">free_memory</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="n">__brkval</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">free_memory</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="exercise-determine-stack-usage">
+<span id="ex-stack-usage"></span><h2>Exercise: determine stack usage<a class="headerlink" href="#exercise-determine-stack-usage" title="Permalink to this heading">¶</a></h2>
+<p>There is a macro <code class="code docutils literal notranslate"><span class="pre">RAMEND</span></code> somewhere in the libraries that are included as part of your Atmega328p project. This macro is defined as the hexadecimal value of the highest address in the internal RAM (which according to the memory map in the datasheet of the Atmega328p page 18, is 0x8FF). By allocating a new variable, and obtaining the address of this variable by means of the <code class="code docutils literal notranslate"><span class="pre">&amp;</span></code> operator, it is possible to calculate the number of bytes on the stack.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">variable_at_top_of_stack</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="kt">uint16_t</span><span class="w"> </span><span class="n">stack_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">RAMEND</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="p">(</span><span class="kt">uint16_t</span><span class="p">)</span><span class="o">&amp;</span><span class="n">variable_at_top_of_stack</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="c1">//uint16_t stack_size = RAMEND - SP;</span>
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p>Use the above code lines in a program to determine the number of bytes on the stack.</p></li>
+<li><p>Print the value to the UART.</p></li>
+<li><p>Add some new variables to the stack, and observe how the stack size value changes. You add variables to the stack simply by declaring them inside a function. Due to compiler optimization you have to either use the variables for something, or declare them as <code class="code docutils literal notranslate"><span class="pre">volatile</span></code>. Otherwise the compiler will optimize them away, and your stack size will not change.</p></li>
+<li><p>The compiler may choose to organize the data in the stack in another order than it is declared in the code. Thus it might not always yield correct results to use the address of a variable. The third (commented) line in the above example uses the macor <code class="code docutils literal notranslate"><span class="pre">SP</span></code> (stack pointer) to obtain the address to the top of the stack. This is probably a better method, but both are provided for</p></li>
+</ol>
+</section>
+<section id="using-the-eeprom">
+<h2>Using the EEPROM<a class="headerlink" href="#using-the-eeprom" title="Permalink to this heading">¶</a></h2>
+<section id="manage-the-memory-stucture-for-complex-projects">
+<h3>Manage the memory stucture for complex projects<a class="headerlink" href="#manage-the-memory-stucture-for-complex-projects" title="Permalink to this heading">¶</a></h3>
+</section>
+<section id="nand-flash">
+<h3>NAND Flash<a class="headerlink" href="#nand-flash" title="Permalink to this heading">¶</a></h3>
+</section>
+<section id="nor-flash">
+<h3>NOR Flash<a class="headerlink" href="#nor-flash" title="Permalink to this heading">¶</a></h3>
+</section>
+</section>
+<section id="using-external-memory">
+<h2>Using external memory<a class="headerlink" href="#using-external-memory" title="Permalink to this heading">¶</a></h2>
+<section id="external-eeprom">
+<h3>External EEPROM<a class="headerlink" href="#external-eeprom" title="Permalink to this heading">¶</a></h3>
+</section>
+<section id="sd-card">
+<h3>SD-card<a class="headerlink" href="#sd-card" title="Permalink to this heading">¶</a></h3>
+</section>
+</section>
+<section id="special-memory-types">
+<h2>Special memory types<a class="headerlink" href="#special-memory-types" title="Permalink to this heading">¶</a></h2>
+<p>NVRAM</p>
+<p>NVSRAM</p>
+<p>NVSRAM is a special type of hybrid non-volatile random-access memory (NVRAM). One portion is a normal volatile SRAM, while the other is some form of EEPROM which has lower read and write speeds, but allows storing the memory contents in a non volatile manner.</p>
+<p>EERAM is similar in concept to NVSRAM. Whenever it detects a power failure it will transfer the contents of the SRAM to a non volatile storage.</p>
+<p>OTP EPROM</p>
+<section id="historical-memory-types">
+<h3>Historical memory types<a class="headerlink" href="#historical-memory-types" title="Permalink to this heading">¶</a></h3>
+<p>In this section we will briefly discuss some of the memory technologies that are not used anymore.</p>
+</section>
+<section id="random-access-memory-ram">
+<h3>Random access memory (RAM)<a class="headerlink" href="#random-access-memory-ram" title="Permalink to this heading">¶</a></h3>
+</section>
+</section>
+</section>
+
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        
+      </div><!-- /row -->
+
+      <!-- row -->
+      <div class="row footer-relbar">
+<div id="navbar-related" class=" related navbar navbar-default" role="navigation" aria-label="related navigation">
+  <div class="navbar-inner">
+    <ul class="nav navbar-nav ">
+        <li><a href="../../index.html">ELE102 Microcontroller course v1.1.0 documentation</a></li>
+    </ul>
+<ul class="nav navbar-nav pull-right hidden-xs hidden-sm">
+      
+        <li><a href="L8_additional.html" title="Additional material for lesson 8" >previous</a></li>
+        <li><a href="L10_additional.html" title="Additional material for lesson 10" >next</a></li>
+        <li><a href="../../genindex.html" title="General Index" >index</a></li>
+        <li><a href="#">top</a></li> 
+      
+    </ul>
+  </div>
+</div>
+      </div><!-- /row -->
+
+      <!-- footer -->
+      <footer role="contentinfo">
+          &copy; Copyright 2022, Gizem Ateş &amp; Eirik Haustveit.
+        Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 5.3.0.
+      </footer>
+      <!-- /footer -->
+
+    </div>
+    <!-- /container -->
+
+  </body>
+</html>

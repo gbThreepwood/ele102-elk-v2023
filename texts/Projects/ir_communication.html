@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+
+
+
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Infrared (IR) communication &mdash; ELE102 Microcontroller course v1.1.0 documentation</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    
+
+<link rel="stylesheet" href="../../_static/css/basicstrap-base.css" type="text/css" />
+<link rel="stylesheet" id="current-theme" href="../../_static/css/bootstrap3/bootstrap.min.css" type="text/css" />
+<link rel="stylesheet" id="current-adjust-theme" type="text/css" />
+
+<link rel="stylesheet" href="../../_static/css/font-awesome.min.css">
+
+<style type="text/css">
+  body {
+    padding-top: 60px;
+    padding-bottom: 40px;
+  }
+</style>
+
+<link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
+<link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+<link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+<link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
+<link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
+    
+<script type="text/javascript">
+  var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:    '../../',
+            VERSION:     'v1.1.0',
+            COLLAPSE_INDEX: false,
+            FILE_SUFFIX: '.html',
+            HAS_SOURCE:  true
+  };
+</script>
+    <script type="text/javascript" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/js/jquery.min.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/sphinx_highlight.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script type="text/javascript" src="../../_static/js/bootstrap3.min.js"></script>
+<script type="text/javascript" src="../../_static/js/jquery.cookie.min.js"></script>
+<script type="text/javascript" src="../../_static/js/basicstrap.js"></script>
+<script type="text/javascript">
+</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="top" title="ELE102 Microcontroller course v1.1.0 documentation" href="../../index.html" />
+    <link rel="next" title="Adaptive line enhancer" href="adaptive_line_enhancer.html" />
+    <link rel="prev" title="Additional Chapters" href="../Appendices/Additionals.html" /> 
+  </head>
+  <body role="document">
+    <div id="navbar-top" class="navbar navbar-fixed-top navbar-default" role="navigation" aria-label="top navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="../../index.html">ELE102 Microcontroller course v1.1.0 documentation</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+              <li class="dropdown visible-xs">
+                <a role="button" id="localToc" data-toggle="dropdown" data-target="#" href="#">Table Of Contents <b class="caret"></b></a>
+                <ul class="dropdown-menu localtoc sp-localtoc" role="menu" aria-labelledby="localToc">
+                <ul>
+<li><a class="reference internal" href="#">Infrared (IR) communication</a><ul>
+<li><a class="reference internal" href="#optical-communication">Optical communication</a></li>
+<li><a class="reference internal" href="#ir-transmitters-and-receivers">IR transmitters and receivers</a></li>
+<li><a class="reference internal" href="#electrical-characteristics">Electrical characteristics</a><ul>
+<li><a class="reference internal" href="#ir-receiver">IR receiver</a></li>
+<li><a class="reference internal" href="#phototransistor">Phototransistor</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#demodulation-of-the-signal">Demodulation of the signal</a></li>
+</ul>
+</li>
+</ul>
+
+                </ul>
+              </li>
+
+            
+              <li><a href="../Appendices/Additionals.html" title="Additional Chapters" accesskey="P">previous </a></li>
+              <li><a href="adaptive_line_enhancer.html" title="Adaptive line enhancer" accesskey="N">next </a></li>
+              <li><a href="../../genindex.html" title="General Index" accesskey="I">index </a></li>
+            
+
+            <li class="visible-xs">
+                <form class="search form-search form-inline navbar-form navbar-right sp-searchbox" action="../../search.html" method="get">
+                  <div class="input-append input-group">
+                    <input type="text" class="search-query form-control" name="q" placeholder="Search...">
+                    <span class="input-group-btn">
+                    <input type="submit" class="btn" value="Go" />
+                    </span>
+                  </div>
+                  <input type="hidden" name="check_keywords" value="yes" />
+                  <input type="hidden" name="area" value="default" />
+                </form>
+            </li>
+
+            
+
+          </ul>
+
+        </div>
+      </div>
+    </div>
+    
+
+    <!-- container -->
+    <div class="container-fluid">
+
+      <!-- row -->
+      <div class="row">
+         
+<div class="col-md-3 hidden-xs" id="sidebar-wrapper">
+  <div class="sidebar hidden-xs" role="navigation" aria-label="main navigation">
+<h3><a href="../../index.html">Table of Contents</a></h3>
+<p class="caption" role="heading"><span class="caption-text">Lessons:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons/L0_Introduction_elk.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons/software_hardware_preparations.html">Software and hardware preparations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons/L1a_UC_intro.html">Lesson 1a: What is a Microcontroller</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons/L1b_Arduino_intro.html">Lesson 1b: Introduction to Arduino</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons/L2_digital_io.html">Lesson 2: Digital I/O</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons/L3_digital_io_and_timing.html">Lesson 3: Use of digital I/O and timing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons/L4_dac_pwm.html">Lesson 4: Analog output (PWM)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons/L5_adc.html">Lesson 5: Analog to digital conversion (ADC)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons/L6_serial_io.html">Lesson 6: Serial I/O</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons/L7_timer_interrupt.html">Lesson 7: Timers and interrupts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons/L8_LC_display.html">Lesson 8: LC-Display</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons/L9_memory_and_architecture.html">Lesson 9: Memory and MCU architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons/L10_motor_drive.html">Lesson 10: Motor drive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons/L12_communication.html">Lesson 11: Communication Protocols</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons/L11_VS_Arduino.html">Lesson 12: PC (C#) - Arduino Communication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons/L13_repetition.html">Lesson 13: Repetition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons/course_summary.html">Course summary</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Additional material:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L1_additional.html">Additional material lesson 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L2_additional.html">Additional material lesson 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L3_additional.html">Additional material lesson 3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L4_additional.html">Additional material lesson 4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L5_additional.html">Additional material lesson 5</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L6_additional.html">Additional material lesson 6</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L7_additional.html">Additional material lesson 7</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L8_additional.html">Additional material lesson 8</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L9_additional.html">Additional material lesson 9</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L10_additional.html">Additional material lesson 10</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L11_additional.html">Additional material lesson 11</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L12_additional.html">Additional material lesson 12</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L13_additional.html">Additional material lesson 13</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Projects:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../Appendices/Additionals.html">Mix</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Infrared remote</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#optical-communication">Optical communication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ir-transmitters-and-receivers">IR transmitters and receivers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#electrical-characteristics">Electrical characteristics</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#ir-receiver">IR receiver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#phototransistor">Phototransistor</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#demodulation-of-the-signal">Demodulation of the signal</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="adaptive_line_enhancer.html">Adaptive line enhancer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="audio_processing.html">Audio processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RC_car.html">Cool Project: RC Car (Bluetooth or Joystick)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Robotarm.html">Cool Project: Simple Robot Arm (Bluetooth or Joystick)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dc_motor_control.html">DC motor control</a></li>
+<li class="toctree-l1"><a class="reference internal" href="digital_piano.html">Digital piano</a></li>
+<li class="toctree-l1"><a class="reference internal" href="digital_synth.html">Digital synth</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dtmf_generator.html">DTMF generator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="frequency_estimator.html">Frequency estimator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="induction_motor_control.html">Induction motor control</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lorawan.html">LoRaWan</a></li>
+<li class="toctree-l1"><a class="reference internal" href="phase_displacement.html">Phase displacement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="phase_locked_loop.html">Phase locked loop (PLL)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="phasor_estimation.html">Phasor estimation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="radio_transmitter.html">Radio transmitter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="stepper_motor_control.html">Stepper motor control</a></li>
+<li class="toctree-l1"><a class="reference internal" href="synchroscope.html">Synchroscope</a></li>
+<li class="toctree-l1"><a class="reference internal" href="thyristor_controller.html">Thyristor controller</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Appendices:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Appendices/low_power_operation.html">Low power operation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Appendices/stacks_queues_lists.html">Stacks, Queues, Lists</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Appendices/assembly_programming.html">Assembly programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Appendices/digital_filters.html">Digital filters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Appendices/floating_point_numbers.html">Floating point numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Appendices/kalman_filter.html">Kalman filter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Appendices/the_build_process.html">The build process</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Appendices/direct_register_manipulations.html">Direct register manipulation</a></li>
+</ul>
+
+<div id="searchbox" role="search">
+  <h3>Quick search</h3>
+  <form class="search form-inline" action="../../search.html" method="get">
+      <div class="input-append input-group">
+        <input type="text" class="search-query form-control" name="q" placeholder="Search...">
+        <span class="input-group-btn">
+        <input type="submit" class="btn" value="Go" />
+        </span>
+      </div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="../Appendices/Additionals.html"
+                          title="previous chapter">Additional Chapters</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="adaptive_line_enhancer.html"
+                          title="next chapter">Adaptive line enhancer</a></p>
+  </div>
+  </div>
+</div> 
+        
+
+        <div class="col-md-9" id="content-wrapper">
+          <div class="document" role="main">
+            <div class="documentwrapper">
+              <div class="bodywrapper">
+                <div class="body">
+                  
+  <section id="infrared-ir-communication">
+<span id="ir-communication"></span><h1>Infrared (IR) communication<a class="headerlink" href="#infrared-ir-communication" title="Permalink to this heading">¶</a></h1>
+<section id="optical-communication">
+<h2>Optical communication<a class="headerlink" href="#optical-communication" title="Permalink to this heading">¶</a></h2>
+<p>Optical comunication uses electomagnetic waves in the optical range of the electromagnetic spectrum. Normally one refers to infrared, visible, and ultrafiolet light as part of the optical spectrum. Everyting from signal lamps, and fire beacons, to the remote control of your TV uses optical communication.</p>
+<p>Simple systems such as a fire beacon will only provide a single signal, on or off. With the help of modern electroncis it is however possible to use various forms of modulation to transfer large amounts of information using optics. This has been used by amateurs for wireless communication at 190 km (<a class="reference external" href="http://www.modulatedlight.org/">http://www.modulatedlight.org/</a>).</p>
+<p>In this chapter we will look at the short range wireless communication used between your remote control and your TV. A TV remote normally uses infrared light, which is why you cannot see the light. A infrared light source is placed in the controller, while a diode or transistor that is sensitive to infrared light is placed in the TV. The various manufacturers uses different modulation techniques to allow the TV to detect the different key presses on the remote. This kind of communication usually require line of sight between the sender and the receiver, although reflections from mirrors are possible.</p>
+</section>
+<section id="ir-transmitters-and-receivers">
+<h2>IR transmitters and receivers<a class="headerlink" href="#ir-transmitters-and-receivers" title="Permalink to this heading">¶</a></h2>
+<p>Even though you cannot see the infrared light, there is still many sources of infrared light that could potentially disturb the communication link between the remote and the TV. A frequency that is relatively uncommon in the natural background noise is <span class="math notranslate nohighlight">\(38kHz\)</span>, and thus it has been selected by many manufacturers as a carrier for the modulation.</p>
+<p>The IR receivers that are used in modern appliances are complex devices with signal conditioning to increase the reliability.</p>
+<figure class="align-default">
+<a class="reference internal image-reference" href="../../_images/ir_sensor.jpg"><img alt="../../_images/ir_sensor.jpg" src="../../_images/ir_sensor.jpg" style="width: 250.0px; height: 245.5px;" /></a>
+</figure>
+<figure class="align-default">
+<img alt="../../_images/phototransistor_flat_top.jpg" src="../../_images/phototransistor_flat_top.jpg" />
+</figure>
+<p>The infrared light is invisible to the human eye, but it is detectable by many digital cameras. On the camera the light will appear to be purple, as shown in the following video:</p>
+<figure class="align-default">
+<img alt="../../_images/remote_ir_light.gif" src="../../_images/remote_ir_light.gif" />
+</figure>
+<p>This effect may seem strange at first. The infrared light has a frequency below
+the frequency of red light, while purple light has frequency close to
+ultraviolet light.</p>
+<p>The typical wavelength of the IR from the remote is 940 nm. At this wavelength
+a typical image sensor will have a response from each of the three photo diodes
+that is about the same (ideally the light should have been completely blocked).
+The equal response is misinterpreted by the digital processing system as a
+mixture of red and blue.</p>
+<p>It should be noted that this is the typical behaviour, it is not exhibited by
+all digital image sensors. It also depends on the quiality of the IR filter in
+the camera.</p>
+</section>
+<section id="electrical-characteristics">
+<h2>Electrical characteristics<a class="headerlink" href="#electrical-characteristics" title="Permalink to this heading">¶</a></h2>
+<section id="ir-receiver">
+<h3>IR receiver<a class="headerlink" href="#ir-receiver" title="Permalink to this heading">¶</a></h3>
+<p>The following figure shows the voltage waveform produced by the IR receiver:</p>
+<figure class="align-default">
+<a class="reference internal image-reference" href="../../_images/volume_mute_button_ir_reciver.jpg"><img alt="../../_images/volume_mute_button_ir_reciver.jpg" src="../../_images/volume_mute_button_ir_reciver.jpg" style="width: 638.0px; height: 383.5px;" /></a>
+</figure>
+</section>
+<section id="phototransistor">
+<h3>Phototransistor<a class="headerlink" href="#phototransistor" title="Permalink to this heading">¶</a></h3>
+<p>A pure phototransistor is not ideal for detection of signals from a IR remote. The most important issue is that the voltage drop across the transistor will vary with varying intensity of the signal from the remote.</p>
+<p>In order to test the performance of the circuit, a oscilloscope (Red pitaya) was used to measure the voltage at the emitter of the transistor:</p>
+<figure class="align-default">
+<a class="reference internal image-reference" href="../../_images/measuring_ir_transistor_output_redpitaya.jpg"><img alt="../../_images/measuring_ir_transistor_output_redpitaya.jpg" src="../../_images/measuring_ir_transistor_output_redpitaya.jpg" style="width: 604.8px; height: 453.59999999999997px;" /></a>
+</figure>
+<p>The following figure shows the output from the circuit when the IR remote is held at a distance of less than 1 cm to the phototransistor.</p>
+<figure class="align-default">
+<a class="reference internal image-reference" href="../../_images/volume_mute_button.jpg"><img alt="../../_images/volume_mute_button.jpg" src="../../_images/volume_mute_button.jpg" style="width: 638.0px; height: 383.5px;" /></a>
+</figure>
+<p>The quality of the signal quickly degrades as the remote is moved further away from the transistor. The following figure shows the output from the same circuit while the remote is held at a 10 cm distance.</p>
+<figure class="align-default">
+<a class="reference internal image-reference" href="../../_images/volume_mute_button_10cm_distance.jpg"><img alt="../../_images/volume_mute_button_10cm_distance.jpg" src="../../_images/volume_mute_button_10cm_distance.jpg" style="width: 638.0px; height: 383.5px;" /></a>
+</figure>
+<p>It turned out that distances of more than 1 - 2 cm degraded the quality of the signal to the point where the Arduino was no longer able to detect the remote.</p>
+<figure class="align-default">
+<a class="reference internal image-reference" href="../../_images/remote_control_max_distance.jpg"><img alt="../../_images/remote_control_max_distance.jpg" src="../../_images/remote_control_max_distance.jpg" style="width: 604.8px; height: 453.59999999999997px;" /></a>
+</figure>
+<p>The following figure shows a close up display of the waveform from the phototransistor circuit. The wave has a (almost) sawtooth shape because of the non ideal circuit characteristics. The cursors indicate a time period <span class="math notranslate nohighlight">\(T = 26.9 \mu s\)</span>. This corresponds to:</p>
+<div class="math notranslate nohighlight">
+\[f = \frac{1}{T} = \frac{1}{26.9 \mu s} = 37 khz\]</div>
+<figure class="align-default">
+<a class="reference internal image-reference" href="../../_images/38_khz_signal.jpg"><img alt="../../_images/38_khz_signal.jpg" src="../../_images/38_khz_signal.jpg" style="width: 638.0px; height: 383.5px;" /></a>
+</figure>
+</section>
+</section>
+<section id="demodulation-of-the-signal">
+<h2>Demodulation of the signal<a class="headerlink" href="#demodulation-of-the-signal" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Arduino.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;IRremote.h&gt;</span><span class="cp"></span>
+
+<span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">ir_input</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">A0</span><span class="p">;</span><span class="w"></span>
+<span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">ir_digital_pin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"></span>
+
+<span class="n">IRrecv</span><span class="w"> </span><span class="nf">ir</span><span class="p">(</span><span class="n">ir_digital_pin</span><span class="p">);</span><span class="w"></span>
+<span class="n">decode_results</span><span class="w"> </span><span class="n">results</span><span class="p">;</span><span class="w"></span>
+<span class="w"> </span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">  </span><span class="c1">//pinMode(ir_input, INPUT);</span>
+<span class="w">  </span><span class="c1">//pinMode(ir_digital_pin, INPUT);</span>
+
+<span class="w">  </span><span class="n">ir</span><span class="p">.</span><span class="n">enableIRIn</span><span class="p">();</span><span class="w"></span>
+<span class="w">  </span><span class="n">ir</span><span class="p">.</span><span class="n">blink13</span><span class="p">(</span><span class="nb">true</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+
+<span class="c1">// uint16_t ir_data = analogRead(ir_input);</span>
+
+<span class="c1">// if(ir_data &gt; 900){</span>
+<span class="c1">//   Serial.println(ir_data);</span>
+<span class="c1">// }</span>
+
+<span class="c1">// delay(1);</span>
+
+
+<span class="c1">// if(digitalRead(2)){</span>
+<span class="c1">//  Serial.println(&quot;Input&quot;);</span>
+<span class="c1">// }</span>
+
+<span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ir</span><span class="p">.</span><span class="n">decode</span><span class="p">(</span><span class="o">&amp;</span><span class="n">results</span><span class="p">)){</span><span class="w"></span>
+<span class="w">   </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">results</span><span class="p">.</span><span class="n">value</span><span class="p">,</span><span class="w"> </span><span class="n">HEX</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">   </span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="n">results</span><span class="p">.</span><span class="n">value</span><span class="p">)</span><span class="w"></span>
+<span class="w">   </span><span class="p">{</span><span class="w"></span>
+<span class="w">   </span><span class="k">case</span><span class="w"> </span><span class="mh">0x122430CF</span><span class="p">:</span><span class="w"></span>
+<span class="w">     </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;ON/OFF&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">     </span><span class="k">break</span><span class="p">;</span><span class="w"></span>
+<span class="w">   </span><span class="k">case</span><span class="w"> </span><span class="mh">0xA0441549</span><span class="p">:</span><span class="w"></span>
+<span class="w">     </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;OK&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">     </span><span class="k">break</span><span class="p">;</span><span class="w"></span>
+<span class="w">   </span><span class="k">case</span><span class="w"> </span><span class="mh">0x122450AF</span><span class="p">:</span><span class="w"></span>
+<span class="w">     </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;EXIT&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">   </span><span class="k">default</span><span class="o">:</span><span class="w"></span>
+<span class="w">     </span><span class="k">break</span><span class="p">;</span><span class="w"></span>
+<span class="w">   </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">   </span><span class="n">ir</span><span class="p">.</span><span class="n">resume</span><span class="p">();</span><span class="w"></span>
+<span class="w"> </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">  </span><span class="cm">/*</span>
+<span class="cm">   * 122430CF - On/off button</span>
+<span class="cm">   * AE88D06B - OK button</span>
+<span class="cm">   * 122450AF - EXIT button</span>
+<span class="cm">   * 122458A7 - UP arrow</span>
+<span class="cm">   * 1224D827 - DOWN arrow</span>
+<span class="cm">   * 69A3A44F - LEFT arrow</span>
+<span class="cm">   * A0441549 - RIGHT arrow</span>
+<span class="cm">   */</span><span class="w"></span>
+
+<span class="w">  </span><span class="c1">//delay(1);</span>
+
+
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GetValue</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">GetValue</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">54</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">setValue</span><span class="p">(</span><span class="n">b</span><span class="p">);</span><span class="w"></span>
+<span class="w"> </span><span class="p">}</span><span class="w"></span>
+
+
+<span class="kt">uint8_t</span><span class="o">&amp;</span><span class="w"> </span><span class="nf">GetValue</span><span class="p">(){</span><span class="w"></span>
+<span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">a</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">setValue</span><span class="p">(</span><span class="kt">int</span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">value</span><span class="p">){</span><span class="w"></span>
+
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        
+      </div><!-- /row -->
+
+      <!-- row -->
+      <div class="row footer-relbar">
+<div id="navbar-related" class=" related navbar navbar-default" role="navigation" aria-label="related navigation">
+  <div class="navbar-inner">
+    <ul class="nav navbar-nav ">
+        <li><a href="../../index.html">ELE102 Microcontroller course v1.1.0 documentation</a></li>
+    </ul>
+<ul class="nav navbar-nav pull-right hidden-xs hidden-sm">
+      
+        <li><a href="../Appendices/Additionals.html" title="Additional Chapters" >previous</a></li>
+        <li><a href="adaptive_line_enhancer.html" title="Adaptive line enhancer" >next</a></li>
+        <li><a href="../../genindex.html" title="General Index" >index</a></li>
+        <li><a href="#">top</a></li> 
+      
+    </ul>
+  </div>
+</div>
+      </div><!-- /row -->
+
+      <!-- footer -->
+      <footer role="contentinfo">
+          &copy; Copyright 2022, Gizem Ateş &amp; Eirik Haustveit.
+        Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 5.3.0.
+      </footer>
+      <!-- /footer -->
+
+    </div>
+    <!-- /container -->
+
+  </body>
+</html>

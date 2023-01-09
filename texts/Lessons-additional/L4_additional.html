@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+
+
+
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Additional material for lesson 4 &mdash; ELE102 Microcontroller course v1.1.0 documentation</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    
+
+<link rel="stylesheet" href="../../_static/css/basicstrap-base.css" type="text/css" />
+<link rel="stylesheet" id="current-theme" href="../../_static/css/bootstrap3/bootstrap.min.css" type="text/css" />
+<link rel="stylesheet" id="current-adjust-theme" type="text/css" />
+
+<link rel="stylesheet" href="../../_static/css/font-awesome.min.css">
+
+<style type="text/css">
+  body {
+    padding-top: 60px;
+    padding-bottom: 40px;
+  }
+</style>
+
+<link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
+<link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+<link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+<link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
+<link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
+    
+<script type="text/javascript">
+  var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:    '../../',
+            VERSION:     'v1.1.0',
+            COLLAPSE_INDEX: false,
+            FILE_SUFFIX: '.html',
+            HAS_SOURCE:  true
+  };
+</script>
+    <script type="text/javascript" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/js/jquery.min.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/sphinx_highlight.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script type="text/javascript" src="../../_static/js/bootstrap3.min.js"></script>
+<script type="text/javascript" src="../../_static/js/jquery.cookie.min.js"></script>
+<script type="text/javascript" src="../../_static/js/basicstrap.js"></script>
+<script type="text/javascript">
+</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="top" title="ELE102 Microcontroller course v1.1.0 documentation" href="../../index.html" />
+    <link rel="next" title="Additional material for lesson 5" href="L5_additional.html" />
+    <link rel="prev" title="Additional material for lesson 3" href="L3_additional.html" /> 
+  </head>
+  <body role="document">
+    <div id="navbar-top" class="navbar navbar-fixed-top navbar-default" role="navigation" aria-label="top navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="../../index.html">ELE102 Microcontroller course v1.1.0 documentation</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+              <li class="dropdown visible-xs">
+                <a role="button" id="localToc" data-toggle="dropdown" data-target="#" href="#">Table Of Contents <b class="caret"></b></a>
+                <ul class="dropdown-menu localtoc sp-localtoc" role="menu" aria-labelledby="localToc">
+                <ul>
+<li><a class="reference internal" href="#">Additional material for lesson 4</a><ul>
+<li><a class="reference internal" href="#functions-in-c">Functions in C</a><ul>
+<li><a class="reference internal" href="#function-syntax">Function syntax</a></li>
+<li><a class="reference internal" href="#functions-in-arduino">Functions in Arduino</a></li>
+<li><a class="reference internal" href="#function-to-initialize-the-sytem">Function to initialize the sytem</a></li>
+<li><a class="reference internal" href="#function-to-abstract-hardware">Function to abstract hardware</a></li>
+<li><a class="reference internal" href="#functions-to-do-calculations">Functions to do calculations</a></li>
+<li><a class="reference internal" href="#function-to-calculate-exponentiation">Function to calculate exponentiation</a></li>
+<li><a class="reference internal" href="#function-to-compute-square-root">Function to compute square root</a></li>
+<li><a class="reference internal" href="#returning-multiple-values">Returning multiple values</a></li>
+<li><a class="reference internal" href="#using-global-external-variables">Using global (external) variables</a></li>
+<li><a class="reference internal" href="#using-a-data-structure">Using a data structure</a></li>
+<li><a class="reference internal" href="#using-pointers">Using pointers</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#using-pointers-in-c">Using pointers in C</a><ul>
+<li><a class="reference internal" href="#void-pointers">Void pointers</a></li>
+<li><a class="reference internal" href="#function-pointers">Function pointers</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#recursive-calling-of-functions">Recursive calling of functions</a><ul>
+<li><a class="reference internal" href="#example-1-factorial-function">Example 1 - Factorial function</a></li>
+<li><a class="reference internal" href="#example-2-fibonacci-series">Example 2 - Fibonacci Series</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#functions-in-separate-files">Functions in separate files</a></li>
+<li><a class="reference internal" href="#using-the-tilt-sensor">Using the tilt sensor</a></li>
+</ul>
+</li>
+</ul>
+
+                </ul>
+              </li>
+
+            
+              <li><a href="L3_additional.html" title="Additional material for lesson 3" accesskey="P">previous </a></li>
+              <li><a href="L5_additional.html" title="Additional material for lesson 5" accesskey="N">next </a></li>
+              <li><a href="../../genindex.html" title="General Index" accesskey="I">index </a></li>
+            
+
+            <li class="visible-xs">
+                <form class="search form-search form-inline navbar-form navbar-right sp-searchbox" action="../../search.html" method="get">
+                  <div class="input-append input-group">
+                    <input type="text" class="search-query form-control" name="q" placeholder="Search...">
+                    <span class="input-group-btn">
+                    <input type="submit" class="btn" value="Go" />
+                    </span>
+                  </div>
+                  <input type="hidden" name="check_keywords" value="yes" />
+                  <input type="hidden" name="area" value="default" />
+                </form>
+            </li>
+
+            
+
+          </ul>
+
+        </div>
+      </div>
+    </div>
+    
+
+    <!-- container -->
+    <div class="container-fluid">
+
+      <!-- row -->
+      <div class="row">
+         
+<div class="col-md-3 hidden-xs" id="sidebar-wrapper">
+  <div class="sidebar hidden-xs" role="navigation" aria-label="main navigation">
+<h3><a href="../../index.html">Table of Contents</a></h3>
+<p class="caption" role="heading"><span class="caption-text">Lessons:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons/L0_Introduction_elk.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons/software_hardware_preparations.html">Software and hardware preparations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons/L1a_UC_intro.html">Lesson 1a: What is a Microcontroller</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons/L1b_Arduino_intro.html">Lesson 1b: Introduction to Arduino</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons/L2_digital_io.html">Lesson 2: Digital I/O</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons/L3_digital_io_and_timing.html">Lesson 3: Use of digital I/O and timing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons/L4_dac_pwm.html">Lesson 4: Analog output (PWM)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons/L5_adc.html">Lesson 5: Analog to digital conversion (ADC)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons/L6_serial_io.html">Lesson 6: Serial I/O</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons/L7_timer_interrupt.html">Lesson 7: Timers and interrupts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons/L8_LC_display.html">Lesson 8: LC-Display</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons/L9_memory_and_architecture.html">Lesson 9: Memory and MCU architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons/L10_motor_drive.html">Lesson 10: Motor drive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons/L12_communication.html">Lesson 11: Communication Protocols</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons/L11_VS_Arduino.html">Lesson 12: PC (C#) - Arduino Communication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons/L13_repetition.html">Lesson 13: Repetition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons/course_summary.html">Course summary</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Additional material:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="L1_additional.html">Additional material lesson 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="L2_additional.html">Additional material lesson 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="L3_additional.html">Additional material lesson 3</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Additional material lesson 4</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#functions-in-c">Functions in C</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#function-syntax">Function syntax</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#functions-in-arduino">Functions in Arduino</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#function-to-initialize-the-sytem">Function to initialize the sytem</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#function-to-abstract-hardware">Function to abstract hardware</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#functions-to-do-calculations">Functions to do calculations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#function-to-calculate-exponentiation">Function to calculate exponentiation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#function-to-compute-square-root">Function to compute square root</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#returning-multiple-values">Returning multiple values</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#using-global-external-variables">Using global (external) variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#using-a-data-structure">Using a data structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#using-pointers">Using pointers</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#using-pointers-in-c">Using pointers in C</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#void-pointers">Void pointers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#function-pointers">Function pointers</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#recursive-calling-of-functions">Recursive calling of functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#example-1-factorial-function">Example 1 - Factorial function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#example-2-fibonacci-series">Example 2 - Fibonacci Series</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#functions-in-separate-files">Functions in separate files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#using-the-tilt-sensor">Using the tilt sensor</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="L5_additional.html">Additional material lesson 5</a></li>
+<li class="toctree-l1"><a class="reference internal" href="L6_additional.html">Additional material lesson 6</a></li>
+<li class="toctree-l1"><a class="reference internal" href="L7_additional.html">Additional material lesson 7</a></li>
+<li class="toctree-l1"><a class="reference internal" href="L8_additional.html">Additional material lesson 8</a></li>
+<li class="toctree-l1"><a class="reference internal" href="L9_additional.html">Additional material lesson 9</a></li>
+<li class="toctree-l1"><a class="reference internal" href="L10_additional.html">Additional material lesson 10</a></li>
+<li class="toctree-l1"><a class="reference internal" href="L11_additional.html">Additional material lesson 11</a></li>
+<li class="toctree-l1"><a class="reference internal" href="L12_additional.html">Additional material lesson 12</a></li>
+<li class="toctree-l1"><a class="reference internal" href="L13_additional.html">Additional material lesson 13</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Projects:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Appendices/Additionals.html">Mix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Projects/ir_communication.html">Infrared remote</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Projects/adaptive_line_enhancer.html">Adaptive line enhancer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Projects/audio_processing.html">Audio processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Projects/RC_car.html">Cool Project: RC Car (Bluetooth or Joystick)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Projects/Robotarm.html">Cool Project: Simple Robot Arm (Bluetooth or Joystick)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Projects/dc_motor_control.html">DC motor control</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Projects/digital_piano.html">Digital piano</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Projects/digital_synth.html">Digital synth</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Projects/dtmf_generator.html">DTMF generator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Projects/frequency_estimator.html">Frequency estimator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Projects/induction_motor_control.html">Induction motor control</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Projects/lorawan.html">LoRaWan</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Projects/phase_displacement.html">Phase displacement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Projects/phase_locked_loop.html">Phase locked loop (PLL)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Projects/phasor_estimation.html">Phasor estimation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Projects/radio_transmitter.html">Radio transmitter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Projects/stepper_motor_control.html">Stepper motor control</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Projects/synchroscope.html">Synchroscope</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Projects/thyristor_controller.html">Thyristor controller</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Appendices:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Appendices/low_power_operation.html">Low power operation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Appendices/stacks_queues_lists.html">Stacks, Queues, Lists</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Appendices/assembly_programming.html">Assembly programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Appendices/digital_filters.html">Digital filters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Appendices/floating_point_numbers.html">Floating point numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Appendices/kalman_filter.html">Kalman filter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Appendices/the_build_process.html">The build process</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Appendices/direct_register_manipulations.html">Direct register manipulation</a></li>
+</ul>
+
+<div id="searchbox" role="search">
+  <h3>Quick search</h3>
+  <form class="search form-inline" action="../../search.html" method="get">
+      <div class="input-append input-group">
+        <input type="text" class="search-query form-control" name="q" placeholder="Search...">
+        <span class="input-group-btn">
+        <input type="submit" class="btn" value="Go" />
+        </span>
+      </div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="L3_additional.html"
+                          title="previous chapter">Additional material for lesson 3</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="L5_additional.html"
+                          title="next chapter">Additional material for lesson 5</a></p>
+  </div>
+  </div>
+</div> 
+        
+
+        <div class="col-md-9" id="content-wrapper">
+          <div class="document" role="main">
+            <div class="documentwrapper">
+              <div class="bodywrapper">
+                <div class="body">
+                  
+  <section id="additional-material-for-lesson-4">
+<h1>Additional material for lesson 4<a class="headerlink" href="#additional-material-for-lesson-4" title="Permalink to this heading">¶</a></h1>
+<section id="functions-in-c">
+<h2>Functions in C<a class="headerlink" href="#functions-in-c" title="Permalink to this heading">¶</a></h2>
+<p>A function in C is similar to the function you know from mathematics. It is a grouping of statements to perform a task. Every program will have at least one function, which is the first function to be executed when the program starts. As the program grows in size, splitting the code into different functions makes it easier to manage, and helps you to avoid repeating yourself.</p>
+<p>Suppose you need to perform the same task twice, e.g. compute the square root of two different numbers. The algorithm will be the same, and thus it makes sense to keep it in a separate function. This will make you code more readable, and it will also save memory. When you are using libraries, you are actually calling functions that have been prepared by others.</p>
+<p>There are some important points to note about C functions that makes them different from mathematical functions. A function in C does not have to return a value, the effect of calling the function could be to affect some other part of the system memory without a explicit return value. The result of a function does not have to be the same, even if you provide the same input twice. I.e. the function may depend on some data that is outside it’s list of parameters, or it may have memory which is persistent between each call.</p>
+<p>Despite these possible differences it is often wise to try and keep as many of the functions as possible behave in a predictable manner. Functions with side effects are harder to test, and debug. Some functions, such as <cite>analogRead()</cite> will depend on the physical state of the analog input, and it would not make sense to have it always behave the same for different calls. A function converting the raw ADC value to a number representing some physical quantity however could be made to always behave the same for a given input. E.g. the input being the raw ADC value, and the output being the numeric value representing the voltage on the pin.</p>
+<section id="function-syntax">
+<h3>Function syntax<a class="headerlink" href="#function-syntax" title="Permalink to this heading">¶</a></h3>
+<p>A function requires a definition, and one or more declarations. The definition is the actual implementation of the function, while the declaration simply informs the compiler that a function with such parameters exist somewhere. The reason declarations are required has to do with how the C language is designed, but a in depth discussion of the reasoning is outside the scope of this lesson.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cm">/* Declaration */</span><span class="w"></span>
+<span class="kt">uint8_t</span><span class="w"> </span><span class="nf">number_squared</span><span class="p">(</span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">number</span><span class="p">);</span><span class="w"></span>
+
+<span class="cm">/* Definition */</span><span class="w"></span>
+<span class="kt">uint8_t</span><span class="w"> </span><span class="nf">number_squared</span><span class="p">(</span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">number</span><span class="p">){</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">number</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">number</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="functions-in-arduino">
+<h3>Functions in Arduino<a class="headerlink" href="#functions-in-arduino" title="Permalink to this heading">¶</a></h3>
+<p>For Arduino we have two functions, <code class="code ccode c docutils literal highlight highlight-c"><span class="n">setup</span><span class="p">()</span><span class="w"></span></code>, and <code class="code ccode c docutils literal highlight highlight-c"><span class="n">loop</span><span class="p">()</span><span class="w"></span></code> that are always called. In reality there is another function <code class="code ccode c docutils literal highlight highlight-c"><span class="n">main</span><span class="p">()</span><span class="w"></span></code> that calls <code class="code ccode c docutils literal highlight highlight-c"><span class="n">setup</span><span class="p">()</span><span class="w"></span></code> first, and the it calls <code class="code ccode c docutils literal highlight highlight-c"><span class="n">loop</span><span class="p">()</span><span class="w"></span></code> in a infinite loop. The following code is the actual implementation used:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">init</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">initVariant</span><span class="p">();</span><span class="w"></span>
+
+<span class="cp">#if defined(USBCON)</span>
+<span class="w">        </span><span class="n">USBDevice</span><span class="p">.</span><span class="n">attach</span><span class="p">();</span><span class="w"></span>
+<span class="cp">#endif</span>
+
+<span class="w">        </span><span class="n">setup</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(;;)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="n">loop</span><span class="p">();</span><span class="w"></span>
+<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">serialEventRun</span><span class="p">)</span><span class="w"> </span><span class="n">serialEventRun</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="function-to-initialize-the-sytem">
+<h3>Function to initialize the sytem<a class="headerlink" href="#function-to-initialize-the-sytem" title="Permalink to this heading">¶</a></h3>
+<p>When the controller is booting there is usually some initialization that is required. In order to better organize the code, this could be kept in one or more init functions. The following example illustrates the idea by initializing the UART, as well as one digital input, and one digital output.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">init_controller</span><span class="p">(){</span><span class="w"></span>
+<span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">pinMode</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="n">INPUT</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">pinMode</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span><span class="n">OUTPUT</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Such organization will make the code more readable, and different initialization functions can be selected depending on the needs in a specific situation.</p>
+</section>
+<section id="function-to-abstract-hardware">
+<h3>Function to abstract hardware<a class="headerlink" href="#function-to-abstract-hardware" title="Permalink to this heading">¶</a></h3>
+<p>In order to make your programs more portable it is advantageous to try and separate as much as possible of the hardware specific code from the actual application. This could be achieved by using functions.</p>
+<p>The following is a trivial example of a function which abstracts away the actual digital read for a more general start button function.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">uint8_t</span><span class="w"> </span><span class="nf">read_start_button</span><span class="p">(){</span><span class="w"></span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">digitalRead</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>It can also be used for digital outputs, such as the following example which simply turns a physical LED on:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">uint8_t</span><span class="w"> </span><span class="nf">blue_led_on</span><span class="p">(){</span><span class="w"></span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">digitalWrite</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="n">HIGH</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="functions-to-do-calculations">
+<h3>Functions to do calculations<a class="headerlink" href="#functions-to-do-calculations" title="Permalink to this heading">¶</a></h3>
+<p>Calculations are good candidates for separation into various functions. The algorithm required to perform a mathematical operation will typically be the same regardless of the actual numbers on which is is employed.</p>
+</section>
+<section id="function-to-calculate-exponentiation">
+<h3>Function to calculate exponentiation<a class="headerlink" href="#function-to-calculate-exponentiation" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">uint16_t</span><span class="w"> </span><span class="nf">power</span><span class="p">(</span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">number</span><span class="p">,</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">exponent</span><span class="p">){</span><span class="w"></span>
+<span class="w">  </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">  </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">exponent</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">){</span><span class="w"></span>
+<span class="w">    </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">result</span><span class="o">*</span><span class="n">number</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">result</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="function-to-compute-square-root">
+<h3>Function to compute square root<a class="headerlink" href="#function-to-compute-square-root" title="Permalink to this heading">¶</a></h3>
+<p>The following program uses Babylonian method to compute the square root of a number.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">float</span><span class="w"> </span><span class="nf">square_root</span><span class="p">(</span><span class="kt">float</span><span class="w"> </span><span class="n">number</span><span class="p">){</span><span class="w"></span>
+
+<span class="w">  </span><span class="kt">float</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">number</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="kt">float</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="kt">float</span><span class="w"> </span><span class="n">e</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.00001</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">  </span><span class="k">while</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">e</span><span class="p">){</span><span class="w"></span>
+<span class="w">    </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">number</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">x</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">x</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="returning-multiple-values">
+<h3>Returning multiple values<a class="headerlink" href="#returning-multiple-values" title="Permalink to this heading">¶</a></h3>
+<p>A function will often need to return more than one value. In this section we will look at some alternative ways to achieve this.</p>
+</section>
+<section id="using-global-external-variables">
+<h3>Using global (external) variables<a class="headerlink" href="#using-global-external-variables" title="Permalink to this heading">¶</a></h3>
+<p>Variables that are defined outside any function body are given a global scope. Thus any function will be able to access them. The use of global variables should be limited, but they are useful in some circumstances.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">resultat_a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="kt">uint8_t</span><span class="w"> </span><span class="n">resultat_b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="kt">int8_t</span><span class="w"> </span><span class="n">resultat_c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="n">berekning</span><span class="p">(</span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">c</span><span class="p">){</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">resultat_a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">c</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">resultat_b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="o">*</span><span class="n">b</span><span class="o">*</span><span class="n">c</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">resultat_c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="o">*</span><span class="n">c</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">  </span><span class="k">return</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="using-a-data-structure">
+<h3>Using a data structure<a class="headerlink" href="#using-a-data-structure" title="Permalink to this heading">¶</a></h3>
+<p>The <code class="code ccode c docutils literal highlight highlight-c"><span class="k">return</span><span class="w"></span></code> statement makes the function return to the caller, providing a single populated data type. The data type could be a integer, or it could be some more advanced data type. If one needs to return more than one value, a custom data type could be used.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">resultat_a</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">resultat_b</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="kt">int8_t</span><span class="w"> </span><span class="n">resultat_c</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"> </span><span class="n">tall_t</span><span class="p">;</span><span class="w"></span>
+
+<span class="n">tall_t</span><span class="w"> </span><span class="nf">berekning2</span><span class="p">(</span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">c</span><span class="p">){</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">tall_t</span><span class="w"> </span><span class="n">result</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">result</span><span class="p">.</span><span class="n">resultat_a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">c</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">result</span><span class="p">.</span><span class="n">resultat_b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="o">*</span><span class="n">b</span><span class="o">*</span><span class="n">c</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">result</span><span class="p">.</span><span class="n">resultat_c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="o">*</span><span class="n">c</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">result</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="using-pointers">
+<h3>Using pointers<a class="headerlink" href="#using-pointers" title="Permalink to this heading">¶</a></h3>
+<p>Instead of returning the data, the function could manipulate the memory address of data in the calling function. This is achieved using pointers, i.e. variables containing memory addresses to other variables. Pointers are discussed in the section <a class="reference internal" href="#using-pointers-in-c"><span class="std std-ref">Using pointers in C</span></a></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">berekning3</span><span class="p">(</span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">c</span><span class="p">,</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="o">*</span><span class="n">resultat_a</span><span class="p">,</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="o">*</span><span class="n">resultat_b</span><span class="p">,</span><span class="w"> </span><span class="kt">int8_t</span><span class="w"> </span><span class="o">*</span><span class="n">resultat_c</span><span class="p">){</span><span class="w"></span>
+
+<span class="w">  </span><span class="o">*</span><span class="n">resultat_a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">c</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="o">*</span><span class="n">resultat_b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="o">*</span><span class="n">b</span><span class="o">*</span><span class="n">c</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="o">*</span><span class="n">resultat_c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="o">*</span><span class="n">c</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="using-pointers-in-c">
+<span id="id1"></span><h2>Using pointers in C<a class="headerlink" href="#using-pointers-in-c" title="Permalink to this heading">¶</a></h2>
+<p>Pointers have many useful applications besides passing data to and from functions.</p>
+<p>The following example shows how one can assign specific memory addresses to pointers, and then use the pointers to manipulate those memory locations. The example blinks a LED connected to pin 5 on the Arduino UNO.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cm">/*</span>
+<span class="cm"> * This function demonstrates direct register access for Atmega 328.</span>
+<span class="cm"> * You should never use this function for anything but a fun demonstration.</span>
+<span class="cm"> * Use the official register map files for any production development.</span>
+<span class="cm"> *</span>
+<span class="cm"> * PORTD is digital pin 0 - 7 on the Arduino UNO.</span>
+<span class="cm"> */</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">register_access_led_blink</span><span class="p">(){</span><span class="w"></span>
+
+<span class="w">  </span><span class="kt">uint8_t</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">port_d_register</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">uint8_t</span><span class="o">*</span><span class="p">)</span><span class="mh">0x0b</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="kt">uint8_t</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">data_direction_register_d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">uint8_t</span><span class="o">*</span><span class="p">)</span><span class="mh">0x0a</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="kt">uint8_t</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">pin_d_register</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">uint8_t</span><span class="o">*</span><span class="p">)</span><span class="mh">0x09</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">  </span><span class="kt">uint8_t</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">port_d_register_full_address</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">port_d_register</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mh">0x20</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="kt">uint8_t</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">data_direction_register_d_full_address</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">data_direction_register_d</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mh">0x20</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="kt">uint8_t</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">pin_d_register_full_address</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pin_d_register</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mh">0x20</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">  </span><span class="o">*</span><span class="n">data_direction_register_d_full_address</span><span class="w"> </span><span class="o">|=</span><span class="w"> </span><span class="mb">0b11111100</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">  </span><span class="k">for</span><span class="p">(;;){</span><span class="w"></span>
+<span class="w">    </span><span class="o">*</span><span class="n">port_d_register_full_address</span><span class="w"> </span><span class="o">^=</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">5</span><span class="p">);</span><span class="w"> </span><span class="c1">// Toggle output pin 5.</span>
+<span class="w">    </span><span class="n">delay</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<section id="void-pointers">
+<h3>Void pointers<a class="headerlink" href="#void-pointers" title="Permalink to this heading">¶</a></h3>
+<p>When declaring a pointer we normally declare the data type, e.g. <code class="code ccode c docutils literal highlight highlight-c"><span class="kt">uint8_t</span><span class="w"> </span><span class="o">*</span><span class="n">pointer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">variablename</span><span class="p">;</span><span class="w"></span></code>. Any address in the Atmega 328 is a 16-bit number (the actual address bus might not be 16-bit, but it is more than 8-bit and thus 16-bits are used).</p>
+<p>A void pointer <code class="code ccode c docutils literal highlight highlight-c"><span class="kt">void</span><span class="o">*</span><span class="w"></span></code> is a pointer that has no data type associated with it. It still takes up the same amount of memory (16-bit on Atmega 328), but it can be used to point to any data type.</p>
+</section>
+<section id="function-pointers">
+<h3>Function pointers<a class="headerlink" href="#function-pointers" title="Permalink to this heading">¶</a></h3>
+<p>Just like pointers to data, the C language also supports pointers to functions. This is a powerful (but advanced) feature of the language, which allows us to implement many usefull design patterns more efficiently.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">function</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="n">a</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="n">fun_ptr</span><span class="p">)(</span><span class="kt">int</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">function</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="p">(</span><span class="o">*</span><span class="n">fun_ptr</span><span class="p">)(</span><span class="mi">22</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="recursive-calling-of-functions">
+<h2>Recursive calling of functions<a class="headerlink" href="#recursive-calling-of-functions" title="Permalink to this heading">¶</a></h2>
+<p>If a function is invoking another instace of itself, this is called a recursive function call. This is usefull in many algorithms.</p>
+<section id="example-1-factorial-function">
+<h3>Example 1 - Factorial function<a class="headerlink" href="#example-1-factorial-function" title="Permalink to this heading">¶</a></h3>
+<div class="math notranslate nohighlight">
+\[n! = n(n - 1)*(n - 2)*(n - 3) \dots\]</div>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">uint32_t</span><span class="w"> </span><span class="nf">factorial</span><span class="p">(</span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">number</span><span class="p">){</span><span class="w"></span>
+<span class="w">  </span><span class="k">if</span><span class="p">(</span><span class="n">number</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">1</span><span class="p">){</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">number</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">factorial</span><span class="p">(</span><span class="n">number</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="example-2-fibonacci-series">
+<h3>Example 2 - Fibonacci Series<a class="headerlink" href="#example-2-fibonacci-series" title="Permalink to this heading">¶</a></h3>
+<div class="admonition-todo admonition" id="id2">
+<p class="admonition-title">Todo</p>
+<p>Implement example</p>
+</div>
+</section>
+</section>
+<section id="functions-in-separate-files">
+<h2>Functions in separate files<a class="headerlink" href="#functions-in-separate-files" title="Permalink to this heading">¶</a></h2>
+<p>It is often useful to group related functions in a library by putting them in dedicated files. This is usually achieved by placing the definitions in a source file (*.c, or *.cpp), while the declarations are placed in a header (*.h) file.</p>
+</section>
+<section id="using-the-tilt-sensor">
+<h2>Using the tilt sensor<a class="headerlink" href="#using-the-tilt-sensor" title="Permalink to this heading">¶</a></h2>
+<p>According to the datasheet, the sensor will disconnect all four pins when the switch is tilted more than 45 degree. Considering how the switch is constructed this seems unlikely, and it would appear that it is possible to detect multiple orientations.</p>
+<p>The following source code illustrates how to detect all 6 detectable orientations. Note that this is an advanced example, and also that it is not too reliable because of how the switch operates.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="linenos">  1</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Arduino.h&gt;</span><span class="cp"></span>
+<span class="linenos">  2</span>
+<span class="linenos">  3</span><span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">tilt_sw_pins</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">11</span><span class="p">};</span><span class="w"></span>
+<span class="linenos">  4</span>
+<span class="linenos">  5</span><span class="k">typedef</span><span class="w"> </span><span class="k">enum</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos">  6</span><span class="w">  </span><span class="n">SW_ORI_LEFT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"></span>
+<span class="linenos">  7</span><span class="w">  </span><span class="n">SW_ORI_RIGHT</span><span class="p">,</span><span class="w"></span>
+<span class="linenos">  8</span><span class="w">  </span><span class="n">SW_ORI_FWD</span><span class="p">,</span><span class="w"></span>
+<span class="linenos">  9</span><span class="w">  </span><span class="n">SW_ORI_BCWD</span><span class="p">,</span><span class="w"></span>
+<span class="linenos"> 10</span><span class="w">  </span><span class="n">SW_ORI_FLAT</span><span class="p">,</span><span class="w"></span>
+<span class="linenos"> 11</span><span class="w">  </span><span class="n">SW_ORI_TILTED</span><span class="p">,</span><span class="w"></span>
+<span class="linenos"> 12</span><span class="w">  </span><span class="n">SW_ORI_UNKOWN</span><span class="w"></span>
+<span class="linenos"> 13</span><span class="p">}</span><span class="w"> </span><span class="n">sw_ori_t</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 14</span>
+<span class="linenos"> 15</span><span class="cm">/**</span>
+<span class="linenos"> 16</span><span class="cm"> * @brief Scan the status of the 4 pin tilt switch.</span>
+<span class="linenos"> 17</span><span class="cm"> *</span>
+<span class="linenos"> 18</span><span class="cm"> * TODO: I&#39;m sure this can be improved</span>
+<span class="linenos"> 19</span><span class="cm"> *  </span>
+<span class="linenos"> 20</span><span class="cm"> * @return sw_ori_t </span>
+<span class="linenos"> 21</span><span class="cm"> */</span><span class="w"></span>
+<span class="linenos"> 22</span><span class="n">sw_ori_t</span><span class="w"> </span><span class="nf">tilt_sw_scan</span><span class="p">(){</span><span class="w"></span>
+<span class="linenos"> 23</span>
+<span class="linenos"> 24</span><span class="w">  </span><span class="c1">//uint8_t status[4][4];</span>
+<span class="linenos"> 25</span><span class="w">  </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">status</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">0</span><span class="p">};</span><span class="w"></span>
+<span class="linenos"> 26</span>
+<span class="linenos"> 27</span><span class="w">  </span><span class="k">for</span><span class="p">(</span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">){</span><span class="w"></span>
+<span class="linenos"> 28</span>
+<span class="linenos"> 29</span><span class="w">    </span><span class="c1">// Set one of the pins as output and high</span>
+<span class="linenos"> 30</span><span class="w">    </span><span class="n">pinMode</span><span class="p">(</span><span class="n">tilt_sw_pins</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="n">OUTPUT</span><span class="p">);</span><span class="w"></span>
+<span class="linenos"> 31</span><span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">tilt_sw_pins</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="n">HIGH</span><span class="p">);</span><span class="w"></span>
+<span class="linenos"> 32</span>
+<span class="linenos"> 33</span><span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="o">++</span><span class="p">){</span><span class="w"></span>
+<span class="linenos"> 34</span><span class="w">      </span><span class="n">status</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">|=</span><span class="w"> </span><span class="p">(</span><span class="n">digitalRead</span><span class="p">(</span><span class="n">tilt_sw_pins</span><span class="p">[</span><span class="n">j</span><span class="p">])</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">j</span><span class="p">);</span><span class="w"></span>
+<span class="linenos"> 35</span><span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="linenos"> 36</span>
+<span class="linenos"> 37</span><span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">tilt_sw_pins</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="n">LOW</span><span class="p">);</span><span class="w"></span>
+<span class="linenos"> 38</span><span class="w">    </span><span class="n">pinMode</span><span class="p">(</span><span class="n">tilt_sw_pins</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="n">INPUT</span><span class="p">);</span><span class="w"></span>
+<span class="linenos"> 39</span><span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="linenos"> 40</span>
+<span class="linenos"> 41</span><span class="w">  </span><span class="k">if</span><span class="p">(</span><span class="n">status</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mh">0x03</span><span class="p">){</span><span class="w"></span>
+<span class="linenos"> 42</span><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">SW_ORI_LEFT</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 43</span><span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="linenos"> 44</span><span class="w">  </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="p">(</span><span class="n">status</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mh">0x05</span><span class="p">){</span><span class="w"></span>
+<span class="linenos"> 45</span><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">SW_ORI_BCWD</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 46</span><span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="linenos"> 47</span><span class="w">  </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="p">(</span><span class="n">status</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mh">0x0a</span><span class="p">){</span><span class="w"></span>
+<span class="linenos"> 48</span><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">SW_ORI_FWD</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 49</span><span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="linenos"> 50</span><span class="w">  </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="p">(</span><span class="n">status</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mh">0x0c</span><span class="p">){</span><span class="w"></span>
+<span class="linenos"> 51</span><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">SW_ORI_RIGHT</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 52</span><span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="linenos"> 53</span><span class="w">  </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="p">(</span><span class="n">status</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mh">0x01</span><span class="p">){</span><span class="w"></span>
+<span class="linenos"> 54</span><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">SW_ORI_TILTED</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 55</span><span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="linenos"> 56</span><span class="w">  </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="p">(</span><span class="n">status</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mh">0x0f</span><span class="p">){</span><span class="w"></span>
+<span class="linenos"> 57</span><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">SW_ORI_FLAT</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 58</span><span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="linenos"> 59</span>
+<span class="linenos"> 60</span><span class="w">  </span><span class="k">for</span><span class="p">(</span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">){</span><span class="w"></span>
+<span class="linenos"> 61</span><span class="w">      </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="n">i</span><span class="p">);</span><span class="w"></span>
+<span class="linenos"> 62</span><span class="w">      </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;: &quot;</span><span class="p">);</span><span class="w"></span>
+<span class="linenos"> 63</span><span class="w">      </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">status</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span><span class="w"></span>
+<span class="linenos"> 64</span><span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="linenos"> 65</span>
+<span class="linenos"> 66</span><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">SW_ORI_UNKOWN</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 67</span><span class="p">}</span><span class="w"></span>
+<span class="linenos"> 68</span>
+<span class="linenos"> 69</span><span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos"> 70</span><span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span><span class="w"></span>
+<span class="linenos"> 71</span><span class="p">}</span><span class="w"></span>
+<span class="linenos"> 72</span>
+<span class="linenos"> 73</span><span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos"> 74</span>
+<span class="linenos"> 75</span><span class="w">  </span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="n">tilt_sw_scan</span><span class="p">())</span><span class="w"></span>
+<span class="linenos"> 76</span><span class="w">  </span><span class="p">{</span><span class="w"></span>
+<span class="linenos"> 77</span><span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">SW_ORI_LEFT</span><span class="p">:</span><span class="w"></span>
+<span class="linenos"> 78</span><span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Left&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="linenos"> 79</span><span class="w">    </span><span class="k">break</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 80</span><span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">SW_ORI_RIGHT</span><span class="p">:</span><span class="w"></span>
+<span class="linenos"> 81</span><span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Right&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="linenos"> 82</span><span class="w">    </span><span class="k">break</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 83</span><span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">SW_ORI_FWD</span><span class="p">:</span><span class="w"></span>
+<span class="linenos"> 84</span><span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Forward&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="linenos"> 85</span><span class="w">    </span><span class="k">break</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 86</span><span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">SW_ORI_BCWD</span><span class="p">:</span><span class="w"></span>
+<span class="linenos"> 87</span><span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Backward&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="linenos"> 88</span><span class="w">    </span><span class="k">break</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 89</span><span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">SW_ORI_FLAT</span><span class="p">:</span><span class="w"></span>
+<span class="linenos"> 90</span><span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Flat&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="linenos"> 91</span><span class="w">    </span><span class="k">break</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 92</span><span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">SW_ORI_TILTED</span><span class="p">:</span><span class="w"></span>
+<span class="linenos"> 93</span><span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Tilted (upside down)&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="linenos"> 94</span><span class="w">    </span><span class="k">break</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 95</span><span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">SW_ORI_UNKOWN</span><span class="p">:</span><span class="w"></span>
+<span class="linenos"> 96</span><span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Unknown state&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="linenos"> 97</span><span class="w">    </span><span class="k">break</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 98</span><span class="w"> </span>
+<span class="linenos"> 99</span><span class="w">  </span><span class="k">default</span><span class="o">:</span><span class="w"></span>
+<span class="linenos">100</span><span class="w">    </span><span class="k">break</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">101</span><span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="linenos">102</span>
+<span class="linenos">103</span><span class="w">  </span><span class="n">delay</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span><span class="w"></span>
+<span class="linenos">104</span><span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        
+      </div><!-- /row -->
+
+      <!-- row -->
+      <div class="row footer-relbar">
+<div id="navbar-related" class=" related navbar navbar-default" role="navigation" aria-label="related navigation">
+  <div class="navbar-inner">
+    <ul class="nav navbar-nav ">
+        <li><a href="../../index.html">ELE102 Microcontroller course v1.1.0 documentation</a></li>
+    </ul>
+<ul class="nav navbar-nav pull-right hidden-xs hidden-sm">
+      
+        <li><a href="L3_additional.html" title="Additional material for lesson 3" >previous</a></li>
+        <li><a href="L5_additional.html" title="Additional material for lesson 5" >next</a></li>
+        <li><a href="../../genindex.html" title="General Index" >index</a></li>
+        <li><a href="#">top</a></li> 
+      
+    </ul>
+  </div>
+</div>
+      </div><!-- /row -->
+
+      <!-- footer -->
+      <footer role="contentinfo">
+          &copy; Copyright 2022, Gizem Ateş &amp; Eirik Haustveit.
+        Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 5.3.0.
+      </footer>
+      <!-- /footer -->
+
+    </div>
+    <!-- /container -->
+
+  </body>
+</html>

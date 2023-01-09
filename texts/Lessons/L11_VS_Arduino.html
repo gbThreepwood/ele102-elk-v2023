@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+
+
+
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>PC (C#) and Arduino Communication &mdash; ELE102 Microcontroller course v1.1.0 documentation</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    
+
+<link rel="stylesheet" href="../../_static/css/basicstrap-base.css" type="text/css" />
+<link rel="stylesheet" id="current-theme" href="../../_static/css/bootstrap3/bootstrap.min.css" type="text/css" />
+<link rel="stylesheet" id="current-adjust-theme" type="text/css" />
+
+<link rel="stylesheet" href="../../_static/css/font-awesome.min.css">
+
+<style type="text/css">
+  body {
+    padding-top: 60px;
+    padding-bottom: 40px;
+  }
+</style>
+
+<link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
+<link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+<link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+<link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
+<link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
+    
+<script type="text/javascript">
+  var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:    '../../',
+            VERSION:     'v1.1.0',
+            COLLAPSE_INDEX: false,
+            FILE_SUFFIX: '.html',
+            HAS_SOURCE:  true
+  };
+</script>
+    <script type="text/javascript" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/js/jquery.min.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/sphinx_highlight.js"></script>
+    <script type="text/javascript" src="../../_static/js/bootstrap3.min.js"></script>
+<script type="text/javascript" src="../../_static/js/jquery.cookie.min.js"></script>
+<script type="text/javascript" src="../../_static/js/basicstrap.js"></script>
+<script type="text/javascript">
+</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="top" title="ELE102 Microcontroller course v1.1.0 documentation" href="../../index.html" />
+    <link rel="next" title="Repetition" href="L13_repetition.html" />
+    <link rel="prev" title="Communication Protocols" href="L12_communication.html" /> 
+  </head>
+  <body role="document">
+    <div id="navbar-top" class="navbar navbar-fixed-top navbar-default" role="navigation" aria-label="top navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="../../index.html">ELE102 Microcontroller course v1.1.0 documentation</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+              <li class="dropdown visible-xs">
+                <a role="button" id="localToc" data-toggle="dropdown" data-target="#" href="#">Table Of Contents <b class="caret"></b></a>
+                <ul class="dropdown-menu localtoc sp-localtoc" role="menu" aria-labelledby="localToc">
+                <ul>
+<li><a class="reference internal" href="#">PC (C#) and Arduino Communication</a><ul>
+<li><a class="reference internal" href="#designing-a-simple-communication-protocol-on-top-of-uart">Designing a simple communication protocol on top of UART</a></li>
+<li><a class="reference internal" href="#using-the-serial-port-in-c">Using the serial port in C#</a><ul>
+<li><a class="reference internal" href="#using-the-serial-port-in-c-system-io-ports">Using the serial port in C# (System.IO.Ports)</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#simple-example">Simple example</a><ul>
+<li><a class="reference internal" href="#arduino-software">Arduino software</a></li>
+<li><a class="reference internal" href="#c-software">C# software</a></li>
+<li><a class="reference internal" href="#exercise-toggle-led-from-gui-program-on-pc">Exercise: Toggle LED from GUI program on PC</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#advanced-example">Advanced example</a><ul>
+<li><a class="reference internal" href="#id1">Arduino software</a></li>
+<li><a class="reference internal" href="#id2">C# software</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+                </ul>
+              </li>
+
+            
+              <li><a href="L12_communication.html" title="Communication Protocols" accesskey="P">previous </a></li>
+              <li><a href="L13_repetition.html" title="Repetition" accesskey="N">next </a></li>
+              <li><a href="../../genindex.html" title="General Index" accesskey="I">index </a></li>
+            
+
+            <li class="visible-xs">
+                <form class="search form-search form-inline navbar-form navbar-right sp-searchbox" action="../../search.html" method="get">
+                  <div class="input-append input-group">
+                    <input type="text" class="search-query form-control" name="q" placeholder="Search...">
+                    <span class="input-group-btn">
+                    <input type="submit" class="btn" value="Go" />
+                    </span>
+                  </div>
+                  <input type="hidden" name="check_keywords" value="yes" />
+                  <input type="hidden" name="area" value="default" />
+                </form>
+            </li>
+
+            
+
+          </ul>
+
+        </div>
+      </div>
+    </div>
+    
+
+    <!-- container -->
+    <div class="container-fluid">
+
+      <!-- row -->
+      <div class="row">
+         
+<div class="col-md-3 hidden-xs" id="sidebar-wrapper">
+  <div class="sidebar hidden-xs" role="navigation" aria-label="main navigation">
+<h3><a href="../../index.html">Table of Contents</a></h3>
+<p class="caption" role="heading"><span class="caption-text">Lessons:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="L0_Introduction_elk.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="software_hardware_preparations.html">Software and hardware preparations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="L1a_UC_intro.html">Lesson 1a: What is a Microcontroller</a></li>
+<li class="toctree-l1"><a class="reference internal" href="L1b_Arduino_intro.html">Lesson 1b: Introduction to Arduino</a></li>
+<li class="toctree-l1"><a class="reference internal" href="L2_digital_io.html">Lesson 2: Digital I/O</a></li>
+<li class="toctree-l1"><a class="reference internal" href="L3_digital_io_and_timing.html">Lesson 3: Use of digital I/O and timing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="L4_dac_pwm.html">Lesson 4: Analog output (PWM)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="L5_adc.html">Lesson 5: Analog to digital conversion (ADC)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="L6_serial_io.html">Lesson 6: Serial I/O</a></li>
+<li class="toctree-l1"><a class="reference internal" href="L7_timer_interrupt.html">Lesson 7: Timers and interrupts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="L8_LC_display.html">Lesson 8: LC-Display</a></li>
+<li class="toctree-l1"><a class="reference internal" href="L9_memory_and_architecture.html">Lesson 9: Memory and MCU architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="L10_motor_drive.html">Lesson 10: Motor drive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="L12_communication.html">Lesson 11: Communication Protocols</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Lesson 12: PC (C#) - Arduino Communication</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#designing-a-simple-communication-protocol-on-top-of-uart">Designing a simple communication protocol on top of UART</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#using-the-serial-port-in-c">Using the serial port in C#</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#using-the-serial-port-in-c-system-io-ports">Using the serial port in C# (System.IO.Ports)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#simple-example">Simple example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#arduino-software">Arduino software</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#c-software">C# software</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#exercise-toggle-led-from-gui-program-on-pc">Exercise: Toggle LED from GUI program on PC</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#advanced-example">Advanced example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Arduino software</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">C# software</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="L13_repetition.html">Lesson 13: Repetition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="course_summary.html">Course summary</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Additional material:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L1_additional.html">Additional material lesson 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L2_additional.html">Additional material lesson 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L3_additional.html">Additional material lesson 3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L4_additional.html">Additional material lesson 4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L5_additional.html">Additional material lesson 5</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L6_additional.html">Additional material lesson 6</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L7_additional.html">Additional material lesson 7</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L8_additional.html">Additional material lesson 8</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L9_additional.html">Additional material lesson 9</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L10_additional.html">Additional material lesson 10</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L11_additional.html">Additional material lesson 11</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L12_additional.html">Additional material lesson 12</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L13_additional.html">Additional material lesson 13</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Projects:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Appendices/Additionals.html">Mix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Projects/ir_communication.html">Infrared remote</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Projects/adaptive_line_enhancer.html">Adaptive line enhancer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Projects/audio_processing.html">Audio processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Projects/RC_car.html">Cool Project: RC Car (Bluetooth or Joystick)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Projects/Robotarm.html">Cool Project: Simple Robot Arm (Bluetooth or Joystick)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Projects/dc_motor_control.html">DC motor control</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Projects/digital_piano.html">Digital piano</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Projects/digital_synth.html">Digital synth</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Projects/dtmf_generator.html">DTMF generator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Projects/frequency_estimator.html">Frequency estimator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Projects/induction_motor_control.html">Induction motor control</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Projects/lorawan.html">LoRaWan</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Projects/phase_displacement.html">Phase displacement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Projects/phase_locked_loop.html">Phase locked loop (PLL)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Projects/phasor_estimation.html">Phasor estimation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Projects/radio_transmitter.html">Radio transmitter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Projects/stepper_motor_control.html">Stepper motor control</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Projects/synchroscope.html">Synchroscope</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Projects/thyristor_controller.html">Thyristor controller</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Appendices:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Appendices/low_power_operation.html">Low power operation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Appendices/stacks_queues_lists.html">Stacks, Queues, Lists</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Appendices/assembly_programming.html">Assembly programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Appendices/digital_filters.html">Digital filters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Appendices/floating_point_numbers.html">Floating point numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Appendices/kalman_filter.html">Kalman filter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Appendices/the_build_process.html">The build process</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Appendices/direct_register_manipulations.html">Direct register manipulation</a></li>
+</ul>
+
+<div id="searchbox" role="search">
+  <h3>Quick search</h3>
+  <form class="search form-inline" action="../../search.html" method="get">
+      <div class="input-append input-group">
+        <input type="text" class="search-query form-control" name="q" placeholder="Search...">
+        <span class="input-group-btn">
+        <input type="submit" class="btn" value="Go" />
+        </span>
+      </div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="L12_communication.html"
+                          title="previous chapter">Communication Protocols</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="L13_repetition.html"
+                          title="next chapter">Repetition</a></p>
+  </div>
+  </div>
+</div> 
+        
+
+        <div class="col-md-9" id="content-wrapper">
+          <div class="document" role="main">
+            <div class="documentwrapper">
+              <div class="bodywrapper">
+                <div class="body">
+                  
+  <section id="pc-c-and-arduino-communication">
+<h1>PC (C#) and Arduino Communication<a class="headerlink" href="#pc-c-and-arduino-communication" title="Permalink to this heading">¶</a></h1>
+<p>In this lesson we will go through the design of a application that allows us to communicate between a desktop application written in C#, and a Arduino application written in C/C++. The communication link will be using the UART, but with some additional higher level application specific protocol layers.</p>
+<section id="designing-a-simple-communication-protocol-on-top-of-uart">
+<h2>Designing a simple communication protocol on top of UART<a class="headerlink" href="#designing-a-simple-communication-protocol-on-top-of-uart" title="Permalink to this heading">¶</a></h2>
+<p>Among the low level methods that are available to us are <cite>Serial.write()</cite>, and <cite>Serial.read()</cite>. The methods have the ability to send and receive one byte respectively. They do hovever not put any constraints on what the bytes are supposed to represent. The binary value 0b01001011 could represent a uppercase “K”, as it does in ASCII, but it could also be a command to turn on a LED, or read a analog input. It is up to the designer to decide.</p>
+<p>Even though you are free to do as you please, there are some approaches that are considered good practice, and that often lead to a more reliable communication system. For all but the most simplistic systems we need to send more data than there is room for in a single byte. Thus we typically pack multiple bytes together in what is known as a data packet.</p>
+<p>The following listing is one possible organization of a data packet:</p>
+<ul class="simple">
+<li><p>Start flag (single constant byte signifying start of transmission)</p></li>
+<li><p>Command byte or packet type (one or more bytes that informs the receiver on what the data represents)</p></li>
+<li><p>Length byte (the number of data bytes, or possibly the total number of bytes.)</p></li>
+<li><p>Data byte(s) (the actual data to transfer)</p></li>
+<li><p>Checksum or CRC (data used to verify the integrity of the transmitted data)</p></li>
+<li><p>End flag (single constant byte signifying end of transmission, possibly the same value as the start flag)</p></li>
+</ul>
+<p>For fixed length data packages the length byte is not needed. In simple applications the checksum is often omitted, and possibly also the start and end flags.</p>
+<p>For advanced applications there is a possible issue that the start, and end flags could appear as part of the data bytes. If each byte of the data could be anything, that means it could also be the flags no matter which value you choose to use. The flags are introduced to increase reliability, and this benefit is impaired if you do not reset the reception each time you receive a start flag. Thus the byte sequence of the start flag must never be transmitted except at the beginning (and possibly at the end) of a packet. In order to overcome this issue one may use various forms of byte stuffing to encode data which happen to use the same byte sequence as the start flag.</p>
+<p>For production code it is recommended to at least use the following organization of the data even for simple applications:</p>
+<ul class="simple">
+<li><p>Start flag (single constant byte signifying start of transmission)</p></li>
+<li><p>Command byte (one or more bytes that informs the receiver on what the data represents)</p></li>
+<li><p>Data byte (the actual data to transfer)</p></li>
+<li><p>End flag (single constant byte signifying end of transmission)</p></li>
+</ul>
+<p>In the following examples we will try to start of even simpler however.</p>
+</section>
+<section id="using-the-serial-port-in-c">
+<h2>Using the serial port in C#<a class="headerlink" href="#using-the-serial-port-in-c" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="n">port</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">SerialPort</span><span class="p">(</span><span class="s">&quot;COM19&quot;</span><span class="p">,</span><span class="w"> </span><span class="m">9600</span><span class="p">,</span><span class="w"> </span><span class="n">Parity</span><span class="p">.</span><span class="n">None</span><span class="p">,</span><span class="w"> </span><span class="m">8</span><span class="p">,</span><span class="w"> </span><span class="n">StopBits</span><span class="p">.</span><span class="n">One</span><span class="p">);</span><span class="w"></span>
+<span class="n">port</span><span class="p">.</span><span class="n">Open</span><span class="p">();</span><span class="w"></span>
+<span class="n">port</span><span class="p">.</span><span class="n">Write</span><span class="p">(</span><span class="s">&quot;led&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="n">port</span><span class="p">.</span><span class="n">Close</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<section id="using-the-serial-port-in-c-system-io-ports">
+<h3>Using the serial port in C# (System.IO.Ports)<a class="headerlink" href="#using-the-serial-port-in-c-system-io-ports" title="Permalink to this heading">¶</a></h3>
+<p>When reading the serial port you have several options. You could use a blocking call that blocks until data is available on the serial port, or you could poll the serial port library to check if data is available. Finally you could register a event handler that is called when data is available.</p>
+</section>
+</section>
+<section id="simple-example">
+<h2>Simple example<a class="headerlink" href="#simple-example" title="Permalink to this heading">¶</a></h2>
+<p>In this example we wil create a application to control an LED, and read a analog value from a potmeter connected to our Arduino.</p>
+<figure class="align-default">
+<a class="reference internal image-reference" href="../../_images/one_potmeter_and_one_led_bb.png"><img alt="../../_images/one_potmeter_and_one_led_bb.png" src="../../_images/one_potmeter_and_one_led_bb.png" style="width: 477.0px; height: 661.5px;" /></a>
+</figure>
+<section id="arduino-software">
+<h3>Arduino software<a class="headerlink" href="#arduino-software" title="Permalink to this heading">¶</a></h3>
+<p>Ideally you should not have to concern yourself with what kind of programming language will be used on one side of the communication link, when developing software on the other side. In our case that means that you should not need to know C# in order to develop the Arduino software, and you should not have to know C or Arduino in order to develop the C# software.</p>
+<p>For this to work you should write a protocol specification before you start developing the software. In this first approach the following protocol is implemented (please note that this is a very naive approach):</p>
+<p>Command: ‘led’ causes a LED on pin 9 to toggle. Command ‘voltage’ causes the Arduino to return the measured raw analog value on pin A0. No additional control data is transmitted, the controller does not return a confirmation message when it is told to toggle the LED, and the reception relies on a timeout insted of a end flag to signify complete data packet.</p>
+<p>One could also note that the data is transmitted as ASCII, which means that a number that ideally takes up one byte, will use two bytes. And also the length of the commands are many bytes, which introduces unnecessary overhead.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Arduino.h&gt;</span><span class="cp"></span>
+
+<span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">redLED_pin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">9</span><span class="p">;</span><span class="w"></span>
+<span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">potmeterInput_pin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">A0</span><span class="p">;</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">setTimeout</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">pinMode</span><span class="p">(</span><span class="n">redLED_pin</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">pinMode</span><span class="p">(</span><span class="n">potmeterInput_pin</span><span class="p">,</span><span class="w"> </span><span class="n">INPUT</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+
+<span class="w">  </span><span class="k">if</span><span class="p">(</span><span class="n">Serial</span><span class="p">.</span><span class="n">available</span><span class="p">()){</span><span class="w"></span>
+<span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">serialData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Serial</span><span class="p">.</span><span class="n">readString</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">  </span>
+<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">serialData</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;led&quot;</span><span class="p">){</span><span class="w"></span>
+<span class="w">      </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">redLED_pin</span><span class="p">,</span><span class="w"> </span><span class="o">!</span><span class="n">digitalRead</span><span class="p">(</span><span class="n">redLED_pin</span><span class="p">));</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="p">(</span><span class="n">serialData</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;voltage&quot;</span><span class="p">){</span><span class="w"></span>
+<span class="w">      </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="n">analogRead</span><span class="p">(</span><span class="n">potmeterInput_pin</span><span class="p">));</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="c-software">
+<h3>C# software<a class="headerlink" href="#c-software" title="Permalink to this heading">¶</a></h3>
+<p>The following C# code listing provides an example of on how to transmit a character over the UART. It will however need to be adapted if you intend to use it in the following exercise.</p>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="nn">System</span><span class="p">;</span><span class="w"></span>
+<span class="k">using</span><span class="w"> </span><span class="nn">System.Collections.Generic</span><span class="p">;</span><span class="w"></span>
+<span class="k">using</span><span class="w"> </span><span class="nn">System.ComponentModel</span><span class="p">;</span><span class="w"></span>
+<span class="k">using</span><span class="w"> </span><span class="nn">System.Data</span><span class="p">;</span><span class="w"></span>
+<span class="k">using</span><span class="w"> </span><span class="nn">System.Drawing</span><span class="p">;</span><span class="w"></span>
+<span class="k">using</span><span class="w"> </span><span class="nn">System.IO.Ports</span><span class="p">;</span><span class="w"></span>
+<span class="k">using</span><span class="w"> </span><span class="nn">System.Linq</span><span class="p">;</span><span class="w"></span>
+<span class="k">using</span><span class="w"> </span><span class="nn">System.Text</span><span class="p">;</span><span class="w"></span>
+<span class="k">using</span><span class="w"> </span><span class="nn">System.Threading.Tasks</span><span class="p">;</span><span class="w"></span>
+<span class="k">using</span><span class="w"> </span><span class="nn">System.Windows.Forms</span><span class="p">;</span><span class="w"></span>
+<span class="k">namespace</span><span class="w"> </span><span class="nn">ArduinoControl</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="k">partial</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">Form1</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">Form</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">public</span><span class="w"> </span><span class="nf">Form1</span><span class="p">()</span><span class="w"></span>
+<span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">InitializeComponent</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="k">private</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">onButton_Click</span><span class="p">(</span><span class="kt">object</span><span class="w"> </span><span class="n">sender</span><span class="p">,</span><span class="w"> </span><span class="n">EventArgs</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="k">try</span><span class="w"></span>
+<span class="w">            </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="n">SerialPort</span><span class="w"> </span><span class="n">sp</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">SerialPort</span><span class="p">(</span><span class="s">&quot;COM6&quot;</span><span class="p">,</span><span class="w"> </span><span class="m">9600</span><span class="p">);</span><span class="w"></span>
+<span class="w">                </span><span class="n">sp</span><span class="p">.</span><span class="n">Open</span><span class="p">();</span><span class="w"></span>
+<span class="w">                </span><span class="n">sp</span><span class="p">.</span><span class="n">Write</span><span class="p">(</span><span class="s">&quot;H&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">                </span><span class="n">sp</span><span class="p">.</span><span class="n">Close</span><span class="p">();</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">            </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">Exception</span><span class="w"> </span><span class="n">ex</span><span class="p">)</span><span class="w"></span>
+<span class="w">            </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="n">MessageBox</span><span class="p">.</span><span class="n">Show</span><span class="p">(</span><span class="n">ex</span><span class="p">.</span><span class="n">Message</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="k">private</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">offButton_Click</span><span class="p">(</span><span class="kt">object</span><span class="w"> </span><span class="n">sender</span><span class="p">,</span><span class="w"> </span><span class="n">EventArgs</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="k">try</span><span class="w"></span>
+<span class="w">            </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="n">SerialPort</span><span class="w"> </span><span class="n">sp</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">SerialPort</span><span class="p">(</span><span class="s">&quot;COM1&quot;</span><span class="p">,</span><span class="w"> </span><span class="m">9600</span><span class="p">);</span><span class="w"></span>
+<span class="w">                </span><span class="n">sp</span><span class="p">.</span><span class="n">Open</span><span class="p">();</span><span class="w"></span>
+<span class="w">                </span><span class="n">sp</span><span class="p">.</span><span class="n">Write</span><span class="p">(</span><span class="s">&quot;L&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">                </span><span class="n">sp</span><span class="p">.</span><span class="n">Close</span><span class="p">();</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">            </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">Exception</span><span class="w"> </span><span class="n">ex</span><span class="p">)</span><span class="w"></span>
+<span class="w">            </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="n">MessageBox</span><span class="p">.</span><span class="n">Show</span><span class="p">(</span><span class="n">ex</span><span class="p">.</span><span class="n">Message</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="exercise-toggle-led-from-gui-program-on-pc">
+<h3>Exercise: Toggle LED from GUI program on PC<a class="headerlink" href="#exercise-toggle-led-from-gui-program-on-pc" title="Permalink to this heading">¶</a></h3>
+<p>In this exercise you will be writing a program to toggle a LED, and to read a value from a potentiometer connected to the Arduino UNO. The GUI application should look similar to the following screenshot:</p>
+<figure class="align-default">
+<a class="reference internal image-reference" href="../../_images/arduino_comm_screenshot.png"><img alt="../../_images/arduino_comm_screenshot.png" src="../../_images/arduino_comm_screenshot.png" style="width: 263.0px; height: 173.0px;" /></a>
+</figure>
+<ol class="arabic simple">
+<li><p>Start by connecting a LED, and a potentiometer to the Arduino UNO.</p></li>
+<li><p>Create a program on the Arduino which toggles the LED when it receive the string “led”, and who transmits the raw ADC value when it receive the string “voltage”.</p></li>
+<li><p>Test the Arduino program in the serial monitor. By quickly typing the command strings on your keyboard, you should be able to verify all aspects of the operation.</p></li>
+<li><p>Create a GUI application in Visual Studio (not Visual studio code), with a similar appearance to the above screenshot.</p></li>
+<li><p>Add the functionality to transmit data to the UART upon pressing the push buttons. Verify that you are able to toggle the LED state.</p></li>
+<li><p>Add the functionality to read the potentiometer ADC value.</p></li>
+</ol>
+</section>
+</section>
+<section id="advanced-example">
+<h2>Advanced example<a class="headerlink" href="#advanced-example" title="Permalink to this heading">¶</a></h2>
+<p>When you want to exchange various data in one transaction than you need to start a “data package”. In this example, we will create our custom data package, create our own protocol on top of UART.</p>
+<figure class="align-default">
+<a class="reference internal image-reference" href="../../_images/one_potmeter_and_three_led_bb.png"><img alt="../../_images/one_potmeter_and_three_led_bb.png" src="../../_images/one_potmeter_and_three_led_bb.png" style="width: 477.0px; height: 661.5px;" /></a>
+</figure>
+<section id="id1">
+<h3>Arduino software<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h3>
+</section>
+<section id="id2">
+<h3>C# software<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h3>
+<figure class="align-default">
+<a class="reference internal image-reference" href="../../_images/adv_arduino_comm_screenshot.png"><img alt="../../_images/adv_arduino_comm_screenshot.png" src="../../_images/adv_arduino_comm_screenshot.png" style="width: 491.0px; height: 310.0px;" /></a>
+</figure>
+</section>
+</section>
+</section>
+
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        
+      </div><!-- /row -->
+
+      <!-- row -->
+      <div class="row footer-relbar">
+<div id="navbar-related" class=" related navbar navbar-default" role="navigation" aria-label="related navigation">
+  <div class="navbar-inner">
+    <ul class="nav navbar-nav ">
+        <li><a href="../../index.html">ELE102 Microcontroller course v1.1.0 documentation</a></li>
+    </ul>
+<ul class="nav navbar-nav pull-right hidden-xs hidden-sm">
+      
+        <li><a href="L12_communication.html" title="Communication Protocols" >previous</a></li>
+        <li><a href="L13_repetition.html" title="Repetition" >next</a></li>
+        <li><a href="../../genindex.html" title="General Index" >index</a></li>
+        <li><a href="#">top</a></li> 
+      
+    </ul>
+  </div>
+</div>
+      </div><!-- /row -->
+
+      <!-- footer -->
+      <footer role="contentinfo">
+          &copy; Copyright 2022, Gizem Ateş &amp; Eirik Haustveit.
+        Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 5.3.0.
+      </footer>
+      <!-- /footer -->
+
+    </div>
+    <!-- /container -->
+
+  </body>
+</html>

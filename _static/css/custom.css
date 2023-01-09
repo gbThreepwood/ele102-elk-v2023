@@ -1,0 +1,24 @@
+.toggle .header {
+    display: block;
+    clear: both;
+}
+
+.toggle .header:after {
+    content: " ▶";
+}
+
+.toggle .header.open:after {
+    content: " ▼";
+}
+
+span.underlined {
+    text-decoration: underline;
+}
+
+.rst-content .myownstyle .admonition-title {
+    background: #0000FF
+ }
+ 
+ .rst-content .myownstyle {
+    background: #7c1d2b
+ }

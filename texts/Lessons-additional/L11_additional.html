@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+
+
+
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Additional material for lesson 11 &mdash; ELE102 Microcontroller course v1.1.0 documentation</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    
+
+<link rel="stylesheet" href="../../_static/css/basicstrap-base.css" type="text/css" />
+<link rel="stylesheet" id="current-theme" href="../../_static/css/bootstrap3/bootstrap.min.css" type="text/css" />
+<link rel="stylesheet" id="current-adjust-theme" type="text/css" />
+
+<link rel="stylesheet" href="../../_static/css/font-awesome.min.css">
+
+<style type="text/css">
+  body {
+    padding-top: 60px;
+    padding-bottom: 40px;
+  }
+</style>
+
+<link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
+<link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+<link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+<link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
+<link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
+    
+<script type="text/javascript">
+  var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:    '../../',
+            VERSION:     'v1.1.0',
+            COLLAPSE_INDEX: false,
+            FILE_SUFFIX: '.html',
+            HAS_SOURCE:  true
+  };
+</script>
+    <script type="text/javascript" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/js/jquery.min.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/sphinx_highlight.js"></script>
+    <script type="text/javascript" src="../../_static/js/bootstrap3.min.js"></script>
+<script type="text/javascript" src="../../_static/js/jquery.cookie.min.js"></script>
+<script type="text/javascript" src="../../_static/js/basicstrap.js"></script>
+<script type="text/javascript">
+</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="top" title="ELE102 Microcontroller course v1.1.0 documentation" href="../../index.html" />
+    <link rel="next" title="Additional material for lesson 12" href="L12_additional.html" />
+    <link rel="prev" title="Additional material for lesson 10" href="L10_additional.html" /> 
+  </head>
+  <body role="document">
+    <div id="navbar-top" class="navbar navbar-fixed-top navbar-default" role="navigation" aria-label="top navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="../../index.html">ELE102 Microcontroller course v1.1.0 documentation</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+              <li class="dropdown visible-xs">
+                <a role="button" id="localToc" data-toggle="dropdown" data-target="#" href="#">Table Of Contents <b class="caret"></b></a>
+                <ul class="dropdown-menu localtoc sp-localtoc" role="menu" aria-labelledby="localToc">
+                <ul>
+<li><a class="reference internal" href="#">Additional material for lesson 11</a><ul>
+<li><a class="reference internal" href="#ansi-escape-sequences">ANSI Escape sequences</a></li>
+<li><a class="reference internal" href="#how-to-design-a-reliable-communication-protocol">How to design a reliable communication protocol</a><ul>
+<li><a class="reference internal" href="#using-the-serial-port-in-c">Using the serial port in C#</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#delegates">Delegates</a></li>
+<li><a class="reference internal" href="#events">Events</a></li>
+<li><a class="reference internal" href="#consistent-overhead-byte-stuffing-cobs">Consistent Overhead Byte Stuffing (COBS)</a></li>
+<li><a class="reference internal" href="#debugger">Debugger</a><ul>
+<li><a class="reference internal" href="#improved-example">Improved example</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#arduino-software">Arduino software</a></li>
+<li><a class="reference internal" href="#c-software">C# software</a></li>
+</ul>
+</li>
+</ul>
+
+                </ul>
+              </li>
+
+            
+              <li><a href="L10_additional.html" title="Additional material for lesson 10" accesskey="P">previous </a></li>
+              <li><a href="L12_additional.html" title="Additional material for lesson 12" accesskey="N">next </a></li>
+              <li><a href="../../genindex.html" title="General Index" accesskey="I">index </a></li>
+            
+
+            <li class="visible-xs">
+                <form class="search form-search form-inline navbar-form navbar-right sp-searchbox" action="../../search.html" method="get">
+                  <div class="input-append input-group">
+                    <input type="text" class="search-query form-control" name="q" placeholder="Search...">
+                    <span class="input-group-btn">
+                    <input type="submit" class="btn" value="Go" />
+                    </span>
+                  </div>
+                  <input type="hidden" name="check_keywords" value="yes" />
+                  <input type="hidden" name="area" value="default" />
+                </form>
+            </li>
+
+            
+
+          </ul>
+
+        </div>
+      </div>
+    </div>
+    
+
+    <!-- container -->
+    <div class="container-fluid">
+
+      <!-- row -->
+      <div class="row">
+         
+<div class="col-md-3 hidden-xs" id="sidebar-wrapper">
+  <div class="sidebar hidden-xs" role="navigation" aria-label="main navigation">
+<h3><a href="../../index.html">Table of Contents</a></h3>
+<p class="caption" role="heading"><span class="caption-text">Lessons:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons/L0_Introduction_elk.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons/software_hardware_preparations.html">Software and hardware preparations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons/L1a_UC_intro.html">Lesson 1a: What is a Microcontroller</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons/L1b_Arduino_intro.html">Lesson 1b: Introduction to Arduino</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons/L2_digital_io.html">Lesson 2: Digital I/O</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons/L3_digital_io_and_timing.html">Lesson 3: Use of digital I/O and timing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons/L4_dac_pwm.html">Lesson 4: Analog output (PWM)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons/L5_adc.html">Lesson 5: Analog to digital conversion (ADC)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons/L6_serial_io.html">Lesson 6: Serial I/O</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons/L7_timer_interrupt.html">Lesson 7: Timers and interrupts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons/L8_LC_display.html">Lesson 8: LC-Display</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons/L9_memory_and_architecture.html">Lesson 9: Memory and MCU architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons/L10_motor_drive.html">Lesson 10: Motor drive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons/L12_communication.html">Lesson 11: Communication Protocols</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons/L11_VS_Arduino.html">Lesson 12: PC (C#) - Arduino Communication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons/L13_repetition.html">Lesson 13: Repetition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons/course_summary.html">Course summary</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Additional material:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="L1_additional.html">Additional material lesson 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="L2_additional.html">Additional material lesson 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="L3_additional.html">Additional material lesson 3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="L4_additional.html">Additional material lesson 4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="L5_additional.html">Additional material lesson 5</a></li>
+<li class="toctree-l1"><a class="reference internal" href="L6_additional.html">Additional material lesson 6</a></li>
+<li class="toctree-l1"><a class="reference internal" href="L7_additional.html">Additional material lesson 7</a></li>
+<li class="toctree-l1"><a class="reference internal" href="L8_additional.html">Additional material lesson 8</a></li>
+<li class="toctree-l1"><a class="reference internal" href="L9_additional.html">Additional material lesson 9</a></li>
+<li class="toctree-l1"><a class="reference internal" href="L10_additional.html">Additional material lesson 10</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Additional material lesson 11</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#ansi-escape-sequences">ANSI Escape sequences</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#how-to-design-a-reliable-communication-protocol">How to design a reliable communication protocol</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#using-the-serial-port-in-c">Using the serial port in C#</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#delegates">Delegates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#events">Events</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#consistent-overhead-byte-stuffing-cobs">Consistent Overhead Byte Stuffing (COBS)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#debugger">Debugger</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#improved-example">Improved example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#arduino-software">Arduino software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#c-software">C# software</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="L12_additional.html">Additional material lesson 12</a></li>
+<li class="toctree-l1"><a class="reference internal" href="L13_additional.html">Additional material lesson 13</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Projects:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Appendices/Additionals.html">Mix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Projects/ir_communication.html">Infrared remote</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Projects/adaptive_line_enhancer.html">Adaptive line enhancer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Projects/audio_processing.html">Audio processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Projects/RC_car.html">Cool Project: RC Car (Bluetooth or Joystick)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Projects/Robotarm.html">Cool Project: Simple Robot Arm (Bluetooth or Joystick)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Projects/dc_motor_control.html">DC motor control</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Projects/digital_piano.html">Digital piano</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Projects/digital_synth.html">Digital synth</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Projects/dtmf_generator.html">DTMF generator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Projects/frequency_estimator.html">Frequency estimator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Projects/induction_motor_control.html">Induction motor control</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Projects/lorawan.html">LoRaWan</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Projects/phase_displacement.html">Phase displacement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Projects/phase_locked_loop.html">Phase locked loop (PLL)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Projects/phasor_estimation.html">Phasor estimation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Projects/radio_transmitter.html">Radio transmitter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Projects/stepper_motor_control.html">Stepper motor control</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Projects/synchroscope.html">Synchroscope</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Projects/thyristor_controller.html">Thyristor controller</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Appendices:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Appendices/low_power_operation.html">Low power operation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Appendices/stacks_queues_lists.html">Stacks, Queues, Lists</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Appendices/assembly_programming.html">Assembly programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Appendices/digital_filters.html">Digital filters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Appendices/floating_point_numbers.html">Floating point numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Appendices/kalman_filter.html">Kalman filter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Appendices/the_build_process.html">The build process</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Appendices/direct_register_manipulations.html">Direct register manipulation</a></li>
+</ul>
+
+<div id="searchbox" role="search">
+  <h3>Quick search</h3>
+  <form class="search form-inline" action="../../search.html" method="get">
+      <div class="input-append input-group">
+        <input type="text" class="search-query form-control" name="q" placeholder="Search...">
+        <span class="input-group-btn">
+        <input type="submit" class="btn" value="Go" />
+        </span>
+      </div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="L10_additional.html"
+                          title="previous chapter">Additional material for lesson 10</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="L12_additional.html"
+                          title="next chapter">Additional material for lesson 12</a></p>
+  </div>
+  </div>
+</div> 
+        
+
+        <div class="col-md-9" id="content-wrapper">
+          <div class="document" role="main">
+            <div class="documentwrapper">
+              <div class="bodywrapper">
+                <div class="body">
+                  
+  <section id="additional-material-for-lesson-11">
+<h1>Additional material for lesson 11<a class="headerlink" href="#additional-material-for-lesson-11" title="Permalink to this heading">¶</a></h1>
+<section id="ansi-escape-sequences">
+<h2>ANSI Escape sequences<a class="headerlink" href="#ansi-escape-sequences" title="Permalink to this heading">¶</a></h2>
+<p>If you wish to have control over the behaviour of your serial terminal, you may use Escape sequences.</p>
+</section>
+<section id="how-to-design-a-reliable-communication-protocol">
+<h2>How to design a reliable communication protocol<a class="headerlink" href="#how-to-design-a-reliable-communication-protocol" title="Permalink to this heading">¶</a></h2>
+<p>The design of reliable communication protocols is a topic for a complete course on it’s own, here I will only provide some general rules to help you avoid the most common pitfalls.</p>
+<section id="using-the-serial-port-in-c">
+<h3>Using the serial port in C#<a class="headerlink" href="#using-the-serial-port-in-c" title="Permalink to this heading">¶</a></h3>
+<p>Before we go into the details of how to use the serial port, we should first try to understand the basic concept of delegates, and events.</p>
+</section>
+</section>
+<section id="delegates">
+<h2>Delegates<a class="headerlink" href="#delegates" title="Permalink to this heading">¶</a></h2>
+<p>A delegate in C# is a variable that holds a reference to a method. This is similar to the function pointer concept in C.</p>
+</section>
+<section id="events">
+<h2>Events<a class="headerlink" href="#events" title="Permalink to this heading">¶</a></h2>
+<p>A event could be any occurrence of something. The event system in C# is used to notify one part of the software about something that has happened in a different part of the software. This could for instance be a user pressing a button on the keyboard, or mouse, or it could be data received on the serial port.</p>
+<p>The event system works by the publisher-subscriber model. A publisher allows one or more subscribers to subscribe to the available events, when a event is raised, a method in the subscriber is called.</p>
+<p>The subscribers are added to the publisher by assigning methods to a delegate variable in the publisher.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">using</span><span class="w"> </span><span class="n">System</span><span class="p">;</span><span class="w"></span>
+
+<span class="n">namespace</span><span class="w"> </span><span class="n">EventsDelegatesTest</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">class</span><span class="w"> </span><span class="n">MainClass</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">public</span><span class="w"> </span><span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">Main</span><span class="p">(</span><span class="n">string</span><span class="p">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">var</span><span class="w"> </span><span class="n">video</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">new</span><span class="w"> </span><span class="n">Video</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">Title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Back to the future&quot;</span><span class="w"> </span><span class="p">};</span><span class="w"></span>
+<span class="w">            </span><span class="n">VideoEncoder</span><span class="w"> </span><span class="n">videoEncoder</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">new</span><span class="w"> </span><span class="n">VideoEncoder</span><span class="p">();</span><span class="w"></span>
+<span class="w">            </span><span class="n">var</span><span class="w"> </span><span class="n">smsServie</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">new</span><span class="w"> </span><span class="n">SMS</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">videoEncoder</span><span class="p">.</span><span class="n">VideoEncoded</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">smsServie</span><span class="p">.</span><span class="n">OnVideoEncoded</span><span class="p">;</span><span class="w"></span>
+<span class="w">            </span><span class="n">videoEncoder</span><span class="p">.</span><span class="n">VideoEncodingStarted</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">smsServie</span><span class="p">.</span><span class="n">OnStartEncoding</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">videoEncoder</span><span class="p">.</span><span class="n">Encode</span><span class="p">(</span><span class="n">video</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;Programmet er ferdig.&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">using</span><span class="w"> </span><span class="n">System</span><span class="p">;</span><span class="w"></span>
+
+<span class="n">namespace</span><span class="w"> </span><span class="n">EventsDelegatesTest</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">public</span><span class="w"> </span><span class="n">class</span><span class="w"> </span><span class="n">VideoEventArgs</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">EventArgs</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">public</span><span class="w"> </span><span class="n">Video</span><span class="w"> </span><span class="n">Video</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">get</span><span class="p">;</span><span class="w"> </span><span class="n">set</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="n">public</span><span class="w"> </span><span class="n">class</span><span class="w"> </span><span class="n">VideoEncoder</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">public</span><span class="w"> </span><span class="n">delegate</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">VideoEncodedEventHandler</span><span class="p">(</span><span class="n">object</span><span class="w"> </span><span class="n">source</span><span class="p">,</span><span class="w"> </span><span class="n">VideoEventArgs</span><span class="w"> </span><span class="n">args</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">public</span><span class="w"> </span><span class="n">delegate</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">VideoEncodingStartedHandler</span><span class="p">(</span><span class="n">object</span><span class="w"> </span><span class="n">source</span><span class="p">,</span><span class="w"> </span><span class="n">EventArgs</span><span class="w"> </span><span class="n">args</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">public</span><span class="w"> </span><span class="n">event</span><span class="w"> </span><span class="n">VideoEncodedEventHandler</span><span class="w"> </span><span class="n">VideoEncoded</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">public</span><span class="w"> </span><span class="n">event</span><span class="w"> </span><span class="n">VideoEncodingStartedHandler</span><span class="w"> </span><span class="n">VideoEncodingStarted</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">Encode</span><span class="p">(</span><span class="n">Video</span><span class="w"> </span><span class="n">video</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">OnVideoEncodingStarted</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;Enkodar video..&quot;</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">OnVideoEncoded</span><span class="p">(</span><span class="n">video</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">protected</span><span class="w"> </span><span class="n">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">OnVideoEncoded</span><span class="p">(</span><span class="n">Video</span><span class="w"> </span><span class="n">video</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">VideoEncoded</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">null</span><span class="p">)</span><span class="w"></span>
+<span class="w">            </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="n">VideoEncoded</span><span class="p">(</span><span class="n">this</span><span class="p">,</span><span class="w"> </span><span class="n">new</span><span class="w"> </span><span class="n">VideoEventArgs</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">Video</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">video</span><span class="w"> </span><span class="p">});</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="n">protected</span><span class="w"> </span><span class="n">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">OnVideoEncodingStarted</span><span class="p">()</span><span class="w"></span>
+<span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="k">if</span><span class="p">(</span><span class="n">VideoEncodingStarted</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">null</span><span class="p">)</span><span class="w"></span>
+<span class="w">            </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="n">VideoEncodingStarted</span><span class="p">(</span><span class="n">this</span><span class="p">,</span><span class="w"> </span><span class="n">EventArgs</span><span class="p">.</span><span class="n">Empty</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">using</span><span class="w"> </span><span class="n">System</span><span class="p">;</span><span class="w"></span>
+<span class="n">namespace</span><span class="w"> </span><span class="n">EventsDelegatesTest</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">public</span><span class="w"> </span><span class="n">class</span><span class="w"> </span><span class="n">SMS</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">OnStartEncoding</span><span class="p">(</span><span class="n">object</span><span class="w"> </span><span class="n">source</span><span class="p">,</span><span class="w"> </span><span class="n">EventArgs</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">Console</span><span class="p">.</span><span class="n">Write</span><span class="p">(</span><span class="s">&quot;Kodinga har starta.&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="n">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">OnVideoEncoded</span><span class="p">(</span><span class="n">object</span><span class="w"> </span><span class="n">source</span><span class="p">,</span><span class="w"> </span><span class="n">EventArgs</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;Sender SMS...&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="consistent-overhead-byte-stuffing-cobs">
+<h2>Consistent Overhead Byte Stuffing (COBS)<a class="headerlink" href="#consistent-overhead-byte-stuffing-cobs" title="Permalink to this heading">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Byte stuffing is a advanced topic, and will not be covered as part of the course. It is here for the students that are particulary curious.</p>
+</div>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Consistent_Overhead_Byte_Stuffing">https://en.wikipedia.org/wiki/Consistent_Overhead_Byte_Stuffing</a></p>
+</section>
+<section id="debugger">
+<h2>Debugger<a class="headerlink" href="#debugger" title="Permalink to this heading">¶</a></h2>
+<p>The serial port is often used to print debug messages. When developing an application that uses the serial port for other purposes, it is no longer available for debugging. Arduino UNO contains only one hardware UART, but you can extend your application with software UART’s.</p>
+<p>The following Arduino program implements a simple bridge between a software UART, and a hardware UART. The software is intended to run on a additional Arduino, to aid in debugging of the code on our primary Arduino. The hardware UART is connected to a PC using USB, while the software UART is connected the the Arduino under test. The allows the Aruino under test to send debug messages using a software UART of it’s own.</p>
+<figure class="align-default">
+<a class="reference internal image-reference" href="../../_images/one_potmeter_and_one_led_with_debugger_bb.png"><img alt="../../_images/one_potmeter_and_one_led_with_debugger_bb.png" src="../../_images/one_potmeter_and_one_led_with_debugger_bb.png" style="width: 883.5px; height: 660.0px;" /></a>
+</figure>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Arduino.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;SoftwareSerial.h&gt;</span><span class="cp"></span>
+
+<span class="cm">/*</span>
+<span class="cm"> * Add compile date and time, used for a unique identifier.</span>
+<span class="cm"> * This is useful when working with multiple Arduino&#39;s</span>
+<span class="cm"> * in order to not confuse yourself regarding which device </span>
+<span class="cm"> * you are currently dealing with.</span>
+<span class="cm"> */</span><span class="w"> </span>
+<span class="k">const</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">compile_date</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">__DATE__</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="w"> </span><span class="n">__TIME__</span><span class="p">;</span><span class="w"></span>
+
+<span class="k">const</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">user_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Ditt navn&quot;</span><span class="p">;</span><span class="w"></span>
+
+<span class="n">SoftwareSerial</span><span class="w"> </span><span class="nf">softSerial</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span><span class="w"> </span><span class="c1">// RX, TX</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">softSerial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Arduino UART softserial debugger&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Bruker: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">user_name</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Komplieringstid: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">compile_date</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+
+
+<span class="w">  </span><span class="k">if</span><span class="p">(</span><span class="n">Serial</span><span class="p">.</span><span class="n">available</span><span class="p">()){</span><span class="w"></span>
+<span class="w">    </span><span class="n">softSerial</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">Serial</span><span class="p">.</span><span class="n">read</span><span class="p">());</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">  </span><span class="k">if</span><span class="p">(</span><span class="n">softSerial</span><span class="p">.</span><span class="n">available</span><span class="p">()){</span><span class="w"></span>
+<span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">softSerial</span><span class="p">.</span><span class="n">read</span><span class="p">());</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<section id="improved-example">
+<h3>Improved example<a class="headerlink" href="#improved-example" title="Permalink to this heading">¶</a></h3>
+<p>For this improved example we will be using an ASCII based communication protocol. I.e. the data that appear on the UART should be readable when converted to it’s character representation in the ASCII code. This introduces some overhead, but has the advantage that the protocol is easy to debug, and it is also testable using a simple UART serial terminal on a PC.</p>
+<ul class="simple">
+<li><p># - Start flag</p></li>
+<li><p>&lt;byte&gt;</p></li>
+<li><p>&lt;byte&gt;</p></li>
+<li><p>n - End flag</p></li>
+</ul>
+</section>
+</section>
+<section id="arduino-software">
+<h2>Arduino software<a class="headerlink" href="#arduino-software" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Arduino.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;SoftwareSerial.h&gt;</span><span class="cp"></span>
+
+<span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">redLED_pin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">9</span><span class="p">;</span><span class="w"></span>
+<span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">potmeterInput_pin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">A0</span><span class="p">;</span><span class="w"></span>
+
+<span class="n">SoftwareSerial</span><span class="w"> </span><span class="nf">softSerial</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span><span class="w"> </span><span class="c1">// RX, TX</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">setTimeout</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">  </span><span class="cm">/* Soft serial for debugging purposes. */</span><span class="w"></span>
+<span class="w">  </span><span class="n">softSerial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">pinMode</span><span class="p">(</span><span class="n">redLED_pin</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">pinMode</span><span class="p">(</span><span class="n">potmeterInput_pin</span><span class="p">,</span><span class="w"> </span><span class="n">INPUT</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Arduino remote.&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+
+<span class="w">  </span><span class="k">if</span><span class="p">(</span><span class="n">Serial</span><span class="p">.</span><span class="n">available</span><span class="p">()){</span><span class="w"></span>
+<span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">serialData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Serial</span><span class="p">.</span><span class="n">readString</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">softSerial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;Mottok: &quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">softSerial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">serialData</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">serialData</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;led&quot;</span><span class="p">){</span><span class="w"></span>
+<span class="w">      </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">redLED_pin</span><span class="p">,</span><span class="w"> </span><span class="o">!</span><span class="n">digitalRead</span><span class="p">(</span><span class="n">redLED_pin</span><span class="p">));</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="p">(</span><span class="n">serialData</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;voltage&quot;</span><span class="p">){</span><span class="w"></span>
+<span class="w">      </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">analogRead</span><span class="p">(</span><span class="n">potmeterInput_pin</span><span class="p">));</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="c-software">
+<h2>C# software<a class="headerlink" href="#c-software" title="Permalink to this heading">¶</a></h2>
+</section>
+</section>
+
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        
+      </div><!-- /row -->
+
+      <!-- row -->
+      <div class="row footer-relbar">
+<div id="navbar-related" class=" related navbar navbar-default" role="navigation" aria-label="related navigation">
+  <div class="navbar-inner">
+    <ul class="nav navbar-nav ">
+        <li><a href="../../index.html">ELE102 Microcontroller course v1.1.0 documentation</a></li>
+    </ul>
+<ul class="nav navbar-nav pull-right hidden-xs hidden-sm">
+      
+        <li><a href="L10_additional.html" title="Additional material for lesson 10" >previous</a></li>
+        <li><a href="L12_additional.html" title="Additional material for lesson 12" >next</a></li>
+        <li><a href="../../genindex.html" title="General Index" >index</a></li>
+        <li><a href="#">top</a></li> 
+      
+    </ul>
+  </div>
+</div>
+      </div><!-- /row -->
+
+      <!-- footer -->
+      <footer role="contentinfo">
+          &copy; Copyright 2022, Gizem Ateş &amp; Eirik Haustveit.
+        Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 5.3.0.
+      </footer>
+      <!-- /footer -->
+
+    </div>
+    <!-- /container -->
+
+  </body>
+</html>
