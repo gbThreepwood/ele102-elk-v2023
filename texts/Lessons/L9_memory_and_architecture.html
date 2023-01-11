@@ -55,9 +55,7 @@
 </script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="top" title="ELE102 Microcontroller course v1.1.0 documentation" href="../../index.html" />
-    <link rel="next" title="Motor Drives" href="L10_motor_drive.html" />
-    <link rel="prev" title="LC-Display" href="L8_LC_display.html" /> 
+    <link rel="top" title="ELE102 Microcontroller course v1.1.0 documentation" href="../../index.html" /> 
   </head>
   <body role="document">
     <div id="navbar-top" class="navbar navbar-fixed-top navbar-default" role="navigation" aria-label="top navigation">
@@ -120,8 +118,6 @@
               </li>
 
             
-              <li><a href="L8_LC_display.html" title="LC-Display" accesskey="P">previous </a></li>
-              <li><a href="L10_motor_drive.html" title="Motor Drives" accesskey="N">next </a></li>
               <li><a href="../../genindex.html" title="General Index" accesskey="I">index </a></li>
             
 
@@ -157,80 +153,19 @@
   <div class="sidebar hidden-xs" role="navigation" aria-label="main navigation">
 <h3><a href="../../index.html">Table of Contents</a></h3>
 <p class="caption" role="heading"><span class="caption-text">Lessons:</span></p>
-<ul class="current">
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="L0_Introduction_elk.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="software_hardware_preparations.html">Software and hardware preparations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="L1a_UC_intro.html">Lesson 1a: What is a Microcontroller</a></li>
 <li class="toctree-l1"><a class="reference internal" href="L1b_Arduino_intro.html">Lesson 1b: Introduction to Arduino</a></li>
-<li class="toctree-l1"><a class="reference internal" href="L2_digital_io.html">Lesson 2: Digital I/O</a></li>
-<li class="toctree-l1"><a class="reference internal" href="L3_digital_io_and_timing.html">Lesson 3: Use of digital I/O and timing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="L4_dac_pwm.html">Lesson 4: Analog output (PWM)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="L5_adc.html">Lesson 5: Analog to digital conversion (ADC)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="L6_serial_io.html">Lesson 6: Serial I/O</a></li>
-<li class="toctree-l1"><a class="reference internal" href="L7_timer_interrupt.html">Lesson 7: Timers and interrupts</a></li>
-<li class="toctree-l1"><a class="reference internal" href="L8_LC_display.html">Lesson 8: LC-Display</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Lesson 9: Memory and MCU architecture</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#microcontroller-architecture">Microcontroller architecture</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#some-well-known-processors">Some well known processors</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#atmega328p-core-architecture">Atmega328p core architecture</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#memory-requirement-of-an-embedded-system">Memory Requirement of an Embedded System</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#reset-circuit">Reset Circuit</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#clock-generator">Clock Generator</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#i-o-ports-channels-buffers">I/O PORTS, Channels, Buffers</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#serial-i-o">Serial I/O</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#timers">Timers</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#direct-register-access-on-atmega328p">Direct register access on Atmega328p</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#memory-usage">Memory usage</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#ram-usage-at-run-time">RAM usage at run time</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#stack-overflow">Stack overflow</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#little-or-big-endian">Little or big endian</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#non-volatile-storage-in-eeprom">Non volatile storage in EEPROM</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#exercise-store-adc-readings-in-eeprom">Exercise: store ADC readings in EEPROM</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#memory-technology">Memory technology</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#common-non-volatile-memory-devices">Common Non-volatile Memory Devices</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#common-volatile-memory-devices">Common volatile Memory Devices</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#flash-memory">Flash memory</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#random-access-memory">Random access memory</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#static-ram">Static RAM</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#dynamic-ram">Dynamic RAM</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#eeprom">EEPROM</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#hard-disk-drives">Hard disk drives</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#bibliography">Bibliography</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="L10_motor_drive.html">Lesson 10: Motor drive</a></li>
-<li class="toctree-l1"><a class="reference internal" href="L12_communication.html">Lesson 11: Communication Protocols</a></li>
-<li class="toctree-l1"><a class="reference internal" href="L11_VS_Arduino.html">Lesson 12: PC (C#) - Arduino Communication</a></li>
-<li class="toctree-l1"><a class="reference internal" href="L13_repetition.html">Lesson 13: Repetition</a></li>
-<li class="toctree-l1"><a class="reference internal" href="course_summary.html">Course summary</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Additional material:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L1_additional.html">Additional material lesson 1</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L2_additional.html">Additional material lesson 2</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L3_additional.html">Additional material lesson 3</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L4_additional.html">Additional material lesson 4</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L5_additional.html">Additional material lesson 5</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L6_additional.html">Additional material lesson 6</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L7_additional.html">Additional material lesson 7</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L8_additional.html">Additional material lesson 8</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L9_additional.html">Additional material lesson 9</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L10_additional.html">Additional material lesson 10</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L11_additional.html">Additional material lesson 11</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L12_additional.html">Additional material lesson 12</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L13_additional.html">Additional material lesson 13</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Projects:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../Appendices/Additionals.html">Mix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Appendices/Additionals.html">Binary counter</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Projects/ir_communication.html">Infrared remote</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Projects/adaptive_line_enhancer.html">Adaptive line enhancer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Projects/audio_processing.html">Audio processing</a></li>
@@ -279,16 +214,6 @@
     Enter search terms or a module, class or function name.
     </p>
 </div>
-  <div>
-    <h4>Previous topic</h4>
-    <p class="topless"><a href="L8_LC_display.html"
-                          title="previous chapter">LC-Display</a></p>
-  </div>
-  <div>
-    <h4>Next topic</h4>
-    <p class="topless"><a href="L10_motor_drive.html"
-                          title="next chapter">Motor Drives</a></p>
-  </div>
   </div>
 </div> 
         
@@ -626,8 +551,6 @@
     </ul>
 <ul class="nav navbar-nav pull-right hidden-xs hidden-sm">
       
-        <li><a href="L8_LC_display.html" title="LC-Display" >previous</a></li>
-        <li><a href="L10_motor_drive.html" title="Motor Drives" >next</a></li>
         <li><a href="../../genindex.html" title="General Index" >index</a></li>
         <li><a href="#">top</a></li> 
       

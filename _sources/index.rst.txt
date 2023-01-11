@@ -16,6 +16,8 @@ On this page we will publish new lecture notes every week, as the course is prog
    Software and hardware preparations <texts/Lessons/software_hardware_preparations.rst>
    Lesson 1a: What is a Microcontroller <texts/Lessons/L1a_UC_intro.rst>
    Lesson 1b: Introduction to Arduino <texts/Lessons/L1b_Arduino_intro.rst>
+
+..
    Lesson 2: Digital I/O <texts/Lessons/L2_digital_io.rst>
    Lesson 3: Use of digital I/O and timing <texts/Lessons/L3_digital_io_and_timing.rst>
    Lesson 4: Analog output (PWM) <texts/Lessons/L4_dac_pwm.rst>
@@ -36,6 +38,8 @@ On this page we will publish new lecture notes every week, as the course is prog
    :caption: Additional material:
 
    Additional material lesson 1 <texts/Lessons-additional/L1_additional.rst>
+
+..
    Additional material lesson 2 <texts/Lessons-additional/L2_additional.rst>
    Additional material lesson 3 <texts/Lessons-additional/L3_additional.rst>
    Additional material lesson 4 <texts/Lessons-additional/L4_additional.rst>
@@ -54,7 +58,7 @@ On this page we will publish new lecture notes every week, as the course is prog
    :maxdepth: 4
    :caption: Projects:
 
-   Mix <texts/Appendices/Additionals.rst>
+   Binary counter <texts/Appendices/Additionals.rst>
    Infrared remote <texts/Projects/ir_communication.rst>
    Adaptive line enhancer <texts/Projects/adaptive_line_enhancer.rst>
    Audio processing <texts/Projects/audio_processing.rst>
