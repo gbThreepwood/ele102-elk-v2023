@@ -466,7 +466,6 @@ If you don’t need to modify the strings or data while your sketch is running, 
 <p>A person trained in decoding morse in the form of sound signals will not necessarily find it easy to decode the blinking light. One typically does not count dots and dashes, but rather identify the particular “sound” of a given symbol. For this to work the speed of transmission should not be to slow.</p>
 <p>The traditional lamp used for blinking morse is known as an Aldis lamp, and is still in use by the navy for short range communication between ships:</p>
 <a class="reference internal image-reference" href="../../_images/aldis_lamp.jpg"><img alt="Aldis lamp (source: https://id.wikipedia.org/wiki/Berkas:Aldis_lamp.jpg)" class="align-center" src="../../_images/aldis_lamp.jpg" style="width: 205.0px; height: 310.5px;" /></a>
-<p>… to send long and short duration of light signals. For SOS:</p>
 <figure class="align-center">
 <img alt="SOS morse code" src="../../_images/sos_morse.jpg" />
 </figure>
@@ -547,6 +546,7 @@ If you don’t need to modify the strings or data while your sketch is running, 
 <span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
+<p>Note that the SOS solution above offers very little flexibility in allowing the transmitted morse code to change. If you need to transmit some other word or sentence using morse, you will have to manually add all the required <cite>digitalWrite()</cite> and <cite>delay()</cite>. It should be obvious that this is not adequate if one want a system which can transmit morse on the fly. As the course progresses and your knowledge about programming increases, ways to mitigate this inflexibility should (hopefully) emerge in your mind.</p>
 </section>
 <section id="exercise-blink-an-external-led">
 <h3>Exercise: Blink an external LED<a class="headerlink" href="#exercise-blink-an-external-led" title="Permalink to this heading">¶</a></h3>
@@ -577,13 +577,13 @@ If you don’t need to modify the strings or data while your sketch is running, 
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <p>Are you done with your Blink and HelloWorld? Can you print out the dots and dashes to the serial monitor while blinking?
-<strong>Hint:</strong> use <code class="code docutils literal notranslate"><span class="pre">Serial.begin(9600)</span></code>, <code class="code docutils literal notranslate"><span class="pre">Serial.print()</span></code>.</p>
+<strong>Hint:</strong> use <code class="code docutils literal notranslate"><span class="pre">Serial.begin(9600)</span></code>, <code class="code docutils literal notranslate"><span class="pre">Serial.print(&quot;.&quot;)</span></code> and <code class="code docutils literal notranslate"><span class="pre">Serial.print(&quot;-&quot;)</span></code>.</p>
 </div>
 </section>
 </section>
 <section id="the-build-and-upload-process-not-mandatory-to-read">
 <h2>The build and upload process (not mandatory to read)<a class="headerlink" href="#the-build-and-upload-process-not-mandatory-to-read" title="Permalink to this heading">¶</a></h2>
-<p>When you press the upload button in the Arduino IDE the program goes through many steps before the program is ready to run on the microcontroller. Although it is often safe to ignore these low level details, it is also important to know about them when someting goes wrong. A thorough understanding of these steps will help you deduce the source of the error.</p>
+<p>When you press the upload button in the Arduino IDE the program goes through many steps before the program is ready to run on the microcontroller. Although it is often safe to ignore these low level details, it is also important to know about them when something goes wrong. A thorough understanding of these steps will help you deduce the source of the error.</p>
 <section id="a-detailed-look-at-the-arduino-software-library">
 <h3>A detailed look at the Arduino software library<a class="headerlink" href="#a-detailed-look-at-the-arduino-software-library" title="Permalink to this heading">¶</a></h3>
 <p>This last section is not part of the curriculum, but is included for those of you who have previous programming experience.</p>
@@ -663,8 +663,8 @@ If you don’t need to modify the strings or data while your sketch is running, 
 <h3>The upload process<a class="headerlink" href="#the-upload-process" title="Permalink to this heading">¶</a></h3>
 <p>The Arduino UNO board has a USB connector used for communication as well as for uploading new programs. The complicated USB protocol is handled by a separate microcontroller Atmel ATMEGA16U2 that is running a program written for this purpose <a class="footnote-reference brackets" href="#f2" id="id4" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a>. Normally it is not required to modify the program on this additional microcontroller, but it is possible through a special procedure.</p>
 <a class="reference internal image-reference" href="../../_images/arduino_uno_usb_to_uart_converter.png"><img alt="Arduino USB to UART converter" class="align-center" src="../../_images/arduino_uno_usb_to_uart_converter.png" style="width: 390.5px; height: 299.0px;" /></a>
-<p>When power is applied to the microcontroller (or the controller is reset) the first instruction to be executed by the CPU is placed in the so called ‘reset vector’ memory location (at address 0x0000 on Atmega328). This instruction must be a relative jump instruction (RJMP) to move the instruction pointer to the address of the boot loader (or the main program if no bootloader is used).</p>
-<p>On the Arduino the bootloader initially waits for a special sequence of bytes on the serial port. If the sequence is received the bootloader expects the following bytes to be a new program to be written to flash memory of the controller. If not such sequence is received the bootloader will issue a jump to the previously written program.</p>
+<p>When power is applied to the microcontroller (or the controller is reset by a signal on the dedicated RESET pin) the first instruction to be executed by the CPU is placed in the so called ‘reset vector’ memory location (at address 0x0000 on Atmega328). This instruction must be a relative jump instruction (RJMP) to move the instruction pointer to the address of the boot loader (or the main program if the bootloader is not used).</p>
+<p>On the Arduino the bootloader initially waits for a special sequence of bytes on the serial port. If the sequence is received the bootloader expects the bytes following the sequence to be a new program to be written to flash memory of the controller. If not such sequence is received the bootloader will issue a jump to the previously written program.</p>
 </section>
 <section id="covering-the-programming-fundamentals">
 <h3>Covering the programming fundamentals<a class="headerlink" href="#covering-the-programming-fundamentals" title="Permalink to this heading">¶</a></h3>

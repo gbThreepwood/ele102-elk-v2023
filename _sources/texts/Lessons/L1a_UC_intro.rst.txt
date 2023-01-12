@@ -277,8 +277,9 @@ Atmega328P is a microcontroller originally developed by a company called `Atmel 
 Programming languages
 ---------------------
 
-There are at least three (likely more) alterative programming languages for programming the Arduino UNO.
+There are at least four (likely more) options for programming languages for programming the Arduino UNO.
 
+* Assembly
 * C
 * C++
 * Rust

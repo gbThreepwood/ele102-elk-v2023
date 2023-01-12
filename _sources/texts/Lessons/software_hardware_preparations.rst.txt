@@ -46,8 +46,6 @@ Please refer to the `official installation guide of PlatformIO <https://platform
 .. [#f1] *Visual studio code* should not be confused with *Visual studio*, although both programs are used for software development, they are not the same program. This seems to be yet another example of Microsoft's silly naming conventions, where completely different (although functionally similar) software receives similar names, causing a lot of confusion. E.g. Skype, vs Skype for Business.
 
 
-
-
 Hardware testing
 ================
 
@@ -56,6 +54,11 @@ One of the first things we need to do is to verify that our software and hardwar
 We will approach this by using a small program which blinks a LED. This allows us to verify that the compilation, and upload process is working. Don't worry if you do not fully understand what this means, more on those topics will be covered later in the course.
 
 The LED in question is the on-board LED labeled *L* on the circuit board. This LED is physically connected to pin 13 on the board, but for now we will not be connecting any external components.
+
+
+.. figure:: ../../fig/software_hardware_preparations/arduino_uno.jpg
+  :alt: Arduino UNO with arrow pointing at onboard LED.
+  :align: center
 
 Test project in PlatformIO
 ---------------------------
@@ -76,9 +79,6 @@ Once the project is created, click on the file ``main.cpp`` in the ``src`` direc
 .. figure:: ../../fig/screenshots/platformio-empty-template.png
   :alt: Arduino IDE
   :align: center
-
-
-
 
 Copy the following code in to the ``main.cpp`` file, replacing the default contents of the file:
 

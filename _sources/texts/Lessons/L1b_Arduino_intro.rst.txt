@@ -314,7 +314,8 @@ The traditional lamp used for blinking morse is known as an Aldis lamp, and is s
         :scale: 50
         :align: center
 
-... to send long and short duration of light signals. For SOS:
+..
+        to send long and short duration of light signals. For SOS:
 
 .. figure:: ../../../external/fig/sos_morse.jpg
    :alt: SOS morse code
@@ -326,6 +327,7 @@ The following code listing provides one possible solution to this exercise:
 .. literalinclude:: ../../../projects/platformio/sos-blink/src/main.cpp
    :language: c
 
+Note that the SOS solution above offers very little flexibility in allowing the transmitted morse code to change. If you need to transmit some other word or sentence using morse, you will have to manually add all the required `digitalWrite()` and `delay()`. It should be obvious that this is not adequate if one want a system which can transmit morse on the fly. As the course progresses and your knowledge about programming increases, ways to mitigate this inflexibility should (hopefully) emerge in your mind.
 
 Exercise: Blink an external LED
 -------------------------------
@@ -376,7 +378,7 @@ For those of you who finished the previous tasks, and did not like the LED blink
 This will be covered thoroughly in the upcoming lecture, but it does not hurt to try it. Make sure you understand the LED blink example first though.
 
 .. seealso:: Are you done with your Blink and HelloWorld? Can you print out the dots and dashes to the serial monitor while blinking? 
-             **Hint:** use :code:`Serial.begin(9600)`, :code:`Serial.print()`.
+             **Hint:** use :code:`Serial.begin(9600)`, :code:`Serial.print(".")` and :code:`Serial.print("-")`.
 
 The build and upload process (not mandatory to read)
 ====================================================
@@ -386,7 +388,7 @@ The build and upload process (not mandatory to read)
                    Should this be moved to a separate lecture, or perhaps the appendix?
                 -> I guess here is fine :) Just, I don't think writing down "how to" steps here. The info here is so fine. Eventually this is mostly for us to have notes in hands. I don't think to share the pages with the students in advance. You can remove this warning box when you read this :)
 
-When you press the upload button in the Arduino IDE the program goes through many steps before the program is ready to run on the microcontroller. Although it is often safe to ignore these low level details, it is also important to know about them when someting goes wrong. A thorough understanding of these steps will help you deduce the source of the error.
+When you press the upload button in the Arduino IDE the program goes through many steps before the program is ready to run on the microcontroller. Although it is often safe to ignore these low level details, it is also important to know about them when something goes wrong. A thorough understanding of these steps will help you deduce the source of the error.
 
 
 
@@ -484,10 +486,9 @@ The Arduino UNO board has a USB connector used for communication as well as for 
    :scale: 50
    :align: center 
 
-When power is applied to the microcontroller (or the controller is reset) the first instruction to be executed by the CPU is placed in the so called 'reset vector' memory location (at address 0x0000 on Atmega328). This instruction must be a relative jump instruction (RJMP) to move the instruction pointer to the address of the boot loader (or the main program if no bootloader is used).
+When power is applied to the microcontroller (or the controller is reset by a signal on the dedicated RESET pin) the first instruction to be executed by the CPU is placed in the so called 'reset vector' memory location (at address 0x0000 on Atmega328). This instruction must be a relative jump instruction (RJMP) to move the instruction pointer to the address of the boot loader (or the main program if the bootloader is not used).
 
-On the Arduino the bootloader initially waits for a special sequence of bytes on the serial port. If the sequence is received the bootloader expects the following bytes to be a new program to be written to flash memory of the controller. If not such sequence is received the bootloader will issue a jump to the previously written program.
-
+On the Arduino the bootloader initially waits for a special sequence of bytes on the serial port. If the sequence is received the bootloader expects the bytes following the sequence to be a new program to be written to flash memory of the controller. If not such sequence is received the bootloader will issue a jump to the previously written program.
 
 Covering the programming fundamentals
 ---------------------------------------
