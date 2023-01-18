@@ -56,7 +56,9 @@
 </script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="top" title="ELE102 Microcontroller course v1.1.0 documentation" href="../../index.html" /> 
+    <link rel="top" title="ELE102 Microcontroller course v1.1.0 documentation" href="../../index.html" />
+    <link rel="next" title="Additional material for lesson 1" href="../Lessons-additional/L1_additional.html" />
+    <link rel="prev" title="Arduino Introduction" href="L1b_Arduino_intro.html" /> 
   </head>
   <body role="document">
     <div id="navbar-top" class="navbar navbar-fixed-top navbar-default" role="navigation" aria-label="top navigation">
@@ -116,6 +118,8 @@
               </li>
 
             
+              <li><a href="L1b_Arduino_intro.html" title="Arduino Introduction" accesskey="P">previous </a></li>
+              <li><a href="../Lessons-additional/L1_additional.html" title="Additional material for lesson 1" accesskey="N">next </a></li>
               <li><a href="../../genindex.html" title="General Index" accesskey="I">index </a></li>
             
 
@@ -151,11 +155,45 @@
   <div class="sidebar hidden-xs" role="navigation" aria-label="main navigation">
 <h3><a href="../../index.html">Table of Contents</a></h3>
 <p class="caption" role="heading"><span class="caption-text">Lessons:</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="L0_Introduction_elk.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="software_hardware_preparations.html">Software and hardware preparations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="L1a_UC_intro.html">Lesson 1a: What is a Microcontroller</a></li>
 <li class="toctree-l1"><a class="reference internal" href="L1b_Arduino_intro.html">Lesson 1b: Introduction to Arduino</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Lesson 2: Digital I/O</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#arduino-program-structure">Arduino program structure</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#exercise-define-a-macro">Exercise: define a macro</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#variable-types">Variable Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#atmega328-gpio-pins">Atmega328 GPIO pins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#digital-outputs">Digital outputs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#selecting-a-suitable-current-limiting-resistor-for-the-led">Selecting a suitable current limiting resistor for the LED</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#digital-inputs">Digital inputs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#how-to-connect-a-button-to-the-arduino">How to connect a button to the Arduino</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#exercise-digital-output-of-digital-input-state">Exercise: Digital output of digital input state</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#exercise-logic-operations-on-digital-inputs">Exercise: Logic operations on digital inputs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#serial-port-output">Serial port output</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#serial-port-monitor-in-the-arduino-ide">Serial port monitor in the Arduino IDE</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#serial-port-monitor-in-platformio">Serial port monitor in PlatformIO</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#serial-port-monitor-in-tinkercad">Serial port monitor in TinkerCAD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#hello-world">Hello World</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#exercise-print-some-numbers">Exercise: Print some numbers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#exercise-serial-output-of-digital-input">Exercise: Serial output of digital input</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#simple-arithmetics">Simple arithmetics</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#exercise-calculator-with-serial-port-output">Exercise: Calculator with serial port output</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#exercise-count-to-10">Exercise: Count to 10</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#exercise-calculator-with-binary-display">Exercise: Calculator with binary display</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Additional material:</span></p>
 <ul>
@@ -212,6 +250,16 @@
     Enter search terms or a module, class or function name.
     </p>
 </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="L1b_Arduino_intro.html"
+                          title="previous chapter">Arduino Introduction</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="../Lessons-additional/L1_additional.html"
+                          title="next chapter">Additional material for lesson 1</a></p>
+  </div>
   </div>
 </div> 
         
@@ -755,6 +803,8 @@
     </ul>
 <ul class="nav navbar-nav pull-right hidden-xs hidden-sm">
       
+        <li><a href="L1b_Arduino_intro.html" title="Arduino Introduction" >previous</a></li>
+        <li><a href="../Lessons-additional/L1_additional.html" title="Additional material for lesson 1" >next</a></li>
         <li><a href="../../genindex.html" title="General Index" >index</a></li>
         <li><a href="#">top</a></li> 
       
