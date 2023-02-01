@@ -18,9 +18,9 @@ On this page we will publish new lecture notes every week, as the course is prog
    Lesson 1b: Introduction to Arduino <texts/Lessons/L1b_Arduino_intro.rst>
    Lesson 2: Digital I/O <texts/Lessons/L2_digital_io.rst>
    Lesson 3: Use of digital I/O and timing <texts/Lessons/L3_digital_io_and_timing.rst>
+   Lesson 4: Analog output (PWM) <texts/Lessons/L4_dac_pwm.rst>
 
 ..
-   Lesson 4: Analog output (PWM) <texts/Lessons/L4_dac_pwm.rst>
    Lesson 5: Analog to digital conversion (ADC) <texts/Lessons/L5_adc.rst>
    Lesson 6: Serial I/O <texts/Lessons/L6_serial_io.rst>
    Lesson 7: Timers and interrupts <texts/Lessons/L7_timer_interrupt.rst>
