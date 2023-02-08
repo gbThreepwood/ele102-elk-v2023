@@ -19,9 +19,9 @@ On this page we will publish new lecture notes every week, as the course is prog
    Lesson 2: Digital I/O <texts/Lessons/L2_digital_io.rst>
    Lesson 3: Use of digital I/O and timing <texts/Lessons/L3_digital_io_and_timing.rst>
    Lesson 4: Analog output (PWM) <texts/Lessons/L4_dac_pwm.rst>
+   Lesson 5: Analog to digital conversion (ADC) <texts/Lessons/L5_adc.rst>
 
 ..
-   Lesson 5: Analog to digital conversion (ADC) <texts/Lessons/L5_adc.rst>
    Lesson 6: Serial I/O <texts/Lessons/L6_serial_io.rst>
    Lesson 7: Timers and interrupts <texts/Lessons/L7_timer_interrupt.rst>
    Lesson 8: LC-Display <texts/Lessons/L8_LC_display.rst>
@@ -38,12 +38,12 @@ On this page we will publish new lecture notes every week, as the course is prog
    :caption: Additional material:
 
    Additional material lesson 1 <texts/Lessons-additional/L1_additional.rst>
-
-..
    Additional material lesson 2 <texts/Lessons-additional/L2_additional.rst>
    Additional material lesson 3 <texts/Lessons-additional/L3_additional.rst>
    Additional material lesson 4 <texts/Lessons-additional/L4_additional.rst>
    Additional material lesson 5 <texts/Lessons-additional/L5_additional.rst>
+
+..
    Additional material lesson 6 <texts/Lessons-additional/L6_additional.rst>
    Additional material lesson 7 <texts/Lessons-additional/L7_additional.rst>
    Additional material lesson 8 <texts/Lessons-additional/L8_additional.rst>
