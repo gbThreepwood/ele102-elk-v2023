@@ -199,7 +199,7 @@ The :ccode:`Serial.println()` method works in the same manner as :code:`Serial.p
 
     Serial.println("Hello world");
 
-  There are several *backslash* meaningful characters in C language. Those are called as `escape sequences in C <https://www.wikiwand.com/en/Escape_sequences_in_C>`_. The most used ones in our course are :code:`\\n` for ENTER and :code:`\\t` for TAB.
+  There are several *backslash* meaningful characters in C language. Those are called as `escape sequences in C <https://www.wikiwand.com/en/Escape_sequences_in_C>`_. The most used ones in our course are :code:`\\n` for newline (ENTER), :code:`\\r` for carriage return (return to the left of the screen), and :code:`\\t` for TAB.
 
   .. code-block::
 
@@ -217,9 +217,13 @@ It is very important to understand how characters are encoded in a computer. As 
 
    Source: https://commons.wikimedia.org/wiki/File:ASCII-Table-wide.svg
 
-Since ASCII only support the fundamental characters of the english alphabet, another coding scheme known as unicode is used with the goal of supporting all the characters in any language in use by humans (so far it supports more than 130000 characters). Unlike ASCII which uses 7 bit to encode a character, unicode uses various coding schemes. One common scheme known as UTF-8 (8-bit Unicode Transformation Format), encodes the symbols supported by ASCII using 8 bit, while other symbols use 16-bit, 24-bit, or 32-bit, depending on the symbol.
+ASCII only support the fundamental characters of the english alphabet, and there are a lot of other coding schemes in existence with support for various languages.
+
+In an effort to simplify this mess, a coding scheme known as unicode has been developed with the goal of supporting all the characters in any language in use by humans (so far it supports more than 130000 characters). Unlike ASCII which uses 7 bit to encode a character, unicode several coding schemes with variable length characters. One common scheme known as UTF-8 (8-bit Unicode Transformation Format), encodes the symbols supported by ASCII using 8 bit, while other symbols use 16-bit, 24-bit, or 32-bit, depending on the symbol.
 
 E.g. the UTF-8 encoding for the norwegian character 'Ø' (Latin Capital Letter O With Stroke) is the bytes 0xC3 0x98, i.e. a 16 bit encoding.
+
+.. note:: Try to transmit these two bytes to the serial terminal. If the terminal supports unicode you should get a 'Ø'.
 
 
 Example: Serial output of the push button state

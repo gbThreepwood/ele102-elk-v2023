@@ -6,7 +6,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <title>Additional material for lesson 5 &mdash; ELE102 Microcontroller course v1.1.0 documentation</title>
     <meta name="description" content="">
@@ -45,9 +45,7 @@
     <script type="text/javascript" src="../../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../../_static/js/jquery.min.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
-    <script type="text/javascript" src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../_static/sphinx_highlight.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script type="text/javascript" src="../../_static/js/bootstrap3.min.js"></script>
 <script type="text/javascript" src="../../_static/js/jquery.cookie.min.js"></script>
@@ -57,7 +55,7 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="top" title="ELE102 Microcontroller course v1.1.0 documentation" href="../../index.html" />
-    <link rel="next" title="Additional Chapters" href="../Appendices/Additionals.html" />
+    <link rel="next" title="Additional material for lesson 6" href="L6_additional.html" />
     <link rel="prev" title="Additional material for lesson 4" href="L4_additional.html" /> 
   </head>
   <body role="document">
@@ -101,7 +99,7 @@
 
             
               <li><a href="L4_additional.html" title="Additional material for lesson 4" accesskey="P">previous </a></li>
-              <li><a href="../Appendices/Additionals.html" title="Additional Chapters" accesskey="N">next </a></li>
+              <li><a href="L6_additional.html" title="Additional material for lesson 6" accesskey="N">next </a></li>
               <li><a href="../../genindex.html" title="General Index" accesskey="I">index </a></li>
             
 
@@ -146,6 +144,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../Lessons/L3_digital_io_and_timing.html">Lesson 3: Use of digital I/O and timing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Lessons/L4_dac_pwm.html">Lesson 4: Analog output (PWM)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Lessons/L5_adc.html">Lesson 5: Analog to digital conversion (ADC)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons/L6_serial_io.html">Lesson 6: Serial I/O</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Additional material:</span></p>
 <ul class="current">
@@ -169,6 +168,14 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="L6_additional.html">Additional material lesson 6</a></li>
+<li class="toctree-l1"><a class="reference internal" href="L7_additional.html">Additional material lesson 7</a></li>
+<li class="toctree-l1"><a class="reference internal" href="L8_additional.html">Additional material lesson 8</a></li>
+<li class="toctree-l1"><a class="reference internal" href="L9_additional.html">Additional material lesson 9</a></li>
+<li class="toctree-l1"><a class="reference internal" href="L10_additional.html">Additional material lesson 10</a></li>
+<li class="toctree-l1"><a class="reference internal" href="L11_additional.html">Additional material lesson 11</a></li>
+<li class="toctree-l1"><a class="reference internal" href="L12_additional.html">Additional material lesson 12</a></li>
+<li class="toctree-l1"><a class="reference internal" href="L13_additional.html">Additional material lesson 13</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Projects:</span></p>
 <ul>
@@ -228,8 +235,8 @@
   </div>
   <div>
     <h4>Next topic</h4>
-    <p class="topless"><a href="../Appendices/Additionals.html"
-                          title="next chapter">Additional Chapters</a></p>
+    <p class="topless"><a href="L6_additional.html"
+                          title="next chapter">Additional material for lesson 6</a></p>
   </div>
   </div>
 </div> 
@@ -242,21 +249,21 @@
                 <div class="body">
                   
   <section id="additional-material-for-lesson-5">
-<h1>Additional material for lesson 5<a class="headerlink" href="#additional-material-for-lesson-5" title="Permalink to this heading">¶</a></h1>
+<h1>Additional material for lesson 5<a class="headerlink" href="#additional-material-for-lesson-5" title="Permalink to this headline">¶</a></h1>
 <section id="detailed-look-at-the-atmega328p-adc">
-<h2>Detailed look at the Atmega328p ADC<a class="headerlink" href="#detailed-look-at-the-atmega328p-adc" title="Permalink to this heading">¶</a></h2>
+<h2>Detailed look at the Atmega328p ADC<a class="headerlink" href="#detailed-look-at-the-atmega328p-adc" title="Permalink to this headline">¶</a></h2>
 <p>In the ADC hardware of the Atmega328p, there are many different parameters that needs to be configured properly. For example setting the ADC speed, resolution, conversion mode etc. By using the <code class="code docutils literal notranslate"><span class="pre">analogRead(analogPin)</span></code> Arduino function without changing anything, we simply accept the parameters that the Arduino developers hav selected for us. The default settings are fine for basic usage, but there are many situations where you would have to go in to the details.</p>
 <section id="voltage-reference-for-the-adc">
-<h3>Voltage reference for the ADC<a class="headerlink" href="#voltage-reference-for-the-adc" title="Permalink to this heading">¶</a></h3>
+<h3>Voltage reference for the ADC<a class="headerlink" href="#voltage-reference-for-the-adc" title="Permalink to this headline">¶</a></h3>
 <p>As discussed previously, the analog to digital converter uses a voltage reference for comparison with the analog signal it is converting. The Atmega328p microcontroller has several options for where to obtain this reference. In the Arduino UNO library these reference options may be set by the <code class="code docutils literal notranslate"><span class="pre">analogReference()</span></code> function, which takes the parameters <cite>DEFAULT</cite>, <cite>INTERNAL</cite>, or <cite>EXTERNAL</cite>, for 5V, 1.1V or externally applied voltage to the AREF-pin respectively. The selected reference voltage will be the maximum input voltage for the ADC, i.e. the voltage that will correspond to the digital value of 1023.</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">analogReference</span><span class="p">(</span><span class="n">EXTERNAL</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">analogReference</span><span class="p">(</span><span class="n">EXTERNAL</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>If you are only interested in measuring voltages from 0 - 2 V, a external reference of 2 V will provide better resolution than the default reference of 5 V.</p>
 <p>The accuracy of the reference voltage directly affects the accuracy of the converted voltage, and this is another motive for using an external reference. By accuracy in this context we mean: how sure can you be that the voltage actually is 5 V, is it 5.00 V, or could it be 5.02 V? A highly precise reference voltage can be used if high accuracy is required.</p>
 </section>
 <section id="adc-conversion-speed">
-<h3>ADC conversion speed<a class="headerlink" href="#adc-conversion-speed" title="Permalink to this heading">¶</a></h3>
+<h3>ADC conversion speed<a class="headerlink" href="#adc-conversion-speed" title="Permalink to this headline">¶</a></h3>
 <p>The conversion speed is determined by the clock signal to the successive approximation register in the ADC. There is a maximum limit to this clock, after which the ADC starts misbehaving. The recommended maximum clock speed is 200 kHz, while the specified absolute maximum speed is 1 Mhz.</p>
 <p>In the Arduino library the clock is derived from the CPU clock by using a prescaler of 128</p>
 <div class="math notranslate nohighlight">
@@ -270,40 +277,40 @@
 <p>This corresponds well with the conversion time stated in the documentation for the <code class="code docutils literal notranslate"><span class="pre">analogRead()</span></code> function in the Arduino library.</p>
 </section>
 <section id="low-level-control-of-the-analog-to-digital-conversion">
-<h3>Low level control of the Analog to Digital Conversion<a class="headerlink" href="#low-level-control-of-the-analog-to-digital-conversion" title="Permalink to this heading">¶</a></h3>
+<h3>Low level control of the Analog to Digital Conversion<a class="headerlink" href="#low-level-control-of-the-analog-to-digital-conversion" title="Permalink to this headline">¶</a></h3>
 <p>Here is an example of the implementation of ADC without using built-in <code class="code docutils literal notranslate"><span class="pre">analogRead(analogPin)</span></code> function. There are different ways of bitwise operations. It is better to be consistent in using one way but here we would like to see different ways. Let’s understand it with the help of Atmega328p datasheet.</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Arduino.h&gt;</span><span class="cp"></span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Arduino.h&gt;</span>
 
 <span class="cp">#define BAUDRATE 9600</span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">init_ports</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span><span class="w"></span>
-<span class="kt">void</span><span class="w"> </span><span class="nf">init_adc</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span><span class="w"></span>
-<span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="nf">read_ADC</span><span class="p">(</span><span class="kt">uint8_t</span><span class="p">);</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">init_ports</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">init_adc</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+<span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="nf">read_ADC</span><span class="p">(</span><span class="kt">uint8_t</span><span class="p">);</span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="n">init_adc</span><span class="p">();</span><span class="w"></span>
-<span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="n">BAUDRATE</span><span class="p">);</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">init_adc</span><span class="p">();</span>
+<span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="n">BAUDRATE</span><span class="p">);</span>
+<span class="p">}</span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">adc_val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">adc_read</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;ADC value:&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">adc_val</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="n">delay</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">adc_val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">adc_read</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;ADC value:&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">adc_val</span><span class="p">);</span>
+<span class="w">  </span><span class="n">delay</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
 <span class="w">  </span>
-<span class="p">}</span><span class="w"></span>
+<span class="p">}</span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">init_adc</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="w"></span>
-<span class="p">{</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">init_adc</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
 <span class="w">  </span><span class="n">ADMUX</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">REFS0</span><span class="p">);</span><span class="w"> </span><span class="c1">//default Ch-0; Vref = 5V</span>
 <span class="w">  </span><span class="c1">//ADMUX = ADMUX | 0x20;   // set for Left Justified</span>
 <span class="w">  </span><span class="n">ADCSRA</span><span class="w"> </span><span class="o">|=</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">ADEN</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">ADSC</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">ADATE</span><span class="p">);</span><span class="w"> </span><span class="c1">//auto-trigger OFF -- EXERCISE:how to write in hexadecimal?</span>
-<span class="w">  </span><span class="n">ADCSRB</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">0x00</span><span class="p">;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="n">ADCSRB</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">0x00</span><span class="p">;</span>
+<span class="p">}</span>
 
-<span class="kt">uint16_t</span><span class="w"> </span><span class="nf">adc_read</span><span class="p">(</span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">pin</span><span class="p">)</span><span class="w"></span>
+<span class="kt">uint16_t</span><span class="w"> </span><span class="nf">adc_read</span><span class="p">(</span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">pin</span><span class="p">)</span>
 <span class="p">{</span><span class="w">     </span>
-<span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">value</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">value</span><span class="p">;</span>
 <span class="w">  </span>
 <span class="w">  </span><span class="c1">// select the corresponding channel 0~7</span>
 <span class="w">  </span><span class="c1">// ANDing with &#39;7′ will always keep the value of pin between 0 and 7</span>
@@ -311,15 +318,15 @@
 <span class="w">  </span><span class="n">ADMUX</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">ADMUX</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mh">0xF8</span><span class="p">)</span><span class="o">|</span><span class="n">pin</span><span class="p">;</span><span class="w"> </span><span class="c1">// setting MUX[0:3]</span>
 
 <span class="w">  </span><span class="c1">// start single convertion</span>
-<span class="w">  </span><span class="n">ADCSRA</span><span class="w"> </span><span class="o">|=</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">ADSC</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">ADCSRA</span><span class="w"> </span><span class="o">|=</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">ADSC</span><span class="p">);</span>
 
 <span class="w">  </span><span class="c1">// wait for conversion to complete</span>
 <span class="w">  </span><span class="c1">// ADSC becomes &#39;0′ again</span>
 <span class="w">  </span><span class="k">while</span><span class="w"> </span><span class="p">((</span><span class="n">ADCSRA</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mh">0x10</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w"> </span><span class="c1">// until the flag is reset again // while(ADCSRA &amp; (1 &lt;&lt; ADSC))</span>
 <span class="w">  </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">ADCL</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="p">(</span><span class="n">ADCH</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">8</span><span class="p">));</span><span class="w"> </span><span class="c1">//10-bit data</span>
 <span class="w">  </span>
-<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">value</span><span class="p">;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">value</span><span class="p">;</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <div class="admonition note">
@@ -334,7 +341,7 @@
 </div>
 </section>
 <section id="increasing-resolution-by-oversampling">
-<h3>Increasing resolution by oversampling<a class="headerlink" href="#increasing-resolution-by-oversampling" title="Permalink to this heading">¶</a></h3>
+<h3>Increasing resolution by oversampling<a class="headerlink" href="#increasing-resolution-by-oversampling" title="Permalink to this headline">¶</a></h3>
 <div class="admonition-todo admonition" id="id1">
 <p class="admonition-title">Todo</p>
 <p>Explain how to use oversampling (and why it works)</p>
@@ -342,56 +349,56 @@
 </section>
 </section>
 <section id="servo-motor-drive">
-<h2>Servo Motor Drive<a class="headerlink" href="#servo-motor-drive" title="Permalink to this heading">¶</a></h2>
+<h2>Servo Motor Drive<a class="headerlink" href="#servo-motor-drive" title="Permalink to this headline">¶</a></h2>
 <p>There is no principal difference between a servo motor and any other kind of motor. The difference lies in how one intends to use it. A servo motor is intended for precise control of angular or linear position, and thus it typically employs a position sensor on the shaft. Traditionally brushed DC-motors have been the preferred choice for servo motors, due to the ease of control. Today however there are many different classes of motors that are used for servo application.</p>
 <p>The Arduino starter kit contains a special servo motor <cite>SM-S2309S</cite> which has some features that are quite usefull for many servo applications. It has a built in gearbox that reduces the speed and increases the torque on the shaft, and a built in position sensor, wich allows us to simply request a potion, and the motor will move to that position.</p>
 <p>The following <a class="reference external" href="https://www.youtube.com/watch?v=LXURLvga8bQ">video</a> gives a good explanation to the internal operation of this kind of servo motor.</p>
 <section id="switching-frequency">
-<h3>Switching frequency<a class="headerlink" href="#switching-frequency" title="Permalink to this heading">¶</a></h3>
+<h3>Switching frequency<a class="headerlink" href="#switching-frequency" title="Permalink to this headline">¶</a></h3>
 <p>The <cite>analogWrite()</cite> function in the standard Arduino library only support one parameter, specifying the duty cycle of the generated PWM output. Another important parameter of PWM however is the frequency at wich the pulses are turned on and off. The Arduino library does not support changing this frequency, but it is possible to change it by accessing the registers of the timers responsible for generating the PWM.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>Changing the registers may impact the operation of other features of the Arduino library, such as the <code class="code ccode c docutils literal highlight highlight-c"><span class="n">millis</span><span class="p">()</span><span class="w"></span></code> function.</p>
+<p>Changing the registers may impact the operation of other features of the Arduino library, such as the <code class="code ccode c docutils literal notranslate"><span class="pre">millis()</span></code> function.</p>
 </div>
 <p>The various hardware timers in the microcontroller are responsible for various groups of PWM outputs. Thus by manipulating a given hardware timer, you will be manipulating the frequency of some of the PWM outputs.</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">pinMode</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT</span><span class="p">);</span><span class="w"></span>
-<span class="n">pinMode</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT</span><span class="p">);</span><span class="w"></span>
-<span class="n">TCCR2A</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">_BV</span><span class="p">(</span><span class="n">COM2A1</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">_BV</span><span class="p">(</span><span class="n">COM2B1</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">_BV</span><span class="p">(</span><span class="n">WGM21</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">_BV</span><span class="p">(</span><span class="n">WGM20</span><span class="p">);</span><span class="w"></span>
-<span class="n">TCCR2B</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">_BV</span><span class="p">(</span><span class="n">CS22</span><span class="p">);</span><span class="w"></span>
-<span class="n">OCR2A</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">180</span><span class="p">;</span><span class="w"></span>
-<span class="n">OCR2B</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">50</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">pinMode</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT</span><span class="p">);</span>
+<span class="n">pinMode</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT</span><span class="p">);</span>
+<span class="n">TCCR2A</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">_BV</span><span class="p">(</span><span class="n">COM2A1</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">_BV</span><span class="p">(</span><span class="n">COM2B1</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">_BV</span><span class="p">(</span><span class="n">WGM21</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">_BV</span><span class="p">(</span><span class="n">WGM20</span><span class="p">);</span>
+<span class="n">TCCR2B</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">_BV</span><span class="p">(</span><span class="n">CS22</span><span class="p">);</span>
+<span class="n">OCR2A</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">180</span><span class="p">;</span>
+<span class="n">OCR2B</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">50</span><span class="p">;</span>
 </pre></div>
 </div>
 </section>
 <section id="servo-motor-library">
-<h3>Servo motor library<a class="headerlink" href="#servo-motor-library" title="Permalink to this heading">¶</a></h3>
+<h3>Servo motor library<a class="headerlink" href="#servo-motor-library" title="Permalink to this headline">¶</a></h3>
 <p>Servo motors typically requires 20ms period of PWM signals (50Hz) with pulse width varying between 1ms-2ms (0-180 degrees) as a driving signal. Since the generic <code class="code docutils literal notranslate"><span class="pre">analogWrite()</span></code> works in 490Hz/ 980Hz, you cannot drive a servo motor unless you fiddle around the timer settings. Luckily, Arduino comes with a servo library that simplifies the control of the servo motor.</p>
 <p>The following example shows how you may send commands on the serial UART to control the servo position. Given 5 different values via serial port, control the servo angle.</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Servo.h&gt;</span><span class="cp"></span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Servo.h&gt;</span>
 
 <span class="n">Servo</span><span class="w"> </span><span class="n">myservo</span><span class="p">;</span><span class="w">  </span><span class="c1">// create servo object to control a servo</span>
 
 <span class="kt">int</span><span class="w"> </span><span class="n">incomingByte</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="c1">// for incoming serial data</span>
 
 <span class="kt">int</span><span class="w"> </span><span class="n">val</span><span class="p">;</span><span class="w">    </span><span class="c1">// variable to read the value from the serial port</span>
-<span class="kt">int</span><span class="w"> </span><span class="n">mappedVal</span><span class="p">;</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="n">mappedVal</span><span class="p">;</span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="n">myservo</span><span class="p">.</span><span class="n">attach</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span><span class="w">  </span><span class="c1">// attaches the servo on pin 9 to the servo object</span>
 <span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span><span class="w"> </span><span class="c1">// opens serial port, sets data rate to 9600 bps  </span>
-<span class="p">}</span><span class="w"></span>
+<span class="p">}</span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span>
 <span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Serial</span><span class="p">.</span><span class="n">available</span><span class="p">()</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
 <span class="w">    </span><span class="n">val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Serial</span><span class="p">.</span><span class="n">read</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">48</span><span class="p">;</span><span class="w">            </span><span class="c1">// reads the value from the serial port. (-48 is for ascii conversion)</span>
 <span class="w">    </span><span class="n">mappedVal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">map</span><span class="p">(</span><span class="n">val</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">180</span><span class="p">);</span><span class="w">     </span><span class="c1">// scale it to use it with the servo (value between 0 and 180)</span>
-<span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;I received: &quot;</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">mappedVal</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;I received: &quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">mappedVal</span><span class="p">);</span>
 <span class="w">    </span><span class="n">myservo</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">mappedVal</span><span class="p">);</span><span class="w">                  </span><span class="c1">// sets the servo position according to the scaled value</span>
 <span class="w">    </span><span class="n">delay</span><span class="p">(</span><span class="mi">15</span><span class="p">);</span><span class="w">          </span><span class="c1">// waits for the servo to get there</span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
 
 
 <span class="cm">/*</span>
@@ -423,7 +430,7 @@
 <span class="cm">    delay(15);          // waits for the servo to get there</span>
 <span class="cm">  }</span>
 <span class="cm">}</span>
-<span class="cm">*/</span><span class="w"></span>
+<span class="cm">*/</span>
 </pre></div>
 </div>
 <p>We talked about that we drive servo motors using PWM signal but also we didn’t use the regular <code class="code docutils literal notranslate"><span class="pre">analogWrite()</span></code> function. It wouldn’t work. Let’s see the difference of the signal types between <code class="code docutils literal notranslate"><span class="pre">analogWrite()</span></code> and <code class="code docutils literal notranslate"><span class="pre">myservo.write()</span></code> using a <a class="reference external" href="https://www.wikiwand.com/en/Logic_analyzer">logic analyzer</a>.</p>
@@ -441,61 +448,61 @@
 </figure>
 </section>
 <section id="servo-motor-drive-example">
-<h3>Servo motor drive example<a class="headerlink" href="#servo-motor-drive-example" title="Permalink to this heading">¶</a></h3>
+<h3>Servo motor drive example<a class="headerlink" href="#servo-motor-drive-example" title="Permalink to this headline">¶</a></h3>
 <p>The following example uses a push button to toggle through various positions on the servo motor.</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Arduino.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Servo.h&gt;</span><span class="cp"></span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Arduino.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Servo.h&gt;</span>
 
-<span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">toggle_button_pin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">12</span><span class="p">;</span><span class="w"></span>
+<span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">toggle_button_pin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">12</span><span class="p">;</span>
 
-<span class="n">Servo</span><span class="w"> </span><span class="n">robot_arm</span><span class="p">;</span><span class="w"></span>
+<span class="n">Servo</span><span class="w"> </span><span class="n">robot_arm</span><span class="p">;</span>
 
-<span class="kt">uint8_t</span><span class="w"> </span><span class="nf">toggle_button_event</span><span class="p">();</span><span class="w"></span>
+<span class="kt">uint8_t</span><span class="w"> </span><span class="nf">toggle_button_event</span><span class="p">();</span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="n">pinMode</span><span class="p">(</span><span class="n">toggle_button_pin</span><span class="p">,</span><span class="w"> </span><span class="n">INPUT</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="n">robot_arm</span><span class="p">.</span><span class="n">attach</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">pinMode</span><span class="p">(</span><span class="n">toggle_button_pin</span><span class="p">,</span><span class="w"> </span><span class="n">INPUT</span><span class="p">);</span>
+<span class="w">  </span><span class="n">robot_arm</span><span class="p">.</span><span class="n">attach</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+<span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span>
+<span class="p">}</span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 
-<span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">motor_pos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">motor_pos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 
-<span class="w">  </span><span class="k">if</span><span class="p">(</span><span class="n">toggle_button_event</span><span class="p">()){</span><span class="w"></span>
-<span class="w">    </span><span class="n">motor_pos</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="k">if</span><span class="p">(</span><span class="n">toggle_button_event</span><span class="p">()){</span>
+<span class="w">    </span><span class="n">motor_pos</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
 
-<span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;+10 grader.&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">motor_pos</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">motor_pos</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">180</span><span class="p">){</span><span class="w"></span>
-<span class="w">      </span><span class="n">motor_pos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;+10 grader.&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">motor_pos</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">motor_pos</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">180</span><span class="p">){</span>
+<span class="w">      </span><span class="n">motor_pos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
 
-<span class="w">  </span><span class="n">robot_arm</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">motor_pos</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">robot_arm</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">motor_pos</span><span class="p">);</span>
 <span class="w">  </span><span class="c1">//delay(500);</span>
-<span class="p">}</span><span class="w"></span>
+<span class="p">}</span>
 
-<span class="kt">uint8_t</span><span class="w"> </span><span class="nf">toggle_button_event</span><span class="p">(){</span><span class="w"></span>
+<span class="kt">uint8_t</span><span class="w"> </span><span class="nf">toggle_button_event</span><span class="p">(){</span>
 
-<span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">shift_register</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
-<span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">old_millis</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">shift_register</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">old_millis</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 
-<span class="w">  </span><span class="k">if</span><span class="p">(</span><span class="n">millis</span><span class="p">()</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">old_millis</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">5</span><span class="p">){</span><span class="w"></span>
+<span class="w">  </span><span class="k">if</span><span class="p">(</span><span class="n">millis</span><span class="p">()</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">old_millis</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">5</span><span class="p">){</span>
 
-<span class="w">    </span><span class="n">old_millis</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">millis</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="n">old_millis</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">millis</span><span class="p">();</span>
 
-<span class="w">    </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">input_state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">digitalRead</span><span class="p">(</span><span class="n">toggle_button_pin</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">input_state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">digitalRead</span><span class="p">(</span><span class="n">toggle_button_pin</span><span class="p">);</span>
 
-<span class="w">    </span><span class="n">shift_register</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">shift_register</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">input_state</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mh">0xC000</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">shift_register</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">shift_register</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">input_state</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mh">0xC000</span><span class="p">;</span>
 
-<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">shift_register</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mh">0xE000</span><span class="p">){</span><span class="w"></span>
-<span class="w">      </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;Start event detected.&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
-<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">shift_register</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mh">0xE000</span><span class="p">){</span>
+<span class="w">      </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;Start event detected.&quot;</span><span class="p">);</span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </section>
@@ -522,7 +529,7 @@
 <ul class="nav navbar-nav pull-right hidden-xs hidden-sm">
       
         <li><a href="L4_additional.html" title="Additional material for lesson 4" >previous</a></li>
-        <li><a href="../Appendices/Additionals.html" title="Additional Chapters" >next</a></li>
+        <li><a href="L6_additional.html" title="Additional material for lesson 6" >next</a></li>
         <li><a href="../../genindex.html" title="General Index" >index</a></li>
         <li><a href="#">top</a></li> 
       
@@ -534,7 +541,7 @@
       <!-- footer -->
       <footer role="contentinfo">
           &copy; Copyright 2022, Gizem Ateş &amp; Eirik Haustveit.
-        Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 5.3.0.
+        Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 4.5.0.
       </footer>
       <!-- /footer -->
 

@@ -6,7 +6,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <title>Assembly programming &mdash; ELE102 Microcontroller course v1.1.0 documentation</title>
     <meta name="description" content="">
@@ -45,9 +45,7 @@
     <script type="text/javascript" src="../../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../../_static/js/jquery.min.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
-    <script type="text/javascript" src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../_static/sphinx_highlight.js"></script>
     <script type="text/javascript" src="../../_static/js/bootstrap3.min.js"></script>
 <script type="text/javascript" src="../../_static/js/jquery.cookie.min.js"></script>
 <script type="text/javascript" src="../../_static/js/basicstrap.js"></script>
@@ -147,6 +145,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../Lessons/L3_digital_io_and_timing.html">Lesson 3: Use of digital I/O and timing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Lessons/L4_dac_pwm.html">Lesson 4: Analog output (PWM)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Lessons/L5_adc.html">Lesson 5: Analog to digital conversion (ADC)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons/L6_serial_io.html">Lesson 6: Serial I/O</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Additional material:</span></p>
 <ul>
@@ -155,6 +154,14 @@
 <li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L3_additional.html">Additional material lesson 3</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L4_additional.html">Additional material lesson 4</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L5_additional.html">Additional material lesson 5</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L6_additional.html">Additional material lesson 6</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L7_additional.html">Additional material lesson 7</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L8_additional.html">Additional material lesson 8</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L9_additional.html">Additional material lesson 9</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L10_additional.html">Additional material lesson 10</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L11_additional.html">Additional material lesson 11</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L12_additional.html">Additional material lesson 12</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L13_additional.html">Additional material lesson 13</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Projects:</span></p>
 <ul>
@@ -245,10 +252,10 @@
                 <div class="body">
                   
   <section id="assembly-programming">
-<span id="id1"></span><h1>Assembly programming<a class="headerlink" href="#assembly-programming" title="Permalink to this heading">¶</a></h1>
+<span id="id1"></span><h1>Assembly programming<a class="headerlink" href="#assembly-programming" title="Permalink to this headline">¶</a></h1>
 <p>In this chapter we will cover the basics how how to develop software using assembly language on the Atmega 328p microcontroller on the Arduino UNO. We will cover three different scenarios, pure assembly, some assembly and some C in separate files, and inline assembly in C. Although assembly language is typically more cumbersome to use than C, it has some advantages when it comes to optimizing the code for speed or memory usage. It is typically not a god idea to write a large software project using pure assembly language, but it can be useful for optimizing the most CPU intensive parts of the code. Additionally an understanding of assembly language is invaluable when debugging problematic code.</p>
 <section id="disassembly-of-your-project">
-<h2>Disassembly of your project<a class="headerlink" href="#disassembly-of-your-project" title="Permalink to this heading">¶</a></h2>
+<h2>Disassembly of your project<a class="headerlink" href="#disassembly-of-your-project" title="Permalink to this headline">¶</a></h2>
 <p>It is useful to be able to view the assembly code which is generated by the C compiler. This is commonly used as part of the debugging process.</p>
 <p>The command line tool “avr-objdump” can be used to obtain a disassembly code listing for a given object file, or the entire project.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">avr</span><span class="o">-</span><span class="n">objdump</span> <span class="o">-</span><span class="n">d</span> <span class="n">example</span><span class="o">.</span><span class="n">S</span><span class="o">.</span><span class="n">o</span>
@@ -279,113 +286,113 @@
 </pre></div>
 </div>
 <section id="better-disassembly">
-<h3>Better disassembly<a class="headerlink" href="#better-disassembly" title="Permalink to this heading">¶</a></h3>
+<h3>Better disassembly<a class="headerlink" href="#better-disassembly" title="Permalink to this headline">¶</a></h3>
 <p>If you are developing a program, and hence have access to the C/C++ source code, it is possible to generate a more insightful disassembly.</p>
 </section>
 <section id="disassembly-in-platformio">
-<h3>Disassembly in PlatformIO<a class="headerlink" href="#disassembly-in-platformio" title="Permalink to this heading">¶</a></h3>
+<h3>Disassembly in PlatformIO<a class="headerlink" href="#disassembly-in-platformio" title="Permalink to this headline">¶</a></h3>
 </section>
 </section>
 <section id="inline-assembly">
-<h2>Inline assembly<a class="headerlink" href="#inline-assembly" title="Permalink to this heading">¶</a></h2>
+<h2>Inline assembly<a class="headerlink" href="#inline-assembly" title="Permalink to this headline">¶</a></h2>
 </section>
 <section id="mixing-c-and-assembly">
-<h2>Mixing C and assembly<a class="headerlink" href="#mixing-c-and-assembly" title="Permalink to this heading">¶</a></h2>
+<h2>Mixing C and assembly<a class="headerlink" href="#mixing-c-and-assembly" title="Permalink to this headline">¶</a></h2>
 <p>In this section we will go through the procedure, and provide some examples on how to mix C and assembly language, where the code is kept in separate files. You may define special high performance function which are written in assembly, and call those functions from within your C program.</p>
 <section id="bare-metal-project">
-<h3>Bare metal project<a class="headerlink" href="#bare-metal-project" title="Permalink to this heading">¶</a></h3>
+<h3>Bare metal project<a class="headerlink" href="#bare-metal-project" title="Permalink to this headline">¶</a></h3>
 <p>In this section we will explore the process of creating and uploading a simple bare metal project which blinks a LED on the Arduino UNO using a mix of C, and assembly.</p>
 <p>Start by creating two files: “main.c”, and “ledcontrol.S” in a new directory.</p>
 <p><strong>main.c:</strong></p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;avr/io.h&gt;</span><span class="cp"></span>
-<span class="linenos"> 2</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;util/delay.h&gt;</span><span class="cp"></span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;avr/io.h&gt;</span>
+<span class="linenos"> 2</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;util/delay.h&gt;</span>
 <span class="linenos"> 3</span>
-<span class="linenos"> 4</span><span class="k">extern</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">led_on_asm</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span><span class="w"></span>
-<span class="linenos"> 5</span><span class="k">extern</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">led_off_asm</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span><span class="w"></span>
-<span class="linenos"> 6</span><span class="k">extern</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">led_on_asm_inefficient</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span><span class="w"></span>
-<span class="linenos"> 7</span><span class="k">extern</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">led_off_asm_inefficient</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span><span class="w"></span>
+<span class="linenos"> 4</span><span class="k">extern</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">led_on_asm</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+<span class="linenos"> 5</span><span class="k">extern</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">led_off_asm</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+<span class="linenos"> 6</span><span class="k">extern</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">led_on_asm_inefficient</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+<span class="linenos"> 7</span><span class="k">extern</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">led_off_asm_inefficient</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
 <span class="linenos"> 8</span>
 <span class="linenos"> 9</span>
-<span class="linenos">10</span><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(){</span><span class="w"></span>
+<span class="linenos">10</span><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(){</span>
 <span class="linenos">11</span>
 <span class="linenos">12</span><span class="w">    </span><span class="n">DDRB</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mb">0b00011111</span><span class="p">;</span><span class="w"> </span><span class="c1">// Set the pins as outputs</span>
 <span class="linenos">13</span>
-<span class="linenos">14</span><span class="w">    </span><span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">){</span><span class="w"></span>
-<span class="linenos">15</span><span class="w">	</span><span class="n">led_on_asm</span><span class="p">();</span><span class="w"></span>
-<span class="linenos">16</span><span class="w">	</span><span class="n">led_on_asm_inefficient</span><span class="p">();</span><span class="w"></span>
+<span class="linenos">14</span><span class="w">    </span><span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">){</span>
+<span class="linenos">15</span><span class="w">	</span><span class="n">led_on_asm</span><span class="p">();</span>
+<span class="linenos">16</span><span class="w">	</span><span class="n">led_on_asm_inefficient</span><span class="p">();</span>
 <span class="linenos">17</span>
-<span class="linenos">18</span><span class="w">        </span><span class="n">_delay_ms</span><span class="p">(</span><span class="mi">400</span><span class="p">);</span><span class="w"></span>
+<span class="linenos">18</span><span class="w">        </span><span class="n">_delay_ms</span><span class="p">(</span><span class="mi">400</span><span class="p">);</span>
 <span class="linenos">19</span>
-<span class="linenos">20</span><span class="w">	</span><span class="n">led_off_asm</span><span class="p">();</span><span class="w"></span>
-<span class="linenos">21</span><span class="w">	</span><span class="n">led_off_asm_inefficient</span><span class="p">();</span><span class="w"></span>
+<span class="linenos">20</span><span class="w">	</span><span class="n">led_off_asm</span><span class="p">();</span>
+<span class="linenos">21</span><span class="w">	</span><span class="n">led_off_asm_inefficient</span><span class="p">();</span>
 <span class="linenos">22</span>
-<span class="linenos">23</span><span class="w">        </span><span class="n">_delay_ms</span><span class="p">(</span><span class="mi">400</span><span class="p">);</span><span class="w"></span>
-<span class="linenos">24</span><span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="linenos">23</span><span class="w">        </span><span class="n">_delay_ms</span><span class="p">(</span><span class="mi">400</span><span class="p">);</span>
+<span class="linenos">24</span><span class="w">    </span><span class="p">}</span>
 <span class="linenos">25</span><span class="w">    </span>
-<span class="linenos">26</span><span class="p">}</span><span class="w"></span>
+<span class="linenos">26</span><span class="p">}</span>
 </pre></div>
 </div>
 <p><strong>ledcontrol.S:</strong></p>
-<div class="highlight-ca65 notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="p">#</span><span class="n">include</span><span class="w"> </span><span class="o">&lt;</span><span class="n">avr</span><span class="o">/</span><span class="n">io.h</span><span class="o">&gt;</span><span class="w"></span>
+<div class="highlight-ca65 notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="p">#</span><span class="n">include</span><span class="w"> </span><span class="o">&lt;</span><span class="n">avr</span><span class="o">/</span><span class="n">io.h</span><span class="o">&gt;</span>
 <span class="linenos"> 2</span>
-<span class="linenos"> 3</span><span class="kp">.global</span><span class="w"> </span><span class="n">led_on_asm</span><span class="w"></span>
-<span class="linenos"> 4</span><span class="kp">.global</span><span class="w"> </span><span class="n">led_off_asm</span><span class="w"></span>
-<span class="linenos"> 5</span><span class="kp">.global</span><span class="w"> </span><span class="n">led_on_asm_inefficient</span><span class="w"></span>
-<span class="linenos"> 6</span><span class="kp">.global</span><span class="w"> </span><span class="n">led_off_asm_inefficient</span><span class="w"></span>
+<span class="linenos"> 3</span><span class="kp">.global</span><span class="w"> </span><span class="n">led_on_asm</span>
+<span class="linenos"> 4</span><span class="kp">.global</span><span class="w"> </span><span class="n">led_off_asm</span>
+<span class="linenos"> 5</span><span class="kp">.global</span><span class="w"> </span><span class="n">led_on_asm_inefficient</span>
+<span class="linenos"> 6</span><span class="kp">.global</span><span class="w"> </span><span class="n">led_off_asm_inefficient</span>
 <span class="linenos"> 7</span>
-<span class="linenos"> 8</span><span class="kp">.section</span><span class="w"> </span><span class="kp">.text</span><span class="w">                  </span><span class="c1">; Defines a code section</span><span class="w"></span>
+<span class="linenos"> 8</span><span class="kp">.section</span><span class="w"> </span><span class="kp">.text</span><span class="w">                  </span><span class="c1">; Defines a code section</span>
 <span class="linenos"> 9</span>
-<span class="linenos">10</span><span class="c1">; The port number must be PORTB - 0x20 = 0x05</span><span class="w"></span>
-<span class="linenos">11</span><span class="c1">; This is due to how the in, and out instructions operate</span><span class="w"></span>
-<span class="linenos">12</span><span class="p">#</span><span class="n">define</span><span class="w"> </span><span class="n">LED_PORT</span><span class="w"> </span><span class="mi">0</span><span class="n">x05</span><span class="w"></span>
-<span class="linenos">13</span><span class="p">#</span><span class="n">define</span><span class="w"> </span><span class="n">LED1_PIN</span><span class="w"> </span><span class="mi">0</span><span class="n">x4</span><span class="w"></span>
-<span class="linenos">14</span><span class="p">#</span><span class="n">define</span><span class="w"> </span><span class="n">LED2_PIN</span><span class="w"> </span><span class="mi">0</span><span class="n">x3</span><span class="w"></span>
+<span class="linenos">10</span><span class="c1">; The port number must be PORTB - 0x20 = 0x05</span>
+<span class="linenos">11</span><span class="c1">; This is due to how the in, and out instructions operate</span>
+<span class="linenos">12</span><span class="p">#</span><span class="n">define</span><span class="w"> </span><span class="n">LED_PORT</span><span class="w"> </span><span class="mi">0</span><span class="n">x05</span>
+<span class="linenos">13</span><span class="p">#</span><span class="n">define</span><span class="w"> </span><span class="n">LED1_PIN</span><span class="w"> </span><span class="mi">0</span><span class="n">x4</span>
+<span class="linenos">14</span><span class="p">#</span><span class="n">define</span><span class="w"> </span><span class="n">LED2_PIN</span><span class="w"> </span><span class="mi">0</span><span class="n">x3</span>
 <span class="linenos">15</span>
-<span class="linenos">16</span><span class="c1">; This function turns on PB11, and PB12</span><span class="w"></span>
-<span class="linenos">17</span><span class="c1">; It is written in an inefficient manner for illustrative purposes</span><span class="w"></span>
-<span class="linenos">18</span><span class="nl">led_on_asm_inefficient:</span><span class="w"></span>
-<span class="linenos">19</span><span class="w">    </span><span class="n">push</span><span class="w"> </span><span class="n">r16</span><span class="w"></span>
-<span class="linenos">20</span><span class="w">    </span><span class="n">push</span><span class="w"> </span><span class="n">r17</span><span class="w"></span>
+<span class="linenos">16</span><span class="c1">; This function turns on PB11, and PB12</span>
+<span class="linenos">17</span><span class="c1">; It is written in an inefficient manner for illustrative purposes</span>
+<span class="linenos">18</span><span class="nl">led_on_asm_inefficient:</span>
+<span class="linenos">19</span><span class="w">    </span><span class="n">push</span><span class="w"> </span><span class="n">r16</span>
+<span class="linenos">20</span><span class="w">    </span><span class="n">push</span><span class="w"> </span><span class="n">r17</span>
 <span class="linenos">21</span>
-<span class="linenos">22</span><span class="w">    </span><span class="c1">;ldi r16, 0b00000010</span><span class="w"></span>
-<span class="linenos">23</span><span class="w">    </span><span class="n">sbr</span><span class="w"> </span><span class="n">r16</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="n">LED1_PIN</span><span class="p">)</span><span class="o">+</span><span class="p">(</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="n">LED2_PIN</span><span class="p">)</span><span class="w"> </span><span class="c1">; Set bits 1 and 2 in register 16.</span><span class="w"></span>
-<span class="linenos">24</span><span class="w">    </span><span class="n">in</span><span class="w"> </span><span class="n">r17</span><span class="p">,</span><span class="w"> </span><span class="n">LED_PORT</span><span class="w"> </span><span class="c1">; Read the state of the port</span><span class="w"></span>
-<span class="linenos">25</span><span class="w">    </span><span class="n">or</span><span class="w"> </span><span class="n">r17</span><span class="p">,</span><span class="w"> </span><span class="n">r16</span><span class="w"> </span><span class="c1">; Or the port state with the bits you would like to set</span><span class="w"></span>
-<span class="linenos">26</span><span class="w">    </span><span class="n">out</span><span class="w"> </span><span class="n">LED_PORT</span><span class="p">,</span><span class="w"> </span><span class="n">r17</span><span class="w"> </span><span class="c1">; Output the result</span><span class="w"></span>
+<span class="linenos">22</span><span class="w">    </span><span class="c1">;ldi r16, 0b00000010</span>
+<span class="linenos">23</span><span class="w">    </span><span class="n">sbr</span><span class="w"> </span><span class="n">r16</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="n">LED1_PIN</span><span class="p">)</span><span class="o">+</span><span class="p">(</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="n">LED2_PIN</span><span class="p">)</span><span class="w"> </span><span class="c1">; Set bits 1 and 2 in register 16.</span>
+<span class="linenos">24</span><span class="w">    </span><span class="n">in</span><span class="w"> </span><span class="n">r17</span><span class="p">,</span><span class="w"> </span><span class="n">LED_PORT</span><span class="w"> </span><span class="c1">; Read the state of the port</span>
+<span class="linenos">25</span><span class="w">    </span><span class="n">or</span><span class="w"> </span><span class="n">r17</span><span class="p">,</span><span class="w"> </span><span class="n">r16</span><span class="w"> </span><span class="c1">; Or the port state with the bits you would like to set</span>
+<span class="linenos">26</span><span class="w">    </span><span class="n">out</span><span class="w"> </span><span class="n">LED_PORT</span><span class="p">,</span><span class="w"> </span><span class="n">r17</span><span class="w"> </span><span class="c1">; Output the result</span>
 <span class="linenos">27</span>
-<span class="linenos">28</span><span class="w">    </span><span class="n">pop</span><span class="w"> </span><span class="n">r17</span><span class="w"></span>
-<span class="linenos">29</span><span class="w">    </span><span class="n">pop</span><span class="w"> </span><span class="n">r16</span><span class="w"></span>
+<span class="linenos">28</span><span class="w">    </span><span class="n">pop</span><span class="w"> </span><span class="n">r17</span>
+<span class="linenos">29</span><span class="w">    </span><span class="n">pop</span><span class="w"> </span><span class="n">r16</span>
 <span class="linenos">30</span>
-<span class="linenos">31</span><span class="n">ret</span><span class="w"></span>
+<span class="linenos">31</span><span class="n">ret</span>
 <span class="linenos">32</span>
-<span class="linenos">33</span><span class="c1">; This function turns off PB11, and PB12</span><span class="w"></span>
-<span class="linenos">34</span><span class="c1">; It is written in an inefficient manner for illustrative purposes</span><span class="w"></span>
-<span class="linenos">35</span><span class="nl">led_off_asm_inefficient:</span><span class="w"></span>
-<span class="linenos">36</span><span class="w">    </span><span class="n">push</span><span class="w"> </span><span class="n">r16</span><span class="w"></span>
-<span class="linenos">37</span><span class="w">    </span><span class="n">push</span><span class="w"> </span><span class="n">r17</span><span class="w"></span>
+<span class="linenos">33</span><span class="c1">; This function turns off PB11, and PB12</span>
+<span class="linenos">34</span><span class="c1">; It is written in an inefficient manner for illustrative purposes</span>
+<span class="linenos">35</span><span class="nl">led_off_asm_inefficient:</span>
+<span class="linenos">36</span><span class="w">    </span><span class="n">push</span><span class="w"> </span><span class="n">r16</span>
+<span class="linenos">37</span><span class="w">    </span><span class="n">push</span><span class="w"> </span><span class="n">r17</span>
 <span class="linenos">38</span>
-<span class="linenos">39</span><span class="w">    </span><span class="n">sbr</span><span class="w"> </span><span class="n">r16</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="n">LED1_PIN</span><span class="p">)</span><span class="o">+</span><span class="p">(</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="n">LED2_PIN</span><span class="p">)</span><span class="w"> </span><span class="c1">; Set appropriate bits in r16</span><span class="w"></span>
-<span class="linenos">40</span><span class="w">    </span><span class="n">com</span><span class="w"> </span><span class="n">r16</span><span class="w"> </span><span class="c1">; Perform ones&#39; complement (invert all bits)</span><span class="w"></span>
-<span class="linenos">41</span><span class="w">    </span><span class="n">in</span><span class="w"> </span><span class="n">r17</span><span class="p">,</span><span class="w"> </span><span class="n">LED_PORT</span><span class="w"> </span><span class="c1">; Read the state of the port in to r17</span><span class="w"></span>
-<span class="linenos">42</span><span class="w">    </span><span class="k">and</span><span class="w"> </span><span class="n">r17</span><span class="p">,</span><span class="w"> </span><span class="n">r16</span><span class="w"> </span><span class="c1">; AND the port state with the mask of bits you would like to clear</span><span class="w"></span>
-<span class="linenos">43</span><span class="w">    </span><span class="n">out</span><span class="w"> </span><span class="n">LED_PORT</span><span class="p">,</span><span class="w"> </span><span class="n">r17</span><span class="w"> </span><span class="c1">; Output the result</span><span class="w"></span>
+<span class="linenos">39</span><span class="w">    </span><span class="n">sbr</span><span class="w"> </span><span class="n">r16</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="n">LED1_PIN</span><span class="p">)</span><span class="o">+</span><span class="p">(</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="n">LED2_PIN</span><span class="p">)</span><span class="w"> </span><span class="c1">; Set appropriate bits in r16</span>
+<span class="linenos">40</span><span class="w">    </span><span class="n">com</span><span class="w"> </span><span class="n">r16</span><span class="w"> </span><span class="c1">; Perform ones&#39; complement (invert all bits)</span>
+<span class="linenos">41</span><span class="w">    </span><span class="n">in</span><span class="w"> </span><span class="n">r17</span><span class="p">,</span><span class="w"> </span><span class="n">LED_PORT</span><span class="w"> </span><span class="c1">; Read the state of the port in to r17</span>
+<span class="linenos">42</span><span class="w">    </span><span class="k">and</span><span class="w"> </span><span class="n">r17</span><span class="p">,</span><span class="w"> </span><span class="n">r16</span><span class="w"> </span><span class="c1">; AND the port state with the mask of bits you would like to clear</span>
+<span class="linenos">43</span><span class="w">    </span><span class="n">out</span><span class="w"> </span><span class="n">LED_PORT</span><span class="p">,</span><span class="w"> </span><span class="n">r17</span><span class="w"> </span><span class="c1">; Output the result</span>
 <span class="linenos">44</span>
-<span class="linenos">45</span><span class="w">    </span><span class="n">pop</span><span class="w"> </span><span class="n">r17</span><span class="w"></span>
-<span class="linenos">46</span><span class="w">    </span><span class="n">pop</span><span class="w"> </span><span class="n">r16</span><span class="w"></span>
+<span class="linenos">45</span><span class="w">    </span><span class="n">pop</span><span class="w"> </span><span class="n">r17</span>
+<span class="linenos">46</span><span class="w">    </span><span class="n">pop</span><span class="w"> </span><span class="n">r16</span>
 <span class="linenos">47</span>
-<span class="linenos">48</span><span class="n">ret</span><span class="w"></span>
+<span class="linenos">48</span><span class="n">ret</span>
 <span class="linenos">49</span>
-<span class="linenos">50</span><span class="c1">; Turn on two outputs by using the special Set bit I/O (sbi) instruction</span><span class="w"></span>
-<span class="linenos">51</span><span class="nl">led_on_asm:</span><span class="w"></span>
-<span class="linenos">52</span><span class="w">    </span><span class="n">sbi</span><span class="w"> </span><span class="n">LED_PORT</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="w"></span>
-<span class="linenos">53</span><span class="w">    </span><span class="n">sbi</span><span class="w"> </span><span class="n">LED_PORT</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
-<span class="linenos">54</span><span class="n">ret</span><span class="w"></span>
+<span class="linenos">50</span><span class="c1">; Turn on two outputs by using the special Set bit I/O (sbi) instruction</span>
+<span class="linenos">51</span><span class="nl">led_on_asm:</span>
+<span class="linenos">52</span><span class="w">    </span><span class="n">sbi</span><span class="w"> </span><span class="n">LED_PORT</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span>
+<span class="linenos">53</span><span class="w">    </span><span class="n">sbi</span><span class="w"> </span><span class="n">LED_PORT</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span>
+<span class="linenos">54</span><span class="n">ret</span>
 <span class="linenos">55</span>
-<span class="linenos">56</span><span class="c1">; Turn off two outputs by using the special Clear bit I/O (cbi) instruction</span><span class="w"></span>
-<span class="linenos">57</span><span class="nl">led_off_asm:</span><span class="w"></span>
-<span class="linenos">58</span><span class="w">    </span><span class="n">cbi</span><span class="w"> </span><span class="n">LED_PORT</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="w"></span>
-<span class="linenos">59</span><span class="w">    </span><span class="n">cbi</span><span class="w"> </span><span class="n">LED_PORT</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
-<span class="linenos">60</span><span class="n">ret</span><span class="w"></span>
+<span class="linenos">56</span><span class="c1">; Turn off two outputs by using the special Clear bit I/O (cbi) instruction</span>
+<span class="linenos">57</span><span class="nl">led_off_asm:</span>
+<span class="linenos">58</span><span class="w">    </span><span class="n">cbi</span><span class="w"> </span><span class="n">LED_PORT</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span>
+<span class="linenos">59</span><span class="w">    </span><span class="n">cbi</span><span class="w"> </span><span class="n">LED_PORT</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span>
+<span class="linenos">60</span><span class="n">ret</span>
 </pre></div>
 </div>
 <p>Assemble the assembly file:</p>
@@ -410,23 +417,23 @@
 </div>
 </section>
 <section id="platformio">
-<h3>PlatformIO<a class="headerlink" href="#platformio" title="Permalink to this heading">¶</a></h3>
+<h3>PlatformIO<a class="headerlink" href="#platformio" title="Permalink to this headline">¶</a></h3>
 <p>In order to mix C and Assembly in a Arduino project in PlatformIO you should create a new source file with the “.S” extension in your “src” directory.</p>
 <p>In order to access your assembly functions from C, they need to be declared using C syntax in the source file where they are going to be used, or in a header file which is included in to the source file. Since platformIO uses C++ for Arduino you have to use the <code class="code docutils literal notranslate"><span class="pre">extern</span> <span class="pre">&quot;C&quot;</span></code> directive:</p>
-<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="k">extern</span><span class="w"> </span><span class="s">&quot;C&quot;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">led_on_asm_function</span><span class="p">();</span><span class="w"></span>
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">led_off_asm_function</span><span class="p">();</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="k">extern</span><span class="w"> </span><span class="s">&quot;C&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">led_on_asm_function</span><span class="p">();</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">led_off_asm_function</span><span class="p">();</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p>C++ uses a technique known as name mangling on the function names in order to support features such as polymorphism. This causes the function names in the object files to change compared to how they appear in the source file, and thus they will not match the name defined in the assembly file. If the names does not match, the linker will not be able to produce functional machine code. The <code class="code docutils literal notranslate"><span class="pre">extern</span> <span class="pre">&quot;C&quot;</span></code> directive disables this feature by informing the compiler that the function should be considered C functions.</p>
 </section>
 </section>
 <section id="pure-assembly">
-<h2>Pure assembly<a class="headerlink" href="#pure-assembly" title="Permalink to this heading">¶</a></h2>
+<h2>Pure assembly<a class="headerlink" href="#pure-assembly" title="Permalink to this headline">¶</a></h2>
 <p>Pure assembly development is also possible, and provides a deep insight in to the low level operation of the microcontroller.</p>
 <section id="interrupts">
-<h3>Interrupts<a class="headerlink" href="#interrupts" title="Permalink to this heading">¶</a></h3>
+<h3>Interrupts<a class="headerlink" href="#interrupts" title="Permalink to this headline">¶</a></h3>
 </section>
 </section>
 </section>
@@ -463,7 +470,7 @@
       <!-- footer -->
       <footer role="contentinfo">
           &copy; Copyright 2022, Gizem Ateş &amp; Eirik Haustveit.
-        Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 5.3.0.
+        Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 4.5.0.
       </footer>
       <!-- /footer -->
 

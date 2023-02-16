@@ -6,7 +6,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <title>Additional material for lesson 12 &mdash; ELE102 Microcontroller course v1.1.0 documentation</title>
     <meta name="description" content="">
@@ -45,9 +45,7 @@
     <script type="text/javascript" src="../../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../../_static/js/jquery.min.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
-    <script type="text/javascript" src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../_static/sphinx_highlight.js"></script>
     <script type="text/javascript" src="../../_static/js/bootstrap3.min.js"></script>
 <script type="text/javascript" src="../../_static/js/jquery.cookie.min.js"></script>
 <script type="text/javascript" src="../../_static/js/basicstrap.js"></script>
@@ -55,7 +53,9 @@
 </script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="top" title="ELE102 Microcontroller course v1.1.0 documentation" href="../../index.html" /> 
+    <link rel="top" title="ELE102 Microcontroller course v1.1.0 documentation" href="../../index.html" />
+    <link rel="next" title="Additional material for lesson 13" href="L13_additional.html" />
+    <link rel="prev" title="Additional material for lesson 11" href="L11_additional.html" /> 
   </head>
   <body role="document">
     <div id="navbar-top" class="navbar navbar-fixed-top navbar-default" role="navigation" aria-label="top navigation">
@@ -97,6 +97,8 @@
               </li>
 
             
+              <li><a href="L11_additional.html" title="Additional material for lesson 11" accesskey="P">previous </a></li>
+              <li><a href="L13_additional.html" title="Additional material for lesson 13" accesskey="N">next </a></li>
               <li><a href="../../genindex.html" title="General Index" accesskey="I">index </a></li>
             
 
@@ -141,14 +143,38 @@
 <li class="toctree-l1"><a class="reference internal" href="../Lessons/L3_digital_io_and_timing.html">Lesson 3: Use of digital I/O and timing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Lessons/L4_dac_pwm.html">Lesson 4: Analog output (PWM)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Lessons/L5_adc.html">Lesson 5: Analog to digital conversion (ADC)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons/L6_serial_io.html">Lesson 6: Serial I/O</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Additional material:</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="L1_additional.html">Additional material lesson 1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="L2_additional.html">Additional material lesson 2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="L3_additional.html">Additional material lesson 3</a></li>
 <li class="toctree-l1"><a class="reference internal" href="L4_additional.html">Additional material lesson 4</a></li>
 <li class="toctree-l1"><a class="reference internal" href="L5_additional.html">Additional material lesson 5</a></li>
+<li class="toctree-l1"><a class="reference internal" href="L6_additional.html">Additional material lesson 6</a></li>
+<li class="toctree-l1"><a class="reference internal" href="L7_additional.html">Additional material lesson 7</a></li>
+<li class="toctree-l1"><a class="reference internal" href="L8_additional.html">Additional material lesson 8</a></li>
+<li class="toctree-l1"><a class="reference internal" href="L9_additional.html">Additional material lesson 9</a></li>
+<li class="toctree-l1"><a class="reference internal" href="L10_additional.html">Additional material lesson 10</a></li>
+<li class="toctree-l1"><a class="reference internal" href="L11_additional.html">Additional material lesson 11</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Additional material lesson 12</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#i2c">I2C</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#spi-in-arduino">SPI in Arduino</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#master">Master</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#slave">Slave</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#spi-i-o-port-expander">SPI I/O port expander</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Master</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">Slave</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#uart-backup">UART (backup)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#i2c-backup">I2C (backup)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="L13_additional.html">Additional material lesson 13</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Projects:</span></p>
 <ul>
@@ -201,6 +227,16 @@
     Enter search terms or a module, class or function name.
     </p>
 </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="L11_additional.html"
+                          title="previous chapter">Additional material for lesson 11</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="L13_additional.html"
+                          title="next chapter">Additional material for lesson 13</a></p>
+  </div>
   </div>
 </div> 
         
@@ -212,12 +248,12 @@
                 <div class="body">
                   
   <section id="additional-material-for-lesson-12">
-<h1>Additional material for lesson 12<a class="headerlink" href="#additional-material-for-lesson-12" title="Permalink to this heading">¶</a></h1>
+<h1>Additional material for lesson 12<a class="headerlink" href="#additional-material-for-lesson-12" title="Permalink to this headline">¶</a></h1>
 <section id="i2c">
-<h2>I2C<a class="headerlink" href="#i2c" title="Permalink to this heading">¶</a></h2>
+<h2>I2C<a class="headerlink" href="#i2c" title="Permalink to this headline">¶</a></h2>
 </section>
 <section id="spi-in-arduino">
-<h2>SPI in Arduino<a class="headerlink" href="#spi-in-arduino" title="Permalink to this heading">¶</a></h2>
+<h2>SPI in Arduino<a class="headerlink" href="#spi-in-arduino" title="Permalink to this headline">¶</a></h2>
 <p>The official Arduino library for SPI communication is simply know as SPI, this library only supports operating in master mode. More information is available in the <a class="reference external" href="https://www.arduino.cc/en/reference/SPI">spi documentation</a>. In order to implement an Arduino SPI slave we will be using direct register manipluation.</p>
 <figure class="align-default">
 <a class="reference internal image-reference" href="../../_images/dual_arduino_spi_communication_bb.png"><img alt="../../_images/dual_arduino_spi_communication_bb.png" src="../../_images/dual_arduino_spi_communication_bb.png" style="width: 829.5px; height: 399.0px;" /></a>
@@ -227,92 +263,92 @@
 <p>This code is not ready</p>
 </div>
 <section id="master">
-<h3>Master<a class="headerlink" href="#master" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Arduino.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;SPI.h&gt;</span><span class="cp"></span>
+<h3>Master<a class="headerlink" href="#master" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Arduino.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;SPI.h&gt;</span>
 
-<span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">slave_select_pin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span><span class="w"></span>
-<span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">empty_flag</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">0x7e</span><span class="p">;</span><span class="w"></span>
-<span class="kt">uint8_t</span><span class="w"> </span><span class="n">uart_rx_byte</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
-<span class="kt">uint8_t</span><span class="w"> </span><span class="n">spi_rx_byte</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">slave_select_pin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span>
+<span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">empty_flag</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">0x7e</span><span class="p">;</span>
+<span class="kt">uint8_t</span><span class="w"> </span><span class="n">uart_rx_byte</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="kt">uint8_t</span><span class="w"> </span><span class="n">spi_rx_byte</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 
 <span class="c1">//uint8_t position = 0;</span>
 <span class="c1">//char rx_buffer[50];</span>
-<span class="n">String</span><span class="w"> </span><span class="n">uart_string</span><span class="p">;</span><span class="w"></span>
-<span class="n">String</span><span class="w"> </span><span class="n">spi_string</span><span class="p">;</span><span class="w"></span>
-<span class="k">const</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">device_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Crassus&quot;</span><span class="p">;</span><span class="w"></span>
+<span class="n">String</span><span class="w"> </span><span class="n">uart_string</span><span class="p">;</span>
+<span class="n">String</span><span class="w"> </span><span class="n">spi_string</span><span class="p">;</span>
+<span class="k">const</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">device_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Crassus&quot;</span><span class="p">;</span>
 
-<span class="k">enum</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="n">IDLE</span><span class="p">,</span><span class="w"></span>
-<span class="w">  </span><span class="n">TRANSMISSION</span><span class="w"></span>
-<span class="p">}</span><span class="w"> </span><span class="n">spi_mode</span><span class="p">;</span><span class="w"></span>
+<span class="k">enum</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">IDLE</span><span class="p">,</span>
+<span class="w">  </span><span class="n">TRANSMISSION</span>
+<span class="p">}</span><span class="w"> </span><span class="n">spi_mode</span><span class="p">;</span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="n">pinMode</span><span class="p">(</span><span class="n">slave_select_pin</span><span class="p">,</span><span class="n">OUTPUT</span><span class="p">);</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">pinMode</span><span class="p">(</span><span class="n">slave_select_pin</span><span class="p">,</span><span class="n">OUTPUT</span><span class="p">);</span>
 <span class="w">  </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">slave_select_pin</span><span class="p">,</span><span class="n">HIGH</span><span class="p">);</span><span class="w"> </span><span class="c1">// The slave select pin is active low.</span>
 
-<span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span>
 
-<span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Arduino SPI master.&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;# &quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Arduino SPI master.&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;# &quot;</span><span class="p">);</span>
 <span class="w"> </span>
-<span class="w">  </span><span class="n">SPI</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span><span class="w"></span>
-<span class="w">  </span><span class="n">SPI</span><span class="p">.</span><span class="n">setClockDivider</span><span class="p">(</span><span class="n">SPI_CLOCK_DIV8</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">SPI</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span>
+<span class="w">  </span><span class="n">SPI</span><span class="p">.</span><span class="n">setClockDivider</span><span class="p">(</span><span class="n">SPI_CLOCK_DIV8</span><span class="p">);</span>
 <span class="w">  </span><span class="c1">//SPI.beginTransaction(SPISettings(14000000, MSBFIRST, SPI_MODE0)); </span>
-<span class="p">}</span><span class="w"></span>
+<span class="p">}</span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 
-<span class="w">  </span><span class="k">if</span><span class="p">(</span><span class="n">Serial</span><span class="p">.</span><span class="n">available</span><span class="p">()){</span><span class="w"></span>
+<span class="w">  </span><span class="k">if</span><span class="p">(</span><span class="n">Serial</span><span class="p">.</span><span class="n">available</span><span class="p">()){</span>
 <span class="w">    </span><span class="c1">//delay(5);</span>
-<span class="w">    </span><span class="n">uart_rx_byte</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Serial</span><span class="p">.</span><span class="n">read</span><span class="p">();</span><span class="w"></span>
-<span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">uart_rx_byte</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">uart_string</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="kt">char</span><span class="p">(</span><span class="n">uart_rx_byte</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="n">uart_rx_byte</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Serial</span><span class="p">.</span><span class="n">read</span><span class="p">();</span>
+<span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">uart_rx_byte</span><span class="p">);</span>
+<span class="w">    </span><span class="n">uart_string</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="kt">char</span><span class="p">(</span><span class="n">uart_rx_byte</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
 
-<span class="w">  </span><span class="k">if</span><span class="p">(</span><span class="n">uart_rx_byte</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="sc">&#39;\n&#39;</span><span class="p">){</span><span class="w"></span>
+<span class="w">  </span><span class="k">if</span><span class="p">(</span><span class="n">uart_rx_byte</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="sc">&#39;\n&#39;</span><span class="p">){</span>
 
-<span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">device_name</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">uart_string</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">device_name</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">uart_string</span><span class="p">);</span>
 
-<span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">uart_string</span><span class="p">.</span><span class="n">length</span><span class="p">();</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">){</span><span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">uart_string</span><span class="p">.</span><span class="n">length</span><span class="p">();</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
 <span class="w">      </span>
-<span class="w">      </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">slave_select_pin</span><span class="p">,</span><span class="n">LOW</span><span class="p">);</span><span class="w"></span>
-<span class="w">      </span><span class="n">spi_rx_byte</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SPI</span><span class="p">.</span><span class="n">transfer</span><span class="p">(</span><span class="n">uart_string</span><span class="p">.</span><span class="n">charAt</span><span class="p">(</span><span class="n">i</span><span class="p">));</span><span class="w"></span>
-<span class="w">      </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">slave_select_pin</span><span class="p">,</span><span class="n">HIGH</span><span class="p">);</span><span class="w"></span>
+<span class="w">      </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">slave_select_pin</span><span class="p">,</span><span class="n">LOW</span><span class="p">);</span>
+<span class="w">      </span><span class="n">spi_rx_byte</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SPI</span><span class="p">.</span><span class="n">transfer</span><span class="p">(</span><span class="n">uart_string</span><span class="p">.</span><span class="n">charAt</span><span class="p">(</span><span class="n">i</span><span class="p">));</span>
+<span class="w">      </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">slave_select_pin</span><span class="p">,</span><span class="n">HIGH</span><span class="p">);</span>
 <span class="w">  </span>
-<span class="w">      </span><span class="k">if</span><span class="p">((</span><span class="n">spi_rx_byte</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">empty_flag</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">(</span><span class="n">spi_rx_byte</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0</span><span class="p">)){</span><span class="w"></span>
-<span class="w">        </span><span class="n">spi_string</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="kt">char</span><span class="p">(</span><span class="n">spi_rx_byte</span><span class="p">);</span><span class="w"></span>
+<span class="w">      </span><span class="k">if</span><span class="p">((</span><span class="n">spi_rx_byte</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">empty_flag</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">(</span><span class="n">spi_rx_byte</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0</span><span class="p">)){</span>
+<span class="w">        </span><span class="n">spi_string</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="kt">char</span><span class="p">(</span><span class="n">spi_rx_byte</span><span class="p">);</span>
 <span class="w">    </span>
-<span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="n">spi_rx_byte</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="sc">&#39;\n&#39;</span><span class="p">){</span><span class="w"></span>
-<span class="w">          </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">spi_string</span><span class="p">);</span><span class="w"></span>
-<span class="w">          </span><span class="n">spi_rx_byte</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
-<span class="w">          </span><span class="n">spi_string</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
-<span class="w">      </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="n">spi_rx_byte</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="sc">&#39;\n&#39;</span><span class="p">){</span>
+<span class="w">          </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">spi_string</span><span class="p">);</span>
+<span class="w">          </span><span class="n">spi_rx_byte</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">          </span><span class="n">spi_string</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="n">uart_rx_byte</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="n">uart_string</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;# &quot;</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="n">uart_rx_byte</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="n">uart_string</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;# &quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
 
-<span class="w">  </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">slave_select_pin</span><span class="p">,</span><span class="n">LOW</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="n">spi_rx_byte</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SPI</span><span class="p">.</span><span class="n">transfer</span><span class="p">(</span><span class="n">empty_flag</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">slave_select_pin</span><span class="p">,</span><span class="n">HIGH</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">slave_select_pin</span><span class="p">,</span><span class="n">LOW</span><span class="p">);</span>
+<span class="w">  </span><span class="n">spi_rx_byte</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SPI</span><span class="p">.</span><span class="n">transfer</span><span class="p">(</span><span class="n">empty_flag</span><span class="p">);</span>
+<span class="w">  </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">slave_select_pin</span><span class="p">,</span><span class="n">HIGH</span><span class="p">);</span>
 
 <span class="w">  </span><span class="c1">// Serial.print(&quot;Debug: &quot;);</span>
 <span class="w">  </span><span class="c1">// Serial.println(spi_rx_byte,HEX);</span>
 <span class="w">  </span><span class="c1">// delay(500);</span>
 <span class="w">  </span>
-<span class="w">  </span><span class="k">if</span><span class="p">((</span><span class="n">spi_rx_byte</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">empty_flag</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">(</span><span class="n">spi_rx_byte</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0</span><span class="p">)){</span><span class="w"></span>
-<span class="w">    </span><span class="n">spi_string</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="kt">char</span><span class="p">(</span><span class="n">spi_rx_byte</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="k">if</span><span class="p">((</span><span class="n">spi_rx_byte</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">empty_flag</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">(</span><span class="n">spi_rx_byte</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0</span><span class="p">)){</span>
+<span class="w">    </span><span class="n">spi_string</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="kt">char</span><span class="p">(</span><span class="n">spi_rx_byte</span><span class="p">);</span>
 <span class="w">    </span><span class="c1">//delay(5);</span>
-<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">spi_rx_byte</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="sc">&#39;\n&#39;</span><span class="p">){</span><span class="w"></span>
-<span class="w">      </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">spi_string</span><span class="p">);</span><span class="w"></span>
-<span class="w">      </span><span class="n">spi_rx_byte</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
-<span class="w">      </span><span class="n">spi_string</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">spi_rx_byte</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="sc">&#39;\n&#39;</span><span class="p">){</span>
+<span class="w">      </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">spi_string</span><span class="p">);</span>
+<span class="w">      </span><span class="n">spi_rx_byte</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">      </span><span class="n">spi_string</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
 
 
 <span class="w">  </span>
@@ -350,61 +386,61 @@
 <span class="w">  </span><span class="c1">//   position = 0;</span>
 <span class="w">  </span><span class="c1">//   rx_data = 0;</span>
 <span class="w">  </span><span class="c1">// }</span>
-<span class="p">}</span><span class="w"></span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </section>
 <section id="slave">
-<h3>Slave<a class="headerlink" href="#slave" title="Permalink to this heading">¶</a></h3>
+<h3>Slave<a class="headerlink" href="#slave" title="Permalink to this headline">¶</a></h3>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>Direct register manipluation is outside the curriculum of the course, thus you do not have to fully understand this code. You may simply use it on one Arduino device, in order to test the master code on another Arduino device.</p>
 </div>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Arduino.h&gt;</span><span class="cp"></span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Arduino.h&gt;</span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">spi_init_slave</span><span class="p">();</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">spi_init_slave</span><span class="p">();</span>
 
-<span class="kt">char</span><span class="w"> </span><span class="n">rx_buffer</span><span class="p">[</span><span class="mi">50</span><span class="p">];</span><span class="w"></span>
-<span class="k">volatile</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">data_ready</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
-<span class="k">volatile</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
-<span class="k">const</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">device_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Spartacus&quot;</span><span class="p">;</span><span class="w"></span>
+<span class="kt">char</span><span class="w"> </span><span class="n">rx_buffer</span><span class="p">[</span><span class="mi">50</span><span class="p">];</span>
+<span class="k">volatile</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">data_ready</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="k">volatile</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="k">const</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">device_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Spartacus&quot;</span><span class="p">;</span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span>
 
-<span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Arduino SPI slave.&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Arduino SPI slave.&quot;</span><span class="p">);</span>
 
-<span class="w">  </span><span class="n">spi_init_slave</span><span class="p">();</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="n">spi_init_slave</span><span class="p">();</span>
+<span class="p">}</span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 
-<span class="w">  </span><span class="k">if</span><span class="p">(</span><span class="n">data_ready</span><span class="p">){</span><span class="w"></span>
+<span class="w">  </span><span class="k">if</span><span class="p">(</span><span class="n">data_ready</span><span class="p">){</span>
 
-<span class="w">    </span><span class="n">rx_buffer</span><span class="p">[</span><span class="n">position</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sc">&#39;\0&#39;</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">rx_buffer</span><span class="p">[</span><span class="n">position</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sc">&#39;\0&#39;</span><span class="p">;</span>
 
-<span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;Slave mottok: &quot;</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">rx_buffer</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;Slave mottok: &quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">rx_buffer</span><span class="p">);</span>
 
-<span class="w">    </span><span class="n">data_ready</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="n">data_ready</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
 
-<span class="w">  </span><span class="k">if</span><span class="p">(</span><span class="n">Serial</span><span class="p">.</span><span class="n">available</span><span class="p">()){</span><span class="w"></span>
+<span class="w">  </span><span class="k">if</span><span class="p">(</span><span class="n">Serial</span><span class="p">.</span><span class="n">available</span><span class="p">()){</span>
 <span class="w">    </span><span class="c1">//SPDR = Serial.read();</span>
-<span class="w">    </span><span class="n">SPDR</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">SPSR</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="n">SPIF</span><span class="p">)));</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
-<span class="w">  </span><span class="k">else</span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="n">SPDR</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">SPSR</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="n">SPIF</span><span class="p">)));</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="n">SPDR</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">SPSR</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="n">SPIF</span><span class="p">)));</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="k">else</span><span class="p">{</span>
+<span class="w">    </span><span class="n">SPDR</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">SPSR</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="n">SPIF</span><span class="p">)));</span>
+<span class="w">  </span><span class="p">}</span>
 
-<span class="p">}</span><span class="w"></span>
+<span class="p">}</span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">spi_init_slave</span><span class="p">(){</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">spi_init_slave</span><span class="p">(){</span>
 
-<span class="w">  </span><span class="n">pinMode</span><span class="p">(</span><span class="n">MISO</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">pinMode</span><span class="p">(</span><span class="n">MISO</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT</span><span class="p">);</span>
 <span class="w">  </span><span class="c1">//DDRB = (1 &lt;&lt; PORTB6);</span>
 
 <span class="w">  </span><span class="cm">/*</span>
@@ -415,28 +451,28 @@
 <span class="cm">   * DORD - Data Order (0 = MSB first)</span>
 <span class="cm">   * MSTR - Master/Slave Select</span>
 <span class="cm">   */</span><span class="w"> </span>
-<span class="w">  </span><span class="n">SPCR</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">SPIE</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">SPE</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">DORD</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">MSTR</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">CPOL</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">CPHA</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">SPR1</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">SPR0</span><span class="p">);</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="n">SPCR</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">SPIE</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">SPE</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">DORD</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">MSTR</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">CPOL</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">CPHA</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">SPR1</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">SPR0</span><span class="p">);</span>
+<span class="p">}</span>
 
 <span class="cm">/*</span>
 <span class="cm"> * SPI serial transfer complete interrupt vector.</span>
-<span class="cm"> */</span><span class="w"></span>
-<span class="n">ISR</span><span class="p">(</span><span class="n">SPI_STC_vect</span><span class="p">){</span><span class="w"></span>
+<span class="cm"> */</span>
+<span class="n">ISR</span><span class="p">(</span><span class="n">SPI_STC_vect</span><span class="p">){</span>
 
-<span class="w">  </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">rx_data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SPDR</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">rx_data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SPDR</span><span class="p">;</span>
 
-<span class="w">  </span><span class="k">if</span><span class="p">(</span><span class="n">position</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">rx_buffer</span><span class="p">)){</span><span class="w"></span>
-<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">rx_data</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0</span><span class="p">){</span><span class="w"></span>
-<span class="w">      </span><span class="n">rx_buffer</span><span class="p">[</span><span class="n">position</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rx_data</span><span class="p">;</span><span class="w"></span>
-<span class="w">      </span><span class="n">position</span><span class="o">++</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="k">if</span><span class="p">(</span><span class="n">position</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">rx_buffer</span><span class="p">)){</span>
+<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">rx_data</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0</span><span class="p">){</span>
+<span class="w">      </span><span class="n">rx_buffer</span><span class="p">[</span><span class="n">position</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rx_data</span><span class="p">;</span>
+<span class="w">      </span><span class="n">position</span><span class="o">++</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
 
-<span class="w">  </span><span class="k">if</span><span class="p">(</span><span class="n">rx_data</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="sc">&#39;\n&#39;</span><span class="p">){</span><span class="w"></span>
-<span class="w">    </span><span class="n">data_ready</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="k">if</span><span class="p">(</span><span class="n">rx_data</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="sc">&#39;\n&#39;</span><span class="p">){</span>
+<span class="w">    </span><span class="n">data_ready</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
 
-<span class="p">}</span><span class="w"></span>
+<span class="p">}</span>
 
 <span class="c1">// uint8_t spi_send_receive(uint8_t data)</span>
 <span class="c1">// {</span>
@@ -452,40 +488,40 @@
 </pre></div>
 </div>
 <section id="spi-i-o-port-expander">
-<h4>SPI I/O port expander<a class="headerlink" href="#spi-i-o-port-expander" title="Permalink to this heading">¶</a></h4>
+<h4>SPI I/O port expander<a class="headerlink" href="#spi-i-o-port-expander" title="Permalink to this headline">¶</a></h4>
 <p>A I/O port expander is a device that provides more digital I/O pins for the microcontroller, accessible using bus communication. Often this will be a specially made integrated circuit, such as the MCP23S17. It is possible to emulate the features of this chip using software on the Arduino.</p>
 <p>In this example we will be using SPI to control the LED’s, and read the push buttons on one Arduino from another.</p>
 </section>
 </section>
 <section id="id1">
-<h3>Master<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Arduino.h&gt;</span><span class="cp"></span>
+<h3>Master<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Arduino.h&gt;</span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="c1">// put your setup code here, to run once:</span>
-<span class="p">}</span><span class="w"></span>
+<span class="p">}</span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="c1">// put your main code here, to run repeatedly:</span>
-<span class="p">}</span><span class="w"></span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </section>
 <section id="id2">
-<h3>Slave<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h3>
+<h3>Slave<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>Direct register manipluation is outside the curriculum of the course, thus you do not have to fully understand this code. You may simply use it on one Arduino device, and consider the Arduino running this code to be a simulation of a I/O expansion chip.</p>
 </div>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Arduino.h&gt;</span><span class="cp"></span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Arduino.h&gt;</span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="c1">// put your setup code here, to run once:</span>
-<span class="p">}</span><span class="w"></span>
+<span class="p">}</span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="c1">// put your main code here, to run repeatedly:</span>
-<span class="p">}</span><span class="w"></span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p>General suggested reading:
@@ -496,170 +532,170 @@
 </section>
 </section>
 <section id="uart-backup">
-<h2>UART (backup)<a class="headerlink" href="#uart-backup" title="Permalink to this heading">¶</a></h2>
+<h2>UART (backup)<a class="headerlink" href="#uart-backup" title="Permalink to this headline">¶</a></h2>
 <p>Suggested reading:
 <a class="reference external" href="https://www.circuitbasics.com/how-to-set-up-uart-communication-for-arduino/">https://www.circuitbasics.com/how-to-set-up-uart-communication-for-arduino/</a></p>
 <p><strong>Sender:</strong></p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;SoftwareSerial.h&gt;</span><span class="cp"></span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;SoftwareSerial.h&gt;</span>
 
 <span class="n">SoftwareSerial</span><span class="w"> </span><span class="nf">softSerial</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span><span class="w">  </span><span class="c1">// RX, TX</span>
-<span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w">  </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="n">softSerial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-<span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w">  </span><span class="p">{</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w">  </span><span class="p">{</span>
+<span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span>
+<span class="w">  </span><span class="n">softSerial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w">  </span><span class="p">{</span>
 <span class="c1">// Check for received characters from the computer</span>
-<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Serial</span><span class="p">.</span><span class="n">available</span><span class="p">())</span><span class="w">  </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Serial</span><span class="p">.</span><span class="n">available</span><span class="p">())</span><span class="w">  </span><span class="p">{</span>
 <span class="c1">// Write what is received to the soft serial</span>
-<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Serial</span><span class="p">.</span><span class="n">read</span><span class="p">();</span><span class="w"></span>
-<span class="w">    </span><span class="n">softSerial</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">x</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;Sending:&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">x</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Serial</span><span class="p">.</span><span class="n">read</span><span class="p">();</span>
+<span class="w">    </span><span class="n">softSerial</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+<span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;Sending:&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p><strong>Receiver:</strong></p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;SoftwareSerial.h&gt;</span><span class="cp"></span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;SoftwareSerial.h&gt;</span>
 
-<span class="n">SoftwareSerial</span><span class="w"> </span><span class="nf">softSerial</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span><span class="w"></span>
+<span class="n">SoftwareSerial</span><span class="w"> </span><span class="nf">softSerial</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w">  </span><span class="p">{</span><span class="w"></span>
-<span class="n">softSerial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span><span class="w"></span>
-<span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w">  </span><span class="p">{</span>
+<span class="n">softSerial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span>
+<span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span>
 <span class="c1">// pinMode(LED, OUTPUT);</span>
-<span class="p">}</span><span class="w"></span>
-<span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w">  </span><span class="p">{</span><span class="w"></span>
+<span class="p">}</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w">  </span><span class="p">{</span>
 <span class="c1">// When our comm channel is active:</span>
-<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">softSerial</span><span class="p">.</span><span class="n">available</span><span class="p">())</span><span class="w">  </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">softSerial</span><span class="p">.</span><span class="n">available</span><span class="p">())</span><span class="w">  </span><span class="p">{</span>
 
-<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">data_received</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">softSerial</span><span class="p">.</span><span class="n">read</span><span class="p">();</span><span class="w"></span>
-<span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;Received:&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">data_received</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">data_received</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">softSerial</span><span class="p">.</span><span class="n">read</span><span class="p">();</span>
+<span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;Received:&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">data_received</span><span class="p">);</span>
 <span class="w">    </span><span class="c1">//Connect an LED later</span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p>Suggested reading: <a class="reference external" href="https://microdigisoft.com/communicate-using-spi-between-two-arduino-boards/">https://microdigisoft.com/communicate-using-spi-between-two-arduino-boards/</a></p>
 </section>
 <section id="i2c-backup">
-<h2>I2C (backup)<a class="headerlink" href="#i2c-backup" title="Permalink to this heading">¶</a></h2>
+<h2>I2C (backup)<a class="headerlink" href="#i2c-backup" title="Permalink to this headline">¶</a></h2>
 <p>Suggested reading:
 <a class="reference external" href="https://howtomechatronics.com/tutorials/arduino/how-i2c-communication-works-and-how-to-use-it-with-arduino/">https://howtomechatronics.com/tutorials/arduino/how-i2c-communication-works-and-how-to-use-it-with-arduino/</a></p>
 <p><a class="reference external" href="https://www.circuitbasics.com/how-to-set-up-i2c-communication-for-arduino/">https://www.circuitbasics.com/how-to-set-up-i2c-communication-for-arduino/</a></p>
 <p><a class="reference external" href="https://dronebotworkshop.com/i2c-arduino-arduino/">https://dronebotworkshop.com/i2c-arduino-arduino/</a></p>
 <p><strong>Master</strong></p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Wire.h&gt;</span><span class="cp"></span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Wire.h&gt;</span>
 
-<span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">slave_address</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">slave_address</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="n">Wire</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span><span class="w">  </span><span class="c1">// Start the I2C protocol as master</span>
 
-<span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;I2C Master&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span>
+<span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;I2C Master&quot;</span><span class="p">);</span>
+<span class="p">}</span>
 
-<span class="n">byte</span><span class="w"> </span><span class="n">data_sent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="n">byte</span><span class="w"> </span><span class="n">data_sent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="n">Wire</span><span class="p">.</span><span class="n">beginTransmission</span><span class="p">(</span><span class="n">slave_address</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="n">Wire</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="s">&quot;data: &quot;</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="n">Wire</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">data_sent</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="n">Wire</span><span class="p">.</span><span class="n">endTransmission</span><span class="p">();</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">Wire</span><span class="p">.</span><span class="n">beginTransmission</span><span class="p">(</span><span class="n">slave_address</span><span class="p">);</span>
+<span class="w">  </span><span class="n">Wire</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="s">&quot;data: &quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="n">Wire</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">data_sent</span><span class="p">);</span>
+<span class="w">  </span><span class="n">Wire</span><span class="p">.</span><span class="n">endTransmission</span><span class="p">();</span>
 
-<span class="w">  </span><span class="n">delay</span><span class="p">(</span><span class="mi">500</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">delay</span><span class="p">(</span><span class="mi">500</span><span class="p">);</span>
 
 <span class="w">  </span><span class="n">Wire</span><span class="p">.</span><span class="n">requestFrom</span><span class="p">(</span><span class="n">slave_address</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">);</span><span class="w"> </span><span class="c1">//request 4 byte from this slave</span>
-<span class="w">  </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">Wire</span><span class="p">.</span><span class="n">available</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">ch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Wire</span><span class="p">.</span><span class="n">read</span><span class="p">();</span><span class="w"></span>
-<span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="n">ch</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
-<span class="w">  </span><span class="n">data_sent</span><span class="o">++</span><span class="p">;</span><span class="w"></span>
-<span class="w">  </span><span class="k">if</span><span class="p">(</span><span class="n">data_sent</span><span class="o">==</span><span class="mi">6</span><span class="p">)</span><span class="n">data_sent</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">Wire</span><span class="p">.</span><span class="n">available</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">ch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Wire</span><span class="p">.</span><span class="n">read</span><span class="p">();</span>
+<span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="n">ch</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="n">data_sent</span><span class="o">++</span><span class="p">;</span>
+<span class="w">  </span><span class="k">if</span><span class="p">(</span><span class="n">data_sent</span><span class="o">==</span><span class="mi">6</span><span class="p">)</span><span class="n">data_sent</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p><strong>Slave:</strong></p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Wire.h&gt;</span><span class="cp"></span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Wire.h&gt;</span>
 
-<span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">slave_address</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">slave_address</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="n">Wire</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="n">slave_address</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="n">Wire</span><span class="p">.</span><span class="n">onRequest</span><span class="p">(</span><span class="n">requestEvent</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="n">Wire</span><span class="p">.</span><span class="n">onReceive</span><span class="p">(</span><span class="n">receiveEvent</span><span class="p">);</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">Wire</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="n">slave_address</span><span class="p">);</span>
+<span class="w">  </span><span class="n">Wire</span><span class="p">.</span><span class="n">onRequest</span><span class="p">(</span><span class="n">requestEvent</span><span class="p">);</span>
+<span class="w">  </span><span class="n">Wire</span><span class="p">.</span><span class="n">onReceive</span><span class="p">(</span><span class="n">receiveEvent</span><span class="p">);</span>
 
-<span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;I2C Slave&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span>
+<span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;I2C Slave&quot;</span><span class="p">);</span>
+<span class="p">}</span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="n">delay</span><span class="p">(</span><span class="mi">500</span><span class="p">);</span><span class="w"> </span><span class="c1">// just do nothing</span>
-<span class="p">}</span><span class="w"></span>
+<span class="p">}</span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">receiveEvent</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">data_received</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">receiveEvent</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">data_received</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="c1">// to be called when a slave device receives a transmission from a master.</span>
-<span class="w">  </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">Wire</span><span class="p">.</span><span class="n">available</span><span class="p">()</span><span class="o">&gt;</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">ch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Wire</span><span class="p">.</span><span class="n">read</span><span class="p">();</span><span class="w"></span>
-<span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="n">ch</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
-<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Wire</span><span class="p">.</span><span class="n">read</span><span class="p">();</span><span class="w"></span>
-<span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">x</span><span class="p">);</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">Wire</span><span class="p">.</span><span class="n">available</span><span class="p">()</span><span class="o">&gt;</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">ch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Wire</span><span class="p">.</span><span class="n">read</span><span class="p">();</span>
+<span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="n">ch</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Wire</span><span class="p">.</span><span class="n">read</span><span class="p">();</span>
+<span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+<span class="p">}</span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">requestEvent</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">requestEvent</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="c1">// to be called when a master requests data from this slave device</span>
 <span class="w">  </span><span class="c1">// (on-demand function)</span>
 <span class="w">  </span><span class="c1">// better to have, not essential</span>
-<span class="w">  </span><span class="n">Wire</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="s">&quot;gzm</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="n">Wire</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="s">&quot;gzm</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p><strong>Slave with LED</strong></p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Wire.h&gt;</span><span class="cp"></span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Wire.h&gt;</span>
 
-<span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">slave_address</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
-<span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">led_pin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">13</span><span class="p">;</span><span class="w"></span>
+<span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">slave_address</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">led_pin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">13</span><span class="p">;</span>
 
-<span class="kt">int</span><span class="w"> </span><span class="n">val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="n">val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="n">Wire</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="n">slave_address</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="n">Wire</span><span class="p">.</span><span class="n">onRequest</span><span class="p">(</span><span class="n">requestEvent</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="n">Wire</span><span class="p">.</span><span class="n">onReceive</span><span class="p">(</span><span class="n">receiveEvent</span><span class="p">);</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">Wire</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="n">slave_address</span><span class="p">);</span>
+<span class="w">  </span><span class="n">Wire</span><span class="p">.</span><span class="n">onRequest</span><span class="p">(</span><span class="n">requestEvent</span><span class="p">);</span>
+<span class="w">  </span><span class="n">Wire</span><span class="p">.</span><span class="n">onReceive</span><span class="p">(</span><span class="n">receiveEvent</span><span class="p">);</span>
 
-<span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;I2C Slave&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span>
+<span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;I2C Slave&quot;</span><span class="p">);</span>
+<span class="p">}</span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="n">delay</span><span class="p">(</span><span class="mi">500</span><span class="p">);</span><span class="w"> </span><span class="c1">// just do nothing</span>
-<span class="p">}</span><span class="w"></span>
+<span class="p">}</span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">receiveEvent</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">data_received</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">receiveEvent</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">data_received</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="c1">// to be called when a slave device receives a transmission from a master.</span>
-<span class="w">  </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">Wire</span><span class="p">.</span><span class="n">available</span><span class="p">()</span><span class="o">&gt;</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">Wire</span><span class="p">.</span><span class="n">available</span><span class="p">()</span><span class="o">&gt;</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">ch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Wire</span><span class="p">.</span><span class="n">read</span><span class="p">();</span><span class="w"> </span><span class="c1">// read the first group &quot;data:&quot;</span>
-<span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="n">ch</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="n">ch</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
 <span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Wire</span><span class="p">.</span><span class="n">read</span><span class="p">();</span><span class="w"> </span><span class="c1">// read the second group &quot;number&quot;</span>
-<span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">x</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="k">if</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">){</span><span class="w"></span>
-<span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;LED Toggle!&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">val</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">!</span><span class="n">val</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">led_pin</span><span class="p">,</span><span class="w"> </span><span class="n">val</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+<span class="w">  </span><span class="k">if</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">){</span>
+<span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;LED Toggle!&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">val</span><span class="p">);</span>
+<span class="w">    </span><span class="n">val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">!</span><span class="n">val</span><span class="p">;</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">led_pin</span><span class="p">,</span><span class="w"> </span><span class="n">val</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">requestEvent</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">requestEvent</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="c1">// to be called when a master requests data from this slave device</span>
 <span class="w">  </span><span class="c1">// (on-demand function)</span>
 <span class="w">  </span><span class="c1">// better to have, not essential</span>
-<span class="w">  </span><span class="n">Wire</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="s">&quot;gzm</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="n">Wire</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="s">&quot;gzm</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p>Suggested reading:
@@ -687,6 +723,8 @@
     </ul>
 <ul class="nav navbar-nav pull-right hidden-xs hidden-sm">
       
+        <li><a href="L11_additional.html" title="Additional material for lesson 11" >previous</a></li>
+        <li><a href="L13_additional.html" title="Additional material for lesson 13" >next</a></li>
         <li><a href="../../genindex.html" title="General Index" >index</a></li>
         <li><a href="#">top</a></li> 
       
@@ -698,7 +736,7 @@
       <!-- footer -->
       <footer role="contentinfo">
           &copy; Copyright 2022, Gizem Ateş &amp; Eirik Haustveit.
-        Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 5.3.0.
+        Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 4.5.0.
       </footer>
       <!-- /footer -->
 

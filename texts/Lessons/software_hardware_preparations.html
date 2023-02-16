@@ -6,7 +6,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <title>Software and hardware preparations &mdash; ELE102 Microcontroller course v1.1.0 documentation</title>
     <meta name="description" content="">
@@ -45,9 +45,7 @@
     <script type="text/javascript" src="../../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../../_static/js/jquery.min.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
-    <script type="text/javascript" src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../_static/sphinx_highlight.js"></script>
     <script type="text/javascript" src="../../_static/js/bootstrap3.min.js"></script>
 <script type="text/javascript" src="../../_static/js/jquery.cookie.min.js"></script>
 <script type="text/javascript" src="../../_static/js/basicstrap.js"></script>
@@ -160,6 +158,7 @@
 <li class="toctree-l1"><a class="reference internal" href="L3_digital_io_and_timing.html">Lesson 3: Use of digital I/O and timing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="L4_dac_pwm.html">Lesson 4: Analog output (PWM)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="L5_adc.html">Lesson 5: Analog to digital conversion (ADC)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="L6_serial_io.html">Lesson 6: Serial I/O</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Additional material:</span></p>
 <ul>
@@ -168,6 +167,14 @@
 <li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L3_additional.html">Additional material lesson 3</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L4_additional.html">Additional material lesson 4</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L5_additional.html">Additional material lesson 5</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L6_additional.html">Additional material lesson 6</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L7_additional.html">Additional material lesson 7</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L8_additional.html">Additional material lesson 8</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L9_additional.html">Additional material lesson 9</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L10_additional.html">Additional material lesson 10</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L11_additional.html">Additional material lesson 11</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L12_additional.html">Additional material lesson 12</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L13_additional.html">Additional material lesson 13</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Projects:</span></p>
 <ul>
@@ -241,15 +248,15 @@
                 <div class="body">
                   
   <section id="software-and-hardware-preparations">
-<h1>Software and hardware preparations<a class="headerlink" href="#software-and-hardware-preparations" title="Permalink to this heading">¶</a></h1>
+<h1>Software and hardware preparations<a class="headerlink" href="#software-and-hardware-preparations" title="Permalink to this headline">¶</a></h1>
 <p>The software which runs on the microcontroller is known as embedded software, and is software which operates <em>close</em> to the hardware. You need an understand electronics as well as programming in order to fully master the topic of microcontroller programming.</p>
 <p>Before we can begin our work on the learning how to develop software for the microcontroller, we must first make sure that we have a functional development environment.</p>
 <section id="software-installation">
-<h2>Software installation<a class="headerlink" href="#software-installation" title="Permalink to this heading">¶</a></h2>
+<h2>Software installation<a class="headerlink" href="#software-installation" title="Permalink to this headline">¶</a></h2>
 <p>In this section we cover the required set of software tools which you need to install on your PC in order to be able to develop software for the microcontroller. We hope this is not confusing, we are going to use software to create more software.</p>
 <p>There are many alternatives for the software, especially when it comes to the software you use to write you program code. You are free to choose whatever code editor you like, but if you expect installation help from your lecturer you should choose whatever he or she is using.</p>
 <section id="the-official-arduino-software">
-<h3>The official Arduino Software<a class="headerlink" href="#the-official-arduino-software" title="Permalink to this heading">¶</a></h3>
+<h3>The official Arduino Software<a class="headerlink" href="#the-official-arduino-software" title="Permalink to this headline">¶</a></h3>
 <p>The official Arduino Software (IDE) allows you to write programs and upload them to your board.</p>
 <figure class="align-center">
 <img alt="Arduino IDE" src="../../_images/arduino-ide-led-blink-software.png" />
@@ -259,24 +266,23 @@
 <p>There is also a online web editor, but we do <strong>not</strong> recommend that you use it.</p>
 </section>
 <section id="platformio">
-<h3>PlatformIO<a class="headerlink" href="#platformio" title="Permalink to this heading">¶</a></h3>
+<h3>PlatformIO<a class="headerlink" href="#platformio" title="Permalink to this headline">¶</a></h3>
 <p>The Arduino IDE is easy to use for beginners, but it is not very rich on features. For this reason many developers prefer alterative development environments.</p>
 <figure class="align-center">
 <img alt="Arduino IDE" src="../../_images/platformio-welcome-page.png" />
 </figure>
-<p>PlatformIO (<a class="reference external" href="https://platformio.org/">https://platformio.org/</a>) is one such alternative development environment. It is a platform for embedded software development supporting a lot of different embedded platforms and boards. PlatformIO does not provide a graphical user interface of it’s own, but may be installed as a plugin to various code editors. We recommend using <em>Visual studio code</em> (<a class="reference external" href="https://code.visualstudio.com/">https://code.visualstudio.com/</a>) as the code editor <a class="footnote-reference brackets" href="#f1" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>.
+<p>PlatformIO (<a class="reference external" href="https://platformio.org/">https://platformio.org/</a>) is one such alternative development environment. It is a platform for embedded software development supporting a lot of different embedded platforms and boards. PlatformIO does not provide a graphical user interface of it’s own, but may be installed as a plugin to various code editors. We recommend using <em>Visual studio code</em> (<a class="reference external" href="https://code.visualstudio.com/">https://code.visualstudio.com/</a>) as the code editor <a class="footnote-reference brackets" href="#f1" id="id1">1</a>.
 Please refer to the <a class="reference external" href="https://platformio.org/install/ide?install=vscode">official installation guide of PlatformIO</a>, for instructions on how to get started. We recommend that you follow the guide to complete the installation, before getting back to this page.</p>
 <p class="rubric">Footnotes</p>
-<aside class="footnote-list brackets">
-<aside class="footnote brackets" id="f1" role="note">
-<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
-<p><em>Visual studio code</em> should not be confused with <em>Visual studio</em>, although both programs are used for software development, they are not the same program. This seems to be yet another example of Microsoft’s silly naming conventions, where completely different (although functionally similar) software receives similar names, causing a lot of confusion. E.g. Skype, vs Skype for Business.</p>
-</aside>
-</aside>
+<dl class="footnote brackets">
+<dt class="label" id="f1"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p><em>Visual studio code</em> should not be confused with <em>Visual studio</em>, although both programs are used for software development, they are not the same program. This seems to be yet another example of Microsoft’s silly naming conventions, where completely different (although functionally similar) software receives similar names, causing a lot of confusion. E.g. Skype, vs Skype for Business.</p>
+</dd>
+</dl>
 </section>
 </section>
 <section id="hardware-testing">
-<h2>Hardware testing<a class="headerlink" href="#hardware-testing" title="Permalink to this heading">¶</a></h2>
+<h2>Hardware testing<a class="headerlink" href="#hardware-testing" title="Permalink to this headline">¶</a></h2>
 <p>One of the first things we need to do is to verify that our software and hardware is working as expected.</p>
 <p>We will approach this by using a small program which blinks a LED. This allows us to verify that the compilation, and upload process is working. Don’t worry if you do not fully understand what this means, more on those topics will be covered later in the course.</p>
 <p>The LED in question is the on-board LED labeled <em>L</em> on the circuit board. This LED is physically connected to pin 13 on the board, but for now we will not be connecting any external components.</p>
@@ -284,7 +290,7 @@ Please refer to the <a class="reference external" href="https://platformio.org/i
 <img alt="Arduino UNO with arrow pointing at onboard LED." src="../../_images/arduino_uno.jpg" />
 </figure>
 <section id="test-project-in-platformio">
-<h3>Test project in PlatformIO<a class="headerlink" href="#test-project-in-platformio" title="Permalink to this heading">¶</a></h3>
+<h3>Test project in PlatformIO<a class="headerlink" href="#test-project-in-platformio" title="Permalink to this headline">¶</a></h3>
 <p>In this section we will go step by step through a test of our PlatformIO installation.</p>
 <p>We start by creating a new project in PlatformIO. Click on the <em>New Project</em> button in the PIO Home tab, and you should be presented with the following dialog:</p>
 <figure class="align-center">
@@ -297,18 +303,18 @@ Please refer to the <a class="reference external" href="https://platformio.org/i
 </figure>
 <p>Copy the following code in to the <code class="docutils literal notranslate"><span class="pre">main.cpp</span></code> file, replacing the default contents of the file:</p>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="c1">// the setup function runs once when you press reset or power the board</span>
-<span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="c1">// initialize digital pin LED_BUILTIN as an output.</span>
-<span class="w">  </span><span class="n">pinMode</span><span class="p">(</span><span class="n">LED_BUILTIN</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT</span><span class="p">);</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="n">pinMode</span><span class="p">(</span><span class="n">LED_BUILTIN</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT</span><span class="p">);</span>
+<span class="p">}</span>
 
 <span class="c1">// the loop function runs over and over again forever</span>
-<span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">LED_BUILTIN</span><span class="p">,</span><span class="w"> </span><span class="n">HIGH</span><span class="p">);</span><span class="w">   </span><span class="c1">// turn the LED on (HIGH is the voltage level)</span>
 <span class="w">  </span><span class="n">delay</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span><span class="w">                       </span><span class="c1">// wait for a second</span>
 <span class="w">  </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">LED_BUILTIN</span><span class="p">,</span><span class="w"> </span><span class="n">LOW</span><span class="p">);</span><span class="w">    </span><span class="c1">// turn the LED off by making the voltage LOW</span>
 <span class="w">  </span><span class="n">delay</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span><span class="w">                       </span><span class="c1">// wait for a second</span>
-<span class="p">}</span><span class="w"></span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p>Connect the Arduino UNO board to your PC, and wait for it to be detected. If you are using Windows, and this is the first time you are connecting the board this might take a few seconds. On Linux it should be instant.</p>
@@ -320,27 +326,27 @@ Please refer to the <a class="reference external" href="https://platformio.org/i
 <p>Finally try to change the delays (the numbers inside the parentheses in the <code class="docutils literal notranslate"><span class="pre">delay(1000)</span></code> statements) from 1000 to 100, and see how (if) it affects the blinking rate. Repeat the previous process to upload the program. That way you can be absolutely sure that you are in fact able to modify the program running inside your microcontroller.</p>
 <p>After your modification the code should look like this:</p>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="c1">// the setup function runs once when you press reset or power the board</span>
-<span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="c1">// initialize digital pin LED_BUILTIN as an output.</span>
-<span class="w">  </span><span class="n">pinMode</span><span class="p">(</span><span class="n">LED_BUILTIN</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT</span><span class="p">);</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="n">pinMode</span><span class="p">(</span><span class="n">LED_BUILTIN</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT</span><span class="p">);</span>
+<span class="p">}</span>
 
 <span class="c1">// the loop function runs over and over again forever</span>
-<span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">LED_BUILTIN</span><span class="p">,</span><span class="w"> </span><span class="n">HIGH</span><span class="p">);</span><span class="w">   </span><span class="c1">// turn the LED on (HIGH is the voltage level)</span>
 <span class="w">  </span><span class="n">delay</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span><span class="w">                       </span><span class="c1">// wait for a second</span>
 <span class="w">  </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">LED_BUILTIN</span><span class="p">,</span><span class="w"> </span><span class="n">LOW</span><span class="p">);</span><span class="w">    </span><span class="c1">// turn the LED off by making the voltage LOW</span>
 <span class="w">  </span><span class="n">delay</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span><span class="w">                       </span><span class="c1">// wait for a second</span>
-<span class="p">}</span><span class="w"></span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </section>
 </section>
 <section id="simulator-optional">
-<h2>Simulator (optional)<a class="headerlink" href="#simulator-optional" title="Permalink to this heading">¶</a></h2>
+<h2>Simulator (optional)<a class="headerlink" href="#simulator-optional" title="Permalink to this headline">¶</a></h2>
 <p>Until recently, there were not any usable Arduino simulator. You were able to simulate the processor of Arduino (ATmega8, ATmega168, ATmega328, ATmega1280, or ATmega2560) and set the whole circuit with electronic design and circuit simulator software (such as <a class="reference external" href="https://www.labcenter.com/">Ptoteus</a>) but not the whole Arduino kit itself. Luckily, we have some alternatives and in this section we introduce one of the most used one: TinkerCAD.</p>
 <section id="tinkercad">
-<h3>Tinkercad<a class="headerlink" href="#tinkercad" title="Permalink to this heading">¶</a></h3>
+<h3>Tinkercad<a class="headerlink" href="#tinkercad" title="Permalink to this headline">¶</a></h3>
 <p>It is browser based solution from Autodesk. Initially, it is not developed as an Arduino simulator. It is quite famous for 3D part designing purposes for DIY project. Since Arduino is a very common microcontroller for DIY projects, such a useful is also utilized. You can design the circuit and also write your Arduino code here.</p>
 <figure class="align-center">
 <img alt="TinkerCAD" src="../../_images/tinkercad.png" />
@@ -393,7 +399,7 @@ Please refer to the <a class="reference external" href="https://platformio.org/i
       <!-- footer -->
       <footer role="contentinfo">
           &copy; Copyright 2022, Gizem Ateş &amp; Eirik Haustveit.
-        Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 5.3.0.
+        Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 4.5.0.
       </footer>
       <!-- /footer -->
 

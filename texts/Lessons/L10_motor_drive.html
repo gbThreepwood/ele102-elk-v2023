@@ -6,7 +6,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <title>Motor Drives &mdash; ELE102 Microcontroller course v1.1.0 documentation</title>
     <meta name="description" content="">
@@ -45,9 +45,7 @@
     <script type="text/javascript" src="../../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../../_static/js/jquery.min.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
-    <script type="text/javascript" src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../_static/sphinx_highlight.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script type="text/javascript" src="../../_static/js/bootstrap3.min.js"></script>
 <script type="text/javascript" src="../../_static/js/jquery.cookie.min.js"></script>
@@ -160,6 +158,7 @@
 <li class="toctree-l1"><a class="reference internal" href="L3_digital_io_and_timing.html">Lesson 3: Use of digital I/O and timing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="L4_dac_pwm.html">Lesson 4: Analog output (PWM)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="L5_adc.html">Lesson 5: Analog to digital conversion (ADC)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="L6_serial_io.html">Lesson 6: Serial I/O</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Additional material:</span></p>
 <ul>
@@ -168,6 +167,14 @@
 <li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L3_additional.html">Additional material lesson 3</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L4_additional.html">Additional material lesson 4</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L5_additional.html">Additional material lesson 5</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L6_additional.html">Additional material lesson 6</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L7_additional.html">Additional material lesson 7</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L8_additional.html">Additional material lesson 8</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L9_additional.html">Additional material lesson 9</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L10_additional.html">Additional material lesson 10</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L11_additional.html">Additional material lesson 11</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L12_additional.html">Additional material lesson 12</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L13_additional.html">Additional material lesson 13</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Projects:</span></p>
 <ul>
@@ -231,7 +238,7 @@
                 <div class="body">
                   
   <span class="target" id="l8-motor-drive"></span><section id="motor-drives">
-<h1>Motor Drives<a class="headerlink" href="#motor-drives" title="Permalink to this heading">¶</a></h1>
+<h1>Motor Drives<a class="headerlink" href="#motor-drives" title="Permalink to this headline">¶</a></h1>
 <p>In general a motor drive is a power electronic device used to control the power delivered to a motor. The purpose could be either torque, speed or position control of the rotating motor shaft. At a high level the motor drive consists of a controller, and an amplifier (power electronics) which amplify the output from the controller to levels sufficient to drive the motor.</p>
 <p>There are many different types of motors in existence, and each type warrants its own particular motor drive design. Unless the controller is very simple, microcontrollers are typically used for the controller, and the power electronics will be selected depending on type and size of the motor.</p>
 <p><strong>DC Motors:</strong> This is a very common motor in cheap low power applications. We can see it in remote control cars, robots, etc. This motor has a simple structure. It will start rolling by applying proper voltage to its terminals and change it’s rotational direction by switching voltage polarity. The DC motor torque (and thus speed) is directly controlled by the applied current. Current depends on voltage, and thus a voltage level less than the maximum tolerable voltage, will cause a speed that is less than maximum speed. By varying the applied voltage we will in practice wary the speed of the motor.</p>
@@ -241,7 +248,7 @@
 <p>It is typically not possible to connect motors to microcontrollers or controller board such as Arduino directly. Unless the motor is really small it will require more current than the controller is able to supply. The Arduino UNO has a maximum drive capability of 40 mA on each pin. Thus we need some form of circuit to amplify the signal from the controller, this kind of circuit is called motor driver, or motor drive. The driver is an interface circuit between the motor and controlling unit to facilitate driving. Drives come in many different types <span id="id1">[]</span>.</p>
 <p>In this lecture we will look at DC-motor drives. The understanding of DC-motor drives is a good foundation for understanding more advanced AC-motor drives.</p>
 <section id="introduction-to-dc-motors">
-<h2>Introduction to DC motors<a class="headerlink" href="#introduction-to-dc-motors" title="Permalink to this heading">¶</a></h2>
+<h2>Introduction to DC motors<a class="headerlink" href="#introduction-to-dc-motors" title="Permalink to this headline">¶</a></h2>
 <p>DC motors are divided into 2 main categories: <em>brushed</em> and <em>brushless</em> DC motors. We can define a brushed DC motor as a motor with internal mechanical commutation. It is designed to be powered by a direct current source. On the other hand, in the brushless DC motors, there is no physical contact between coils and the field magnet (stationary and rotaty parts). The brushless DC motor is really an AC motor with a electronic DC to AC converter placed inside the motor housing.</p>
 <p>A brushless DC motor uses a permanent magnet as its external rotor and there are three phases of coils surrounding it. A specialized sensor is also typically placed in the setup to track the position of the rotor as it is moving, where the rotor position signals are being sent to a controller. A term often used for these devices is ESC (electronic speed controller). The ESC regulates the motor speed in order to track some reference speed, and can also provide dynamic braking where the rotational energy of the motor is converted back to electrical energy.</p>
 <figure class="align-center" id="id10">
@@ -272,7 +279,7 @@
 </figcaption>
 </figure>
 <section id="brushed-dc-motor-operation">
-<h3>Brushed DC motor operation<a class="headerlink" href="#brushed-dc-motor-operation" title="Permalink to this heading">¶</a></h3>
+<h3>Brushed DC motor operation<a class="headerlink" href="#brushed-dc-motor-operation" title="Permalink to this headline">¶</a></h3>
 <p>A brushed DC-motor has a torque proportional to the current passing through the armature of the motor <span id="id3">[]</span>.</p>
 <div class="math notranslate nohighlight">
 \[T_{em} = (2 B_f \ell_r ) i_a\]</div>
@@ -300,10 +307,10 @@
 </section>
 </section>
 <section id="brushed-dc-motor-drive">
-<h2>Brushed DC-motor drive<a class="headerlink" href="#brushed-dc-motor-drive" title="Permalink to this heading">¶</a></h2>
+<h2>Brushed DC-motor drive<a class="headerlink" href="#brushed-dc-motor-drive" title="Permalink to this headline">¶</a></h2>
 <p>In this section we will cover how to control a brushed DC-motor by the Arduino UNO.</p>
 <section id="control-loops">
-<h3>Control loops<a class="headerlink" href="#control-loops" title="Permalink to this heading">¶</a></h3>
+<h3>Control loops<a class="headerlink" href="#control-loops" title="Permalink to this headline">¶</a></h3>
 <p>From a mechanical point of view we have several possible control objectives:</p>
 <ul class="simple">
 <li><p>Torque control (current control, as mechanical torque is proportional to current)</p></li>
@@ -313,10 +320,10 @@
 <p>The three control objectives in the above list are obviously related to each other. The change in position depend on the speed, and the change in speed depend on the torque. Hence we will often find that a cascaded control structure is used, e.g. the reference input to the torque controller could be the output from the speed controller. Accurate control required feedback, this could be in the form of a current sensor measuring the armature current, and a mechanical speed or position sensor on the motor shaft.</p>
 <p>If you simply apply a voltage to the motor armature this will result is some current, which in turn causes torque and rotation of the motor. This is called open loop control since you not feeding back any of the resulting motor states, i.e. the control loop is not closed.. If you are not measuring anything it is hard to tell what the exact operating conditions (e.g. the speed of the motor) will be, but some previous knowledge about the system can allow you to estimate. E.g. by previous measurements you might know that in a given load situation applying 12 V will cause a speed of approximately 1000 RPM.</p>
 <p>Closed loop control requires additional sensors, and knowledge of control theory. Thus In this lesson we will only consider open loop control, this is the foundation upon which closed loop control can be built in a future lecture.</p>
-<img alt="../../_images/current_sensor.avif" class="align-center" src="../../_images/current_sensor.avif" />
+<img alt="../external/fig/sensors/current_sensor.avif" class="align-center" src="../external/fig/sensors/current_sensor.avif" />
 </section>
 <section id="motor-speed-adjusting-by-pwm">
-<h3>Motor Speed Adjusting by PWM<a class="headerlink" href="#motor-speed-adjusting-by-pwm" title="Permalink to this heading">¶</a></h3>
+<h3>Motor Speed Adjusting by PWM<a class="headerlink" href="#motor-speed-adjusting-by-pwm" title="Permalink to this headline">¶</a></h3>
 <p>The most common way to vary the voltage level (and for AC motors also the frequency) in modern motor drives is by using pulse width modulation. A basic understanding of this concept is essential for anyone designing such drives.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -328,18 +335,23 @@
 <li><p>Phase correct PWM</p></li>
 </ul>
 <section id="fast-pwm-mode">
-<h4>Fast PWM mode<a class="headerlink" href="#fast-pwm-mode" title="Permalink to this heading">¶</a></h4>
+<h4>Fast PWM mode<a class="headerlink" href="#fast-pwm-mode" title="Permalink to this headline">¶</a></h4>
 <p>The frequency of the fast PWM mode is given by:</p>
 <p>Where clock_speed is the speed of the Arduino CPU clock (16 MHz by default). The prescaler is a number that is scaling the clock, and top_value is the maximum value of the counter.</p>
 </section>
 <section id="phase-correct-pwm">
-<h4>Phase correct PWM<a class="headerlink" href="#phase-correct-pwm" title="Permalink to this heading">¶</a></h4>
+<h4>Phase correct PWM<a class="headerlink" href="#phase-correct-pwm" title="Permalink to this headline">¶</a></h4>
 <p>The phase correct PWM is a mode where the phase of the PWM signal remains constant. This is important in some applications, such as AC motor drives.</p>
 </section>
 <section id="available-outputs">
-<h4>Available outputs<a class="headerlink" href="#available-outputs" title="Permalink to this heading">¶</a></h4>
+<h4>Available outputs<a class="headerlink" href="#available-outputs" title="Permalink to this headline">¶</a></h4>
 <p>The outputs that support PWM are labeled with a small sine wave symbol (actually a tilde  “~”) on the Arduino board. The following table lists some important information regarding the PWM outputs. The <cite>switching frequency</cite> is only the default value. It may be changed by direct register manipulation, but the Arduino library does not have any functions to change it.</p>
 <table class="docutils align-default">
+<colgroup>
+<col style="width: 26%" />
+<col style="width: 24%" />
+<col style="width: 50%" />
+</colgroup>
 <tbody>
 <tr class="row-odd"><td><p>Pin number</p></td>
 <td><p>Timer</p></td>
@@ -373,7 +385,7 @@
 </table>
 </section>
 <section id="four-quadrant-operation">
-<h4>Four quadrant operation<a class="headerlink" href="#four-quadrant-operation" title="Permalink to this heading">¶</a></h4>
+<h4>Four quadrant operation<a class="headerlink" href="#four-quadrant-operation" title="Permalink to this headline">¶</a></h4>
 <p>The rotating shaft of an electric machine has two fundamental parameters, torque and speed. The speed may be forward or reverse, and the torque may be motoring or braking. Thus we have four possible modes of operation, i.e. four quadrant operation.</p>
 <figure class="align-center" id="id14">
 <img alt="../../_images/four-quadrant-operatio-fig-compressor.jpg" src="../../_images/four-quadrant-operatio-fig-compressor.jpg" />
@@ -397,65 +409,65 @@
 </section>
 </section>
 <section id="simple-motor-drive-example-using-single-transistor">
-<h3>Simple motor drive example using single transistor<a class="headerlink" href="#simple-motor-drive-example-using-single-transistor" title="Permalink to this heading">¶</a></h3>
+<h3>Simple motor drive example using single transistor<a class="headerlink" href="#simple-motor-drive-example-using-single-transistor" title="Permalink to this headline">¶</a></h3>
 <p>In this example we will be using a <cite>IFR520N</cite> transistor to drive the small DC-motor that comes as part of the Arduino starter kit. The <a class="reference external" href="https://www.vishay.com/docs/91017/91017.pdf">IRF520N datasheet</a> provides the required details on the electrical limitations of the transistor, but for this example you should only trust us in that it will operate within limits.</p>
-<p>The function <code class="code ccode c docutils literal highlight highlight-c"><span class="n">analogWrite</span><span class="p">()</span><span class="w"></span></code> will be used to generate a PWM signal to the transistor, and the switching frequency will stay at it’s default value.</p>
+<p>The function <code class="code ccode c docutils literal notranslate"><span class="pre">analogWrite()</span></code> will be used to generate a PWM signal to the transistor, and the switching frequency will stay at it’s default value.</p>
 <figure class="align-center">
 <a class="reference internal image-reference" href="../../_images/dc_motor_drive_single_transistor_bb.png"><img alt="../../_images/dc_motor_drive_single_transistor_bb.png" src="../../_images/dc_motor_drive_single_transistor_bb.png" style="width: 784.5px; height: 660.0px;" /></a>
 </figure>
 </section>
 <section id="exercise-start-and-stop-of-motor">
-<h3>Exercise: start and stop of motor<a class="headerlink" href="#exercise-start-and-stop-of-motor" title="Permalink to this heading">¶</a></h3>
+<h3>Exercise: start and stop of motor<a class="headerlink" href="#exercise-start-and-stop-of-motor" title="Permalink to this headline">¶</a></h3>
 <ol class="arabic simple">
 <li><p>Do the wiring according to the previous drawing</p></li>
 <li><p>Add code to properly read, edge detect, and debounce a push button</p></li>
 <li><p>Use the rising edge of the push button to toggle the motor driver on, or off. The duty cycle should be 50%.</p></li>
 <li><p>Read a parameter from the UART, which is used to set the duty cycle. The parameter should be a number between 0, and 100. Anything else should produce an error message.</p></li>
 </ol>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Arduino.h&gt;</span><span class="cp"></span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Arduino.h&gt;</span>
 
-<span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">pwm_pin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">9</span><span class="p">;</span><span class="w"></span>
-<span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">on_off_button</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">12</span><span class="p">;</span><span class="w"></span>
-<span class="kt">uint8_t</span><span class="w"> </span><span class="n">old_button_state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
-<span class="kt">uint8_t</span><span class="w"> </span><span class="n">motor_enable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">pwm_pin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">9</span><span class="p">;</span>
+<span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">on_off_button</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">12</span><span class="p">;</span>
+<span class="kt">uint8_t</span><span class="w"> </span><span class="n">old_button_state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="kt">uint8_t</span><span class="w"> </span><span class="n">motor_enable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="n">pinMode</span><span class="p">(</span><span class="n">pwm_pin</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="n">pinMode</span><span class="p">(</span><span class="n">on_off_button</span><span class="p">,</span><span class="w"> </span><span class="n">INPUT</span><span class="p">);</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">pinMode</span><span class="p">(</span><span class="n">pwm_pin</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT</span><span class="p">);</span>
+<span class="w">  </span><span class="n">pinMode</span><span class="p">(</span><span class="n">on_off_button</span><span class="p">,</span><span class="w"> </span><span class="n">INPUT</span><span class="p">);</span>
 
-<span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span>
+<span class="p">}</span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 
-<span class="w">  </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">button_state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">digitalRead</span><span class="p">(</span><span class="n">on_off_button</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="k">if</span><span class="p">(</span><span class="n">button_state</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">old_button_state</span><span class="p">){</span><span class="w"></span>
+<span class="w">  </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">button_state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">digitalRead</span><span class="p">(</span><span class="n">on_off_button</span><span class="p">);</span>
+<span class="w">  </span><span class="k">if</span><span class="p">(</span><span class="n">button_state</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">old_button_state</span><span class="p">){</span>
 
-<span class="w">    </span><span class="n">old_button_state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">button_state</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">old_button_state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">button_state</span><span class="p">;</span>
 
 <span class="w">    </span><span class="c1">// TODO: This code requires debouncing of the push button.</span>
-<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">button_state</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">){</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">button_state</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">){</span>
 
-<span class="w">      </span><span class="k">if</span><span class="p">(</span><span class="n">motor_enable</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">){</span><span class="w"></span>
-<span class="w">        </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Motor disabled.&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">analogWrite</span><span class="p">(</span><span class="n">pwm_pin</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">motor_enable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
-<span class="w">      </span><span class="p">}</span><span class="w"></span>
-<span class="w">      </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Motor enabled.&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">analogWrite</span><span class="p">(</span><span class="n">pwm_pin</span><span class="p">,</span><span class="w"> </span><span class="mi">100</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">motor_enable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
-<span class="w">      </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="w">      </span><span class="k">if</span><span class="p">(</span><span class="n">motor_enable</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">){</span>
+<span class="w">        </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Motor disabled.&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">analogWrite</span><span class="p">(</span><span class="n">pwm_pin</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+<span class="w">        </span><span class="n">motor_enable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">      </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Motor enabled.&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">analogWrite</span><span class="p">(</span><span class="n">pwm_pin</span><span class="p">,</span><span class="w"> </span><span class="mi">100</span><span class="p">);</span>
+<span class="w">        </span><span class="n">motor_enable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w"> </span><span class="p">}</span>
 
 
-<span class="p">}</span><span class="w"></span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </section>
 <section id="lm293d-h-brigde">
-<h3>LM293D H-Brigde<a class="headerlink" href="#lm293d-h-brigde" title="Permalink to this heading">¶</a></h3>
+<h3>LM293D H-Brigde<a class="headerlink" href="#lm293d-h-brigde" title="Permalink to this headline">¶</a></h3>
 <p>An H bridge is an electronic circuit that switches the polarity of a voltage applied to a load. These circuits are often used in robotics and other applications to allow DC motors to run forwards or backwards <span id="id4">[]</span>.</p>
 <p>This section provides a basic overview of the LM293D driver. More details about are available in the <a class="reference external" href="https://www.st.com/resource/en/datasheet/l293d.pdf">datasheet</a></p>
 <img alt="../../_images/l293d_package.png" class="align-center" src="../../_images/l293d_package.png" />
@@ -475,32 +487,32 @@
 </figure>
 </section>
 <section id="a-very-basic-example-for-the-lm293d">
-<h3>A very basic example for the LM293D<a class="headerlink" href="#a-very-basic-example-for-the-lm293d" title="Permalink to this heading">¶</a></h3>
+<h3>A very basic example for the LM293D<a class="headerlink" href="#a-very-basic-example-for-the-lm293d" title="Permalink to this headline">¶</a></h3>
 <p>The following code listing provides a very basic example on how to set a specific operating mode for the LM293D motor driver. Two digital outputs on pin 4, and 5 are used to set the rotational direction for the motor by setting the voltage polarity. A third digital output on pin 6 is used to provide a PWM signal to the enable input which causes the voltage applied to the motor to switch on and off quickly.</p>
 <p>The motor supply voltage pin is connected to the 5 V output from the Arduino. This is fine for a small motor, but larger motors with high current or voltage rating will require an external supply to this pin.</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Arduino.h&gt;</span><span class="cp"></span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Arduino.h&gt;</span>
 
-<span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">en_pin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">6</span><span class="p">;</span><span class="w"></span>
-<span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">a1_pin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span><span class="w"></span>
-<span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">a2_pin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span><span class="w"></span>
+<span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">en_pin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">6</span><span class="p">;</span>
+<span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">a1_pin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span>
+<span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">a2_pin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span>
 
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="n">pinMode</span><span class="p">(</span><span class="n">en_pin</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="n">pinMode</span><span class="p">(</span><span class="n">a1_pin</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="n">pinMode</span><span class="p">(</span><span class="n">a2_pin</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT</span><span class="p">);</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">pinMode</span><span class="p">(</span><span class="n">en_pin</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT</span><span class="p">);</span>
+<span class="w">  </span><span class="n">pinMode</span><span class="p">(</span><span class="n">a1_pin</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT</span><span class="p">);</span>
+<span class="w">  </span><span class="n">pinMode</span><span class="p">(</span><span class="n">a2_pin</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT</span><span class="p">);</span>
 
-<span class="w">  </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">a1_pin</span><span class="p">,</span><span class="w"> </span><span class="n">HIGH</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">a2_pin</span><span class="p">,</span><span class="w"> </span><span class="n">LOW</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">a1_pin</span><span class="p">,</span><span class="w"> </span><span class="n">HIGH</span><span class="p">);</span>
+<span class="w">  </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">a2_pin</span><span class="p">,</span><span class="w"> </span><span class="n">LOW</span><span class="p">);</span>
 
-<span class="w">  </span><span class="n">analogWrite</span><span class="p">(</span><span class="n">en_pin</span><span class="p">,</span><span class="w"> </span><span class="mi">128</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">analogWrite</span><span class="p">(</span><span class="n">en_pin</span><span class="p">,</span><span class="w"> </span><span class="mi">128</span><span class="p">);</span>
 
-<span class="w">  </span><span class="n">map</span><span class="p">(</span><span class="mf">2.1</span><span class="p">,</span><span class="w"> </span><span class="mf">2.2</span><span class="p">,</span><span class="w"> </span><span class="mf">2.9</span><span class="p">,</span><span class="w"> </span><span class="mf">2.3</span><span class="p">,</span><span class="w"> </span><span class="mf">3.2</span><span class="p">);</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="n">map</span><span class="p">(</span><span class="mf">2.1</span><span class="p">,</span><span class="w"> </span><span class="mf">2.2</span><span class="p">,</span><span class="w"> </span><span class="mf">2.9</span><span class="p">,</span><span class="w"> </span><span class="mf">2.3</span><span class="p">,</span><span class="w"> </span><span class="mf">3.2</span><span class="p">);</span>
+<span class="p">}</span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="c1">// Nothing to do here..</span>
-<span class="p">}</span><span class="w"></span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <div class="admonition note">
@@ -509,286 +521,286 @@
 </div>
 </section>
 <section id="control-function-for-easy-use-of-the-l293d">
-<h3>Control function for easy use of the L293D<a class="headerlink" href="#control-function-for-easy-use-of-the-l293d" title="Permalink to this heading">¶</a></h3>
+<h3>Control function for easy use of the L293D<a class="headerlink" href="#control-function-for-easy-use-of-the-l293d" title="Permalink to this headline">¶</a></h3>
 <p>In order to easily use the L293D, and also to easily change to a different motor driver without having to make a lot of changes to your code, it is a good idea to abstract away the low level details in a function. The function should take parameters for the duty cycle, as well as for the voltage polarity which determine the rotational direction.</p>
 <p>The following code listing shows an example of such a function, which support the four most basic functions that is available for DC-motor driving using the LM293D.</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span><span class="w"> </span><span class="k">enum</span><span class="w"> </span><span class="n">_drive_ctrl_t</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="n">DIR_FORWARD</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="n">DIR_REVERSE</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="n">CTRL_STOP</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="n">CTRL_EM_STOP</span><span class="w"></span>
-<span class="p">}</span><span class="w"> </span><span class="n">drive_ctrl_t</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span><span class="w"> </span><span class="k">enum</span><span class="w"> </span><span class="n">_drive_ctrl_t</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">DIR_FORWARD</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">    </span><span class="n">DIR_REVERSE</span><span class="p">,</span>
+<span class="w">    </span><span class="n">CTRL_STOP</span><span class="p">,</span>
+<span class="w">    </span><span class="n">CTRL_EM_STOP</span>
+<span class="p">}</span><span class="w"> </span><span class="n">drive_ctrl_t</span><span class="p">;</span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">motor_drive_control</span><span class="p">(</span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">duty_cycle</span><span class="p">,</span><span class="w"> </span><span class="n">drive_ctrl_t</span><span class="w"> </span><span class="n">ctrl</span><span class="p">){</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">motor_drive_control</span><span class="p">(</span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">duty_cycle</span><span class="p">,</span><span class="w"> </span><span class="n">drive_ctrl_t</span><span class="w"> </span><span class="n">ctrl</span><span class="p">){</span>
 
-<span class="w">  </span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="n">ctrl</span><span class="p">)</span><span class="w"></span>
-<span class="w">  </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">DIR_FORWARD</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">a1_pin</span><span class="p">,</span><span class="w"> </span><span class="n">HIGH</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">a2_pin</span><span class="p">,</span><span class="w"> </span><span class="n">LOW</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">analogWrite</span><span class="p">(</span><span class="n">en_pin</span><span class="p">,</span><span class="w"> </span><span class="n">duty_cycle</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="k">break</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="n">ctrl</span><span class="p">)</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">DIR_FORWARD</span><span class="p">:</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">a1_pin</span><span class="p">,</span><span class="w"> </span><span class="n">HIGH</span><span class="p">);</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">a2_pin</span><span class="p">,</span><span class="w"> </span><span class="n">LOW</span><span class="p">);</span>
+<span class="w">    </span><span class="n">analogWrite</span><span class="p">(</span><span class="n">en_pin</span><span class="p">,</span><span class="w"> </span><span class="n">duty_cycle</span><span class="p">);</span>
+<span class="w">    </span><span class="k">break</span><span class="p">;</span>
 
-<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">DIR_REVERSE</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">a1_pin</span><span class="p">,</span><span class="w"> </span><span class="n">LOW</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">a2_pin</span><span class="p">,</span><span class="w"> </span><span class="n">HIGH</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">analogWrite</span><span class="p">(</span><span class="n">en_pin</span><span class="p">,</span><span class="w"> </span><span class="n">duty_cycle</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="k">break</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">DIR_REVERSE</span><span class="p">:</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">a1_pin</span><span class="p">,</span><span class="w"> </span><span class="n">LOW</span><span class="p">);</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">a2_pin</span><span class="p">,</span><span class="w"> </span><span class="n">HIGH</span><span class="p">);</span>
+<span class="w">    </span><span class="n">analogWrite</span><span class="p">(</span><span class="n">en_pin</span><span class="p">,</span><span class="w"> </span><span class="n">duty_cycle</span><span class="p">);</span>
+<span class="w">    </span><span class="k">break</span><span class="p">;</span>
 
-<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">CTRL_STOP</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">a1_pin</span><span class="p">,</span><span class="w"> </span><span class="n">LOW</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">a2_pin</span><span class="p">,</span><span class="w"> </span><span class="n">LOW</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">en_pin</span><span class="p">,</span><span class="w"> </span><span class="n">LOW</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="k">break</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">CTRL_STOP</span><span class="p">:</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">a1_pin</span><span class="p">,</span><span class="w"> </span><span class="n">LOW</span><span class="p">);</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">a2_pin</span><span class="p">,</span><span class="w"> </span><span class="n">LOW</span><span class="p">);</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">en_pin</span><span class="p">,</span><span class="w"> </span><span class="n">LOW</span><span class="p">);</span>
+<span class="w">    </span><span class="k">break</span><span class="p">;</span>
 
-<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">CTRL_EM_STOP</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">a1_pin</span><span class="p">,</span><span class="w"> </span><span class="n">LOW</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">a2_pin</span><span class="p">,</span><span class="w"> </span><span class="n">LOW</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">en_pin</span><span class="p">,</span><span class="w"> </span><span class="n">HIGH</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="k">break</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">CTRL_EM_STOP</span><span class="p">:</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">a1_pin</span><span class="p">,</span><span class="w"> </span><span class="n">LOW</span><span class="p">);</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">a2_pin</span><span class="p">,</span><span class="w"> </span><span class="n">LOW</span><span class="p">);</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">en_pin</span><span class="p">,</span><span class="w"> </span><span class="n">HIGH</span><span class="p">);</span>
+<span class="w">    </span><span class="k">break</span><span class="p">;</span>
 
-<span class="w">  </span><span class="k">default</span><span class="o">:</span><span class="w"></span>
-<span class="w">    </span><span class="k">break</span><span class="p">;</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="k">default</span><span class="o">:</span>
+<span class="w">    </span><span class="k">break</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p>The listing starts by defining a <code class="code docutils literal notranslate"><span class="pre">enum</span></code>, which provides names for the four possible values to the second parameter of the function. This is not mandatory but helps in improving the readability of the code, as well as providing some type safety. The four parameters are translated to numbers, but numeric values outside the range will cause compiler warnings.</p>
 <p>Depending on the received parameter, the <code class="code docutils literal notranslate"><span class="pre">switch</span></code> will set the appropriate logic levels to the output pins, and also set the duty cycle if needed.</p>
 </section>
 <section id="exercise-1-control-motor-speed-with-a-potentiometer">
-<h3>Exercise-1: Control motor speed with a potentiometer<a class="headerlink" href="#exercise-1-control-motor-speed-with-a-potentiometer" title="Permalink to this heading">¶</a></h3>
+<h3>Exercise-1: Control motor speed with a potentiometer<a class="headerlink" href="#exercise-1-control-motor-speed-with-a-potentiometer" title="Permalink to this headline">¶</a></h3>
 <p>Set the circuit below. The button is not required for this step (yet). And start thinking how to control the motor speed via potentiometer :)</p>
 <figure class="align-center">
 <img alt="../../_images/dc_motor_drive_circuit.png" src="../../_images/dc_motor_drive_circuit.png" />
 </figure>
 </section>
 <section id="exercise-2-change-rotation-direction-using-a-button">
-<h3>Exercise-2: Change rotation direction using a button<a class="headerlink" href="#exercise-2-change-rotation-direction-using-a-button" title="Permalink to this heading">¶</a></h3>
+<h3>Exercise-2: Change rotation direction using a button<a class="headerlink" href="#exercise-2-change-rotation-direction-using-a-button" title="Permalink to this headline">¶</a></h3>
 <p>Use the same circuit above, modify your code such that the motor change rotation direction everytime you press the button.</p>
 </section>
 <section id="a-slightly-more-complete-case-with-start-stop-and-emergency-stop">
-<h3>A slightly more complete case with start, stop, and emergency stop<a class="headerlink" href="#a-slightly-more-complete-case-with-start-stop-and-emergency-stop" title="Permalink to this heading">¶</a></h3>
+<h3>A slightly more complete case with start, stop, and emergency stop<a class="headerlink" href="#a-slightly-more-complete-case-with-start-stop-and-emergency-stop" title="Permalink to this headline">¶</a></h3>
 <p>The emergency stop is implemented by forcing the motor to stop as quickly as possible. By setting both 1A, and 2A low (or high) simultaneously while keeping the EN signal high the motor terminals will be short circuited to each other. This will cause a large current to flow in the motor windings, and the rotational energy will be dissipated as heat in the winding resistance.</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Arduino.h&gt;</span><span class="cp"></span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Arduino.h&gt;</span>
 
-<span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">en_pin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">6</span><span class="p">;</span><span class="w"></span>
-<span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">a1_pin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span><span class="w"></span>
-<span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">a2_pin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span><span class="w"></span>
+<span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">en_pin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">6</span><span class="p">;</span>
+<span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">a1_pin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span>
+<span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">a2_pin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span>
 
-<span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">start_btn_pin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">12</span><span class="p">;</span><span class="w"></span>
-<span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">stop_btn_pin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">11</span><span class="p">;</span><span class="w"></span>
-<span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">em_stop_btn_pin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w"></span>
+<span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">start_btn_pin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">12</span><span class="p">;</span>
+<span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">stop_btn_pin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">11</span><span class="p">;</span>
+<span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">em_stop_btn_pin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
 
 <span class="cp">#define START_BTN_BIT   (1U &lt;&lt; 0)</span>
 <span class="cp">#define STOP_BTN_BIT    (1U &lt;&lt; 1)</span>
 <span class="cp">#define EM_STOP_BTN_BIT (1U &lt;&lt; 2)</span>
 
-<span class="k">typedef</span><span class="w"> </span><span class="k">enum</span><span class="w"> </span><span class="n">_drive_ctrl_t</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="n">DIR_FORWARD</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"></span>
-<span class="w">  </span><span class="n">DIR_REVERSE</span><span class="p">,</span><span class="w"></span>
-<span class="w">  </span><span class="n">CTRL_STOP</span><span class="p">,</span><span class="w"></span>
-<span class="w">  </span><span class="n">CTRL_EM_STOP</span><span class="w"></span>
-<span class="p">}</span><span class="w"> </span><span class="n">drive_ctrl_t</span><span class="p">;</span><span class="w"></span>
+<span class="k">typedef</span><span class="w"> </span><span class="k">enum</span><span class="w"> </span><span class="n">_drive_ctrl_t</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">DIR_FORWARD</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">  </span><span class="n">DIR_REVERSE</span><span class="p">,</span>
+<span class="w">  </span><span class="n">CTRL_STOP</span><span class="p">,</span>
+<span class="w">  </span><span class="n">CTRL_EM_STOP</span>
+<span class="p">}</span><span class="w"> </span><span class="n">drive_ctrl_t</span><span class="p">;</span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">motor_drive_control</span><span class="p">(</span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">duty_cycle</span><span class="p">,</span><span class="w"> </span><span class="n">drive_ctrl_t</span><span class="w"> </span><span class="n">ctrl</span><span class="p">){</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">motor_drive_control</span><span class="p">(</span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">duty_cycle</span><span class="p">,</span><span class="w"> </span><span class="n">drive_ctrl_t</span><span class="w"> </span><span class="n">ctrl</span><span class="p">){</span>
 
-<span class="w">  </span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="n">ctrl</span><span class="p">)</span><span class="w"></span>
-<span class="w">  </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">DIR_FORWARD</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">a1_pin</span><span class="p">,</span><span class="w"> </span><span class="n">HIGH</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">a2_pin</span><span class="p">,</span><span class="w"> </span><span class="n">LOW</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">analogWrite</span><span class="p">(</span><span class="n">en_pin</span><span class="p">,</span><span class="w"> </span><span class="n">duty_cycle</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="k">break</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="n">ctrl</span><span class="p">)</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">DIR_FORWARD</span><span class="p">:</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">a1_pin</span><span class="p">,</span><span class="w"> </span><span class="n">HIGH</span><span class="p">);</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">a2_pin</span><span class="p">,</span><span class="w"> </span><span class="n">LOW</span><span class="p">);</span>
+<span class="w">    </span><span class="n">analogWrite</span><span class="p">(</span><span class="n">en_pin</span><span class="p">,</span><span class="w"> </span><span class="n">duty_cycle</span><span class="p">);</span>
+<span class="w">    </span><span class="k">break</span><span class="p">;</span>
 
-<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">DIR_REVERSE</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">a1_pin</span><span class="p">,</span><span class="w"> </span><span class="n">LOW</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">a2_pin</span><span class="p">,</span><span class="w"> </span><span class="n">HIGH</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">analogWrite</span><span class="p">(</span><span class="n">en_pin</span><span class="p">,</span><span class="w"> </span><span class="n">duty_cycle</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="k">break</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">DIR_REVERSE</span><span class="p">:</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">a1_pin</span><span class="p">,</span><span class="w"> </span><span class="n">LOW</span><span class="p">);</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">a2_pin</span><span class="p">,</span><span class="w"> </span><span class="n">HIGH</span><span class="p">);</span>
+<span class="w">    </span><span class="n">analogWrite</span><span class="p">(</span><span class="n">en_pin</span><span class="p">,</span><span class="w"> </span><span class="n">duty_cycle</span><span class="p">);</span>
+<span class="w">    </span><span class="k">break</span><span class="p">;</span>
 
-<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">CTRL_STOP</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">a1_pin</span><span class="p">,</span><span class="w"> </span><span class="n">LOW</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">a2_pin</span><span class="p">,</span><span class="w"> </span><span class="n">LOW</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">en_pin</span><span class="p">,</span><span class="w"> </span><span class="n">LOW</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="k">break</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">CTRL_STOP</span><span class="p">:</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">a1_pin</span><span class="p">,</span><span class="w"> </span><span class="n">LOW</span><span class="p">);</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">a2_pin</span><span class="p">,</span><span class="w"> </span><span class="n">LOW</span><span class="p">);</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">en_pin</span><span class="p">,</span><span class="w"> </span><span class="n">LOW</span><span class="p">);</span>
+<span class="w">    </span><span class="k">break</span><span class="p">;</span>
 
 <span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">CTRL_EM_STOP</span><span class="p">:</span><span class="w"> </span>
-<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">a1_pin</span><span class="p">,</span><span class="w"> </span><span class="n">LOW</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">a2_pin</span><span class="p">,</span><span class="w"> </span><span class="n">LOW</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">en_pin</span><span class="p">,</span><span class="w"> </span><span class="n">HIGH</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="k">break</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">a1_pin</span><span class="p">,</span><span class="w"> </span><span class="n">LOW</span><span class="p">);</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">a2_pin</span><span class="p">,</span><span class="w"> </span><span class="n">LOW</span><span class="p">);</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">en_pin</span><span class="p">,</span><span class="w"> </span><span class="n">HIGH</span><span class="p">);</span>
+<span class="w">    </span><span class="k">break</span><span class="p">;</span>
 
-<span class="w">  </span><span class="k">default</span><span class="o">:</span><span class="w"></span>
-<span class="w">    </span><span class="k">break</span><span class="p">;</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="k">default</span><span class="o">:</span>
+<span class="w">    </span><span class="k">break</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
 
-<span class="k">typedef</span><span class="w"> </span><span class="k">enum</span><span class="w"> </span><span class="n">_button_event_t</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="n">NONE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"></span>
-<span class="w">  </span><span class="n">RISING_EDGE</span><span class="p">,</span><span class="w"></span>
-<span class="w">  </span><span class="n">FALLING_EDGE</span><span class="w"></span>
-<span class="p">}</span><span class="w"> </span><span class="n">button_event_t</span><span class="p">;</span><span class="w"></span>
+<span class="k">typedef</span><span class="w"> </span><span class="k">enum</span><span class="w"> </span><span class="n">_button_event_t</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">NONE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">  </span><span class="n">RISING_EDGE</span><span class="p">,</span>
+<span class="w">  </span><span class="n">FALLING_EDGE</span>
+<span class="p">}</span><span class="w"> </span><span class="n">button_event_t</span><span class="p">;</span>
 
-<span class="k">struct</span><span class="w"> </span><span class="nc">_button_state_t</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">depressed</span><span class="p">;</span><span class="w"></span>
-<span class="w">  </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">previous</span><span class="p">;</span><span class="w"></span>
-<span class="w">  </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">changed</span><span class="p">;</span><span class="w"></span>
-<span class="p">}</span><span class="w"> </span><span class="n">button_state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">0U</span><span class="p">,</span><span class="w"> </span><span class="mi">0U</span><span class="p">,</span><span class="w"> </span><span class="mi">0U</span><span class="p">};</span><span class="w"></span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">_button_state_t</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">depressed</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">previous</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">changed</span><span class="p">;</span>
+<span class="p">}</span><span class="w"> </span><span class="n">button_state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">0U</span><span class="p">,</span><span class="w"> </span><span class="mi">0U</span><span class="p">,</span><span class="w"> </span><span class="mi">0U</span><span class="p">};</span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">poll_button_events</span><span class="p">(){</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">poll_button_events</span><span class="p">(){</span>
 
-<span class="w">  </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">current_state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">digitalRead</span><span class="p">(</span><span class="n">start_btn_pin</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="p">(</span><span class="n">digitalRead</span><span class="p">(</span><span class="n">stop_btn_pin</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="p">(</span><span class="n">digitalRead</span><span class="p">(</span><span class="n">em_stop_btn_pin</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="n">button_state</span><span class="p">.</span><span class="n">changed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">button_state</span><span class="p">.</span><span class="n">depressed</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">current_state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">digitalRead</span><span class="p">(</span><span class="n">start_btn_pin</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="p">(</span><span class="n">digitalRead</span><span class="p">(</span><span class="n">stop_btn_pin</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="p">(</span><span class="n">digitalRead</span><span class="p">(</span><span class="n">em_stop_btn_pin</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span>
+<span class="w">  </span><span class="n">button_state</span><span class="p">.</span><span class="n">changed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">button_state</span><span class="p">.</span><span class="n">depressed</span><span class="p">;</span>
 
 <span class="w">  </span><span class="n">button_state</span><span class="p">.</span><span class="n">depressed</span><span class="w"> </span><span class="o">|=</span><span class="w"> </span><span class="p">(</span><span class="n">button_state</span><span class="p">.</span><span class="n">previous</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">current_state</span><span class="p">);</span><span class="w"> </span><span class="c1">// Set high after second iteration</span>
 <span class="w">  </span><span class="n">button_state</span><span class="p">.</span><span class="n">depressed</span><span class="w"> </span><span class="o">&amp;=</span><span class="w"> </span><span class="p">(</span><span class="n">button_state</span><span class="p">.</span><span class="n">previous</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">current_state</span><span class="p">);</span><span class="w"> </span><span class="c1">// Clear low after second iteration</span>
 
-<span class="w">  </span><span class="n">button_state</span><span class="p">.</span><span class="n">previous</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">current_state</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">button_state</span><span class="p">.</span><span class="n">previous</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">current_state</span><span class="p">;</span>
 
-<span class="w">  </span><span class="n">button_state</span><span class="p">.</span><span class="n">changed</span><span class="w"> </span><span class="o">^=</span><span class="w"> </span><span class="n">button_state</span><span class="p">.</span><span class="n">depressed</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">button_state</span><span class="p">.</span><span class="n">changed</span><span class="w"> </span><span class="o">^=</span><span class="w"> </span><span class="n">button_state</span><span class="p">.</span><span class="n">depressed</span><span class="p">;</span>
 
-<span class="p">}</span><span class="w"></span>
+<span class="p">}</span>
 
-<span class="n">button_event_t</span><span class="w"> </span><span class="nf">start_button_event</span><span class="p">(){</span><span class="w"></span>
+<span class="n">button_event_t</span><span class="w"> </span><span class="nf">start_button_event</span><span class="p">(){</span>
 
-<span class="w">  </span><span class="k">if</span><span class="p">((</span><span class="n">button_state</span><span class="p">.</span><span class="n">changed</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">START_BTN_BIT</span><span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0U</span><span class="p">){</span><span class="w"></span>
+<span class="w">  </span><span class="k">if</span><span class="p">((</span><span class="n">button_state</span><span class="p">.</span><span class="n">changed</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">START_BTN_BIT</span><span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0U</span><span class="p">){</span>
 
-<span class="w">      </span><span class="k">if</span><span class="p">((</span><span class="n">button_state</span><span class="p">.</span><span class="n">depressed</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">START_BTN_BIT</span><span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0U</span><span class="p">){</span><span class="w"></span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">RISING_EDGE</span><span class="p">;</span><span class="w"></span>
-<span class="w">      </span><span class="p">}</span><span class="w"></span>
-<span class="w">      </span><span class="k">else</span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">FALLING_EDGE</span><span class="p">;</span><span class="w"></span>
-<span class="w">      </span><span class="p">}</span><span class="w"></span>
-<span class="w">   </span><span class="p">}</span><span class="w"></span>
+<span class="w">      </span><span class="k">if</span><span class="p">((</span><span class="n">button_state</span><span class="p">.</span><span class="n">depressed</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">START_BTN_BIT</span><span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0U</span><span class="p">){</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">RISING_EDGE</span><span class="p">;</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">      </span><span class="k">else</span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">FALLING_EDGE</span><span class="p">;</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">   </span><span class="p">}</span>
 
-<span class="w">   </span><span class="k">return</span><span class="w"> </span><span class="n">NONE</span><span class="p">;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">   </span><span class="k">return</span><span class="w"> </span><span class="n">NONE</span><span class="p">;</span>
+<span class="p">}</span>
 
-<span class="n">button_event_t</span><span class="w"> </span><span class="nf">stop_button_event</span><span class="p">(){</span><span class="w"></span>
+<span class="n">button_event_t</span><span class="w"> </span><span class="nf">stop_button_event</span><span class="p">(){</span>
 
-<span class="w">  </span><span class="k">if</span><span class="p">((</span><span class="n">button_state</span><span class="p">.</span><span class="n">changed</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">STOP_BTN_BIT</span><span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0U</span><span class="p">){</span><span class="w"></span>
+<span class="w">  </span><span class="k">if</span><span class="p">((</span><span class="n">button_state</span><span class="p">.</span><span class="n">changed</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">STOP_BTN_BIT</span><span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0U</span><span class="p">){</span>
 
-<span class="w">    </span><span class="k">if</span><span class="p">((</span><span class="n">button_state</span><span class="p">.</span><span class="n">depressed</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">STOP_BTN_BIT</span><span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0U</span><span class="p">){</span><span class="w"></span>
-<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="n">RISING_EDGE</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="k">else</span><span class="p">{</span><span class="w"></span>
-<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="n">FALLING_EDGE</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="p">((</span><span class="n">button_state</span><span class="p">.</span><span class="n">depressed</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">STOP_BTN_BIT</span><span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0U</span><span class="p">){</span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="n">RISING_EDGE</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">else</span><span class="p">{</span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="n">FALLING_EDGE</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
 
-<span class="w">   </span><span class="k">return</span><span class="w"> </span><span class="n">NONE</span><span class="p">;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">   </span><span class="k">return</span><span class="w"> </span><span class="n">NONE</span><span class="p">;</span>
+<span class="p">}</span>
 
-<span class="n">button_event_t</span><span class="w"> </span><span class="nf">em_stop_button_event</span><span class="p">(){</span><span class="w"></span>
+<span class="n">button_event_t</span><span class="w"> </span><span class="nf">em_stop_button_event</span><span class="p">(){</span>
 
-<span class="w">  </span><span class="k">if</span><span class="p">((</span><span class="n">button_state</span><span class="p">.</span><span class="n">changed</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">EM_STOP_BTN_BIT</span><span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0U</span><span class="p">){</span><span class="w"></span>
+<span class="w">  </span><span class="k">if</span><span class="p">((</span><span class="n">button_state</span><span class="p">.</span><span class="n">changed</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">EM_STOP_BTN_BIT</span><span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0U</span><span class="p">){</span>
 
-<span class="w">    </span><span class="k">if</span><span class="p">((</span><span class="n">button_state</span><span class="p">.</span><span class="n">depressed</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">EM_STOP_BTN_BIT</span><span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0U</span><span class="p">){</span><span class="w"></span>
-<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="n">RISING_EDGE</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="k">else</span><span class="p">{</span><span class="w"></span>
-<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="n">FALLING_EDGE</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="p">((</span><span class="n">button_state</span><span class="p">.</span><span class="n">depressed</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">EM_STOP_BTN_BIT</span><span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0U</span><span class="p">){</span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="n">RISING_EDGE</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">else</span><span class="p">{</span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="n">FALLING_EDGE</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
 
-<span class="w">   </span><span class="k">return</span><span class="w"> </span><span class="n">NONE</span><span class="p">;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">   </span><span class="k">return</span><span class="w"> </span><span class="n">NONE</span><span class="p">;</span>
+<span class="p">}</span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="n">pinMode</span><span class="p">(</span><span class="n">en_pin</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="n">pinMode</span><span class="p">(</span><span class="n">a1_pin</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="n">pinMode</span><span class="p">(</span><span class="n">a2_pin</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT</span><span class="p">);</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">pinMode</span><span class="p">(</span><span class="n">en_pin</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT</span><span class="p">);</span>
+<span class="w">  </span><span class="n">pinMode</span><span class="p">(</span><span class="n">a1_pin</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT</span><span class="p">);</span>
+<span class="w">  </span><span class="n">pinMode</span><span class="p">(</span><span class="n">a2_pin</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT</span><span class="p">);</span>
 
-<span class="w">  </span><span class="n">pinMode</span><span class="p">(</span><span class="n">start_btn_pin</span><span class="p">,</span><span class="w"> </span><span class="n">INPUT</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="n">pinMode</span><span class="p">(</span><span class="n">stop_btn_pin</span><span class="p">,</span><span class="w"> </span><span class="n">INPUT</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="n">pinMode</span><span class="p">(</span><span class="n">em_stop_btn_pin</span><span class="p">,</span><span class="w"> </span><span class="n">INPUT</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">pinMode</span><span class="p">(</span><span class="n">start_btn_pin</span><span class="p">,</span><span class="w"> </span><span class="n">INPUT</span><span class="p">);</span>
+<span class="w">  </span><span class="n">pinMode</span><span class="p">(</span><span class="n">stop_btn_pin</span><span class="p">,</span><span class="w"> </span><span class="n">INPUT</span><span class="p">);</span>
+<span class="w">  </span><span class="n">pinMode</span><span class="p">(</span><span class="n">em_stop_btn_pin</span><span class="p">,</span><span class="w"> </span><span class="n">INPUT</span><span class="p">);</span>
 
-<span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span>
+<span class="p">}</span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 
-<span class="w">  </span><span class="k">typedef</span><span class="w"> </span><span class="k">enum</span><span class="w"> </span><span class="n">_app_state_t</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="n">STATE_READY</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="n">STATE_RUNNING_CW</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="n">STATE_RUNNING_CCW</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="n">STATE_EM_STOP</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="n">app_state_t</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="k">typedef</span><span class="w"> </span><span class="k">enum</span><span class="w"> </span><span class="n">_app_state_t</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">STATE_READY</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">    </span><span class="n">STATE_RUNNING_CW</span><span class="p">,</span>
+<span class="w">    </span><span class="n">STATE_RUNNING_CCW</span><span class="p">,</span>
+<span class="w">    </span><span class="n">STATE_EM_STOP</span>
+<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="n">app_state_t</span><span class="p">;</span>
 
-<span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="n">app_state_t</span><span class="w"> </span><span class="n">app_state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">STATE_READY</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="n">app_state_t</span><span class="w"> </span><span class="n">app_state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">STATE_READY</span><span class="p">;</span>
 
-<span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">prev_timestamp_ms</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
-<span class="w">  </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">current_timestamp_ms</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">millis</span><span class="p">();</span><span class="w"></span>
-<span class="w">  </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">btn_sample_time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">prev_timestamp_ms</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">current_timestamp_ms</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">millis</span><span class="p">();</span>
+<span class="w">  </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">btn_sample_time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
 
-<span class="w">  </span><span class="k">if</span><span class="p">((</span><span class="n">current_timestamp_ms</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">prev_timestamp_ms</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">btn_sample_time</span><span class="p">){</span><span class="w"></span>
+<span class="w">  </span><span class="k">if</span><span class="p">((</span><span class="n">current_timestamp_ms</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">prev_timestamp_ms</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">btn_sample_time</span><span class="p">){</span>
 
-<span class="w">    </span><span class="n">poll_button_events</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="n">poll_button_events</span><span class="p">();</span>
 
-<span class="w">    </span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="n">app_state</span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="no">STATE_READY</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="n">app_state</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="no">STATE_READY</span><span class="p">:</span>
 
-<span class="w">      </span><span class="n">motor_drive_control</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span><span class="w"> </span><span class="n">CTRL_STOP</span><span class="p">);</span><span class="w"></span>
+<span class="w">      </span><span class="n">motor_drive_control</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span><span class="w"> </span><span class="n">CTRL_STOP</span><span class="p">);</span>
 
-<span class="w">      </span><span class="k">if</span><span class="p">(</span><span class="n">RISING_EDGE</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">start_button_event</span><span class="p">()){</span><span class="w"></span>
-<span class="w">        </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Entering running state&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">app_state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">STATE_RUNNING_CW</span><span class="p">;</span><span class="w"></span>
-<span class="w">      </span><span class="p">}</span><span class="w"></span>
+<span class="w">      </span><span class="k">if</span><span class="p">(</span><span class="n">RISING_EDGE</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">start_button_event</span><span class="p">()){</span>
+<span class="w">        </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Entering running state&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">app_state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">STATE_RUNNING_CW</span><span class="p">;</span>
+<span class="w">      </span><span class="p">}</span>
 
-<span class="w">      </span><span class="k">break</span><span class="p">;</span><span class="w"></span>
+<span class="w">      </span><span class="k">break</span><span class="p">;</span>
 
-<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="no">STATE_RUNNING_CW</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="no">STATE_RUNNING_CW</span><span class="p">:</span>
 
-<span class="w">      </span><span class="n">motor_drive_control</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span><span class="w"> </span><span class="n">DIR_FORWARD</span><span class="p">);</span><span class="w"></span>
+<span class="w">      </span><span class="n">motor_drive_control</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span><span class="w"> </span><span class="n">DIR_FORWARD</span><span class="p">);</span>
 
-<span class="w">      </span><span class="k">if</span><span class="p">(</span><span class="n">RISING_EDGE</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">stop_button_event</span><span class="p">()){</span><span class="w"></span>
-<span class="w">        </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Entering ready state&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">app_state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">STATE_READY</span><span class="p">;</span><span class="w"></span>
-<span class="w">      </span><span class="p">}</span><span class="w"></span>
-<span class="w">      </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="p">(</span><span class="n">RISING_EDGE</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">em_stop_button_event</span><span class="p">()){</span><span class="w"></span>
-<span class="w">        </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Entering emergency stop state&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">app_state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">STATE_EM_STOP</span><span class="p">;</span><span class="w"></span>
-<span class="w">      </span><span class="p">}</span><span class="w"></span>
+<span class="w">      </span><span class="k">if</span><span class="p">(</span><span class="n">RISING_EDGE</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">stop_button_event</span><span class="p">()){</span>
+<span class="w">        </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Entering ready state&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">app_state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">STATE_READY</span><span class="p">;</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">      </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="p">(</span><span class="n">RISING_EDGE</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">em_stop_button_event</span><span class="p">()){</span>
+<span class="w">        </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Entering emergency stop state&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">app_state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">STATE_EM_STOP</span><span class="p">;</span>
+<span class="w">      </span><span class="p">}</span>
 
-<span class="w">      </span><span class="k">break</span><span class="p">;</span><span class="w"></span>
+<span class="w">      </span><span class="k">break</span><span class="p">;</span>
 
-<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="no">STATE_RUNNING_CCW</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="no">STATE_RUNNING_CCW</span><span class="p">:</span>
 <span class="w">      </span><span class="c1">// Not implemented</span>
-<span class="w">      </span><span class="k">break</span><span class="p">;</span><span class="w"></span>
+<span class="w">      </span><span class="k">break</span><span class="p">;</span>
 
-<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="no">STATE_EM_STOP</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="no">STATE_EM_STOP</span><span class="p">:</span>
 
-<span class="w">      </span><span class="n">motor_drive_control</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span><span class="w"> </span><span class="n">CTRL_EM_STOP</span><span class="p">);</span><span class="w"></span>
+<span class="w">      </span><span class="n">motor_drive_control</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span><span class="w"> </span><span class="n">CTRL_EM_STOP</span><span class="p">);</span>
 
 <span class="w">      </span><span class="k">if</span><span class="p">(</span><span class="n">RISING_EDGE</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">stop_button_event</span><span class="p">()){</span><span class="w"> </span><span class="c1">// The stop button also functions as a reset button for the emergency stop</span>
-<span class="w">        </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Entering ready state&quot;</span><span class="p">);;</span><span class="w"></span>
-<span class="w">        </span><span class="n">app_state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">STATE_READY</span><span class="p">;</span><span class="w"></span>
-<span class="w">      </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Entering ready state&quot;</span><span class="p">);;</span>
+<span class="w">        </span><span class="n">app_state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">STATE_READY</span><span class="p">;</span>
+<span class="w">      </span><span class="p">}</span>
 
-<span class="w">      </span><span class="k">break</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="k">default</span><span class="o">:</span><span class="w"></span>
+<span class="w">      </span><span class="k">break</span><span class="p">;</span>
+<span class="w">    </span><span class="k">default</span><span class="o">:</span>
 <span class="w">      </span><span class="c1">// Invalid state</span>
-<span class="w">      </span><span class="k">break</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">      </span><span class="k">break</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="n">prev_timestamp_ms</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">current_timestamp_ms</span><span class="p">;</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="n">prev_timestamp_ms</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">current_timestamp_ms</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
 
-<span class="p">}</span><span class="w"></span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </section>
 <section id="start-stop-forward-reverse-and-speed-control">
-<h3>Start/stop, forward/reverse and speed control<a class="headerlink" href="#start-stop-forward-reverse-and-speed-control" title="Permalink to this heading">¶</a></h3>
+<h3>Start/stop, forward/reverse and speed control<a class="headerlink" href="#start-stop-forward-reverse-and-speed-control" title="Permalink to this headline">¶</a></h3>
 <p>The previous example only supported operation of the motor in one direction. In addition to the forward/reverse commands speed control should also be supported by means of adjustable duty cycle. For the upcoming exercises you should use the following wiring:</p>
 <figure class="align-center">
 <a class="reference internal image-reference" href="../../_images/dc_motor_drive_potmeter_control_bb.png"><img alt="../../_images/dc_motor_drive_potmeter_control_bb.png" src="../../_images/dc_motor_drive_potmeter_control_bb.png" style="width: 757.5px; height: 661.5px;" /></a>
 </figure>
 </section>
 <section id="exercise-lm293d-motor-drive">
-<h3>Exercise: LM293D motor drive<a class="headerlink" href="#exercise-lm293d-motor-drive" title="Permalink to this heading">¶</a></h3>
+<h3>Exercise: LM293D motor drive<a class="headerlink" href="#exercise-lm293d-motor-drive" title="Permalink to this headline">¶</a></h3>
 <ol class="arabic simple">
 <li><p>Use the L293D motor driver and perform the necessary wiring. There should be 3 push buttons and a potentiometer.</p></li>
 <li><p>Write an application which takes the armature voltage (motor speed) set point as a input from a potentiometer.</p></li>
@@ -800,7 +812,7 @@
 </ol>
 </section>
 <section id="exercise-motor-drive-with-acceleration-ramp">
-<h3>Exercise: motor drive with acceleration ramp<a class="headerlink" href="#exercise-motor-drive-with-acceleration-ramp" title="Permalink to this heading">¶</a></h3>
+<h3>Exercise: motor drive with acceleration ramp<a class="headerlink" href="#exercise-motor-drive-with-acceleration-ramp" title="Permalink to this headline">¶</a></h3>
 <p>In this exercise you are going to develop a motor drive which has an adjustable acceleration, and deceleration ramp. I.e. when the motor is started there will be a acceleration period where the armature voltage is increased linearly from zero, and up to the configured voltage.</p>
 <ol class="arabic simple">
 <li><p>Use the program you have developed in the previous exercise as a starting point. Make sure everything in that exercise is working as expected</p></li>
@@ -809,7 +821,7 @@
 </ol>
 </section>
 <section id="regenerative-braking-of-the-motor">
-<h3>Regenerative braking of the motor<a class="headerlink" href="#regenerative-braking-of-the-motor" title="Permalink to this heading">¶</a></h3>
+<h3>Regenerative braking of the motor<a class="headerlink" href="#regenerative-braking-of-the-motor" title="Permalink to this headline">¶</a></h3>
 <p>It is relatively straight forward to apply control signals which converts the rotational energy of the brushed DC motor back to electrical energy. This is the most energy efficient way of breaking the motor, as the energy can be recovered and used again for another purpose. Regenerative operation on the arduino board can be problematic, as the USB power supply does not support reversed energy flow. The same is true if the supply comes from a battery which is not rechargeable. If one is pushing energy in to a DC source which does not support regenerative operation, the result will typically be that the voltage at the filtering capacitors in the DC section will increase. At some point the voltage will exceed the rating of the capacitors, and magic smoke will come out. Thus the first ting you have to do before considering regenerative operation, is to verify that the source will be able to handle it.</p>
 <p>The trick to achieve regenerative braking it to increase the voltage coming from the motor to a level above the source voltage which was previously supplying the motor. This will allow the current direction to reverse, and thus the power flow will also be reversed. The voltage produced by the motor is proportional to the speed as well as on the magnetic field in the stator. It will always be lower than the source voltage, unless one of the following conditions are met:</p>
 <ul class="simple">
@@ -834,146 +846,146 @@
 <p>If the enable (EN) signal is low, the control signal (A) is ignored and the output goes in to a high impedance (high Z) state. When the enable signal is high, the output follows the control signal (A). By applying PWM to the enable signal and leaving the A signals fixed regenerative braking will be impossible. Whenever the output is in a high Z state, the motor current will have to circulate through the freewheeling diodes. If however the PWM signal is applied to e.g. 1A while 2A is low, a reduction in duty cycle will allow the voltage to be boosted by the motor inductance. For the opposite rotational direction the PWM signal should be applied to 2A while 1A is low.</p>
 </section>
 <section id="feature-rich-motor-drive-example-using-the-l293d">
-<h3>Feature rich motor drive example using the L293D<a class="headerlink" href="#feature-rich-motor-drive-example-using-the-l293d" title="Permalink to this heading">¶</a></h3>
+<h3>Feature rich motor drive example using the L293D<a class="headerlink" href="#feature-rich-motor-drive-example-using-the-l293d" title="Permalink to this headline">¶</a></h3>
 <p>The following example is a slightly more complete implementation of motor control using the L293D driver. The implementation uses one push button for starting, and one for stopping the motor. The voltage on analog input <cite>A0</cite> is used to control the duty cycle of the pulse width modulation.</p>
 <figure class="align-center">
 <a class="reference internal image-reference" href="../../_images/dc_motor_drive_potmeter_control_bb.png"><img alt="../../_images/dc_motor_drive_potmeter_control_bb.png" src="../../_images/dc_motor_drive_potmeter_control_bb.png" style="width: 757.5px; height: 661.5px;" /></a>
 </figure>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Arduino.h&gt;</span><span class="cp"></span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Arduino.h&gt;</span>
 
-<span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">enable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w"></span>
-<span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">input_1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">9</span><span class="p">;</span><span class="w"></span>
-<span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">input_2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">8</span><span class="p">;</span><span class="w"></span>
+<span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">enable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+<span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">input_1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">9</span><span class="p">;</span>
+<span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">input_2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">8</span><span class="p">;</span>
 
-<span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">start_button</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">13</span><span class="p">;</span><span class="w"></span>
-<span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">stopp_button</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">12</span><span class="p">;</span><span class="w"></span>
+<span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">start_button</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">13</span><span class="p">;</span>
+<span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">stopp_button</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">12</span><span class="p">;</span>
 
-<span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">control_voltage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">A0</span><span class="p">;</span><span class="w"></span>
+<span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">control_voltage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">A0</span><span class="p">;</span>
 
-<span class="kt">uint8_t</span><span class="w"> </span><span class="nf">start_button_event</span><span class="p">();</span><span class="w"></span>
-<span class="kt">uint8_t</span><span class="w"> </span><span class="nf">stopp_button_event</span><span class="p">();</span><span class="w"></span>
+<span class="kt">uint8_t</span><span class="w"> </span><span class="nf">start_button_event</span><span class="p">();</span>
+<span class="kt">uint8_t</span><span class="w"> </span><span class="nf">stopp_button_event</span><span class="p">();</span>
 
-<span class="k">typedef</span><span class="w"> </span><span class="k">enum</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="n">FORWARD</span><span class="p">,</span><span class="w"></span>
-<span class="w">  </span><span class="n">REVERSE</span><span class="p">,</span><span class="w"></span>
-<span class="w">  </span><span class="n">STOPPED</span><span class="w"></span>
-<span class="p">}</span><span class="w"> </span><span class="n">rot_direction_t</span><span class="p">;</span><span class="w"></span>
+<span class="k">typedef</span><span class="w"> </span><span class="k">enum</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">FORWARD</span><span class="p">,</span>
+<span class="w">  </span><span class="n">REVERSE</span><span class="p">,</span>
+<span class="w">  </span><span class="n">STOPPED</span>
+<span class="p">}</span><span class="w"> </span><span class="n">rot_direction_t</span><span class="p">;</span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">motor_control</span><span class="p">(</span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">duty_cycle</span><span class="p">,</span><span class="w"> </span><span class="n">rot_direction_t</span><span class="w"> </span><span class="n">direction</span><span class="p">);</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">motor_control</span><span class="p">(</span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">duty_cycle</span><span class="p">,</span><span class="w"> </span><span class="n">rot_direction_t</span><span class="w"> </span><span class="n">direction</span><span class="p">);</span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="n">pinMode</span><span class="p">(</span><span class="n">enable</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="n">pinMode</span><span class="p">(</span><span class="n">input_1</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="n">pinMode</span><span class="p">(</span><span class="n">input_2</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT</span><span class="p">);</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">pinMode</span><span class="p">(</span><span class="n">enable</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT</span><span class="p">);</span>
+<span class="w">  </span><span class="n">pinMode</span><span class="p">(</span><span class="n">input_1</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT</span><span class="p">);</span>
+<span class="w">  </span><span class="n">pinMode</span><span class="p">(</span><span class="n">input_2</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT</span><span class="p">);</span>
 
-<span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span>
+<span class="p">}</span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 
-<span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">motor_state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">motor_state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 
-<span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">old_millis</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
-<span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">serial_old_millis</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
-<span class="w">  </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">adc_value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
-<span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">duty_cycle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">old_millis</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">serial_old_millis</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">adc_value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">duty_cycle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 
-<span class="w">  </span><span class="k">if</span><span class="p">(</span><span class="n">millis</span><span class="p">()</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">old_millis</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">50</span><span class="p">){</span><span class="w"></span>
-<span class="w">    </span><span class="n">adc_value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">analogRead</span><span class="p">(</span><span class="n">control_voltage</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">duty_cycle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">adc_value</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="n">old_millis</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">millis</span><span class="p">();</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="k">if</span><span class="p">(</span><span class="n">millis</span><span class="p">()</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">old_millis</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">50</span><span class="p">){</span>
+<span class="w">    </span><span class="n">adc_value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">analogRead</span><span class="p">(</span><span class="n">control_voltage</span><span class="p">);</span>
+<span class="w">    </span><span class="n">duty_cycle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">adc_value</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span>
+<span class="w">    </span><span class="n">old_millis</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">millis</span><span class="p">();</span>
+<span class="w">  </span><span class="p">}</span>
 
-<span class="w">  </span><span class="k">if</span><span class="p">(</span><span class="n">millis</span><span class="p">()</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">serial_old_millis</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1000</span><span class="p">){</span><span class="w"></span>
-<span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;Duty cycle: &quot;</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">duty_cycle</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">serial_old_millis</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">millis</span><span class="p">();</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="k">if</span><span class="p">(</span><span class="n">millis</span><span class="p">()</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">serial_old_millis</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1000</span><span class="p">){</span>
+<span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;Duty cycle: &quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">duty_cycle</span><span class="p">);</span>
+<span class="w">    </span><span class="n">serial_old_millis</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">millis</span><span class="p">();</span>
+<span class="w">  </span><span class="p">}</span>
 
-<span class="w">  </span><span class="k">if</span><span class="p">(</span><span class="n">motor_state</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">){</span><span class="w"></span>
+<span class="w">  </span><span class="k">if</span><span class="p">(</span><span class="n">motor_state</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">){</span>
 <span class="w">   </span>
-<span class="w">    </span><span class="n">motor_control</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">STOPPED</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">motor_control</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">STOPPED</span><span class="p">);</span>
 
-<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">start_button_event</span><span class="p">()){</span><span class="w"></span>
-<span class="w">      </span><span class="n">motor_state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
-<span class="w">  </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="p">(</span><span class="n">motor_state</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">){</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">start_button_event</span><span class="p">()){</span>
+<span class="w">      </span><span class="n">motor_state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="p">(</span><span class="n">motor_state</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">){</span>
 
-<span class="w">    </span><span class="n">motor_control</span><span class="p">(</span><span class="n">duty_cycle</span><span class="p">,</span><span class="w"> </span><span class="n">FORWARD</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">motor_control</span><span class="p">(</span><span class="n">duty_cycle</span><span class="p">,</span><span class="w"> </span><span class="n">FORWARD</span><span class="p">);</span>
 <span class="w">    </span>
-<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">stopp_button_event</span><span class="p">()){</span><span class="w"></span>
-<span class="w">      </span><span class="n">motor_state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">stopp_button_event</span><span class="p">()){</span>
+<span class="w">      </span><span class="n">motor_state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
 
-<span class="p">}</span><span class="w"></span>
+<span class="p">}</span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">motor_control</span><span class="p">(</span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">duty_cycle</span><span class="p">,</span><span class="w"> </span><span class="n">rot_direction_t</span><span class="w"> </span><span class="n">direction</span><span class="p">){</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">motor_control</span><span class="p">(</span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">duty_cycle</span><span class="p">,</span><span class="w"> </span><span class="n">rot_direction_t</span><span class="w"> </span><span class="n">direction</span><span class="p">){</span>
 
-<span class="w">  </span><span class="k">if</span><span class="p">(</span><span class="n">direction</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">FORWARD</span><span class="p">){</span><span class="w"></span>
-<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">input_1</span><span class="p">,</span><span class="w"> </span><span class="n">HIGH</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">input_2</span><span class="p">,</span><span class="w"> </span><span class="n">LOW</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
-<span class="w">  </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="p">(</span><span class="n">direction</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">REVERSE</span><span class="p">){</span><span class="w"></span>
-<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">input_1</span><span class="p">,</span><span class="w"> </span><span class="n">LOW</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">input_2</span><span class="p">,</span><span class="w"> </span><span class="n">HIGH</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
-<span class="w">  </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="p">(</span><span class="n">direction</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">STOPPED</span><span class="p">){</span><span class="w"></span>
-<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">input_1</span><span class="p">,</span><span class="w"> </span><span class="n">LOW</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">input_2</span><span class="p">,</span><span class="w"> </span><span class="n">LOW</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="k">if</span><span class="p">(</span><span class="n">direction</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">FORWARD</span><span class="p">){</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">input_1</span><span class="p">,</span><span class="w"> </span><span class="n">HIGH</span><span class="p">);</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">input_2</span><span class="p">,</span><span class="w"> </span><span class="n">LOW</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="p">(</span><span class="n">direction</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">REVERSE</span><span class="p">){</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">input_1</span><span class="p">,</span><span class="w"> </span><span class="n">LOW</span><span class="p">);</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">input_2</span><span class="p">,</span><span class="w"> </span><span class="n">HIGH</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="p">(</span><span class="n">direction</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">STOPPED</span><span class="p">){</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">input_1</span><span class="p">,</span><span class="w"> </span><span class="n">LOW</span><span class="p">);</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">input_2</span><span class="p">,</span><span class="w"> </span><span class="n">LOW</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
 
-<span class="w">  </span><span class="n">analogWrite</span><span class="p">(</span><span class="n">enable</span><span class="p">,</span><span class="w"> </span><span class="n">duty_cycle</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">analogWrite</span><span class="p">(</span><span class="n">enable</span><span class="p">,</span><span class="w"> </span><span class="n">duty_cycle</span><span class="p">);</span>
 <span class="w">  </span><span class="c1">//digitalWrite(enable, HIGH);</span>
-<span class="p">}</span><span class="w"></span>
+<span class="p">}</span>
 
-<span class="kt">uint8_t</span><span class="w"> </span><span class="nf">start_button_event</span><span class="p">(){</span><span class="w"></span>
+<span class="kt">uint8_t</span><span class="w"> </span><span class="nf">start_button_event</span><span class="p">(){</span>
 
-<span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">shift_register</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
-<span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">old_millis</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">shift_register</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">old_millis</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 
-<span class="w">  </span><span class="k">if</span><span class="p">(</span><span class="n">millis</span><span class="p">()</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">old_millis</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">5</span><span class="p">){</span><span class="w"></span>
+<span class="w">  </span><span class="k">if</span><span class="p">(</span><span class="n">millis</span><span class="p">()</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">old_millis</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">5</span><span class="p">){</span>
 
-<span class="w">    </span><span class="n">old_millis</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">millis</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="n">old_millis</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">millis</span><span class="p">();</span>
 
-<span class="w">    </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">input_state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">digitalRead</span><span class="p">(</span><span class="n">start_button</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">input_state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">digitalRead</span><span class="p">(</span><span class="n">start_button</span><span class="p">);</span>
 
-<span class="w">    </span><span class="n">shift_register</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">shift_register</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">input_state</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mh">0xC000</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">shift_register</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">shift_register</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">input_state</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mh">0xC000</span><span class="p">;</span>
 
-<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">shift_register</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mh">0xE000</span><span class="p">){</span><span class="w"></span>
-<span class="w">      </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;Start event detected.&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
-<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">shift_register</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mh">0xE000</span><span class="p">){</span>
+<span class="w">      </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;Start event detected.&quot;</span><span class="p">);</span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
 
-<span class="kt">uint8_t</span><span class="w"> </span><span class="nf">stopp_button_event</span><span class="p">(){</span><span class="w"></span>
+<span class="kt">uint8_t</span><span class="w"> </span><span class="nf">stopp_button_event</span><span class="p">(){</span>
 
-<span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">shift_register</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
-<span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">old_millis</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">shift_register</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">old_millis</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 
-<span class="w">  </span><span class="k">if</span><span class="p">(</span><span class="n">millis</span><span class="p">()</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">old_millis</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">5</span><span class="p">){</span><span class="w"></span>
+<span class="w">  </span><span class="k">if</span><span class="p">(</span><span class="n">millis</span><span class="p">()</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">old_millis</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">5</span><span class="p">){</span>
 
-<span class="w">    </span><span class="n">old_millis</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">millis</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="n">old_millis</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">millis</span><span class="p">();</span>
 
-<span class="w">    </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">input_state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">digitalRead</span><span class="p">(</span><span class="n">stopp_button</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">input_state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">digitalRead</span><span class="p">(</span><span class="n">stopp_button</span><span class="p">);</span>
 
-<span class="w">    </span><span class="n">shift_register</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">shift_register</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">input_state</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mh">0xC000</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">shift_register</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">shift_register</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">input_state</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mh">0xC000</span><span class="p">;</span>
 
-<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">shift_register</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mh">0xE000</span><span class="p">){</span><span class="w"></span>
-<span class="w">      </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;Stop event detected.&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
-<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">shift_register</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mh">0xE000</span><span class="p">){</span>
+<span class="w">      </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;Stop event detected.&quot;</span><span class="p">);</span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </section>
 <section id="id7">
-<h3>Exercise: LM293D motor drive<a class="headerlink" href="#id7" title="Permalink to this heading">¶</a></h3>
+<h3>Exercise: LM293D motor drive<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
 <ol class="arabic simple">
 <li><p>Use the L293D motor driver and perform the necessary wiring. There should be 3 push buttons and a potentiometer.</p></li>
 <li><p>Write an application which takes the armature voltage (motor speed) set point as a input from a potentiometer.</p></li>
@@ -985,7 +997,7 @@
 </ol>
 </section>
 <section id="id8">
-<h3>Exercise: motor drive with acceleration ramp<a class="headerlink" href="#id8" title="Permalink to this heading">¶</a></h3>
+<h3>Exercise: motor drive with acceleration ramp<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
 <p>In this exercise you are going to develop a motor drive which has an adjustable acceleration, and deceleration ramp. I.e. when the motor is started there will be a acceleration period where the armature voltage is increased linearly from zero, and up to the configured voltage.</p>
 <ol class="arabic simple">
 <li><p>Use the program you have developed in the previous exercise as a starting point. Make sure everything in that exercise is working as expected</p></li>
@@ -995,7 +1007,7 @@
 </section>
 </section>
 <section id="bibliography">
-<h2>Bibliography<a class="headerlink" href="#bibliography" title="Permalink to this heading">¶</a></h2>
+<h2>Bibliography<a class="headerlink" href="#bibliography" title="Permalink to this headline">¶</a></h2>
 <span class="target" id="id9"></span></section>
 </section>
 
@@ -1029,7 +1041,7 @@
       <!-- footer -->
       <footer role="contentinfo">
           &copy; Copyright 2022, Gizem Ateş &amp; Eirik Haustveit.
-        Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 5.3.0.
+        Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 4.5.0.
       </footer>
       <!-- /footer -->
 

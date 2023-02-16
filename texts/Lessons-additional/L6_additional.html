@@ -6,7 +6,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <title>Additional material for lesson 6 &mdash; ELE102 Microcontroller course v1.1.0 documentation</title>
     <meta name="description" content="">
@@ -45,9 +45,7 @@
     <script type="text/javascript" src="../../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../../_static/js/jquery.min.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
-    <script type="text/javascript" src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../_static/sphinx_highlight.js"></script>
     <script type="text/javascript" src="../../_static/js/bootstrap3.min.js"></script>
 <script type="text/javascript" src="../../_static/js/jquery.cookie.min.js"></script>
 <script type="text/javascript" src="../../_static/js/basicstrap.js"></script>
@@ -55,7 +53,9 @@
 </script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="top" title="ELE102 Microcontroller course v1.1.0 documentation" href="../../index.html" /> 
+    <link rel="top" title="ELE102 Microcontroller course v1.1.0 documentation" href="../../index.html" />
+    <link rel="next" title="Additional material for lesson 7" href="L7_additional.html" />
+    <link rel="prev" title="Additional material for lesson 5" href="L5_additional.html" /> 
   </head>
   <body role="document">
     <div id="navbar-top" class="navbar navbar-fixed-top navbar-default" role="navigation" aria-label="top navigation">
@@ -92,6 +92,8 @@
               </li>
 
             
+              <li><a href="L5_additional.html" title="Additional material for lesson 5" accesskey="P">previous </a></li>
+              <li><a href="L7_additional.html" title="Additional material for lesson 7" accesskey="N">next </a></li>
               <li><a href="../../genindex.html" title="General Index" accesskey="I">index </a></li>
             
 
@@ -136,14 +138,33 @@
 <li class="toctree-l1"><a class="reference internal" href="../Lessons/L3_digital_io_and_timing.html">Lesson 3: Use of digital I/O and timing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Lessons/L4_dac_pwm.html">Lesson 4: Analog output (PWM)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Lessons/L5_adc.html">Lesson 5: Analog to digital conversion (ADC)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons/L6_serial_io.html">Lesson 6: Serial I/O</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Additional material:</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="L1_additional.html">Additional material lesson 1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="L2_additional.html">Additional material lesson 2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="L3_additional.html">Additional material lesson 3</a></li>
 <li class="toctree-l1"><a class="reference internal" href="L4_additional.html">Additional material lesson 4</a></li>
 <li class="toctree-l1"><a class="reference internal" href="L5_additional.html">Additional material lesson 5</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Additional material lesson 6</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#serial-terminal-emulator-software">Serial terminal emulator software</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#store-the-strings-in-program-memory">Store the strings in program memory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#simple-command-line-interface">Simple command line interface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#arduino-serial-port-buffer">Arduino serial port buffer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#connecting-two-arduino-s-using-uart">Connecting two Arduino’s using UART</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#conditionals">Conditionals</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="L7_additional.html">Additional material lesson 7</a></li>
+<li class="toctree-l1"><a class="reference internal" href="L8_additional.html">Additional material lesson 8</a></li>
+<li class="toctree-l1"><a class="reference internal" href="L9_additional.html">Additional material lesson 9</a></li>
+<li class="toctree-l1"><a class="reference internal" href="L10_additional.html">Additional material lesson 10</a></li>
+<li class="toctree-l1"><a class="reference internal" href="L11_additional.html">Additional material lesson 11</a></li>
+<li class="toctree-l1"><a class="reference internal" href="L12_additional.html">Additional material lesson 12</a></li>
+<li class="toctree-l1"><a class="reference internal" href="L13_additional.html">Additional material lesson 13</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Projects:</span></p>
 <ul>
@@ -196,6 +217,16 @@
     Enter search terms or a module, class or function name.
     </p>
 </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="L5_additional.html"
+                          title="previous chapter">Additional material for lesson 5</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="L7_additional.html"
+                          title="next chapter">Additional material for lesson 7</a></p>
+  </div>
   </div>
 </div> 
         
@@ -207,96 +238,96 @@
                 <div class="body">
                   
   <section id="additional-material-for-lesson-6">
-<h1>Additional material for lesson 6<a class="headerlink" href="#additional-material-for-lesson-6" title="Permalink to this heading">¶</a></h1>
+<h1>Additional material for lesson 6<a class="headerlink" href="#additional-material-for-lesson-6" title="Permalink to this headline">¶</a></h1>
 <section id="serial-terminal-emulator-software">
-<h2>Serial terminal emulator software<a class="headerlink" href="#serial-terminal-emulator-software" title="Permalink to this heading">¶</a></h2>
+<h2>Serial terminal emulator software<a class="headerlink" href="#serial-terminal-emulator-software" title="Permalink to this headline">¶</a></h2>
 <p>Both the standard Arduino IDE, and Visual studio code (with PlatformIO) has built in serial terminal emulators. If however you require more advanced features, different software might be more appropriate.</p>
 <p>Minicom is a popular GNU/Linux serial terminal. Refer to the manual for your distribution for instructions on how to install it.</p>
 <p>PuTTY is a popular alternative for Windows. You may download it at <a class="reference external" href="https://www.putty.org/">putty.org</a>.</p>
 <section id="store-the-strings-in-program-memory">
-<h3>Store the strings in program memory<a class="headerlink" href="#store-the-strings-in-program-memory" title="Permalink to this heading">¶</a></h3>
+<h3>Store the strings in program memory<a class="headerlink" href="#store-the-strings-in-program-memory" title="Permalink to this headline">¶</a></h3>
 <p>By default the strings you use in your writes to the serial port are stored in RAM. The SRAM in Atmega328P is only 2 kB. If you have lots of text that you wish to send to the serial port, this can quickly consume all of your memory.</p>
 <p>To overcome this issue you may store the strings in program memory. There are however some implications to consider.</p>
 <p>This fact may seem a bit confusing to anyone that is new to microcontrollers. After all the SRAM is volatile, all it’s content is deleted when you reset or power off the microcontroller. Then how can the strings survive the power cycle? The explanation for this is that the strings are stored in program memory, and copied into SRAM during the boot process of the controller. In other words they occupy the same amount of memory in both SRAM, and flash ROM.</p>
 <p>This is required because the CPU instruction to read RAM differ from the function (LPM) that read the flash ROM. Any function that supports normal variables will fail to access data from ROM.</p>
 <p>You may read more about the various memories in Arduino <a class="reference external" href="https://playground.arduino.cc/Learning/Memory/">here</a></p>
 <p>In order to tell the compiler to store data in program memory you may use the <cite>PROGMEM</cite> modifier:</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">const</span><span class="w"> </span><span class="n">PROGMEM</span><span class="w"> </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">testData</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="mi">65535</span><span class="p">,</span><span class="w"> </span><span class="mi">32000</span><span class="p">,</span><span class="w"> </span><span class="mi">12000</span><span class="p">,</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w"> </span><span class="mi">12345</span><span class="p">};</span><span class="w"></span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">const</span><span class="w"> </span><span class="n">PROGMEM</span><span class="w"> </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">testData</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="mi">65535</span><span class="p">,</span><span class="w"> </span><span class="mi">32000</span><span class="p">,</span><span class="w"> </span><span class="mi">12000</span><span class="p">,</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w"> </span><span class="mi">12345</span><span class="p">};</span>
 </pre></div>
 </div>
 <p>The following example illustrates how to store and retrieve some numbers, and one string from program memory:</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Arduino.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;avr/pgmspace.h&gt;</span><span class="cp"></span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Arduino.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;avr/pgmspace.h&gt;</span>
 
-<span class="k">const</span><span class="w"> </span><span class="n">PROGMEM</span><span class="w"> </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">testData</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="mi">65535</span><span class="p">,</span><span class="w"> </span><span class="mi">32000</span><span class="p">,</span><span class="w"> </span><span class="mi">12000</span><span class="p">,</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w"> </span><span class="mi">12345</span><span class="p">};</span><span class="w"></span>
+<span class="k">const</span><span class="w"> </span><span class="n">PROGMEM</span><span class="w"> </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">testData</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="mi">65535</span><span class="p">,</span><span class="w"> </span><span class="mi">32000</span><span class="p">,</span><span class="w"> </span><span class="mi">12000</span><span class="p">,</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w"> </span><span class="mi">12345</span><span class="p">};</span>
 
-<span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="n">testString</span><span class="p">[]</span><span class="w"> </span><span class="n">PROGMEM</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="s">&quot;This string is stored in program memory.&quot;</span><span class="p">};</span><span class="w"></span>
+<span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="n">testString</span><span class="p">[]</span><span class="w"> </span><span class="n">PROGMEM</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="s">&quot;This string is stored in program memory.&quot;</span><span class="p">};</span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span>
 
-<span class="w">  </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">progmemInt</span><span class="p">;</span><span class="w"></span>
-<span class="w">  </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">progmemChar</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">progmemInt</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">progmemChar</span><span class="p">;</span>
 
-<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="n">progmemInt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pgm_read_word_near</span><span class="p">(</span><span class="n">testData</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">i</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">progmemInt</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">progmemInt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pgm_read_word_near</span><span class="p">(</span><span class="n">testData</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">i</span><span class="p">);</span>
+<span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">progmemInt</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
 
-<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">strlen_P</span><span class="p">(</span><span class="n">testString</span><span class="p">);</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="n">progmemChar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pgm_read_byte_near</span><span class="p">(</span><span class="n">testString</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">i</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">progmemChar</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
-<span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="sc">&#39;\n&#39;</span><span class="p">);</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">strlen_P</span><span class="p">(</span><span class="n">testString</span><span class="p">);</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">progmemChar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pgm_read_byte_near</span><span class="p">(</span><span class="n">testString</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">i</span><span class="p">);</span>
+<span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">progmemChar</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="sc">&#39;\n&#39;</span><span class="p">);</span>
+<span class="p">}</span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 
-<span class="p">}</span><span class="w"></span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p>If all you need is to write a string to the serial port, and you don’t want to waste memory the <cite>F()</cite> macro may be used:</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="n">F</span><span class="p">(</span><span class="s">&quot;This string is constant, thus it is best to store it in FLASH&quot;</span><span class="p">));</span><span class="w"></span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="n">F</span><span class="p">(</span><span class="s">&quot;This string is constant, thus it is best to store it in FLASH&quot;</span><span class="p">));</span>
 </pre></div>
 </div>
 <p>You may read more about how to use the program memory to store data in the <a class="reference external" href="https://www.arduino.cc/reference/tr/language/variables/utilities/progmem/">Arduino reference</a></p>
 </section>
 <section id="simple-command-line-interface">
-<h3>Simple command line interface<a class="headerlink" href="#simple-command-line-interface" title="Permalink to this heading">¶</a></h3>
+<h3>Simple command line interface<a class="headerlink" href="#simple-command-line-interface" title="Permalink to this headline">¶</a></h3>
 <p>In order to interact with the software in the Arduino while it is running, we will create a simple command line interface.</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Arduino.h&gt;</span><span class="cp"></span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Arduino.h&gt;</span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span>
 
-<span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;# &quot;</span><span class="p">);</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;# &quot;</span><span class="p">);</span>
+<span class="p">}</span>
 
-<span class="kt">uint8_t</span><span class="w"> </span><span class="n">command</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="kt">uint8_t</span><span class="w"> </span><span class="n">command</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 
-<span class="w">  </span><span class="k">if</span><span class="p">(</span><span class="n">Serial</span><span class="p">.</span><span class="n">available</span><span class="p">()){</span><span class="w"></span>
-<span class="w">    </span><span class="n">command</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Serial</span><span class="p">.</span><span class="n">read</span><span class="p">();</span><span class="w"></span>
+<span class="w">  </span><span class="k">if</span><span class="p">(</span><span class="n">Serial</span><span class="p">.</span><span class="n">available</span><span class="p">()){</span>
+<span class="w">    </span><span class="n">command</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Serial</span><span class="p">.</span><span class="n">read</span><span class="p">();</span>
 
-<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">command</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="sc">&#39;A&#39;</span><span class="p">){</span><span class="w"></span>
-<span class="w">      </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Kommandoen er A.&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="p">(</span><span class="n">command</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="sc">&#39;B&#39;</span><span class="p">){</span><span class="w"></span>
-<span class="w">      </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Kommandoen er B.&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="k">else</span><span class="p">{</span><span class="w"></span>
-<span class="w">      </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Ugyldig kommando.&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">command</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="sc">&#39;A&#39;</span><span class="p">){</span>
+<span class="w">      </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Kommandoen er A.&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="p">(</span><span class="n">command</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="sc">&#39;B&#39;</span><span class="p">){</span>
+<span class="w">      </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Kommandoen er B.&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">else</span><span class="p">{</span>
+<span class="w">      </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Ugyldig kommando.&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
 <span class="w">       </span>
-<span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;# &quot;</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;# &quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </section>
 <section id="arduino-serial-port-buffer">
-<h3>Arduino serial port buffer<a class="headerlink" href="#arduino-serial-port-buffer" title="Permalink to this heading">¶</a></h3>
+<h3>Arduino serial port buffer<a class="headerlink" href="#arduino-serial-port-buffer" title="Permalink to this headline">¶</a></h3>
 <p>The Arduio uno has circular RX and TX buffers of 64 bytes. If the buffer is full, incoming data is discarded.</p>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#define SERIAL_TX_BUFFER_SIZE 64</span>
 <span class="cp">#define SERIAL_RX_BUFFER_SIZE 64</span>
@@ -304,7 +335,7 @@
 </div>
 </section>
 <section id="connecting-two-arduino-s-using-uart">
-<h3>Connecting two Arduino’s using UART<a class="headerlink" href="#connecting-two-arduino-s-using-uart" title="Permalink to this heading">¶</a></h3>
+<h3>Connecting two Arduino’s using UART<a class="headerlink" href="#connecting-two-arduino-s-using-uart" title="Permalink to this headline">¶</a></h3>
 <p>The following example shows how to communicate between two Ardiuno UNO’s using the UART. On each device pin 2 is used for reception (RX), and pin 3 is used for transmission (TX). The TX output of one device is connected to the RX input of the other.</p>
 <figure class="align-default">
 <a class="reference internal image-reference" href="../../_images/dual_arduino_uart_communication_bb.png"><img alt="../../_images/dual_arduino_uart_communication_bb.png" src="../../_images/dual_arduino_uart_communication_bb.png" style="width: 829.5px; height: 384.0px;" /></a>
@@ -318,10 +349,10 @@
 <span class="cm"> * The data that is sent on the USB UART will be retransmitted on the software UART, and any</span>
 <span class="cm"> * data received by the software UART will be retransmitted on the USB UART.</span>
 <span class="cm"> * </span>
-<span class="cm"> */</span><span class="w"></span>
+<span class="cm"> */</span>
 
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Arduino.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;SoftwareSerial.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Arduino.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;SoftwareSerial.h&gt;</span>
 
 <span class="cm">/*</span>
 <span class="cm"> * Add compile date and time, used for a unique identifier.</span>
@@ -329,39 +360,39 @@
 <span class="cm"> * in order to not confuse yourself regarding which device </span>
 <span class="cm"> * you are currently dealing with.</span>
 <span class="cm"> */</span><span class="w"> </span>
-<span class="k">const</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">compile_date</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">__DATE__</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="w"> </span><span class="n">__TIME__</span><span class="p">;</span><span class="w"></span>
+<span class="k">const</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">compile_date</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">__DATE__</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="w"> </span><span class="n">__TIME__</span><span class="p">;</span>
 
-<span class="k">const</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">user_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Ditt navn&quot;</span><span class="p">;</span><span class="w"></span>
+<span class="k">const</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">user_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Ditt navn&quot;</span><span class="p">;</span>
 
 <span class="n">SoftwareSerial</span><span class="w"> </span><span class="nf">softSerial</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span><span class="w"> </span><span class="c1">// RX, TX</span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="n">softSerial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span>
+<span class="w">  </span><span class="n">softSerial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span>
 
-<span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Arduino UART kommunikasjonslink&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Bruker: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">user_name</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Komplieringstid: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">compile_date</span><span class="p">);</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Arduino UART kommunikasjonslink&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Bruker: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">user_name</span><span class="p">);</span>
+<span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Komplieringstid: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">compile_date</span><span class="p">);</span>
+<span class="p">}</span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 
 
-<span class="w">  </span><span class="k">if</span><span class="p">(</span><span class="n">Serial</span><span class="p">.</span><span class="n">available</span><span class="p">()){</span><span class="w"></span>
-<span class="w">    </span><span class="n">softSerial</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">Serial</span><span class="p">.</span><span class="n">read</span><span class="p">());</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="k">if</span><span class="p">(</span><span class="n">Serial</span><span class="p">.</span><span class="n">available</span><span class="p">()){</span>
+<span class="w">    </span><span class="n">softSerial</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">Serial</span><span class="p">.</span><span class="n">read</span><span class="p">());</span>
+<span class="w">  </span><span class="p">}</span>
 
-<span class="w">  </span><span class="k">if</span><span class="p">(</span><span class="n">softSerial</span><span class="p">.</span><span class="n">available</span><span class="p">()){</span><span class="w"></span>
-<span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">softSerial</span><span class="p">.</span><span class="n">read</span><span class="p">());</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="k">if</span><span class="p">(</span><span class="n">softSerial</span><span class="p">.</span><span class="n">available</span><span class="p">()){</span>
+<span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">softSerial</span><span class="p">.</span><span class="n">read</span><span class="p">());</span>
+<span class="w">  </span><span class="p">}</span>
 
-<span class="p">}</span><span class="w"></span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </section>
 </section>
 <section id="conditionals">
-<h2>Conditionals<a class="headerlink" href="#conditionals" title="Permalink to this heading">¶</a></h2>
+<h2>Conditionals<a class="headerlink" href="#conditionals" title="Permalink to this headline">¶</a></h2>
 <p>Conditionals are used in order to carry out some actions under some circumstances. In other words, you use conditionals if you want to <em>do things</em> in some <em>conditions</em> and do some other things for some other conditions.</p>
 <img alt="../../_images/ifElse.png" class="align-center" src="../../_images/ifElse.png" />
 <p>Let’s do a bit of brain storming before implementing the conditionals: You want to turn on an LED if your system stays stays vertical. If your sytem is tilted, then you want to turn off the LED. Can you help me to draw the flow chart?</p>
@@ -396,6 +427,8 @@
     </ul>
 <ul class="nav navbar-nav pull-right hidden-xs hidden-sm">
       
+        <li><a href="L5_additional.html" title="Additional material for lesson 5" >previous</a></li>
+        <li><a href="L7_additional.html" title="Additional material for lesson 7" >next</a></li>
         <li><a href="../../genindex.html" title="General Index" >index</a></li>
         <li><a href="#">top</a></li> 
       
@@ -407,7 +440,7 @@
       <!-- footer -->
       <footer role="contentinfo">
           &copy; Copyright 2022, Gizem Ateş &amp; Eirik Haustveit.
-        Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 5.3.0.
+        Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 4.5.0.
       </footer>
       <!-- /footer -->
 

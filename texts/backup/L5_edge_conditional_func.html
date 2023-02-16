@@ -6,7 +6,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <title>Conditionals, Functions &mdash; ELE102 Microcontroller course v1.1.0 documentation</title>
     <meta name="description" content="">
@@ -45,9 +45,7 @@
     <script type="text/javascript" src="../../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../../_static/js/jquery.min.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
-    <script type="text/javascript" src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../_static/sphinx_highlight.js"></script>
     <script type="text/javascript" src="../../_static/js/bootstrap3.min.js"></script>
 <script type="text/javascript" src="../../_static/js/jquery.cookie.min.js"></script>
 <script type="text/javascript" src="../../_static/js/basicstrap.js"></script>
@@ -130,6 +128,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../Lessons/L3_digital_io_and_timing.html">Lesson 3: Use of digital I/O and timing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Lessons/L4_dac_pwm.html">Lesson 4: Analog output (PWM)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Lessons/L5_adc.html">Lesson 5: Analog to digital conversion (ADC)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons/L6_serial_io.html">Lesson 6: Serial I/O</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Additional material:</span></p>
 <ul>
@@ -138,6 +137,14 @@
 <li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L3_additional.html">Additional material lesson 3</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L4_additional.html">Additional material lesson 4</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L5_additional.html">Additional material lesson 5</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L6_additional.html">Additional material lesson 6</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L7_additional.html">Additional material lesson 7</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L8_additional.html">Additional material lesson 8</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L9_additional.html">Additional material lesson 9</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L10_additional.html">Additional material lesson 10</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L11_additional.html">Additional material lesson 11</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L12_additional.html">Additional material lesson 12</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L13_additional.html">Additional material lesson 13</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Projects:</span></p>
 <ul>
@@ -222,10 +229,10 @@
 - Assignment-1 intro</p>
 </div>
 <section id="conditionals-functions">
-<h1>Conditionals, Functions<a class="headerlink" href="#conditionals-functions" title="Permalink to this heading">¶</a></h1>
+<h1>Conditionals, Functions<a class="headerlink" href="#conditionals-functions" title="Permalink to this headline">¶</a></h1>
 <p>The digital inputs and outputs (digital I/O) on the Arduino are what allow you to connect sensors, actuators, and other ICs to the Arduino . Learning how to use the inputs and outputs will allow you to use the Arduino to do some really useful things, such as reading switch inputs, lighting indicators, and controlling relay outputs.</p>
 <section id="conditionals">
-<h2>Conditionals<a class="headerlink" href="#conditionals" title="Permalink to this heading">¶</a></h2>
+<h2>Conditionals<a class="headerlink" href="#conditionals" title="Permalink to this headline">¶</a></h2>
 <p>Conditionals are used in order to carry out some actions under some circumstances. In other words, you use conditionals if you want to <em>do things</em> in some <em>conditions</em> and do some other things for some other conditions.</p>
 <img alt="../../_images/ifElse.png" class="align-center" src="../../_images/ifElse.png" />
 <p>Let’s do a bit of brain storming before implementing the conditionals: You want to turn on an LED if your system stays stays vertical. If your sytem is tilted, then you want to turn off the LED. Can you help me to draw the flow chart?</p>
@@ -240,8 +247,8 @@
 </div>
 </section>
 <section id="functions">
-<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this heading">¶</a></h2>
-<p><em>Functions</em> are used to organize the actions performed by your sketch into functional blocks. Functions package functionality into well-defined <em>inputs</em> (information given to a function) and <em>outputs</em> (information provided by a function) that make it easier to structure, maintain, and reuse your code. You are already familiar with the two functions that are in every Arduino sketch: <code class="code docutils literal notranslate"><span class="pre">setup</span></code> and <code class="code docutils literal notranslate"><span class="pre">loop</span></code>. You create a function by declaring its return type (the information it provides), its name, and any optional parameters (values that the function will receive when it is called). <a class="footnote-reference brackets" href="#f2" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a></p>
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
+<p><em>Functions</em> are used to organize the actions performed by your sketch into functional blocks. Functions package functionality into well-defined <em>inputs</em> (information given to a function) and <em>outputs</em> (information provided by a function) that make it easier to structure, maintain, and reuse your code. You are already familiar with the two functions that are in every Arduino sketch: <code class="code docutils literal notranslate"><span class="pre">setup</span></code> and <code class="code docutils literal notranslate"><span class="pre">loop</span></code>. You create a function by declaring its return type (the information it provides), its name, and any optional parameters (values that the function will receive when it is called). <a class="footnote-reference brackets" href="#f2" id="id1">2</a></p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>The terms functions and methods are used to refer to well-defined blocks of code that can be called as a single entity by other parts of a program. The C language refers to these as functions. Object-oriented languages such as C++ that expose functionality through classes tend to use the term method. Arduino uses a mix of styles (the example sketches tend to use C-like style, libraries tend to be written to expose C++ class methods). We will use, the term <em>function</em> is usually used unless the code is exposed through a class. Don’t worry; if that distinction is not clear to you, treat both terms as the same.</p>
@@ -263,16 +270,14 @@
 </dd>
 </dl>
 <p class="rubric">Footnotes</p>
-<aside class="footnote-list brackets">
-<aside class="footnote brackets" id="f1" role="note">
-<span class="label"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></span>
-<p>For wery high power applications a simple current limiting reisitor is not suitable, and you should instead  use power electronics.</p>
-</aside>
-<aside class="footnote brackets" id="f2" role="note">
-<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">2</a><span class="fn-bracket">]</span></span>
-<p>Arduino Cookbook by Michael Margolis Chapter 2.</p>
-</aside>
-</aside>
+<dl class="footnote brackets">
+<dt class="label" id="f1"><span class="brackets">1</span></dt>
+<dd><p>For wery high power applications a simple current limiting reisitor is not suitable, and you should instead  use power electronics.</p>
+</dd>
+<dt class="label" id="f2"><span class="brackets"><a class="fn-backref" href="#id1">2</a></span></dt>
+<dd><p>Arduino Cookbook by Michael Margolis Chapter 2.</p>
+</dd>
+</dl>
 </section>
 </section>
 
@@ -306,7 +311,7 @@
       <!-- footer -->
       <footer role="contentinfo">
           &copy; Copyright 2022, Gizem Ateş &amp; Eirik Haustveit.
-        Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 5.3.0.
+        Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 4.5.0.
       </footer>
       <!-- /footer -->
 

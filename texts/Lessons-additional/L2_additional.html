@@ -6,7 +6,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <title>Additional material for lesson 2 &mdash; ELE102 Microcontroller course v1.1.0 documentation</title>
     <meta name="description" content="">
@@ -45,9 +45,7 @@
     <script type="text/javascript" src="../../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../../_static/js/jquery.min.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
-    <script type="text/javascript" src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../_static/sphinx_highlight.js"></script>
     <script type="text/javascript" src="../../_static/js/bootstrap3.min.js"></script>
 <script type="text/javascript" src="../../_static/js/jquery.cookie.min.js"></script>
 <script type="text/javascript" src="../../_static/js/basicstrap.js"></script>
@@ -133,6 +131,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../Lessons/L3_digital_io_and_timing.html">Lesson 3: Use of digital I/O and timing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Lessons/L4_dac_pwm.html">Lesson 4: Analog output (PWM)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Lessons/L5_adc.html">Lesson 5: Analog to digital conversion (ADC)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons/L6_serial_io.html">Lesson 6: Serial I/O</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Additional material:</span></p>
 <ul class="current">
@@ -144,6 +143,14 @@
 <li class="toctree-l1"><a class="reference internal" href="L3_additional.html">Additional material lesson 3</a></li>
 <li class="toctree-l1"><a class="reference internal" href="L4_additional.html">Additional material lesson 4</a></li>
 <li class="toctree-l1"><a class="reference internal" href="L5_additional.html">Additional material lesson 5</a></li>
+<li class="toctree-l1"><a class="reference internal" href="L6_additional.html">Additional material lesson 6</a></li>
+<li class="toctree-l1"><a class="reference internal" href="L7_additional.html">Additional material lesson 7</a></li>
+<li class="toctree-l1"><a class="reference internal" href="L8_additional.html">Additional material lesson 8</a></li>
+<li class="toctree-l1"><a class="reference internal" href="L9_additional.html">Additional material lesson 9</a></li>
+<li class="toctree-l1"><a class="reference internal" href="L10_additional.html">Additional material lesson 10</a></li>
+<li class="toctree-l1"><a class="reference internal" href="L11_additional.html">Additional material lesson 11</a></li>
+<li class="toctree-l1"><a class="reference internal" href="L12_additional.html">Additional material lesson 12</a></li>
+<li class="toctree-l1"><a class="reference internal" href="L13_additional.html">Additional material lesson 13</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Projects:</span></p>
 <ul>
@@ -217,9 +224,9 @@
                 <div class="body">
                   
   <section id="additional-material-for-lesson-2">
-<h1>Additional material for lesson 2<a class="headerlink" href="#additional-material-for-lesson-2" title="Permalink to this heading">¶</a></h1>
+<h1>Additional material for lesson 2<a class="headerlink" href="#additional-material-for-lesson-2" title="Permalink to this headline">¶</a></h1>
 <section id="exercise-d-flip-flop-and-state-machines-voluntary">
-<h2>Exercise: D-flip flop, and state machines (voluntary)<a class="headerlink" href="#exercise-d-flip-flop-and-state-machines-voluntary" title="Permalink to this heading">¶</a></h2>
+<h2>Exercise: D-flip flop, and state machines (voluntary)<a class="headerlink" href="#exercise-d-flip-flop-and-state-machines-voluntary" title="Permalink to this headline">¶</a></h2>
 <p>The ideal way to implement state machines in software differs from the hardware approach. The concepts covered so far however, limits our possibilities, and in this exercise you will implement a state machine using the same techniques as you know from digital electronics. In digital electronics we use flip-flops to store data, but in our microcontroller we can easily store data by declaring a variable for it. Thus the implementation of flip-flops in this way is rather silly, but still a useful learning experience.</p>
 <ol class="arabic simple">
 <li><p>Implement a D latch</p></li>
@@ -244,85 +251,85 @@
 <span class="cm"> * </span>
 <span class="cm"> * @copyright Copyright (c) 2022</span>
 <span class="cm"> * </span>
-<span class="cm"> */</span><span class="w"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Arduino.h&gt;</span><span class="cp"></span>
+<span class="cm"> */</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Arduino.h&gt;</span>
 
-<span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">LED1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span><span class="w"></span>
-<span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">LED2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span><span class="w"></span>
-<span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">LED3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span><span class="w"></span>
-<span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">LED4</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">6</span><span class="p">;</span><span class="w"></span>
+<span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">LED1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span>
+<span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">LED2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span>
+<span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">LED3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span>
+<span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">LED4</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">6</span><span class="p">;</span>
 
-<span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">CLK_IN</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">8</span><span class="p">;</span><span class="w"></span>
-<span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">USR_SIG</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">9</span><span class="p">;</span><span class="w"></span>
+<span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">CLK_IN</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">8</span><span class="p">;</span>
+<span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">USR_SIG</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">9</span><span class="p">;</span>
 
-<span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">_d_latch_ctx</span><span class="w"></span>
-<span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">q</span><span class="p">;</span><span class="w"></span>
-<span class="w">  </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">q_inv</span><span class="p">;</span><span class="w"></span>
-<span class="p">}</span><span class="w"> </span><span class="n">d_latch_t</span><span class="p">;</span><span class="w"></span>
-
-
-<span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">_d_flip_flop_ctx</span><span class="w"></span>
-<span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">q</span><span class="p">;</span><span class="w"></span>
-<span class="w">  </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">q_inv</span><span class="p">;</span><span class="w"></span>
-<span class="w">  </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">q_master</span><span class="p">;</span><span class="w"></span>
-<span class="w">  </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">q_inv_master</span><span class="p">;</span><span class="w"></span>
-<span class="p">}</span><span class="w"> </span><span class="n">d_flip_flop_t</span><span class="p">;</span><span class="w"></span>
+<span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">_d_latch_ctx</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">q</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">q_inv</span><span class="p">;</span>
+<span class="p">}</span><span class="w"> </span><span class="n">d_latch_t</span><span class="p">;</span>
 
 
-<span class="kt">uint8_t</span><span class="w"> </span><span class="nf">exclusive_or</span><span class="p">(</span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">b</span><span class="p">);</span><span class="w"></span>
-<span class="kt">void</span><span class="w"> </span><span class="nf">d_flip_flop</span><span class="p">(</span><span class="n">d_flip_flop_t</span><span class="w"> </span><span class="o">*</span><span class="n">ctx</span><span class="p">,</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">d</span><span class="p">,</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">clk</span><span class="p">);</span><span class="w"></span>
-<span class="kt">void</span><span class="w"> </span><span class="nf">d_latch</span><span class="p">(</span><span class="n">d_latch_t</span><span class="w"> </span><span class="o">*</span><span class="n">ctx</span><span class="p">,</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">d</span><span class="p">,</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">en</span><span class="p">);</span><span class="w"></span>
+<span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">_d_flip_flop_ctx</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">q</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">q_inv</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">q_master</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">q_inv_master</span><span class="p">;</span>
+<span class="p">}</span><span class="w"> </span><span class="n">d_flip_flop_t</span><span class="p">;</span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">d_latch_test</span><span class="p">();</span><span class="w"></span>
-<span class="kt">void</span><span class="w"> </span><span class="nf">d_flip_flop_test</span><span class="p">();</span><span class="w"></span>
-<span class="kt">void</span><span class="w"> </span><span class="nf">d_flip_flop_state_machine</span><span class="p">();</span><span class="w"></span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="n">pinMode</span><span class="p">(</span><span class="n">LED1</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="n">pinMode</span><span class="p">(</span><span class="n">LED2</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="n">pinMode</span><span class="p">(</span><span class="n">LED3</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="n">pinMode</span><span class="p">(</span><span class="n">LED4</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT</span><span class="p">);</span><span class="w"></span>
+<span class="kt">uint8_t</span><span class="w"> </span><span class="nf">exclusive_or</span><span class="p">(</span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">b</span><span class="p">);</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">d_flip_flop</span><span class="p">(</span><span class="n">d_flip_flop_t</span><span class="w"> </span><span class="o">*</span><span class="n">ctx</span><span class="p">,</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">d</span><span class="p">,</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">clk</span><span class="p">);</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">d_latch</span><span class="p">(</span><span class="n">d_latch_t</span><span class="w"> </span><span class="o">*</span><span class="n">ctx</span><span class="p">,</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">d</span><span class="p">,</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">en</span><span class="p">);</span>
 
-<span class="w">  </span><span class="n">pinMode</span><span class="p">(</span><span class="n">CLK_IN</span><span class="p">,</span><span class="w"> </span><span class="n">INPUT</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="n">pinMode</span><span class="p">(</span><span class="n">USR_SIG</span><span class="p">,</span><span class="w"> </span><span class="n">INPUT</span><span class="p">);</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">d_latch_test</span><span class="p">();</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">d_flip_flop_test</span><span class="p">();</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">d_flip_flop_state_machine</span><span class="p">();</span>
 
-<span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">pinMode</span><span class="p">(</span><span class="n">LED1</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT</span><span class="p">);</span>
+<span class="w">  </span><span class="n">pinMode</span><span class="p">(</span><span class="n">LED2</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT</span><span class="p">);</span>
+<span class="w">  </span><span class="n">pinMode</span><span class="p">(</span><span class="n">LED3</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT</span><span class="p">);</span>
+<span class="w">  </span><span class="n">pinMode</span><span class="p">(</span><span class="n">LED4</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT</span><span class="p">);</span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">pinMode</span><span class="p">(</span><span class="n">CLK_IN</span><span class="p">,</span><span class="w"> </span><span class="n">INPUT</span><span class="p">);</span>
+<span class="w">  </span><span class="n">pinMode</span><span class="p">(</span><span class="n">USR_SIG</span><span class="p">,</span><span class="w"> </span><span class="n">INPUT</span><span class="p">);</span>
+
+<span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 
 
 <span class="w">  </span><span class="c1">//d_latch_test();</span>
 <span class="w">  </span><span class="c1">//d_flip_flop_test();</span>
 
-<span class="w">  </span><span class="n">d_flip_flop_state_machine</span><span class="p">();</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="n">d_flip_flop_state_machine</span><span class="p">();</span>
+<span class="p">}</span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">d_flip_flop_state_machine</span><span class="p">(){</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">d_flip_flop_state_machine</span><span class="p">(){</span>
 
-<span class="w">  </span><span class="n">d_flip_flop_t</span><span class="w"> </span><span class="n">dff1</span><span class="p">;</span><span class="w"></span>
-<span class="w">  </span><span class="n">d_flip_flop_t</span><span class="w"> </span><span class="n">dff2</span><span class="p">;</span><span class="w"></span>
-<span class="w">  </span><span class="n">d_flip_flop_t</span><span class="w"> </span><span class="n">dff3</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">d_flip_flop_t</span><span class="w"> </span><span class="n">dff1</span><span class="p">;</span>
+<span class="w">  </span><span class="n">d_flip_flop_t</span><span class="w"> </span><span class="n">dff2</span><span class="p">;</span>
+<span class="w">  </span><span class="n">d_flip_flop_t</span><span class="w"> </span><span class="n">dff3</span><span class="p">;</span>
 <span class="w">  </span>
-<span class="w">  </span><span class="k">for</span><span class="p">(;;){</span><span class="w"></span>
+<span class="w">  </span><span class="k">for</span><span class="p">(;;){</span>
 
 <span class="w">    </span><span class="c1">// Perform a very crude debouncing of the switch</span>
-<span class="w">    </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">clk</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">!</span><span class="n">digitalRead</span><span class="p">(</span><span class="n">CLK_IN</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">delay</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">clk2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">!</span><span class="n">digitalRead</span><span class="p">(</span><span class="n">CLK_IN</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">clk</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">clk</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">clk2</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">clk</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">!</span><span class="n">digitalRead</span><span class="p">(</span><span class="n">CLK_IN</span><span class="p">);</span>
+<span class="w">    </span><span class="n">delay</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">clk2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">!</span><span class="n">digitalRead</span><span class="p">(</span><span class="n">CLK_IN</span><span class="p">);</span>
+<span class="w">    </span><span class="n">clk</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">clk</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">clk2</span><span class="p">;</span>
 
-<span class="w">    </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">usr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">!</span><span class="n">digitalRead</span><span class="p">(</span><span class="n">USR_SIG</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">usr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">!</span><span class="n">digitalRead</span><span class="p">(</span><span class="n">USR_SIG</span><span class="p">);</span>
 
-<span class="w">    </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">d1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dff1</span><span class="p">.</span><span class="n">q_inv</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">d2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">exclusive_or</span><span class="p">(</span><span class="n">dff1</span><span class="p">.</span><span class="n">q</span><span class="p">,</span><span class="w"> </span><span class="n">dff2</span><span class="p">.</span><span class="n">q</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">d3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">exclusive_or</span><span class="p">((</span><span class="n">dff1</span><span class="p">.</span><span class="n">q</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">dff2</span><span class="p">.</span><span class="n">q</span><span class="p">),</span><span class="w"> </span><span class="n">dff3</span><span class="p">.</span><span class="n">q</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">d1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dff1</span><span class="p">.</span><span class="n">q_inv</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">d2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">exclusive_or</span><span class="p">(</span><span class="n">dff1</span><span class="p">.</span><span class="n">q</span><span class="p">,</span><span class="w"> </span><span class="n">dff2</span><span class="p">.</span><span class="n">q</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">d3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">exclusive_or</span><span class="p">((</span><span class="n">dff1</span><span class="p">.</span><span class="n">q</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">dff2</span><span class="p">.</span><span class="n">q</span><span class="p">),</span><span class="w"> </span><span class="n">dff3</span><span class="p">.</span><span class="n">q</span><span class="p">);</span>
 
-<span class="w">    </span><span class="n">d_flip_flop</span><span class="p">(</span><span class="o">&amp;</span><span class="n">dff1</span><span class="p">,</span><span class="w"> </span><span class="n">d1</span><span class="p">,</span><span class="w"> </span><span class="n">clk</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">d_flip_flop</span><span class="p">(</span><span class="o">&amp;</span><span class="n">dff2</span><span class="p">,</span><span class="w"> </span><span class="n">d2</span><span class="p">,</span><span class="w"> </span><span class="n">clk</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">d_flip_flop</span><span class="p">(</span><span class="o">&amp;</span><span class="n">dff3</span><span class="p">,</span><span class="w"> </span><span class="n">d3</span><span class="p">,</span><span class="w"> </span><span class="n">clk</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">d_flip_flop</span><span class="p">(</span><span class="o">&amp;</span><span class="n">dff1</span><span class="p">,</span><span class="w"> </span><span class="n">d1</span><span class="p">,</span><span class="w"> </span><span class="n">clk</span><span class="p">);</span>
+<span class="w">    </span><span class="n">d_flip_flop</span><span class="p">(</span><span class="o">&amp;</span><span class="n">dff2</span><span class="p">,</span><span class="w"> </span><span class="n">d2</span><span class="p">,</span><span class="w"> </span><span class="n">clk</span><span class="p">);</span>
+<span class="w">    </span><span class="n">d_flip_flop</span><span class="p">(</span><span class="o">&amp;</span><span class="n">dff3</span><span class="p">,</span><span class="w"> </span><span class="n">d3</span><span class="p">,</span><span class="w"> </span><span class="n">clk</span><span class="p">);</span>
 
 <span class="w">    </span><span class="c1">// State decoding</span>
 <span class="w">    </span><span class="c1">//digitalWrite(LED1, dff1.q &amp;&amp; !dff2.q);</span>
@@ -331,58 +338,58 @@
 <span class="w">    </span><span class="c1">//digitalWrite(LED4, dff1.q &amp;&amp; !dff2.q);</span>
 
 
-<span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;Q: &quot;</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="n">dff1</span><span class="p">.</span><span class="n">q</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="n">dff2</span><span class="p">.</span><span class="n">q</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="n">dff3</span><span class="p">.</span><span class="n">q</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="sc">&#39;\r&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;Q: &quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="n">dff1</span><span class="p">.</span><span class="n">q</span><span class="p">);</span>
+<span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="n">dff2</span><span class="p">.</span><span class="n">q</span><span class="p">);</span>
+<span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="n">dff3</span><span class="p">.</span><span class="n">q</span><span class="p">);</span>
+<span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="sc">&#39;\r&#39;</span><span class="p">);</span>
 
-<span class="w">    </span><span class="n">delay</span><span class="p">(</span><span class="mi">50</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="n">delay</span><span class="p">(</span><span class="mi">50</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">d_flip_flop_test</span><span class="p">(){</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">d_flip_flop_test</span><span class="p">(){</span>
 
-<span class="w">  </span><span class="n">d_flip_flop_t</span><span class="w"> </span><span class="n">dff1</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">d_flip_flop_t</span><span class="w"> </span><span class="n">dff1</span><span class="p">;</span>
 <span class="w">  </span>
-<span class="w">  </span><span class="k">for</span><span class="p">(;;){</span><span class="w"></span>
+<span class="w">  </span><span class="k">for</span><span class="p">(;;){</span>
 
-<span class="w">    </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">clk</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">!</span><span class="n">digitalRead</span><span class="p">(</span><span class="n">CLK_IN</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">usr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">!</span><span class="n">digitalRead</span><span class="p">(</span><span class="n">USR_SIG</span><span class="p">);</span><span class="w"></span>
-
-
-<span class="w">    </span><span class="n">d_flip_flop</span><span class="p">(</span><span class="o">&amp;</span><span class="n">dff1</span><span class="p">,</span><span class="w"> </span><span class="n">usr</span><span class="p">,</span><span class="w"> </span><span class="n">clk</span><span class="p">);</span><span class="w"></span>
-
-<span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;Q1: &quot;</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">dff1</span><span class="p">.</span><span class="n">q</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">delay</span><span class="p">(</span><span class="mi">500</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
-
-<span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">clk</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">!</span><span class="n">digitalRead</span><span class="p">(</span><span class="n">CLK_IN</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">usr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">!</span><span class="n">digitalRead</span><span class="p">(</span><span class="n">USR_SIG</span><span class="p">);</span>
 
 
-<span class="kt">uint8_t</span><span class="w"> </span><span class="nf">exclusive_or</span><span class="p">(</span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">b</span><span class="p">){</span><span class="w"></span>
-<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">a</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="o">!</span><span class="n">b</span><span class="p">);</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="n">d_flip_flop</span><span class="p">(</span><span class="o">&amp;</span><span class="n">dff1</span><span class="p">,</span><span class="w"> </span><span class="n">usr</span><span class="p">,</span><span class="w"> </span><span class="n">clk</span><span class="p">);</span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">d_latch_test</span><span class="p">(){</span><span class="w"></span>
+<span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;Q1: &quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">dff1</span><span class="p">.</span><span class="n">q</span><span class="p">);</span>
+<span class="w">    </span><span class="n">delay</span><span class="p">(</span><span class="mi">500</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
 
-<span class="w">  </span><span class="n">d_latch_t</span><span class="w"> </span><span class="n">latch1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">0</span><span class="p">};</span><span class="w"></span>
-
-<span class="w">  </span><span class="k">for</span><span class="p">(;;){</span><span class="w"></span>
-
-<span class="w">    </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">clk</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">!</span><span class="n">digitalRead</span><span class="p">(</span><span class="n">CLK_IN</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">usr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">!</span><span class="n">digitalRead</span><span class="p">(</span><span class="n">USR_SIG</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span>
 
 
-<span class="w">    </span><span class="n">d_latch</span><span class="p">(</span><span class="o">&amp;</span><span class="n">latch1</span><span class="p">,</span><span class="w"> </span><span class="n">usr</span><span class="p">,</span><span class="w"> </span><span class="n">clk</span><span class="p">);</span><span class="w"></span>
+<span class="kt">uint8_t</span><span class="w"> </span><span class="nf">exclusive_or</span><span class="p">(</span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">b</span><span class="p">){</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">a</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="o">!</span><span class="n">b</span><span class="p">);</span>
+<span class="p">}</span>
 
-<span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;Q1: &quot;</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">latch1</span><span class="p">.</span><span class="n">q</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">delay</span><span class="p">(</span><span class="mi">500</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">d_latch_test</span><span class="p">(){</span>
 
-<span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="n">d_latch_t</span><span class="w"> </span><span class="n">latch1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">0</span><span class="p">};</span>
+
+<span class="w">  </span><span class="k">for</span><span class="p">(;;){</span>
+
+<span class="w">    </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">clk</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">!</span><span class="n">digitalRead</span><span class="p">(</span><span class="n">CLK_IN</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">usr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">!</span><span class="n">digitalRead</span><span class="p">(</span><span class="n">USR_SIG</span><span class="p">);</span>
+
+
+<span class="w">    </span><span class="n">d_latch</span><span class="p">(</span><span class="o">&amp;</span><span class="n">latch1</span><span class="p">,</span><span class="w"> </span><span class="n">usr</span><span class="p">,</span><span class="w"> </span><span class="n">clk</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;Q1: &quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">latch1</span><span class="p">.</span><span class="n">q</span><span class="p">);</span>
+<span class="w">    </span><span class="n">delay</span><span class="p">(</span><span class="mi">500</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="p">}</span>
 
 <span class="cm">/**</span>
 <span class="cm"> * @brief Implements a D flip flop with negative edge triggering </span>
@@ -393,32 +400,32 @@
 <span class="cm"> * @param ctx </span>
 <span class="cm"> * @param d </span>
 <span class="cm"> * @param clk </span>
-<span class="cm"> */</span><span class="w"></span>
-<span class="kt">void</span><span class="w"> </span><span class="nf">d_flip_flop</span><span class="p">(</span><span class="n">d_flip_flop_t</span><span class="w"> </span><span class="o">*</span><span class="n">ctx</span><span class="p">,</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">d</span><span class="p">,</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">clk</span><span class="p">){</span><span class="w"></span>
+<span class="cm"> */</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">d_flip_flop</span><span class="p">(</span><span class="n">d_flip_flop_t</span><span class="w"> </span><span class="o">*</span><span class="n">ctx</span><span class="p">,</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">d</span><span class="p">,</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">clk</span><span class="p">){</span>
 
-<span class="w">  </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">s_master</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">d</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">clk</span><span class="p">;</span><span class="w"></span>
-<span class="w">  </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">r_master</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">!</span><span class="n">d</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">clk</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">s_master</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">d</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">clk</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">r_master</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">!</span><span class="n">d</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">clk</span><span class="p">;</span>
 
-<span class="w">  </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">s_slave</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ctx</span><span class="o">-&gt;</span><span class="n">q_master</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="o">!</span><span class="n">clk</span><span class="p">;</span><span class="w"></span>
-<span class="w">  </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">r_slave</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ctx</span><span class="o">-&gt;</span><span class="n">q_inv_master</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="o">!</span><span class="n">clk</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">s_slave</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ctx</span><span class="o">-&gt;</span><span class="n">q_master</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="o">!</span><span class="n">clk</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">r_slave</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ctx</span><span class="o">-&gt;</span><span class="n">q_inv_master</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="o">!</span><span class="n">clk</span><span class="p">;</span>
 
-<span class="w">  </span><span class="n">ctx</span><span class="o">-&gt;</span><span class="n">q_master</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">!</span><span class="p">(</span><span class="n">r_master</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">ctx</span><span class="o">-&gt;</span><span class="n">q_inv_master</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="n">ctx</span><span class="o">-&gt;</span><span class="n">q_inv_master</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">!</span><span class="p">(</span><span class="n">s_master</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">ctx</span><span class="o">-&gt;</span><span class="n">q_master</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">ctx</span><span class="o">-&gt;</span><span class="n">q_master</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">!</span><span class="p">(</span><span class="n">r_master</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">ctx</span><span class="o">-&gt;</span><span class="n">q_inv_master</span><span class="p">);</span>
+<span class="w">  </span><span class="n">ctx</span><span class="o">-&gt;</span><span class="n">q_inv_master</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">!</span><span class="p">(</span><span class="n">s_master</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">ctx</span><span class="o">-&gt;</span><span class="n">q_master</span><span class="p">);</span>
 
-<span class="w">  </span><span class="n">ctx</span><span class="o">-&gt;</span><span class="n">q</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">!</span><span class="p">(</span><span class="n">r_slave</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">ctx</span><span class="o">-&gt;</span><span class="n">q_inv</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="n">ctx</span><span class="o">-&gt;</span><span class="n">q_inv</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">!</span><span class="p">(</span><span class="n">s_slave</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">ctx</span><span class="o">-&gt;</span><span class="n">q</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">ctx</span><span class="o">-&gt;</span><span class="n">q</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">!</span><span class="p">(</span><span class="n">r_slave</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">ctx</span><span class="o">-&gt;</span><span class="n">q_inv</span><span class="p">);</span>
+<span class="w">  </span><span class="n">ctx</span><span class="o">-&gt;</span><span class="n">q_inv</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">!</span><span class="p">(</span><span class="n">s_slave</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">ctx</span><span class="o">-&gt;</span><span class="n">q</span><span class="p">);</span>
 
-<span class="p">}</span><span class="w"></span>
+<span class="p">}</span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">d_latch</span><span class="p">(</span><span class="n">d_latch_t</span><span class="w"> </span><span class="o">*</span><span class="n">ctx</span><span class="p">,</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">d</span><span class="p">,</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">en</span><span class="p">){</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">d_latch</span><span class="p">(</span><span class="n">d_latch_t</span><span class="w"> </span><span class="o">*</span><span class="n">ctx</span><span class="p">,</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">d</span><span class="p">,</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">en</span><span class="p">){</span>
 
-<span class="w">  </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">d</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">en</span><span class="p">;</span><span class="w"></span>
-<span class="w">  </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">!</span><span class="n">d</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">en</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">d</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">en</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">!</span><span class="n">d</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">en</span><span class="p">;</span>
 
-<span class="w">  </span><span class="n">ctx</span><span class="o">-&gt;</span><span class="n">q</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">!</span><span class="p">(</span><span class="n">r</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">ctx</span><span class="o">-&gt;</span><span class="n">q_inv</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="n">ctx</span><span class="o">-&gt;</span><span class="n">q_inv</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">!</span><span class="p">(</span><span class="n">s</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">ctx</span><span class="o">-&gt;</span><span class="n">q</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">ctx</span><span class="o">-&gt;</span><span class="n">q</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">!</span><span class="p">(</span><span class="n">r</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">ctx</span><span class="o">-&gt;</span><span class="n">q_inv</span><span class="p">);</span>
+<span class="w">  </span><span class="n">ctx</span><span class="o">-&gt;</span><span class="n">q_inv</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">!</span><span class="p">(</span><span class="n">s</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">ctx</span><span class="o">-&gt;</span><span class="n">q</span><span class="p">);</span>
 
-<span class="p">}</span><span class="w"></span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <div class="admonition-todo admonition" id="id2">
@@ -460,7 +467,7 @@
       <!-- footer -->
       <footer role="contentinfo">
           &copy; Copyright 2022, Gizem Ateş &amp; Eirik Haustveit.
-        Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 5.3.0.
+        Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 4.5.0.
       </footer>
       <!-- /footer -->
 

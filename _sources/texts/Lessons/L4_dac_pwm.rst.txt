@@ -361,99 +361,103 @@ The datasheet for the tilt sensor is available at: https://www.arduino.cc/docume
 #. Write a function which checks the state of the orientation switch. The function should return 1 (true) if the board is tilted.
 #. Complete the application with the required code to print a message to the serial port when the board is tilted.
 
-Function for debounce of multiple push buttons
------------------------------------------------
-
-The previously discussed method for software switch debounce is a good candidate for placement in a function. Switch debounce is almost always needed when using mechanical push buttons on digital inputs, and it makes sense to have the code available for easy reuse. Additionally if designed properly a single function can be used for debounce of multiple digital inputs.
-
-The following source code listing illustrates how to perform multiple switch debounce in a slightly more elegant way than simply duplicating the single switch debounce code for each new button. Additionally the example illustrates the use of functions for checking for button events.
-
-.. note:: It is possible to improve this example by using some advanced features of the C language, i.e. it does not need all the repetitive code in all the btnx_press_event() functions. This will have to wait for a future lecture however.
-
-.. note:: Switch debouncing will be needed in almost every application which utilize push buttons. Hence you should settle upon some code which is easy to reuse for all you debouncing needs, and simply copy it in to the projects which need it.
-
-.. literalinclude:: ../../../projects/platformio/debounce/multi-switch-debounce/src/main.cpp
-    :language: c
-    :linenos:
 
 
+.. 
+    removed for this lecture
+    Function for debounce of multiple push buttons
+    -----------------------------------------------
 
-The example is built around the following function, which probably needs some explaining:
+    The previously discussed method for software switch debounce is a good candidate for placement in a function. Switch debounce is almost always needed when using mechanical push buttons on digital inputs, and it makes sense to have the code available for easy reuse. Additionally if designed properly a single function can be used for debounce of multiple digital inputs.
 
-.. code-block:: c
+    The following source code listing illustrates how to perform multiple switch debounce in a slightly more elegant way than simply duplicating the single switch debounce code for each new button. Additionally the example illustrates the use of functions for checking for button events.
 
-    uint8_t switch_debounce(uint8_t current_state){
+    .. note:: It is possible to improve this example by using some advanced features of the C language, i.e. it does not need all the repetitive code in all the btnx_press_event() functions. This will have to wait for a future lecture however.
 
-        static uint8_t asserted = 0x00;
-        static uint8_t prev_state = 0x00;
+    .. note:: Switch debouncing will be needed in almost every application which utilize push buttons. Hence you should settle upon some code which is easy to reuse for all you debouncing needs, and simply copy it in to the projects which need it.
+
+    .. literalinclude:: ../../../projects/platformio/debounce/multi-switch-debounce/src/main.cpp
+        :language: c
+        :linenos:
+
+
+
+    The example is built around the following function, which probably needs some explaining:
+
+    .. code-block:: c
+
+        uint8_t switch_debounce(uint8_t current_state){
+
+            static uint8_t asserted = 0x00;
+            static uint8_t prev_state = 0x00;
+
+            btn_asserted_prev = asserted;
+
+            // Set the bits for the pressed buttons
+            asserted |= (prev_state & current_state);
+
+            // Clear the bits for the released buttons
+            asserted &= (prev_state | current_state);
+
+            // Update the history
+            prev_state = current_state;
+
+            // Exclusive or between previous and current assertion
+            // Only the bits which are different will stay high
+            btn_asserted_prev ^= asserted;
+
+            return asserted;
+        }
+
+    The function is called periodically by:
+
+    .. code-block:: c
+
+        btn_asserted = switch_debounce(btn1_state | (btn2_state << 1) | (btn3_state << 2));
+
+    The function takes one :code:`uint8_t` as parameter. Each bit in this byte corresponds to a digital input which we want to debounce. In the function call the parameter is formed of the three bits which indicate the state of the three push buttons. We are using the bit left shift operator :code:`<<` to shift the bits of the button 2, and button 3 state, one, and two places respectively. The bitwise or operator :code:`|` is then used to merge them in to a single byte.
+
+    After declaring some variables, the first line of interest is the following:
+
+    .. code-block:: c
 
         btn_asserted_prev = asserted;
 
-        // Set the bits for the pressed buttons
+    The purpose it to store the previously asserted button states. I.e. the :code:`asserted` variable holds the state (which is considered stable) of up to 8 push buttons, and before we update it, we first store the previous value. 
+
+    The next statement is the following:
+
+    .. code-block:: c
+
         asserted |= (prev_state & current_state);
 
-        // Clear the bits for the released buttons
-        asserted &= (prev_state | current_state);
+    The purpose is to compare the previous state of the push buttons to the current state. If the states are equal, and high, we set the corresponding bits in the :code:`asserted` variable.
 
-        // Update the history
+    After setting the bits of the inputs that are high (and stable), we should also clear the inputs which are low (and stable). This is performed by the following statement:
+
+    .. code-block:: c
+
+            asserted &= (prev_state | current_state);
+
+    We use the bitwise or operator :code:`|` to make sure that only the bits which are zero in both the current, and previous state will be asserted as low.
+
+    Further down we update the history in preparation for the next time the function is called:
+
+    .. code-block:: c
+
         prev_state = current_state;
 
-        // Exclusive or between previous and current assertion
-        // Only the bits which are different will stay high
+    Finally we use the bitwise exclusive or operation :code:`^` between the currently asserted button states, and the previously asserted button states. This has the effect that only the bits that are different (the buttons which have changed state) remains high in :code:`btn_asserted_prev`. By checking the states of these bits, we can then determine if a button has changed state or not.
+
+    .. code-block:: c
+
         btn_asserted_prev ^= asserted;
 
-        return asserted;
-    }
+    This variable is then used to detect the state change of a given input (0x04 = 0b100), input 3 in this example:
 
-The function is called periodically by:
+    .. code-block:: c
 
-.. code-block:: c
-
-    btn_asserted = switch_debounce(btn1_state | (btn2_state << 1) | (btn3_state << 2));
-
-The function takes one :code:`uint8_t` as parameter. Each bit in this byte corresponds to a digital input which we want to debounce. In the function call the parameter is formed of the three bits which indicate the state of the three push buttons. We are using the bit left shift operator :code:`<<` to shift the bits of the button 2, and button 3 state, one, and two places respectively. The bitwise or operator :code:`|` is then used to merge them in to a single byte.
-
-After declaring some variables, the first line of interest is the following:
-
-.. code-block:: c
-
-    btn_asserted_prev = asserted;
-
-The purpose it to store the previously asserted button states. I.e. the :code:`asserted` variable holds the state (which is considered stable) of up to 8 push buttons, and before we update it, we first store the previous value. 
-
-The next statement is the following:
-
-.. code-block:: c
-
-    asserted |= (prev_state & current_state);
-
-The purpose is to compare the previous state of the push buttons to the current state. If the states are equal, and high, we set the corresponding bits in the :code:`asserted` variable.
-
-After setting the bits of the inputs that are high (and stable), we should also clear the inputs which are low (and stable). This is performed by the following statement:
-
-.. code-block:: c
-
-        asserted &= (prev_state | current_state);
-
-We use the bitwise or operator :code:`|` to make sure that only the bits which are zero in both the current, and previous state will be asserted as low.
-
-Further down we update the history in preparation for the next time the function is called:
-
-.. code-block:: c
-
-    prev_state = current_state;
-
-Finally we use the bitwise exclusive or operation :code:`^` between the currently asserted button states, and the previously asserted button states. This has the effect that only the bits that are different (the buttons which have changed state) remains high in :code:`btn_asserted_prev`. By checking the states of these bits, we can then determine if a button has changed state or not.
-
-.. code-block:: c
-
-    btn_asserted_prev ^= asserted;
-
-This variable is then used to detect the state change of a given input (0x04 = 0b100), input 3 in this example:
-
-.. code-block:: c
-
-    if(btn_asserted_prev & 0x04){
+        if(btn_asserted_prev & 0x04){
 
 
 Loops

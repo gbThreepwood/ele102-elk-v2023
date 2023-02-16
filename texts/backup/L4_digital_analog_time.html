@@ -6,7 +6,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <title>Digital - Analog - Time &mdash; ELE102 Microcontroller course v1.1.0 documentation</title>
     <meta name="description" content="">
@@ -45,9 +45,7 @@
     <script type="text/javascript" src="../../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../../_static/js/jquery.min.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
-    <script type="text/javascript" src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../_static/sphinx_highlight.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script type="text/javascript" src="../../_static/js/bootstrap3.min.js"></script>
 <script type="text/javascript" src="../../_static/js/jquery.cookie.min.js"></script>
@@ -141,6 +139,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../Lessons/L3_digital_io_and_timing.html">Lesson 3: Use of digital I/O and timing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Lessons/L4_dac_pwm.html">Lesson 4: Analog output (PWM)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Lessons/L5_adc.html">Lesson 5: Analog to digital conversion (ADC)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons/L6_serial_io.html">Lesson 6: Serial I/O</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Additional material:</span></p>
 <ul>
@@ -149,6 +148,14 @@
 <li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L3_additional.html">Additional material lesson 3</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L4_additional.html">Additional material lesson 4</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L5_additional.html">Additional material lesson 5</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L6_additional.html">Additional material lesson 6</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L7_additional.html">Additional material lesson 7</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L8_additional.html">Additional material lesson 8</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L9_additional.html">Additional material lesson 9</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L10_additional.html">Additional material lesson 10</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L11_additional.html">Additional material lesson 11</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L12_additional.html">Additional material lesson 12</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L13_additional.html">Additional material lesson 13</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Projects:</span></p>
 <ul>
@@ -212,10 +219,10 @@
                 <div class="body">
                   
   <span class="target" id="l3-arduino-intro"></span><section id="digital-analog-time">
-<h1>Digital - Analog - Time<a class="headerlink" href="#digital-analog-time" title="Permalink to this heading">¶</a></h1>
+<h1>Digital - Analog - Time<a class="headerlink" href="#digital-analog-time" title="Permalink to this headline">¶</a></h1>
 <p>In this lesson we will have a more detailed look at how to deal with digital inputs, which was introduced in the previous lesson. Further on we will see how to read analog values, and how to deal with timing in the microcontroller.</p>
 <section id="edge-detection">
-<h2>Edge detection<a class="headerlink" href="#edge-detection" title="Permalink to this heading">¶</a></h2>
+<h2>Edge detection<a class="headerlink" href="#edge-detection" title="Permalink to this headline">¶</a></h2>
 <p>Let’s think about what happens when you press a button. In this example (and the last) we have a digital pin connected to 5 volts through a tilt sensor. When the system is vertical, two pins are in contact. The 5 volts is applied to the digital pin. However, when you tilt the system, the connection is broken. Therefore, the system is not in <em>OFF state</em> but in an <em>unknown state</em>. Consider the figure below:</p>
 <figure class="align-center">
 <img alt="../../_images/switchFailure.png" src="../../_images/switchFailure.png" />
@@ -227,7 +234,7 @@
 </figcaption>
 </figure>
 <section id="debounce-of-mechanical-switch">
-<h3>Debounce of mechanical switch<a class="headerlink" href="#debounce-of-mechanical-switch" title="Permalink to this heading">¶</a></h3>
+<h3>Debounce of mechanical switch<a class="headerlink" href="#debounce-of-mechanical-switch" title="Permalink to this headline">¶</a></h3>
 <div class="admonition-todo admonition" id="id1">
 <p class="admonition-title">Todo</p>
 <p>Add scope picture of the bouncing voltage on a mechanical switch</p>
@@ -239,7 +246,7 @@
 </section>
 </section>
 <section id="rough-timing-in-arduino">
-<h2>Rough Timing in Arduino<a class="headerlink" href="#rough-timing-in-arduino" title="Permalink to this heading">¶</a></h2>
+<h2>Rough Timing in Arduino<a class="headerlink" href="#rough-timing-in-arduino" title="Permalink to this headline">¶</a></h2>
 <p>The Arduino functions associated with timing that we will be using in this tutorial are:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://www.arduino.cc/reference/en/language/functions/time/delay/">delay()</a></p></li>
@@ -249,7 +256,7 @@
 </ul>
 <p>In embedded systems it is often required to write code that has some delay between executing different parts of the code. For very simple applications it might be sufficient to use code that simply blocks until a given amount of time has passed. The <cite>delay()</cite> function is an example of such a function, it will block for the given number of milliseconds, before execution continues with the next line of instructions. For more sophisticated applications you might need the microcontroller to delay something, while still executing something else as fast as possible. Or you might have two operations which requires different delays. E.g. consider the simple example of blinking two LEDs at different rates.</p>
 <section id="operation">
-<h3>Operation<a class="headerlink" href="#operation" title="Permalink to this heading">¶</a></h3>
+<h3>Operation<a class="headerlink" href="#operation" title="Permalink to this headline">¶</a></h3>
 <p>The Atmega328 has several built in hardware timers (two 8-bit and one 16-bit). These timers allow for many advanced timing applications. The Arduino library utilizes one of these timers for a counter that counts the number of microseconds since the last time the controller was restarted. Several functions are available for utilization of this counter value.</p>
 <p>The <cite>millis()</cite> function returns the the number of milliseconds since the last time the controller was restarted. It is using a 32-bit unsigned integer to store the counter value, thus the maximum value is given by:</p>
 <div class="math notranslate nohighlight">
@@ -261,10 +268,10 @@
 <p>If higher accuracy is required there is also a <cite>micros()</cite> function, returning the number of microseconds since the last reboot. Keep in mind that the maximum duration that the 32-bit register can store is significantly lower. Alternatively for maximum accuracy one of the unused hardware timers can be dedicated for your purpose.</p>
 </section>
 <section id="usage">
-<h3>Usage<a class="headerlink" href="#usage" title="Permalink to this heading">¶</a></h3>
+<h3>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h3>
 <p>We have already seen how the <cite>delay()</cite> function is used in the simple LED blink example. The <cite>millis()</cite> function allows us to do more interesting and useful delay implementations, where different parts of the code may execute while we are waiting for the required time to pass.</p>
 <section id="exercise-stopwatch">
-<h4>Exercise: Stopwatch<a class="headerlink" href="#exercise-stopwatch" title="Permalink to this heading">¶</a></h4>
+<h4>Exercise: Stopwatch<a class="headerlink" href="#exercise-stopwatch" title="Permalink to this headline">¶</a></h4>
 <p>In this exercise we will develop a stop watch.</p>
 <figure class="align-center">
 <a class="reference internal image-reference" href="../../_images/digital_input_and_output_for_stop_watch_bb.png"><img alt="Digital input and output for stop watch" src="../../_images/digital_input_and_output_for_stop_watch_bb.png" style="width: 477.0px; height: 660.0px;" /></a>
@@ -274,7 +281,7 @@
 <span class="c1">// define led_pin attached to pin 2</span>
 <span class="c1">// define button_pin attached to pin 10</span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="c1">// set button_pin as input</span>
 <span class="w">  </span><span class="c1">// set led_pin as output</span>
 <span class="w">  </span><span class="c1">// start serial in 9600 hertz</span>
@@ -282,9 +289,9 @@
 <span class="w">  </span><span class="c1">// turn off LED</span>
 
 <span class="w">  </span><span class="c1">// notification on serial: &quot;Setup ready&quot;</span>
-<span class="p">}</span><span class="w"></span>
+<span class="p">}</span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="c1">// define static 8-bit integer button_past</span>
 <span class="w">  </span><span class="c1">// define 8-bit integer button_now</span>
 <span class="w">  </span><span class="c1">// define static 8-bit integer timer_active</span>
@@ -297,40 +304,40 @@
 <span class="w">  </span><span class="c1">// set button_now from digital pin button_pin</span>
 
 <span class="w">  </span><span class="c1">//if((button_now equals to 0) and (button_past == equals to 1))</span>
-<span class="w">  </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="p">{</span>
 
 <span class="w">    </span><span class="c1">//if timer_active equals to 0</span>
-<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span>
 <span class="w">      </span><span class="c1">// start_time as milliseconds</span>
 
-<span class="w">      </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;Starttid: &quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">      </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;Starttid: &quot;</span><span class="p">);</span>
 <span class="w">      </span><span class="c1">// print start_time</span>
 
 <span class="w">      </span><span class="c1">// set timer_active to 1</span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="k">else</span><span class="w"></span>
-<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">else</span>
+<span class="w">    </span><span class="p">{</span>
 <span class="w">      </span>
 <span class="w">      </span><span class="c1">// stop_time as milliseconds</span>
-<span class="w">      </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;Stopptid: &quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">      </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;Stopptid: &quot;</span><span class="p">);</span>
 <span class="w">      </span><span class="c1">// print stop_time</span>
 
 <span class="w">      </span><span class="c1">// calculate delta_time</span>
 
-<span class="w">      </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;Delta tid: &quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">      </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;Delta tid: &quot;</span><span class="p">);</span>
 <span class="w">      </span><span class="c1">// print delta_time</span>
 
 <span class="w">      </span><span class="c1">// convert delta_time into seconds as &quot;timer_seconds&quot;</span>
-<span class="w">      </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;Delta tid sekunder: &quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">      </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;Delta tid sekunder: &quot;</span><span class="p">);</span>
 <span class="w">      </span><span class="c1">// print timer_seconds</span>
 <span class="w">      </span><span class="c1">// set timer_active to 1</span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w"> </span><span class="p">}</span>
 
 <span class="w">  </span><span class="c1">// set button_now as button_past</span>
 
 <span class="w">  </span><span class="c1">// wait 1 millisecond</span>
-<span class="p">}</span><span class="w"></span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </section>
@@ -368,7 +375,7 @@
       <!-- footer -->
       <footer role="contentinfo">
           &copy; Copyright 2022, Gizem Ateş &amp; Eirik Haustveit.
-        Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 5.3.0.
+        Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 4.5.0.
       </footer>
       <!-- /footer -->
 

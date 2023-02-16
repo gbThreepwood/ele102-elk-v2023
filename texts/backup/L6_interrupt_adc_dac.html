@@ -6,7 +6,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <title>ADC PWM Interrupts &mdash; ELE102 Microcontroller course v1.1.0 documentation</title>
     <meta name="description" content="">
@@ -45,9 +45,7 @@
     <script type="text/javascript" src="../../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../../_static/js/jquery.min.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
-    <script type="text/javascript" src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../_static/sphinx_highlight.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script type="text/javascript" src="../../_static/js/bootstrap3.min.js"></script>
 <script type="text/javascript" src="../../_static/js/jquery.cookie.min.js"></script>
@@ -153,6 +151,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../Lessons/L3_digital_io_and_timing.html">Lesson 3: Use of digital I/O and timing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Lessons/L4_dac_pwm.html">Lesson 4: Analog output (PWM)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Lessons/L5_adc.html">Lesson 5: Analog to digital conversion (ADC)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons/L6_serial_io.html">Lesson 6: Serial I/O</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Additional material:</span></p>
 <ul>
@@ -161,6 +160,14 @@
 <li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L3_additional.html">Additional material lesson 3</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L4_additional.html">Additional material lesson 4</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L5_additional.html">Additional material lesson 5</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L6_additional.html">Additional material lesson 6</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L7_additional.html">Additional material lesson 7</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L8_additional.html">Additional material lesson 8</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L9_additional.html">Additional material lesson 9</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L10_additional.html">Additional material lesson 10</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L11_additional.html">Additional material lesson 11</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L12_additional.html">Additional material lesson 12</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L13_additional.html">Additional material lesson 13</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Projects:</span></p>
 <ul>
@@ -268,9 +275,9 @@
 </ul>
 </div>
 <section id="adc-pwm-interrupts">
-<h1>ADC PWM Interrupts<a class="headerlink" href="#adc-pwm-interrupts" title="Permalink to this heading">¶</a></h1>
+<h1>ADC PWM Interrupts<a class="headerlink" href="#adc-pwm-interrupts" title="Permalink to this headline">¶</a></h1>
 <section id="analog-to-digital-conversion-adc">
-<h2>Analog to Digital Conversion (ADC)<a class="headerlink" href="#analog-to-digital-conversion-adc" title="Permalink to this heading">¶</a></h2>
+<h2>Analog to Digital Conversion (ADC)<a class="headerlink" href="#analog-to-digital-conversion-adc" title="Permalink to this headline">¶</a></h2>
 <p>Analog to digital converters (ADC) and digital to analog converters (DAC) are
 the bridges between digital and analog worlds. The analog input or output range is
 determined by a reference voltage, <span class="math notranslate nohighlight">\(V_{ref}\)</span>. Typically for an N-bit converter with
@@ -284,7 +291,7 @@ end, <span class="math notranslate nohighlight">\(\Delta V_{LSB}\)</span>, is gi
 <p>ADC: potentiometer, RGB LED, temperature sensor
 DAC: Quantization, PWM</p>
 <section id="analog-to-digital-converter">
-<h3>Analog to digital converter<a class="headerlink" href="#analog-to-digital-converter" title="Permalink to this heading">¶</a></h3>
+<h3>Analog to digital converter<a class="headerlink" href="#analog-to-digital-converter" title="Permalink to this headline">¶</a></h3>
 <p>A A/D converter (analog to digital converter) is a device that converts a analog signal into an approximate digital representation. There are many important parameters one should understand when applying an A/D converter. This is only a summary of a few basic ones:</p>
 <ul class="simple">
 <li><p>Resolution - The digital representation of the analog signal must use a finite number of bits, and this imposes limitations on the smallest possible change in the analog value that is detectable by the converter.</p></li>
@@ -300,38 +307,38 @@ DAC: Quantization, PWM</p>
 </div>
 <p>In ADC, there are many different parameters that you need to set. Using <code class="code docutils literal notranslate"><span class="pre">analogRead(analogPin)</span></code> built-in function, we cannot reach many of the functionalities of Atmega328p. For example setting the ADC speed, resolution, convertion mode etc. can be only set by bitwise manipulation.</p>
 <p>Here is an example of the implementation of ADC without using built-in <code class="code docutils literal notranslate"><span class="pre">analogRead(analogPin)</span></code> function. There are different ways of bitwise operations. It is better to be consistent in using one way but here we would like to see different ways. Let’s understand it with the help of Atmega328p datasheet.</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Arduino.h&gt;</span><span class="cp"></span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Arduino.h&gt;</span>
 
 <span class="cp">#define BAUDRATE 9600</span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">init_ports</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span><span class="w"></span>
-<span class="kt">void</span><span class="w"> </span><span class="nf">init_adc</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span><span class="w"></span>
-<span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="nf">read_ADC</span><span class="p">(</span><span class="kt">uint8_t</span><span class="p">);</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">init_ports</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">init_adc</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+<span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="nf">read_ADC</span><span class="p">(</span><span class="kt">uint8_t</span><span class="p">);</span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="n">init_adc</span><span class="p">();</span><span class="w"></span>
-<span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="n">BAUDRATE</span><span class="p">);</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">init_adc</span><span class="p">();</span>
+<span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="n">BAUDRATE</span><span class="p">);</span>
+<span class="p">}</span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">adc_val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">adc_read</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;ADC value:&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">adc_val</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="n">delay</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">adc_val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">adc_read</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;ADC value:&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">adc_val</span><span class="p">);</span>
+<span class="w">  </span><span class="n">delay</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
 <span class="w">  </span>
-<span class="p">}</span><span class="w"></span>
+<span class="p">}</span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">init_adc</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="w"></span>
-<span class="p">{</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">init_adc</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
 <span class="w">  </span><span class="n">ADMUX</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">REFS0</span><span class="p">);</span><span class="w"> </span><span class="c1">//default Ch-0; Vref = 5V</span>
 <span class="w">  </span><span class="c1">//ADMUX = ADMUX | 0x20;   // set for Left Justified</span>
 <span class="w">  </span><span class="n">ADCSRA</span><span class="w"> </span><span class="o">|=</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">ADEN</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">ADSC</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">ADATE</span><span class="p">);</span><span class="w"> </span><span class="c1">//auto-trigger OFF -- EXERCISE:how to write in hexadecimal?</span>
-<span class="w">  </span><span class="n">ADCSRB</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">0x00</span><span class="p">;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="n">ADCSRB</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">0x00</span><span class="p">;</span>
+<span class="p">}</span>
 
-<span class="kt">uint16_t</span><span class="w"> </span><span class="nf">adc_read</span><span class="p">(</span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">pin</span><span class="p">)</span><span class="w"></span>
+<span class="kt">uint16_t</span><span class="w"> </span><span class="nf">adc_read</span><span class="p">(</span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">pin</span><span class="p">)</span>
 <span class="p">{</span><span class="w">     </span>
-<span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">value</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">value</span><span class="p">;</span>
 <span class="w">  </span>
 <span class="w">  </span><span class="c1">// select the corresponding channel 0~7</span>
 <span class="w">  </span><span class="c1">// ANDing with &#39;7′ will always keep the value of pin between 0 and 7</span>
@@ -339,15 +346,15 @@ DAC: Quantization, PWM</p>
 <span class="w">  </span><span class="n">ADMUX</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">ADMUX</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mh">0xF8</span><span class="p">)</span><span class="o">|</span><span class="n">pin</span><span class="p">;</span><span class="w"> </span><span class="c1">// setting MUX[0:3]</span>
 
 <span class="w">  </span><span class="c1">// start single convertion</span>
-<span class="w">  </span><span class="n">ADCSRA</span><span class="w"> </span><span class="o">|=</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">ADSC</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">ADCSRA</span><span class="w"> </span><span class="o">|=</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">ADSC</span><span class="p">);</span>
 
 <span class="w">  </span><span class="c1">// wait for conversion to complete</span>
 <span class="w">  </span><span class="c1">// ADSC becomes &#39;0′ again</span>
 <span class="w">  </span><span class="k">while</span><span class="w"> </span><span class="p">((</span><span class="n">ADCSRA</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mh">0x10</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w"> </span><span class="c1">// until the flag is reset again // while(ADCSRA &amp; (1 &lt;&lt; ADSC))</span>
 <span class="w">  </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">ADCL</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="p">(</span><span class="n">ADCH</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">8</span><span class="p">));</span><span class="w"> </span><span class="c1">//10-bit data</span>
 <span class="w">  </span>
-<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">value</span><span class="p">;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">value</span><span class="p">;</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <div class="admonition note">
@@ -363,57 +370,57 @@ DAC: Quantization, PWM</p>
 <p>The ATmega datasheet also cautions against switching analog pins in close temporal proximity to making A/D readings (analogRead) on other analog pins. This can cause electrical noise and introduce jitter in the analog system. It may be desirable, after manipulating analog pins (in digital mode), to add a short delay before using analogRead() to read other analog pins.</p>
 </div>
 <section id="temperature-measurement-using-tmp36">
-<h4>Temperature measurement using TMP36<a class="headerlink" href="#temperature-measurement-using-tmp36" title="Permalink to this heading">¶</a></h4>
+<h4>Temperature measurement using TMP36<a class="headerlink" href="#temperature-measurement-using-tmp36" title="Permalink to this headline">¶</a></h4>
 <p>Now, we will be reading the temperature from the TMP36 sensor that is included in the Arduino kit. The TMP36 has a voltage output linearly proportional to the temperature, and thus makes it easy to measure temperatures without any curve fitting that must be used with nonlinear sensing elements.</p>
 <p>The details of how the TMP36 operates are available in the <a class="reference external" href="https://www.analog.com/media/en/technical-documentation/data-sheets/TMP35_36_37.pdf/">datasheet</a></p>
 <figure class="align-center">
 <a class="reference internal image-reference" href="../../_images/temperature_sensor_bb.png"><img alt="../../_images/temperature_sensor_bb.png" src="../../_images/temperature_sensor_bb.png" style="width: 484.5px; height: 660.0px;" /></a>
 </figure>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Arduino.h&gt;</span><span class="cp"></span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Arduino.h&gt;</span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span>
+<span class="p">}</span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 
-<span class="w">          </span><span class="kt">int</span><span class="w"> </span><span class="n">sensorVal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">analogRead</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
-<span class="w">          </span><span class="kt">float</span><span class="w"> </span><span class="n">sensorVolt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">sensorVal</span><span class="o">/</span><span class="mf">1024.0</span><span class="p">)</span><span class="o">*</span><span class="mi">5</span><span class="p">;</span><span class="w"></span>
-<span class="w">          </span><span class="kt">float</span><span class="w"> </span><span class="n">temperature</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">sensorVolt</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">0.5</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span><span class="p">;</span><span class="w"></span>
+<span class="w">          </span><span class="kt">int</span><span class="w"> </span><span class="n">sensorVal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">analogRead</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="w">          </span><span class="kt">float</span><span class="w"> </span><span class="n">sensorVolt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">sensorVal</span><span class="o">/</span><span class="mf">1024.0</span><span class="p">)</span><span class="o">*</span><span class="mi">5</span><span class="p">;</span>
+<span class="w">          </span><span class="kt">float</span><span class="w"> </span><span class="n">temperature</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">sensorVolt</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">0.5</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span><span class="p">;</span>
 
-<span class="w">          </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;Sensor verdi: &quot;</span><span class="p">);</span><span class="w"></span>
-<span class="w">          </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="n">sensorVal</span><span class="p">);</span><span class="w"></span>
-<span class="w">          </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">          </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;Sensor verdi: &quot;</span><span class="p">);</span>
+<span class="w">          </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="n">sensorVal</span><span class="p">);</span>
+<span class="w">          </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
 
-<span class="w">          </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;Sensor spenning: &quot;</span><span class="p">);</span><span class="w"></span>
-<span class="w">          </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="n">sensorVolt</span><span class="p">);</span><span class="w"></span>
-<span class="w">          </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">          </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;Sensor spenning: &quot;</span><span class="p">);</span>
+<span class="w">          </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="n">sensorVolt</span><span class="p">);</span>
+<span class="w">          </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
 
-<span class="w">          </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;Sensor temperatur: &quot;</span><span class="p">);</span><span class="w"></span>
-<span class="w">          </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="n">temperature</span><span class="p">);</span><span class="w"></span>
-<span class="w">          </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="w">          </span><span class="n">delay</span><span class="p">(</span><span class="mi">2000</span><span class="p">);</span><span class="w"></span>
+<span class="w">          </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;Sensor temperatur: &quot;</span><span class="p">);</span>
+<span class="w">          </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="n">temperature</span><span class="p">);</span>
+<span class="w">          </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">          </span><span class="n">delay</span><span class="p">(</span><span class="mi">2000</span><span class="p">);</span>
 
-<span class="p">}</span><span class="w"></span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </section>
 <section id="voltage-reference-for-the-adc">
-<h4>Voltage reference for the ADC<a class="headerlink" href="#voltage-reference-for-the-adc" title="Permalink to this heading">¶</a></h4>
+<h4>Voltage reference for the ADC<a class="headerlink" href="#voltage-reference-for-the-adc" title="Permalink to this headline">¶</a></h4>
 <p>The analog to digital converter uses a voltage reference for comparison with the analog signal it is converting. This reference may be set to <cite>DEFAULT</cite>, <cite>INTERNAL</cite>, or <cite>EXTERNAL</cite>, for 5V, 1.1V or externaly applied voltage to the AREF-pin respectively. The selected reference voltage will be the maximum input voltage for the ADC, i.e. the voltage that will correspond to the digital value of 1023.</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">analogReference</span><span class="p">(</span><span class="n">EXTERNAL</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">analogReference</span><span class="p">(</span><span class="n">EXTERNAL</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>The accuracy of the reference voltage directly affects the accuracy of the converted voltage, thus if a external reference is used, it’s accuracy should be considered.</p>
 </section>
 </section>
 <section id="digital-to-analog-converter">
-<h3>Digital to analog converter<a class="headerlink" href="#digital-to-analog-converter" title="Permalink to this heading">¶</a></h3>
+<h3>Digital to analog converter<a class="headerlink" href="#digital-to-analog-converter" title="Permalink to this headline">¶</a></h3>
 <p>Alternatively if you need real analog output you may use an external chip, that the Arduino may control by a digital bus such as I2C.</p>
 </section>
 </section>
 <section id="pulse-width-modulation-pwm">
-<h2>Pulse Width Modulation (PWM)<a class="headerlink" href="#pulse-width-modulation-pwm" title="Permalink to this heading">¶</a></h2>
+<h2>Pulse Width Modulation (PWM)<a class="headerlink" href="#pulse-width-modulation-pwm" title="Permalink to this headline">¶</a></h2>
 <p>What is Modulation?</p>
 <p>What is a pulse?</p>
 <div class="admonition note">
@@ -421,7 +428,7 @@ DAC: Quantization, PWM</p>
 <p>Blackboard explanation.</p>
 </div>
 <section id="analog-output">
-<h3>Analog output<a class="headerlink" href="#analog-output" title="Permalink to this heading">¶</a></h3>
+<h3>Analog output<a class="headerlink" href="#analog-output" title="Permalink to this headline">¶</a></h3>
 <p>This section introduces the pulse width modulation outputs. It is a way of how to trick the having such an output that its value is so-called in between 0-5V.</p>
 <p>The Arduino function associated with analog output signals that we will be using in this tutorial are:</p>
 <ul class="simple">
@@ -429,7 +436,7 @@ DAC: Quantization, PWM</p>
 </ul>
 <p>Now we will be pulling up the hood, looking under the hood, digging deeper, pulling back the onion!</p>
 <section id="adjusting-the-light-intensity-of-led">
-<h4>Adjusting the light intensity of LED<a class="headerlink" href="#adjusting-the-light-intensity-of-led" title="Permalink to this heading">¶</a></h4>
+<h4>Adjusting the light intensity of LED<a class="headerlink" href="#adjusting-the-light-intensity-of-led" title="Permalink to this headline">¶</a></h4>
 <p><strong>ANNOUNCE:</strong> If you have, use RGB-LED instead.</p>
 <p>In this example we will be adjusting the light intensity of two LED’s connected to pin 5, and 6. A push button on pin 10 is used to step through various intensity levels.</p>
 <figure class="align-center">
@@ -441,7 +448,7 @@ DAC: Quantization, PWM</p>
 </div>
 </section>
 <section id="servo-and-map-function">
-<h4>Servo and map function<a class="headerlink" href="#servo-and-map-function" title="Permalink to this heading">¶</a></h4>
+<h4>Servo and map function<a class="headerlink" href="#servo-and-map-function" title="Permalink to this headline">¶</a></h4>
 <p>There are different types of motors which require different driving circuit. Sometimes driving a motor can be challenging but luckily Arduino community presents a plug-and-play option for <em>servo motor</em> s. There is an important concept behind driving a servo motor but this theoretical part is going to be examined in the following courses. In this course, we will focus on the programming aspect.</p>
 <p>The purpose of this example is to control the position of this little motor you have using a potentiometer.</p>
 <div class="admonition warning">
@@ -456,30 +463,30 @@ DAC: Quantization, PWM</p>
 <p>The potentiometer should be wired so that its two outer pins are connected to power (+5V) and ground, and its middle pin is connected to analog input 0 on the board.</p>
 <div class="literal-block-wrapper docutils container" id="id5">
 <div class="code-block-caption"><span class="caption-text">Servo control using potentiometer</span><a class="headerlink" href="#id5" title="Permalink to this code">¶</a></div>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Servo.h&gt;</span><span class="c1">  // add servo library</span><span class="cp"></span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Servo.h&gt;</span><span class="c1">  // add servo library</span>
 
 <span class="w"> </span><span class="n">Servo</span><span class="w"> </span><span class="n">myservo</span><span class="p">;</span><span class="w">  </span><span class="c1">// create servo object to control a servo</span>
 
 <span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">potPin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w">  </span><span class="c1">// analog pin used to connect the potentiometer</span>
 <span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">val</span><span class="p">;</span><span class="w">    </span><span class="c1">// variable to read the value from the analog pin</span>
 
-<span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">     </span><span class="n">myservo</span><span class="p">.</span><span class="n">attach</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span><span class="w">  </span><span class="c1">// attaches the servo on pin 9 to the servo object</span>
-<span class="w">     </span><span class="p">}</span><span class="w"></span>
+<span class="w">     </span><span class="p">}</span>
 
-<span class="w">     </span><span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">     </span><span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">     </span><span class="n">val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">analogRead</span><span class="p">(</span><span class="n">potPin</span><span class="p">);</span><span class="w">            </span><span class="c1">// reads the value of the potentiometer (value between 0 and 1023)</span>
 <span class="w">     </span><span class="n">val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">map</span><span class="p">(</span><span class="n">val</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1023</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">180</span><span class="p">);</span><span class="w">     </span><span class="c1">// scale it to use it with the servo (value between 0 and 180)</span>
 <span class="w">     </span><span class="n">myservo</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">val</span><span class="p">);</span><span class="w">                  </span><span class="c1">// sets the servo position according to the scaled value</span>
 <span class="w">     </span><span class="n">delay</span><span class="p">(</span><span class="mi">15</span><span class="p">);</span><span class="w">                           </span><span class="c1">// waits for the servo to get there</span>
-<span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="w"> </span><span class="p">}</span>
 </pre></div>
 </div>
 </div>
 <p>Attention that we are writing the potentiometer value directly as the servo angle. What if we want to <em>check</em> the value first and switch on an LED <em>if</em> it is in a desired range? Then the code will look like.</p>
 <div class="literal-block-wrapper docutils container" id="id6">
 <div class="code-block-caption"><span class="caption-text">Controlling LED based on Servo angle</span><a class="headerlink" href="#id6" title="Permalink to this code">¶</a></div>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="w"> </span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Servo.h&gt;</span><span class="c1">  // add servo library</span><span class="cp"></span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="w"> </span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Servo.h&gt;</span><span class="c1">  // add servo library</span>
 
 <span class="w"> </span><span class="n">Servo</span><span class="w"> </span><span class="n">myservo</span><span class="p">;</span><span class="w">  </span><span class="c1">// create servo object to control a servo</span>
 
@@ -488,24 +495,24 @@ DAC: Quantization, PWM</p>
 
 <span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">val</span><span class="p">;</span><span class="w">    </span><span class="c1">// variable to read the value from the analog pin</span>
 
-<span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">     </span><span class="n">myservo</span><span class="p">.</span><span class="n">attach</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span><span class="w">  </span><span class="c1">// attaches the servo on pin 9 to the servo object</span>
-<span class="w">     </span><span class="p">}</span><span class="w"></span>
+<span class="w">     </span><span class="p">}</span>
 
-<span class="w">     </span><span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">     </span><span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">     </span><span class="n">val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">analogRead</span><span class="p">(</span><span class="n">potPin</span><span class="p">);</span><span class="w">            </span><span class="c1">// reads the value of the potentiometer (value between 0 and 1023)</span>
 <span class="w">     </span><span class="n">val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">map</span><span class="p">(</span><span class="n">val</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1023</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">180</span><span class="p">);</span><span class="w">     </span><span class="c1">// scale it to use it with the servo (value between 0 and 180)</span>
 <span class="w">     </span><span class="n">myservo</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">val</span><span class="p">);</span><span class="w">                  </span><span class="c1">// sets the servo position according to the scaled value</span>
-<span class="w">     </span><span class="k">if</span><span class="p">(</span><span class="n">val</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">90</span><span class="p">)</span><span class="w"></span>
-<span class="w">     </span><span class="p">{</span><span class="w"></span>
-<span class="w">         </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ledPin</span><span class="p">,</span><span class="n">HIGH</span><span class="p">);</span><span class="w"></span>
-<span class="w">     </span><span class="p">}</span><span class="w"></span>
-<span class="w">     </span><span class="k">else</span><span class="w"></span>
-<span class="w">     </span><span class="p">{</span><span class="w"></span>
-<span class="w">         </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ledPin</span><span class="p">,</span><span class="n">LOW</span><span class="p">);</span><span class="w"></span>
-<span class="w">     </span><span class="p">}</span><span class="w"></span>
+<span class="w">     </span><span class="k">if</span><span class="p">(</span><span class="n">val</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">90</span><span class="p">)</span>
+<span class="w">     </span><span class="p">{</span>
+<span class="w">         </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ledPin</span><span class="p">,</span><span class="n">HIGH</span><span class="p">);</span>
+<span class="w">     </span><span class="p">}</span>
+<span class="w">     </span><span class="k">else</span>
+<span class="w">     </span><span class="p">{</span>
+<span class="w">         </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ledPin</span><span class="p">,</span><span class="n">LOW</span><span class="p">);</span>
+<span class="w">     </span><span class="p">}</span>
 <span class="w">     </span><span class="n">delay</span><span class="p">(</span><span class="mi">15</span><span class="p">);</span><span class="w">                           </span><span class="c1">// waits for the servo to get there</span>
-<span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="w"> </span><span class="p">}</span>
 </pre></div>
 </div>
 </div>
@@ -516,14 +523,14 @@ DAC: Quantization, PWM</p>
 </section>
 </section>
 <section id="interrupt">
-<h2>Interrupt<a class="headerlink" href="#interrupt" title="Permalink to this heading">¶</a></h2>
+<h2>Interrupt<a class="headerlink" href="#interrupt" title="Permalink to this headline">¶</a></h2>
 <p>A interrupt is some form of external signal that interrupts the main process. When an interrupt occurs the current execution state of the main process is stored, before a different process (the ISR, or interrupt service routine) takes over. When the interrupt service routine has completed, execution control is returned to the main process.</p>
 <p>Interrupts are useful for making the system responsive to external events while avoiding constant polling of the possible external event sources. The ISR may simply set a flag, or publish a message in a event queue such that the main process can take appropirate action when it is ready to do so.</p>
 <p>The first section of this lecture describes how and when the interrupts are preferable over polling techniques. The following sections explain how the interrupt mechanism works. The second half of the lecture notes, starting with the section “Management of Interrupts,” describes the common problems and programming mistakes and their solutions in utilizing interrupts in typical microcontroller applications.</p>
 <section id="timing-in-microcontrollers">
-<h3>Timing in Microcontrollers<a class="headerlink" href="#timing-in-microcontrollers" title="Permalink to this heading">¶</a></h3>
+<h3>Timing in Microcontrollers<a class="headerlink" href="#timing-in-microcontrollers" title="Permalink to this headline">¶</a></h3>
 <p>A timer is a specialized type of clock which is used to measure time intervals. A timer that counts from zero upwards for measuring time elapsed is often called a stopwatch. It is a device that counts down from a specified time interval and used to generate a time delay, for example, an hourglass is a timer.</p>
-<p>A counter is a device that stores (and sometimes displays) the number of times a particular event or process occurred, with respect to a clock signal. It is used to count the events happening outside the microcontroller. In electronics, counters can be implemented quite easily using register-type circuits such as a flip-flop. <a class="footnote-reference brackets" href="#f2" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a></p>
+<p>A counter is a device that stores (and sometimes displays) the number of times a particular event or process occurred, with respect to a clock signal. It is used to count the events happening outside the microcontroller. In electronics, counters can be implemented quite easily using register-type circuits such as a flip-flop. <a class="footnote-reference brackets" href="#f2" id="id2">2</a></p>
 <p>Timers are counters that can be programmed to perform a variety of functions. Following are the typical operation modes and possible applications of timers:</p>
 <p><strong>1. Programmed operation:</strong> A timer can be used as an alarm clock to generate predetermined time delays. The  microprocessor sets the count limit or initializes the counter and enables the count operation. The timer generates an interrupt when the count limit is reached indicating the end of the programmed delay period. This mode of operation utilizes the internal clock and it does not require an external connection.</p>
 <p><strong>2. Gated or triggered operation:</strong> The count operation is controlled by an external signal. There may be several options to start and to stop the counter. In gated mode, the counter is enabled while the external signal is active. A multi-purpose timer allows independent selection of events that start and stop the counter. These events can be a rising or falling edge of the external trigger signal or an internal start/stop command issued by the microprocessor itself. The timer can be programmed to generate an interrupt when the counter stops. The common applications of gated or triggered operation involve any kind of time measurements, such as, measuring revolution time of a motor to detect its rotation speed, or quantification of time-encoded signals.</p>
@@ -532,10 +539,10 @@ DAC: Quantization, PWM</p>
 <p><strong>1. Maximum clock frequency</strong> determines the timing resolution. The internal clock frequencies available for timer operations depend on the microprocessor clock.</p>
 <p><strong>2. Number of counter bits</strong> determines the count range or the maximum time period that can be measured.
 <strong>3. Functionality:</strong> Having a programmable timer does not necessarily mean that it will support all operation modes and gating or triggering options. You need to read the timer description to find out whether it is useful for your application or not. You may as well need additional features such as buffering of timer count results for motor speed measurements. A timer with buffered outputs can store the count result at the end of every motor revolution and re-start the counting process immediately.</p>
-<p><strong>Watchdog timers</strong> are special-purpose timers dedicated to ensure the proper execution of microcontroller functions. The processor is required to restart the watchdog timer before the preset timer period expires and it repeats this operation as long as the watchdog function is enabled. The program written for the processor includes the necessary statements to restart the watchdog timer periodically. If the processor fails to restart the watchdog timer, then this indicates a major functional failure due to corrupt program memory or some other reason. In this case, the watchdog timer resets the processor, forcing initialization of all microcontrollerfunctions <a class="footnote-reference brackets" href="#f1" id="id3" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>.</p>
+<p><strong>Watchdog timers</strong> are special-purpose timers dedicated to ensure the proper execution of microcontroller functions. The processor is required to restart the watchdog timer before the preset timer period expires and it repeats this operation as long as the watchdog function is enabled. The program written for the processor includes the necessary statements to restart the watchdog timer periodically. If the processor fails to restart the watchdog timer, then this indicates a major functional failure due to corrupt program memory or some other reason. In this case, the watchdog timer resets the processor, forcing initialization of all microcontrollerfunctions <a class="footnote-reference brackets" href="#f1" id="id3">1</a>.</p>
 </section>
 <section id="interrupts-in-arduino">
-<h3>Interrupts in Arduino<a class="headerlink" href="#interrupts-in-arduino" title="Permalink to this heading">¶</a></h3>
+<h3>Interrupts in Arduino<a class="headerlink" href="#interrupts-in-arduino" title="Permalink to this headline">¶</a></h3>
 <p>There are some important keynotes <a class="reference external" href="https://www.arduino.cc/reference/en/language/functions/external-interrupts/attachinterrupt/">About Interrupt Service Routines</a> in Arduino.</p>
 <p>Properties of ISR (Interrupt Service Routine):</p>
 <ol class="arabic simple">
@@ -548,10 +555,10 @@ DAC: Quantization, PWM</p>
 </ol>
 </section>
 <section id="external-interrupts">
-<h3>External Interrupts<a class="headerlink" href="#external-interrupts" title="Permalink to this heading">¶</a></h3>
+<h3>External Interrupts<a class="headerlink" href="#external-interrupts" title="Permalink to this headline">¶</a></h3>
 <p>Created by sensors (via communication channels) or buttons.</p>
 <p>An external interrupt is defined as:</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">attachInterrupt</span><span class="p">(</span><span class="n">digitalPinToInterrupt</span><span class="p">(</span><span class="n">pin</span><span class="p">),</span><span class="w"> </span><span class="n">ISR</span><span class="p">,</span><span class="w"> </span><span class="n">mode</span><span class="p">)</span><span class="w"></span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">attachInterrupt</span><span class="p">(</span><span class="n">digitalPinToInterrupt</span><span class="p">(</span><span class="n">pin</span><span class="p">),</span><span class="w"> </span><span class="n">ISR</span><span class="p">,</span><span class="w"> </span><span class="n">mode</span><span class="p">)</span>
 </pre></div>
 </div>
 <p><strong>Practical exercise:</strong> Modify the RGB-LED code such that the blinking should stop immediately as soon as the button is pressed and should continue again as soon as it is released.</p>
@@ -559,7 +566,7 @@ DAC: Quantization, PWM</p>
 <p><strong>Exercise for home:</strong> Modify the interrupt code without using delay functions. There is a very nice project using an LCD in <a class="reference external" href="https://www.youtube.com/watch?v=TD-J7LgrsBQ">this link</a>.</p>
 </section>
 <section id="internal-interrupts">
-<h3>Internal Interrupts<a class="headerlink" href="#internal-interrupts" title="Permalink to this heading">¶</a></h3>
+<h3>Internal Interrupts<a class="headerlink" href="#internal-interrupts" title="Permalink to this headline">¶</a></h3>
 <p>Timer based interrupts.</p>
 <p>All timers depends on the system clock of your Arduino system. Normally the system clock is 16MHz, but for the Arduino Pro 3,3V it is 8Mhz. So be careful when writing your own timer functions.
 The timer hardware can be configured with some special timer registers. In the Arduino firmware all timers were configured to a 1kHz frequency and interrupts are gerally enabled.</p>
@@ -573,7 +580,7 @@ In the Arduino world the Servo library 811 uses timer1 on Arduino Uno (timer5 on
 Timer2 is a 8bit timer like timer0.
 In the Arduino work the tone() 650 function uses timer2.</p>
 <p>Timer3, Timer4, Timer5:
-Timer 3,4,5 are only available on Arduino Mega boards. These timers are all 16bit timers. <a class="footnote-reference brackets" href="#f3" id="id4" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a></p>
+Timer 3,4,5 are only available on Arduino Mega boards. These timers are all 16bit timers. <a class="footnote-reference brackets" href="#f3" id="id4">3</a></p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Since internal timers are created by changing the Timer behaviour through the timer register, we will not cover it here. This subject requires at least intermediate embedded programming skills and datasheet reading. However, this is one of the most important topics in the embedded systems. For those who are willing to learn this topic should know about setup and Use of the Timers* (<a class="reference external" href="http://ww1.microchip.com/downloads/en/AppNotes/Atmel-2505-Setup-and-Use-of-AVR-Timers_ApplicationNote_AVR130.pdf">AVR130: Setup and Use the AVR Timers</a>.</p>
@@ -584,20 +591,17 @@ Timer 3,4,5 are only available on Arduino Mega boards. These timers are all 16bi
 </div>
 <p><strong>Practical Exercise:</strong> Let’s write a program with an RGB light, blinking each LED for 1 second (reg, green, blue, white) and repeat it infinitely. Also, attach a button that stops blinking of all LEDs. Do not use any interrupt knowledge at first and let’s see what happens. Afterwards, define your button as an interrupt and see what changes.</p>
 <p class="rubric">References</p>
-<aside class="footnote-list brackets">
-<aside class="footnote brackets" id="f1" role="note">
-<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id3">1</a><span class="fn-bracket">]</span></span>
-<p>Izmir Institute of Technology - Department of Electrical and Electronics Engineering <em>EE443 - Embedded Systems lecture notes - 2013</em></p>
-</aside>
-<aside class="footnote brackets" id="f2" role="note">
-<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">2</a><span class="fn-bracket">]</span></span>
-<p><a class="reference external" href="https://www.tutorialspoint.com/embedded_systems/es_timer_counter.htm">https://www.tutorialspoint.com/embedded_systems/es_timer_counter.htm</a></p>
-</aside>
-<aside class="footnote brackets" id="f3" role="note">
-<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id4">3</a><span class="fn-bracket">]</span></span>
-<p><a class="reference external" href="https://www.robotshop.com/community/forum/t/arduino-101-timers-and-interrupts/13072">https://www.robotshop.com/community/forum/t/arduino-101-timers-and-interrupts/13072</a></p>
-</aside>
-</aside>
+<dl class="footnote brackets">
+<dt class="label" id="f1"><span class="brackets"><a class="fn-backref" href="#id3">1</a></span></dt>
+<dd><p>Izmir Institute of Technology - Department of Electrical and Electronics Engineering <em>EE443 - Embedded Systems lecture notes - 2013</em></p>
+</dd>
+<dt class="label" id="f2"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
+<dd><p><a class="reference external" href="https://www.tutorialspoint.com/embedded_systems/es_timer_counter.htm">https://www.tutorialspoint.com/embedded_systems/es_timer_counter.htm</a></p>
+</dd>
+<dt class="label" id="f3"><span class="brackets"><a class="fn-backref" href="#id4">3</a></span></dt>
+<dd><p><a class="reference external" href="https://www.robotshop.com/community/forum/t/arduino-101-timers-and-interrupts/13072">https://www.robotshop.com/community/forum/t/arduino-101-timers-and-interrupts/13072</a></p>
+</dd>
+</dl>
 </section>
 </section>
 </section>
@@ -632,7 +636,7 @@ Timer 3,4,5 are only available on Arduino Mega boards. These timers are all 16bi
       <!-- footer -->
       <footer role="contentinfo">
           &copy; Copyright 2022, Gizem Ateş &amp; Eirik Haustveit.
-        Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 5.3.0.
+        Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 4.5.0.
       </footer>
       <!-- /footer -->
 

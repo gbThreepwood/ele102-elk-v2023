@@ -6,7 +6,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <title>Microcontroller architecture and Memory technology &mdash; ELE102 Microcontroller course v1.1.0 documentation</title>
     <meta name="description" content="">
@@ -45,9 +45,7 @@
     <script type="text/javascript" src="../../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../../_static/js/jquery.min.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
-    <script type="text/javascript" src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../_static/sphinx_highlight.js"></script>
     <script type="text/javascript" src="../../_static/js/bootstrap3.min.js"></script>
 <script type="text/javascript" src="../../_static/js/jquery.cookie.min.js"></script>
 <script type="text/javascript" src="../../_static/js/basicstrap.js"></script>
@@ -162,6 +160,7 @@
 <li class="toctree-l1"><a class="reference internal" href="L3_digital_io_and_timing.html">Lesson 3: Use of digital I/O and timing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="L4_dac_pwm.html">Lesson 4: Analog output (PWM)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="L5_adc.html">Lesson 5: Analog to digital conversion (ADC)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="L6_serial_io.html">Lesson 6: Serial I/O</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Additional material:</span></p>
 <ul>
@@ -170,6 +169,14 @@
 <li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L3_additional.html">Additional material lesson 3</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L4_additional.html">Additional material lesson 4</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L5_additional.html">Additional material lesson 5</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L6_additional.html">Additional material lesson 6</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L7_additional.html">Additional material lesson 7</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L8_additional.html">Additional material lesson 8</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L9_additional.html">Additional material lesson 9</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L10_additional.html">Additional material lesson 10</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L11_additional.html">Additional material lesson 11</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L12_additional.html">Additional material lesson 12</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L13_additional.html">Additional material lesson 13</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Projects:</span></p>
 <ul>
@@ -233,16 +240,16 @@
                 <div class="body">
                   
   <section id="microcontroller-architecture-and-memory-technology">
-<span id="l9-memory-and-architecture"></span><h1>Microcontroller architecture and Memory technology<a class="headerlink" href="#microcontroller-architecture-and-memory-technology" title="Permalink to this heading">¶</a></h1>
+<span id="l9-memory-and-architecture"></span><h1>Microcontroller architecture and Memory technology<a class="headerlink" href="#microcontroller-architecture-and-memory-technology" title="Permalink to this headline">¶</a></h1>
 <section id="microcontroller-architecture">
-<h2>Microcontroller architecture<a class="headerlink" href="#microcontroller-architecture" title="Permalink to this heading">¶</a></h2>
+<h2>Microcontroller architecture<a class="headerlink" href="#microcontroller-architecture" title="Permalink to this headline">¶</a></h2>
 <p>This lecture describes the common building blocks of a microcontroller, and how they interact with each other. It is generally better to combine as many as possible components in a single chip. The advantages of integration are:</p>
 <ul class="simple">
 <li><p><strong>Cost:</strong>  IC packages, PCB area, and PCB assembly are all major cost items that can be reduced with integration of components in a single device.</p></li>
 <li><p><strong>Easy development:</strong>  You don’t need to worry about interfacing external components and the related noise coupling or interference problems.  Accessing an ADC is as easy as writing and reading a few special function registers when the ADC is available as an on-chip component of the microcontroller.  On the other hand, if you end up using an external ADC component, then you need to find solutions to several design requirements such as, ADC power supply, interface protocol,  reserving I/O pins on the microcontroller, and routing I/O connections on the PCB.</p></li>
 </ul>
 <section id="some-well-known-processors">
-<h3>Some well known processors<a class="headerlink" href="#some-well-known-processors" title="Permalink to this heading">¶</a></h3>
+<h3>Some well known processors<a class="headerlink" href="#some-well-known-processors" title="Permalink to this headline">¶</a></h3>
 <p>The instruction set architecture (<a class="reference external" href="https://en.wikipedia.org/wiki/Instruction_set_architecture">ISA</a>) of the processor describes the main processing capabilities of a microcontroller. Usually a microcontroller is labeled with a core name that identifies the processor ISA (e.g.  … . .  controller with ARM core or  … . .  controller with 8051 core).  Note that the ISA determines the main programming features and requirements of a processor.  The hardware implementation may vary from an IC manufacturer to another.  Following is a list of some common processor architectures used in microcontrollers.</p>
 <ul class="simple">
 <li><p><strong>AVR (Atmel):</strong>  A large variety of Harvard architecture microcontrollers manufactured by Atmel (Atmel has been consumed by Microchip). The Atmega328p is one example on an AVR controller, and is the one used in the application work of this course.</p></li>
@@ -256,13 +263,13 @@
 </ul>
 </section>
 <section id="atmega328p-core-architecture">
-<h3>Atmega328p core architecture<a class="headerlink" href="#atmega328p-core-architecture" title="Permalink to this heading">¶</a></h3>
+<h3>Atmega328p core architecture<a class="headerlink" href="#atmega328p-core-architecture" title="Permalink to this headline">¶</a></h3>
 <figure class="align-center">
 <img alt="Atmega328p memory map" src="../../_images/core-architecture.png" />
 </figure>
 </section>
 <section id="memory-requirement-of-an-embedded-system">
-<h3>Memory Requirement of an Embedded System<a class="headerlink" href="#memory-requirement-of-an-embedded-system" title="Permalink to this heading">¶</a></h3>
+<h3>Memory Requirement of an Embedded System<a class="headerlink" href="#memory-requirement-of-an-embedded-system" title="Permalink to this headline">¶</a></h3>
 <p>A stand-alone computer requires two types of memory.  First, a non-volatile memory is necessary to store the program instructions and other permanent information required for execution.  The non-volatile memory does not lose the stored information when power is turned off.  The second type of memory is the volatile memory to store temporary or dynamically changing information during program execution.</p>
 <ul class="simple">
 <li><p><strong>Non-volatile memory requirement:</strong></p>
@@ -282,7 +289,7 @@
 </ul>
 </section>
 <section id="reset-circuit">
-<h3>Reset Circuit<a class="headerlink" href="#reset-circuit" title="Permalink to this heading">¶</a></h3>
+<h3>Reset Circuit<a class="headerlink" href="#reset-circuit" title="Permalink to this headline">¶</a></h3>
 <p>Active electronic devices require all supply voltages to be within specified limits to operate properly.  The device behavior is unpredictable if a supply voltage is outside the specified range.  A power-on-reset (POR) signal is required to make sure that all components of a system are in a known idle state until the supply voltages reach the specified operation limits.  Supply monitors (also called “power monitor” or  “voltage monitor”) are the dedicated circuits that generate a master reset signal according to the supply conditions.  These are the functions of the master reset signal:</p>
 <ol class="arabic simple">
 <li><p>Suspend all operations while the voltage regulators are ramping up until the supply voltages reach the specified operation limits (power-on-reset).</p></li>
@@ -300,7 +307,7 @@
 </figure>
 </section>
 <section id="clock-generator">
-<h3>Clock Generator<a class="headerlink" href="#clock-generator" title="Permalink to this heading">¶</a></h3>
+<h3>Clock Generator<a class="headerlink" href="#clock-generator" title="Permalink to this headline">¶</a></h3>
 <p>Clock generator provides the clock signal for all sequential circuit operations.  Most systems use a single clock source as a reference and necessary clock frequencies are derived from this reference clock using simple frequency dividers or phase lock loops (PLL).  The precision of clock timing depends on the requirements of a particular application.  Generation of a pulse-width modulation (PWM) output, for example, can tolerate large variations in the clock frequency.  The effective value of a PWM output is determined by the duty cycle which is independent of the clock driving the PWM circuitry as long as the clock frequency remains relatively constant in each PWM cycle.  The timing precision of a clock signal used for speed measurements on the other hand, should match the accuracy of the measurements.  There are strict frequency matching requirements for I/O channels that rely on independent clock signals as frequency references.</p>
 <p>A microcontroller may require an external clock generator or it may have on-chip circuitry that supports a frequency resonator.  These are the typical specifications for a clock generator:</p>
 <ol class="arabic simple">
@@ -310,7 +317,7 @@
 </ol>
 </section>
 <section id="i-o-ports-channels-buffers">
-<h3>I/O PORTS, Channels, Buffers<a class="headerlink" href="#i-o-ports-channels-buffers" title="Permalink to this heading">¶</a></h3>
+<h3>I/O PORTS, Channels, Buffers<a class="headerlink" href="#i-o-ports-channels-buffers" title="Permalink to this headline">¶</a></h3>
 <p>I/O ports on a microcontroller provide general-purpose access capabilities to external devices.  These ports can be simple I/O pins that can be read or written by the core processor or they can be combined with more complex interface options.  Some examples of these interface options are:</p>
 <ul class="simple">
 <li><p>Independent access to individual I/O pins as well as of 8 or 16 pin groups.</p></li>
@@ -332,7 +339,7 @@
 <p>As an alternative, a direct memory access (DMA) controller can be used to speed up the data transfers. DMA controller takes over management of address, data, and R/W control lines after CPU tristates its outputs.  DMA controller generates the required address sequence for memory and arranges timing of the control signals for memory and I/O unit.  Data words are transferred directly between the memory and the I/O unit.  It takes just one R/W memory cycle to complete the transfer of a data word.  Direct memory access is an order of magnitude faster compared to the CPU operations that take10s of memory R/W cycles for each data transfer. CPU programs the DMA controller writing starting memory address, number of data transfers, and other necessary information into the controller registers.  DMA controller sends a “Hold” signal to the CPU asking for release of memory control when it is ready to start the transfer sequence.  CPU replies with a “Hold Acknowledgement” after it tristates its outputs.  DMA controller returns control of memory back to the CPU after it completes the data transfers.</p>
 </section>
 <section id="serial-i-o">
-<h3>Serial I/O<a class="headerlink" href="#serial-i-o" title="Permalink to this heading">¶</a></h3>
+<h3>Serial I/O<a class="headerlink" href="#serial-i-o" title="Permalink to this headline">¶</a></h3>
 <p>A serial interface will be slower compared to a parallel bus operating at the same clock frequency.  Whenever you don’t need the combined speed of all the data bits in parallel, a serial interface is preferable because of these advantages:</p>
 <ul class="simple">
 <li><p><strong>It requires less number of pins.</strong>  A serial interface uses 2, 3, or 4 connections, so it will require 2-4 pins on transmitter and receiver ends.  An 8-bit parallel interface on the other hand, would require 10 or more connections between the transmitter and receiver ends.  Less number of pins means smaller and cheaper IC packages.</p></li>
@@ -343,7 +350,7 @@
 <p>Two different types of serial I/O interfaces can be found on microcontrollers or embedded processors.  The first type of serial interfaces are for “on-board” or “in-box” communication between the components of a single unit.  The commonly used examples of on-board serial communication interfaces are <strong>SPI</strong>, <strong>uWIRE</strong>, and <strong>I2C</strong>.  The second type of serial I/O interfaces are used for box-to-box communication between the independent design units through cables.  The typical examples of box-to-box serial interfaces are <strong>USART</strong> (Universal Synchronous Asynchronous Receiver Transmitter, RS-232, RS-422, etc.), <strong>USB</strong>, and <strong>Firewire</strong> (IEEE 1394).  Another advantage of serial interfaces in box-to-box communication is the simplicity of the connectors and cables.  Long serial transmission cables can be built at a lower cost compared to the cost of parallel data cables that support the similar data transfer rates.</p>
 </section>
 <section id="timers">
-<h3>Timers<a class="headerlink" href="#timers" title="Permalink to this heading">¶</a></h3>
+<h3>Timers<a class="headerlink" href="#timers" title="Permalink to this headline">¶</a></h3>
 <p>Timers are counters that can be programmed to perform a variety of functions.  Following are the typical operation modes and possible applications of timers:</p>
 <ol class="arabic simple">
 <li><p><strong>Programmed operation:</strong>  A timer can be used as an alarm clock to generate predetermined time delays.  The microprocessor sets the count limit or initializes the counter and enables the count operation.  The timer generates an interrupt when the count limit is reached indicating the end of the programmed delay period.  This mode of operation utilizes the internal clock and it does not require an external connection.</p></li>
@@ -354,7 +361,7 @@
 </section>
 </section>
 <section id="direct-register-access-on-atmega328p">
-<h2>Direct register access on Atmega328p<a class="headerlink" href="#direct-register-access-on-atmega328p" title="Permalink to this heading">¶</a></h2>
+<h2>Direct register access on Atmega328p<a class="headerlink" href="#direct-register-access-on-atmega328p" title="Permalink to this headline">¶</a></h2>
 <figure class="align-center">
 <img alt="Atmega328p memory map" src="../../_images/atmega328p-memory-map.jpg" />
 </figure>
@@ -368,9 +375,9 @@
 <p>In order to associate a variable name with a specific memory address it is possible to use pointers. A pointer is a variable which holds the location to a memory address, and by using the special dereference operator <code class="code docutils literal notranslate"><span class="pre">*</span></code> we access the memory address instead of the variable. For more details, you can visit <a class="reference internal" href="../Lessons-additional/L9_additional.html#l9-memory-pointer"><span class="std std-ref">Changing the variable through its adress: Pointers</span></a>.</p>
 </section>
 <section id="memory-usage">
-<h2>Memory usage<a class="headerlink" href="#memory-usage" title="Permalink to this heading">¶</a></h2>
+<h2>Memory usage<a class="headerlink" href="#memory-usage" title="Permalink to this headline">¶</a></h2>
 <section id="ram-usage-at-run-time">
-<h3>RAM usage at run time<a class="headerlink" href="#ram-usage-at-run-time" title="Permalink to this heading">¶</a></h3>
+<h3>RAM usage at run time<a class="headerlink" href="#ram-usage-at-run-time" title="Permalink to this headline">¶</a></h3>
 <p>After building your program a inspect tool can be used to provide information on the usage of RAM and Flash memory on the microcontroller. This happens automatically in PlatformIO, and the result might look like:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Checking size .pio/build/uno/firmware.elf</span>
 <span class="go">Advanced Memory Usage is available via &quot;PlatformIO Home &gt; Project Inspect&quot;</span>
@@ -381,7 +388,7 @@
 <p>For the Flash usage this is usually the correct value, but for the RAM the situation is more complex. It is possible for an application to change the RAM usage at run time. This happens each time a function is called, or when a function returns. It is also possible to declare more memory as needed, e.g. in order to store some data from a user who interacts with the microcontroller. Dynamic memory allocation is typically discouraged on microcontrollers which has small amounts of total RAM available, but still it should be apparent that the RAM usage can be a complex thing to analyze in some cases.</p>
 </section>
 <section id="stack-overflow">
-<h3>Stack overflow<a class="headerlink" href="#stack-overflow" title="Permalink to this heading">¶</a></h3>
+<h3>Stack overflow<a class="headerlink" href="#stack-overflow" title="Permalink to this headline">¶</a></h3>
 <figure class="align-center">
 <img alt="Atmega328p RAM memory map" src="../../_images/nongnu-onboard-ram.png" />
 </figure>
@@ -391,31 +398,31 @@
 <p>An additional exercise on determining the stack usage can be found at <a class="reference internal" href="../Lessons-additional/L9_additional.html#ex-stack-usage"><span class="std std-ref">Exercise: determine stack usage</span></a>.</p>
 </section>
 <section id="little-or-big-endian">
-<h3>Little or big endian<a class="headerlink" href="#little-or-big-endian" title="Permalink to this heading">¶</a></h3>
+<h3>Little or big endian<a class="headerlink" href="#little-or-big-endian" title="Permalink to this headline">¶</a></h3>
 <p>Endianness describes the ordering of bytes when storing numbers of more than 8 bits. Almost all modern computers organize the memory in chunks of 8 bit, called bytes. If the ordering is big endian, the most significant byte is stored first, while little endian means that the least significant byte is stored first. This naming convention might seem illogical at first, but endian refers to the end which comes first, not the end of the number in memory. Hence big endian means that the big end (most significant part) comes first.</p>
 <p>The endianess is typically not something you need to consider while developing software on a given microcontroller, since the C compiler takes care of the details. It can however become important when interfacing several microcontrollers to each other. It is a fundamental concept which should be understood by anyone involved in software development.</p>
 <p>In order to check if the microcontroller is little or big endian one may force the compiler in to considering a pointer to a 16 bit value as a pointer to an 8 bit value. By reading the value that the pointer is pointing to, only 8 bits are returned, and these would be the 8 bits that are stored first in memory. If the bits returned are the most significant bits of the original number,</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Arduino.h&gt;</span><span class="cp"></span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Arduino.h&gt;</span>
 <span class="linenos"> 2</span>
-<span class="linenos"> 3</span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">test_number</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">0xabcd</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 3</span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">test_number</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">0xabcd</span><span class="p">;</span>
 <span class="linenos"> 4</span>
-<span class="linenos"> 5</span><span class="kt">uint8_t</span><span class="w"> </span><span class="o">*</span><span class="n">test_number_pointer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">uint8_t</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;</span><span class="n">test_number</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 5</span><span class="kt">uint8_t</span><span class="w"> </span><span class="o">*</span><span class="n">test_number_pointer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">uint8_t</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;</span><span class="n">test_number</span><span class="p">;</span>
 <span class="linenos"> 6</span>
-<span class="linenos"> 7</span><span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="linenos"> 8</span><span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span><span class="w"></span>
+<span class="linenos"> 7</span><span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 8</span><span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span>
 <span class="linenos"> 9</span>
 <span class="linenos">10</span>
-<span class="linenos">11</span><span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;First byte: &quot;</span><span class="p">);</span><span class="w"></span>
-<span class="linenos">12</span><span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="o">*</span><span class="n">test_number_pointer</span><span class="p">,</span><span class="w"> </span><span class="n">HEX</span><span class="p">);</span><span class="w"></span>
-<span class="linenos">13</span><span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;Second byte: &quot;</span><span class="p">);</span><span class="w"></span>
-<span class="linenos">14</span><span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="o">*++</span><span class="n">test_number_pointer</span><span class="p">,</span><span class="w"> </span><span class="n">HEX</span><span class="p">);</span><span class="w"></span>
+<span class="linenos">11</span><span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;First byte: &quot;</span><span class="p">);</span>
+<span class="linenos">12</span><span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="o">*</span><span class="n">test_number_pointer</span><span class="p">,</span><span class="w"> </span><span class="n">HEX</span><span class="p">);</span>
+<span class="linenos">13</span><span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;Second byte: &quot;</span><span class="p">);</span>
+<span class="linenos">14</span><span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="o">*++</span><span class="n">test_number_pointer</span><span class="p">,</span><span class="w"> </span><span class="n">HEX</span><span class="p">);</span>
 <span class="linenos">15</span>
 <span class="linenos">16</span>
-<span class="linenos">17</span><span class="p">}</span><span class="w"></span>
+<span class="linenos">17</span><span class="p">}</span>
 <span class="linenos">18</span>
-<span class="linenos">19</span><span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos">19</span><span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos">20</span><span class="w">  </span><span class="c1">// put your main code here, to run repeatedly:</span>
-<span class="linenos">21</span><span class="p">}</span><span class="w"></span>
+<span class="linenos">21</span><span class="p">}</span>
 </pre></div>
 </div>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">&gt; Executing task in folder little-or-big-endian: platformio device monitor &lt;</span>
@@ -432,38 +439,38 @@
 </section>
 </section>
 <section id="non-volatile-storage-in-eeprom">
-<h2>Non volatile storage in EEPROM<a class="headerlink" href="#non-volatile-storage-in-eeprom" title="Permalink to this heading">¶</a></h2>
+<h2>Non volatile storage in EEPROM<a class="headerlink" href="#non-volatile-storage-in-eeprom" title="Permalink to this headline">¶</a></h2>
 <p>If you have some value in your program which you would like the microcontroller to remember the next time it boots, you have the option to store it to the EEPROM. The Atmega328p has 1 kilobyte of EEPROM.</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Arduino.h&gt;</span><span class="cp"></span>
-<span class="linenos"> 2</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;EEPROM.h&gt;</span><span class="cp"></span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Arduino.h&gt;</span>
+<span class="linenos"> 2</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;EEPROM.h&gt;</span>
 <span class="linenos"> 3</span>
 <span class="linenos"> 4</span>
-<span class="linenos"> 5</span><span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="linenos"> 6</span><span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span><span class="w"></span>
+<span class="linenos"> 5</span><span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 6</span><span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span>
 <span class="linenos"> 7</span>
-<span class="linenos"> 8</span><span class="w">  </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">boot_count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">EEPROM</span><span class="p">.</span><span class="n">read</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
-<span class="linenos"> 9</span><span class="w">  </span><span class="n">EEPROM</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">boot_count</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+<span class="linenos"> 8</span><span class="w">  </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">boot_count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">EEPROM</span><span class="p">.</span><span class="n">read</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="linenos"> 9</span><span class="w">  </span><span class="n">EEPROM</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">boot_count</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
 <span class="linenos">10</span>
-<span class="linenos">11</span><span class="w">  </span><span class="k">if</span><span class="p">(</span><span class="n">boot_count</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">5</span><span class="p">){</span><span class="w"></span>
+<span class="linenos">11</span><span class="w">  </span><span class="k">if</span><span class="p">(</span><span class="n">boot_count</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">5</span><span class="p">){</span>
 <span class="linenos">12</span>
-<span class="linenos">13</span><span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;The board has booted less than 5 times&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="linenos">14</span><span class="w">  </span><span class="p">}</span><span class="w"></span>
-<span class="linenos">15</span><span class="w">  </span><span class="k">else</span><span class="p">{</span><span class="w"></span>
+<span class="linenos">13</span><span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;The board has booted less than 5 times&quot;</span><span class="p">);</span>
+<span class="linenos">14</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">15</span><span class="w">  </span><span class="k">else</span><span class="p">{</span>
 <span class="linenos">16</span>
-<span class="linenos">17</span><span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;The current boot count is:&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="linenos">18</span><span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">boot_count</span><span class="p">);</span><span class="w"></span>
-<span class="linenos">19</span><span class="w">  </span><span class="p">}</span><span class="w"></span>
-<span class="linenos">20</span><span class="p">}</span><span class="w"></span>
+<span class="linenos">17</span><span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;The current boot count is:&quot;</span><span class="p">);</span>
+<span class="linenos">18</span><span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">boot_count</span><span class="p">);</span>
+<span class="linenos">19</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">20</span><span class="p">}</span>
 <span class="linenos">21</span>
-<span class="linenos">22</span><span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos">22</span><span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos">23</span>
 <span class="linenos">24</span><span class="w">  </span><span class="c1">// Be careful with write operations to the EEPROM in loop</span>
 <span class="linenos">25</span><span class="w">  </span><span class="c1">// If they run continuosly it might wear out the EEPROM</span>
-<span class="linenos">26</span><span class="p">}</span><span class="w"></span>
+<span class="linenos">26</span><span class="p">}</span>
 </pre></div>
 </div>
 <section id="exercise-store-adc-readings-in-eeprom">
-<h3>Exercise: store ADC readings in EEPROM<a class="headerlink" href="#exercise-store-adc-readings-in-eeprom" title="Permalink to this heading">¶</a></h3>
+<h3>Exercise: store ADC readings in EEPROM<a class="headerlink" href="#exercise-store-adc-readings-in-eeprom" title="Permalink to this headline">¶</a></h3>
 <ol class="arabic simple">
 <li><p>Connect a push button with pull-down resistor to pin 3, and a potmeter to analog input A0</p></li>
 <li><p>Write a program which reads the value on analog input A0, and print it on the UART.</p></li>
@@ -474,13 +481,13 @@
 </section>
 </section>
 <section id="memory-technology">
-<h2>Memory technology<a class="headerlink" href="#memory-technology" title="Permalink to this heading">¶</a></h2>
+<h2>Memory technology<a class="headerlink" href="#memory-technology" title="Permalink to this headline">¶</a></h2>
 <p>No, floppy disk is not a 3D printed save button</p>
 <figure class="align-center">
 <a class="reference internal image-reference" href="../../_images/3d_save_button.jpg"><img alt="3D save button" src="../../_images/3d_save_button.jpg" style="width: 604.8000000000001px; height: 604.8000000000001px;" /></a>
 </figure>
 <section id="common-non-volatile-memory-devices">
-<h3>Common Non-volatile Memory Devices<a class="headerlink" href="#common-non-volatile-memory-devices" title="Permalink to this heading">¶</a></h3>
+<h3>Common Non-volatile Memory Devices<a class="headerlink" href="#common-non-volatile-memory-devices" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p><strong>ROM (Read-Only Memory):</strong>  The term, ROM, strictly meant “read-only memory” as it  was used some decades ago.  The data stored in a ROM could not be modified by any means.  But today, ROM may refer to all types of non-volatile memory included within an embedded computer system.  The data stored in a ROM remain unchanged or “read-only” during the normal program execution, but the memory contents can be modified slowly or with difficulty when it is necessary.  The following is a list of other related memory devices:</p>
 <ul>
@@ -493,7 +500,7 @@
 </ul>
 </section>
 <section id="common-volatile-memory-devices">
-<h3>Common volatile Memory Devices<a class="headerlink" href="#common-volatile-memory-devices" title="Permalink to this heading">¶</a></h3>
+<h3>Common volatile Memory Devices<a class="headerlink" href="#common-volatile-memory-devices" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p><strong>RAM (Random Access Memory):</strong>  Random access means ability to read or write at any memory address as opposed to restricted addressing methods, such as sequential access.  The term, RAM, may refer to all types of volatile memory in a computer system.  SRAM and DRAM are the two common types of RAM.</p>
 <ul>
@@ -506,7 +513,7 @@
 </ul>
 </section>
 <section id="flash-memory">
-<h3>Flash memory<a class="headerlink" href="#flash-memory" title="Permalink to this heading">¶</a></h3>
+<h3>Flash memory<a class="headerlink" href="#flash-memory" title="Permalink to this headline">¶</a></h3>
 <p>Flash memory is a type of non volatile memory. Flash memory has it’s name from the requirement that one has to erase a whole block of memory if one or more bits of the block has to be changed from zero (0) to one (1). This is a so called <cite>Flash</cite> erase.</p>
 <p>Initially (or straight after a <cite>Flash</cite> erase) all the bits of a flash memory block are one (1), and you only program the bits which have to be zero (0). As soon as a zero (0) bit has to return to the one (1) state however, you must perform a <cite>Flash</cite> erase.</p>
 <p>There is no physical limitation that forces us to use a full block erase, but the memory is designed in this way (the transistors are connected in such a way that this is the only possibility). The reason for doing this is that the erase cycle is a relative slow operation, and thus there is a speed gain in erasing many bits at once.</p>
@@ -514,29 +521,29 @@
 <p>Each bit in a Flash memory consists of one transistor, specifically a floating gate MOSFET. The floating gate holds a negative charge when the bit is programmed, and neutral charge when it is not programmed. The negative charge prevents current from flowing through the transistor when a read voltage is applied, thus zero current is interpreted as a logic zero (0) <span id="id1">[]</span>.</p>
 </section>
 <section id="random-access-memory">
-<h3>Random access memory<a class="headerlink" href="#random-access-memory" title="Permalink to this heading">¶</a></h3>
+<h3>Random access memory<a class="headerlink" href="#random-access-memory" title="Permalink to this headline">¶</a></h3>
 <p>Random access memory (RAM) refers to memory where individual bytes of data may be read and modified without affecting other parts of the memory.</p>
 </section>
 <section id="static-ram">
-<h3>Static RAM<a class="headerlink" href="#static-ram" title="Permalink to this heading">¶</a></h3>
+<h3>Static RAM<a class="headerlink" href="#static-ram" title="Permalink to this headline">¶</a></h3>
 <p>Static RAM (SRAM) is a form of volatile memory. Each bit requires six transistors, and the read and write times are equal.</p>
 </section>
 <section id="dynamic-ram">
-<h3>Dynamic RAM<a class="headerlink" href="#dynamic-ram" title="Permalink to this heading">¶</a></h3>
+<h3>Dynamic RAM<a class="headerlink" href="#dynamic-ram" title="Permalink to this headline">¶</a></h3>
 <p>Dynamic RAM (DRAM) is a form of volatile memory. Each bit in a DRAM memory consists of one transistor and one capacitor.</p>
 <p>The bits must be refreshed, i.e. the capacitor must be recharged at certain intervals if it is storing a one (1), to avoid loosing the information. The JEDEC (Joint Electron Device Engineering Council) standard states that the refresh rate should be less than 64 ms.</p>
 <p>DRAM is normally very fast when compared to Flash memory, and has equal read and write speeds.</p>
 </section>
 <section id="eeprom">
-<h3>EEPROM<a class="headerlink" href="#eeprom" title="Permalink to this heading">¶</a></h3>
+<h3>EEPROM<a class="headerlink" href="#eeprom" title="Permalink to this headline">¶</a></h3>
 </section>
 <section id="hard-disk-drives">
-<h3>Hard disk drives<a class="headerlink" href="#hard-disk-drives" title="Permalink to this heading">¶</a></h3>
+<h3>Hard disk drives<a class="headerlink" href="#hard-disk-drives" title="Permalink to this headline">¶</a></h3>
 <p>A hard diske drive uses magnetic storage to store data on a rotating platter. It has a moving read and write head.</p>
 </section>
 </section>
 <section id="bibliography">
-<h2>Bibliography<a class="headerlink" href="#bibliography" title="Permalink to this heading">¶</a></h2>
+<h2>Bibliography<a class="headerlink" href="#bibliography" title="Permalink to this headline">¶</a></h2>
 <span class="target" id="id2"></span></section>
 </section>
 
@@ -570,7 +577,7 @@
       <!-- footer -->
       <footer role="contentinfo">
           &copy; Copyright 2022, Gizem Ateş &amp; Eirik Haustveit.
-        Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 5.3.0.
+        Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 4.5.0.
       </footer>
       <!-- /footer -->
 

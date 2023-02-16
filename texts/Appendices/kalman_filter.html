@@ -6,7 +6,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <title>Kalman filter &mdash; ELE102 Microcontroller course v1.1.0 documentation</title>
     <meta name="description" content="">
@@ -45,9 +45,7 @@
     <script type="text/javascript" src="../../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../../_static/js/jquery.min.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
-    <script type="text/javascript" src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../_static/sphinx_highlight.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script type="text/javascript" src="../../_static/js/bootstrap3.min.js"></script>
 <script type="text/javascript" src="../../_static/js/jquery.cookie.min.js"></script>
@@ -138,6 +136,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../Lessons/L3_digital_io_and_timing.html">Lesson 3: Use of digital I/O and timing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Lessons/L4_dac_pwm.html">Lesson 4: Analog output (PWM)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Lessons/L5_adc.html">Lesson 5: Analog to digital conversion (ADC)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons/L6_serial_io.html">Lesson 6: Serial I/O</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Additional material:</span></p>
 <ul>
@@ -146,6 +145,14 @@
 <li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L3_additional.html">Additional material lesson 3</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L4_additional.html">Additional material lesson 4</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L5_additional.html">Additional material lesson 5</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L6_additional.html">Additional material lesson 6</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L7_additional.html">Additional material lesson 7</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L8_additional.html">Additional material lesson 8</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L9_additional.html">Additional material lesson 9</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L10_additional.html">Additional material lesson 10</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L11_additional.html">Additional material lesson 11</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L12_additional.html">Additional material lesson 12</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L13_additional.html">Additional material lesson 13</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Projects:</span></p>
 <ul>
@@ -226,11 +233,11 @@
                 <div class="body">
                   
   <section id="kalman-filter">
-<h1>Kalman filter<a class="headerlink" href="#kalman-filter" title="Permalink to this heading">¶</a></h1>
+<h1>Kalman filter<a class="headerlink" href="#kalman-filter" title="Permalink to this headline">¶</a></h1>
 <p>A Kalman filter uses a iterative mathematical process to quickly estimate the true value of some measurement which contains random noise or uncertainty.</p>
 <p>If you have a measurement which varies due to noise but in reality is constant, the average of the measurement will likely be closer to the real value than any given sample. The averaging process however will require a lot of samples before it stabilizes close to the real value, with a Kalman filter this will be much faster.</p>
 <section id="single-value-estimation">
-<h2>Single value estimation<a class="headerlink" href="#single-value-estimation" title="Permalink to this heading">¶</a></h2>
+<h2>Single value estimation<a class="headerlink" href="#single-value-estimation" title="Permalink to this headline">¶</a></h2>
 <p>The Kalman filter is effective for estimation of multiple values simultaneously, but initially we will describe how to estimate a single value.</p>
 <ul class="simple">
 <li><p>Calculate the Kalman gain</p></li>
@@ -251,10 +258,10 @@
 \[\epsilon_{est(k)} = (1 - K_k) \epsilon_{est(k - 1)}\]</div>
 </section>
 <section id="temperature-measurement-using-single-sensor">
-<h2>Temperature measurement using single sensor<a class="headerlink" href="#temperature-measurement-using-single-sensor" title="Permalink to this heading">¶</a></h2>
+<h2>Temperature measurement using single sensor<a class="headerlink" href="#temperature-measurement-using-single-sensor" title="Permalink to this headline">¶</a></h2>
 </section>
 <section id="multi-dimensional-models">
-<h2>Multi dimensional models<a class="headerlink" href="#multi-dimensional-models" title="Permalink to this heading">¶</a></h2>
+<h2>Multi dimensional models<a class="headerlink" href="#multi-dimensional-models" title="Permalink to this headline">¶</a></h2>
 <div class="math notranslate nohighlight">
 \[x_k = A x_{k - 1} + B u_k + \omega_k\]</div>
 <p>E.g. a state matrix for position and velocity in the x direction could look like:</p>
@@ -276,7 +283,7 @@ z \\
 \end{bmatrix}\end{split}\]</div>
 </section>
 <section id="variance-covariance-matrix">
-<h2>Variance - covariance matrix<a class="headerlink" href="#variance-covariance-matrix" title="Permalink to this heading">¶</a></h2>
+<h2>Variance - covariance matrix<a class="headerlink" href="#variance-covariance-matrix" title="Permalink to this headline">¶</a></h2>
 <p>The variance is the square of the standard deviation for at set of measurements.</p>
 <div class="math notranslate nohighlight">
 \[\sigma_x^2 = \frac{\sum_{i = 1}^{N} (\bar{x} - x_i)^2}{N}\]</div>
@@ -286,7 +293,7 @@ z \\
 <p><span class="math notranslate nohighlight">\([R]\)</span> is the measurement covariance matrix (error in the measurement), and <span class="math notranslate nohighlight">\([K]\)</span> is the Kalman gain.</p>
 </section>
 <section id="temperature-measurement-using-multiple-sensors">
-<h2>Temperature measurement using multiple sensors<a class="headerlink" href="#temperature-measurement-using-multiple-sensors" title="Permalink to this heading">¶</a></h2>
+<h2>Temperature measurement using multiple sensors<a class="headerlink" href="#temperature-measurement-using-multiple-sensors" title="Permalink to this headline">¶</a></h2>
 <p>In this example we will combine the measurements from multiple temperature sensors, in order to obtain a better estimate of the actual temperature than we would obtain from the filtered value of a single temperature sensor.</p>
 </section>
 </section>
@@ -323,7 +330,7 @@ z \\
       <!-- footer -->
       <footer role="contentinfo">
           &copy; Copyright 2022, Gizem Ateş &amp; Eirik Haustveit.
-        Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 5.3.0.
+        Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 4.5.0.
       </footer>
       <!-- /footer -->
 

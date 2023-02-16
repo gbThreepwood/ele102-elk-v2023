@@ -6,7 +6,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <title>Digital I/O, and serial port (Cont’d) &mdash; ELE102 Microcontroller course v1.1.0 documentation</title>
     <meta name="description" content="">
@@ -45,9 +45,7 @@
     <script type="text/javascript" src="../../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../../_static/js/jquery.min.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
-    <script type="text/javascript" src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../_static/sphinx_highlight.js"></script>
     <script type="text/javascript" src="../../_static/js/bootstrap3.min.js"></script>
 <script type="text/javascript" src="../../_static/js/jquery.cookie.min.js"></script>
 <script type="text/javascript" src="../../_static/js/basicstrap.js"></script>
@@ -147,6 +145,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../Lessons/L3_digital_io_and_timing.html">Lesson 3: Use of digital I/O and timing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Lessons/L4_dac_pwm.html">Lesson 4: Analog output (PWM)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Lessons/L5_adc.html">Lesson 5: Analog to digital conversion (ADC)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons/L6_serial_io.html">Lesson 6: Serial I/O</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Additional material:</span></p>
 <ul>
@@ -155,6 +154,14 @@
 <li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L3_additional.html">Additional material lesson 3</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L4_additional.html">Additional material lesson 4</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L5_additional.html">Additional material lesson 5</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L6_additional.html">Additional material lesson 6</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L7_additional.html">Additional material lesson 7</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L8_additional.html">Additional material lesson 8</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L9_additional.html">Additional material lesson 9</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L10_additional.html">Additional material lesson 10</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L11_additional.html">Additional material lesson 11</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L12_additional.html">Additional material lesson 12</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons-additional/L13_additional.html">Additional material lesson 13</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Projects:</span></p>
 <ul>
@@ -218,10 +225,10 @@
                 <div class="body">
                   
   <section id="digital-i-o-and-serial-port-cont-d">
-<h1>Digital I/O, and serial port (Cont’d)<a class="headerlink" href="#digital-i-o-and-serial-port-cont-d" title="Permalink to this heading">¶</a></h1>
+<h1>Digital I/O, and serial port (Cont’d)<a class="headerlink" href="#digital-i-o-and-serial-port-cont-d" title="Permalink to this headline">¶</a></h1>
 <p>In this lesson we will practice what we learned about last lecture on digital I/O, serial monitor interaction.</p>
 <section id="edge-detection">
-<h2>Edge detection<a class="headerlink" href="#edge-detection" title="Permalink to this heading">¶</a></h2>
+<h2>Edge detection<a class="headerlink" href="#edge-detection" title="Permalink to this headline">¶</a></h2>
 <p>When reading a digital input it is often desirable to determine the instant it is changing, and how it is changing. I.e. whether it is a rising, or a falling edge. There are several approaches we can take to solve this problem, but in this section we focus on solutions involving the sampling of the digital input. I.e. we are continuously checking the state of the digital input with a certain time interval. This approach is fine for slowly changing signals such as push buttons. Actually it is not only fine, it is often the recommended way to deal with slow signals.</p>
 <p>In order to detect the rising edge of a digital input by the sampling method, we continuously compare the current state of the input, to the state at the previous iteration (the previous time we checked it). If the previous value was <em>low</em>, and the current value is <em>high</em>, we have a rising edge. The same logic can be applied it the reverse direction to detect the falling edge.</p>
 <p>Let’s think about what happens when you press a button. In this example (and the last) we have a digital pin connected to 5 volts through a tilt sensor. When the system is vertical, two pins are in contact. The 5 volts is applied to the digital pin. However, when you tilt the system, the connection is broken. Therefore, the system is not in <em>OFF state</em> but in an <em>unknown state</em>. Consider the figure below:</p>
@@ -235,7 +242,7 @@
 </figcaption>
 </figure>
 <section id="understanding-pull-up-pull-down-resistors">
-<h3>Understanding Pull-up / Pull-down resistors<a class="headerlink" href="#understanding-pull-up-pull-down-resistors" title="Permalink to this heading">¶</a></h3>
+<h3>Understanding Pull-up / Pull-down resistors<a class="headerlink" href="#understanding-pull-up-pull-down-resistors" title="Permalink to this headline">¶</a></h3>
 <p>As already discussed in terms of push buttons, when using digital inputs it is often required to add resistors to either pull up, or pull down the potential at the input. This is required because the input impedance of the digital input is very high, and the state may change randomly if it is not forced to a known state. For our convenience the Atmega 328 used in the Arduino UNO has internal pull up resistors that may be enabled or disabled in software. Alternatively you may add external resistors.</p>
 <p>The size of the resistors is not critical, but it should not be selected on random either. A to small resistor may cause excessive current, while a to large resistor will defeat the purpose of trying to pull towards a given potential. I.e. the resistor value should be far away from the value of the input impedance. In practice a 10k resistor is often used.</p>
 <figure class="align-center" id="id3">
@@ -253,35 +260,35 @@
 </section>
 </section>
 <section id="hands-on-exercises">
-<h2>Hands-on Exercises<a class="headerlink" href="#hands-on-exercises" title="Permalink to this heading">¶</a></h2>
+<h2>Hands-on Exercises<a class="headerlink" href="#hands-on-exercises" title="Permalink to this headline">¶</a></h2>
 <p>Time to use expand the knowledge by doing!</p>
 <section id="simple-button-press-counter">
-<h3>Simple button press counter<a class="headerlink" href="#simple-button-press-counter" title="Permalink to this heading">¶</a></h3>
+<h3>Simple button press counter<a class="headerlink" href="#simple-button-press-counter" title="Permalink to this headline">¶</a></h3>
 <p>Imagine that you develop a system that counts how many times a button pressed. It can be on a secure door, a keyboard software or a simple knitting row counter! Here is a simple system:</p>
 <figure class="align-center">
 <img alt="../../_images/simple_button_press.png" src="../../_images/simple_button_press.png" />
 </figure>
 <p>Here is the code:</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">led_pin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"></span>
-<span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">button_pin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">11</span><span class="p">;</span><span class="w"></span>
-<span class="kt">uint16_t</span><span class="w"> </span><span class="n">count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
-<span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w"></span>
-<span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="n">pinMode</span><span class="p">(</span><span class="n">led_pin</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">pinMode</span><span class="p">(</span><span class="n">button_pin</span><span class="p">,</span><span class="w"> </span><span class="n">INPUT</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">led_pin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
+<span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">button_pin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">11</span><span class="p">;</span>
+<span class="kt">uint16_t</span><span class="w"> </span><span class="n">count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">pinMode</span><span class="p">(</span><span class="n">led_pin</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT</span><span class="p">);</span>
+<span class="w">    </span><span class="n">pinMode</span><span class="p">(</span><span class="n">button_pin</span><span class="p">,</span><span class="w"> </span><span class="n">INPUT</span><span class="p">);</span>
+<span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span>
+<span class="p">}</span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w"></span>
-<span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">button_state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">digitalRead</span><span class="p">(</span><span class="n">button_pin</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">count</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">button_state</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">led_pin</span><span class="p">,</span><span class="w"> </span><span class="n">button_state</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="n">button_state</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\t</span><span class="s">&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">count</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">delay</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">button_state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">digitalRead</span><span class="p">(</span><span class="n">button_pin</span><span class="p">);</span>
+<span class="w">    </span><span class="n">count</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">button_state</span><span class="p">;</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">led_pin</span><span class="p">,</span><span class="w"> </span><span class="n">button_state</span><span class="p">);</span>
+<span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="n">button_state</span><span class="p">);</span>
+<span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\t</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">count</span><span class="p">);</span>
+<span class="w">    </span><span class="n">delay</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <div class="admonition note">
@@ -291,32 +298,32 @@
 <p>Can you run and define if the system meets your requirements or something is off? What if you change the <code class="code docutils literal notranslate"><span class="pre">delay()</span></code> duration? Would it be <em>perfect</em> then? What if you move <code class="code docutils literal notranslate"><span class="pre">uint16_t</span> <span class="pre">count</span> <span class="pre">=</span> <span class="pre">0;</span></code> in a function, let say in <code class="code docutils literal notranslate"><span class="pre">setup()</span></code> or <code class="code docutils literal notranslate"><span class="pre">loop()</span></code>. Play with this code and define the problem please.</p>
 </section>
 <section id="simple-button-led-state-change">
-<h3>Simple button LED state change<a class="headerlink" href="#simple-button-led-state-change" title="Permalink to this heading">¶</a></h3>
+<h3>Simple button LED state change<a class="headerlink" href="#simple-button-led-state-change" title="Permalink to this headline">¶</a></h3>
 <p>Maybe we can modify the code such that the LED is not <em>directly</em> controlled by the button value but it can be controlled by its <em>change</em>. Design a system that changes the LED state in every button press.</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">led_pin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"></span>
-<span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">button_pin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">11</span><span class="p">;</span><span class="w"></span>
-<span class="kt">bool</span><span class="w"> </span><span class="n">button_state_now</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
-<span class="kt">bool</span><span class="w"> </span><span class="n">button_state_prev</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
-<span class="kt">bool</span><span class="w"> </span><span class="n">led_state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">led_pin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
+<span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">button_pin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">11</span><span class="p">;</span>
+<span class="kt">bool</span><span class="w"> </span><span class="n">button_state_now</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="kt">bool</span><span class="w"> </span><span class="n">button_state_prev</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="kt">bool</span><span class="w"> </span><span class="n">led_state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">(){</span><span class="w"></span>
-<span class="w">    </span><span class="n">pinMode</span><span class="p">(</span><span class="n">led_pin</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">pinMode</span><span class="p">(</span><span class="n">button_pin</span><span class="p">,</span><span class="w"> </span><span class="n">INPUT</span><span class="p">);</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">(){</span>
+<span class="w">    </span><span class="n">pinMode</span><span class="p">(</span><span class="n">led_pin</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT</span><span class="p">);</span>
+<span class="w">    </span><span class="n">pinMode</span><span class="p">(</span><span class="n">button_pin</span><span class="p">,</span><span class="w"> </span><span class="n">INPUT</span><span class="p">);</span>
+<span class="p">}</span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="w"> </span><span class="p">(){</span><span class="w"></span>
-<span class="w">    </span><span class="n">button_state_now</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">digitalRead</span><span class="p">(</span><span class="n">button_pin</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">button_state_now</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">button_state_prev</span><span class="p">){</span><span class="w"></span>
-<span class="w">        </span><span class="n">led_state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">!</span><span class="n">led_state</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">led_pin</span><span class="p">,</span><span class="w"> </span><span class="n">led_state</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">delay</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="w"> </span><span class="p">(){</span>
+<span class="w">    </span><span class="n">button_state_now</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">digitalRead</span><span class="p">(</span><span class="n">button_pin</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">button_state_now</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">button_state_prev</span><span class="p">){</span>
+<span class="w">        </span><span class="n">led_state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">!</span><span class="n">led_state</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">led_pin</span><span class="p">,</span><span class="w"> </span><span class="n">led_state</span><span class="p">);</span>
+<span class="w">    </span><span class="n">delay</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </section>
 <section id="debounce-of-mechanical-switch">
-<h3>Debounce of mechanical switch<a class="headerlink" href="#debounce-of-mechanical-switch" title="Permalink to this heading">¶</a></h3>
+<h3>Debounce of mechanical switch<a class="headerlink" href="#debounce-of-mechanical-switch" title="Permalink to this headline">¶</a></h3>
 <p>A mechanical switch will often generate spurious open/close transitions in a short period after it has been activated. It is a risk that these spurious transitions are interpreted as multiple signals from the switch. In order to avoid these problems some form of debounce remedy should be applied. This could be a hardware solution, a software solution or a combination of the two.</p>
 <figure class="align-center" id="id4">
 <img alt="../../_images/switch_bounce.png" src="../../_images/switch_bounce.png" />
@@ -325,54 +332,54 @@
 </figcaption>
 </figure>
 <p>If a software solution is desired, one possibility is to check the button state twice, within a short time windows. I.e. check, delay, check again.</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Arduino.h&gt;</span><span class="cp"></span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Arduino.h&gt;</span>
 <span class="linenos"> 2</span>
-<span class="linenos"> 3</span><span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">push_button_1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">12</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 3</span><span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">push_button_1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">12</span><span class="p">;</span>
 <span class="linenos"> 4</span>
-<span class="linenos"> 5</span><span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">greenLED</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">7</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 5</span><span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">greenLED</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">7</span><span class="p">;</span>
 <span class="linenos"> 6</span>
-<span class="linenos"> 7</span><span class="kt">void</span><span class="w"> </span><span class="nf">button_press_debounce</span><span class="p">();</span><span class="w"></span>
+<span class="linenos"> 7</span><span class="kt">void</span><span class="w"> </span><span class="nf">button_press_debounce</span><span class="p">();</span>
 <span class="linenos"> 8</span>
-<span class="linenos"> 9</span><span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="linenos">10</span><span class="w">  </span><span class="n">pinMode</span><span class="p">(</span><span class="n">push_button_1</span><span class="p">,</span><span class="w"> </span><span class="n">INPUT</span><span class="p">);</span><span class="w"></span>
-<span class="linenos">11</span><span class="w">  </span><span class="n">pinMode</span><span class="p">(</span><span class="n">greenLED</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT</span><span class="p">);</span><span class="w"></span>
-<span class="linenos">12</span><span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span><span class="w"></span>
-<span class="linenos">13</span><span class="p">}</span><span class="w"></span>
+<span class="linenos"> 9</span><span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">10</span><span class="w">  </span><span class="n">pinMode</span><span class="p">(</span><span class="n">push_button_1</span><span class="p">,</span><span class="w"> </span><span class="n">INPUT</span><span class="p">);</span>
+<span class="linenos">11</span><span class="w">  </span><span class="n">pinMode</span><span class="p">(</span><span class="n">greenLED</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT</span><span class="p">);</span>
+<span class="linenos">12</span><span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span>
+<span class="linenos">13</span><span class="p">}</span>
 <span class="linenos">14</span>
-<span class="linenos">15</span><span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos">15</span><span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos">16</span>
-<span class="linenos">17</span><span class="w">  </span><span class="n">button_press_debounce</span><span class="p">();</span><span class="w"></span>
-<span class="linenos">18</span><span class="p">}</span><span class="w"></span>
+<span class="linenos">17</span><span class="w">  </span><span class="n">button_press_debounce</span><span class="p">();</span>
+<span class="linenos">18</span><span class="p">}</span>
 <span class="linenos">19</span>
 <span class="linenos">20</span><span class="cm">/*</span>
 <span class="linenos">21</span><span class="cm"> * Mechanical switch debounce.</span>
-<span class="linenos">22</span><span class="cm"> */</span><span class="w"></span>
-<span class="linenos">23</span><span class="kt">void</span><span class="w"> </span><span class="nf">button_press_debounce</span><span class="p">(){</span><span class="w"></span>
+<span class="linenos">22</span><span class="cm"> */</span>
+<span class="linenos">23</span><span class="kt">void</span><span class="w"> </span><span class="nf">button_press_debounce</span><span class="p">(){</span>
 <span class="linenos">24</span>
-<span class="linenos">25</span><span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">latest_edge_millis</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
-<span class="linenos">26</span><span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">previous_button_state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">LOW</span><span class="p">;</span><span class="w"></span>
-<span class="linenos">27</span><span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">button_event</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">LOW</span><span class="p">;</span><span class="w"></span>
-<span class="linenos">28</span><span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">counter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">25</span><span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">latest_edge_millis</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="linenos">26</span><span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">previous_button_state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">LOW</span><span class="p">;</span>
+<span class="linenos">27</span><span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">button_event</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">LOW</span><span class="p">;</span>
+<span class="linenos">28</span><span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">counter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="linenos">29</span>
-<span class="linenos">30</span><span class="w">  </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">button_state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">digitalRead</span><span class="p">(</span><span class="n">push_button_1</span><span class="p">);</span><span class="w"></span>
+<span class="linenos">30</span><span class="w">  </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">button_state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">digitalRead</span><span class="p">(</span><span class="n">push_button_1</span><span class="p">);</span>
 <span class="linenos">31</span>
-<span class="linenos">32</span><span class="w">  </span><span class="k">if</span><span class="p">(</span><span class="n">button_state</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">previous_button_state</span><span class="p">){</span><span class="w"></span>
-<span class="linenos">33</span><span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">button_state</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">HIGH</span><span class="p">){</span><span class="w"></span>
-<span class="linenos">34</span><span class="w">      </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;Rising edge.&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="linenos">35</span><span class="w">      </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">counter</span><span class="p">);</span><span class="w"></span>
-<span class="linenos">36</span><span class="w">      </span><span class="n">counter</span><span class="o">++</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">32</span><span class="w">  </span><span class="k">if</span><span class="p">(</span><span class="n">button_state</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">previous_button_state</span><span class="p">){</span>
+<span class="linenos">33</span><span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">button_state</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">HIGH</span><span class="p">){</span>
+<span class="linenos">34</span><span class="w">      </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;Rising edge.&quot;</span><span class="p">);</span>
+<span class="linenos">35</span><span class="w">      </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">counter</span><span class="p">);</span>
+<span class="linenos">36</span><span class="w">      </span><span class="n">counter</span><span class="o">++</span><span class="p">;</span>
 <span class="linenos">37</span>
-<span class="linenos">38</span><span class="w">      </span><span class="n">latest_edge_millis</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">millis</span><span class="p">();</span><span class="w"></span>
-<span class="linenos">39</span><span class="w">      </span><span class="n">button_event</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">HIGH</span><span class="p">;</span><span class="w"></span>
-<span class="linenos">40</span><span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="linenos">41</span><span class="w">    </span><span class="n">previous_button_state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">button_state</span><span class="p">;</span><span class="w"></span>
-<span class="linenos">42</span><span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="linenos">38</span><span class="w">      </span><span class="n">latest_edge_millis</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">millis</span><span class="p">();</span>
+<span class="linenos">39</span><span class="w">      </span><span class="n">button_event</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">HIGH</span><span class="p">;</span>
+<span class="linenos">40</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos">41</span><span class="w">    </span><span class="n">previous_button_state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">button_state</span><span class="p">;</span>
+<span class="linenos">42</span><span class="w">  </span><span class="p">}</span>
 <span class="linenos">43</span>
-<span class="linenos">44</span><span class="w">  </span><span class="k">if</span><span class="p">(</span><span class="n">millis</span><span class="p">()</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">latest_edge_millis</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">100</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">(</span><span class="n">button_event</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">HIGH</span><span class="p">)){</span><span class="w"></span>
-<span class="linenos">45</span><span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Button event detected&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="linenos">46</span><span class="w">    </span><span class="n">button_event</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">LOW</span><span class="p">;</span><span class="w"></span>
-<span class="linenos">47</span><span class="w">  </span><span class="p">}</span><span class="w"></span>
-<span class="linenos">48</span><span class="p">}</span><span class="w"></span>
+<span class="linenos">44</span><span class="w">  </span><span class="k">if</span><span class="p">(</span><span class="n">millis</span><span class="p">()</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">latest_edge_millis</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">100</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">(</span><span class="n">button_event</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">HIGH</span><span class="p">)){</span>
+<span class="linenos">45</span><span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Button event detected&quot;</span><span class="p">);</span>
+<span class="linenos">46</span><span class="w">    </span><span class="n">button_event</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">LOW</span><span class="p">;</span>
+<span class="linenos">47</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">48</span><span class="p">}</span>
 </pre></div>
 </div>
 <p>Hardware solutions include analog filters using resitors and capacitors, as well as using a SR-latch.</p>
@@ -383,86 +390,86 @@
 </figcaption>
 </figure>
 <p>The following function allows de-bouncing up to 8 digital inputs simultanously</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">uint8_t</span><span class="w"> </span><span class="nf">switch_debounce</span><span class="p">(</span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">current_state</span><span class="p">){</span><span class="w"></span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">uint8_t</span><span class="w"> </span><span class="nf">switch_debounce</span><span class="p">(</span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">current_state</span><span class="p">){</span>
 
-<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">asserted</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">0x00</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">previous</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">0x00</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">asserted</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">0x00</span><span class="p">;</span>
+<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">previous</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">0x00</span><span class="p">;</span>
 
-<span class="w">    </span><span class="n">asserted</span><span class="w"> </span><span class="o">|=</span><span class="w"> </span><span class="p">(</span><span class="n">previous</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">current_state</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">asserted</span><span class="w"> </span><span class="o">&amp;=</span><span class="w"> </span><span class="p">(</span><span class="n">previous</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">current_state</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">asserted</span><span class="w"> </span><span class="o">|=</span><span class="w"> </span><span class="p">(</span><span class="n">previous</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">current_state</span><span class="p">);</span>
+<span class="w">    </span><span class="n">asserted</span><span class="w"> </span><span class="o">&amp;=</span><span class="w"> </span><span class="p">(</span><span class="n">previous</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">current_state</span><span class="p">);</span>
 
-<span class="w">    </span><span class="n">previous</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">current_state</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">previous</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">current_state</span><span class="p">;</span>
 
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">asserted</span><span class="p">;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">asserted</span><span class="p">;</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </section>
 <section id="stopwatch">
-<h3>Stopwatch<a class="headerlink" href="#stopwatch" title="Permalink to this heading">¶</a></h3>
+<h3>Stopwatch<a class="headerlink" href="#stopwatch" title="Permalink to this headline">¶</a></h3>
 <p>Since we know some ways of eliminating the glitches (or jitter) on the button, we can design a nice stopwatch timer.</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Arduino.h&gt;</span><span class="cp"></span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Arduino.h&gt;</span>
 <span class="linenos"> 2</span>
-<span class="linenos"> 3</span><span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">led_pin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"></span>
-<span class="linenos"> 4</span><span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">button_pin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 3</span><span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">led_pin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
+<span class="linenos"> 4</span><span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">button_pin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
 <span class="linenos"> 5</span>
-<span class="linenos"> 6</span><span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos"> 6</span><span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos"> 7</span><span class="w">  </span><span class="c1">// put your setup code here, to run once:</span>
-<span class="linenos"> 8</span><span class="w">  </span><span class="n">pinMode</span><span class="p">(</span><span class="n">button_pin</span><span class="p">,</span><span class="n">INPUT</span><span class="p">);</span><span class="w"></span>
-<span class="linenos"> 9</span><span class="w">  </span><span class="n">pinMode</span><span class="p">(</span><span class="n">led_pin</span><span class="p">,</span><span class="n">OUTPUT</span><span class="p">);</span><span class="w"></span>
-<span class="linenos">10</span><span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span><span class="w"></span>
+<span class="linenos"> 8</span><span class="w">  </span><span class="n">pinMode</span><span class="p">(</span><span class="n">button_pin</span><span class="p">,</span><span class="n">INPUT</span><span class="p">);</span>
+<span class="linenos"> 9</span><span class="w">  </span><span class="n">pinMode</span><span class="p">(</span><span class="n">led_pin</span><span class="p">,</span><span class="n">OUTPUT</span><span class="p">);</span>
+<span class="linenos">10</span><span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span>
 <span class="linenos">11</span>
-<span class="linenos">12</span><span class="w">  </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">led_pin</span><span class="p">,</span><span class="n">LOW</span><span class="p">);</span><span class="w"></span>
+<span class="linenos">12</span><span class="w">  </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">led_pin</span><span class="p">,</span><span class="n">LOW</span><span class="p">);</span>
 <span class="linenos">13</span>
-<span class="linenos">14</span><span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Setup complete.&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="linenos">15</span><span class="p">}</span><span class="w"></span>
+<span class="linenos">14</span><span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Setup complete.&quot;</span><span class="p">);</span>
+<span class="linenos">15</span><span class="p">}</span>
 <span class="linenos">16</span>
-<span class="linenos">17</span><span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos">17</span><span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos">18</span><span class="w">  </span><span class="c1">// put your main code here, to run repeatedly:</span>
 <span class="linenos">19</span>
-<span class="linenos">20</span><span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">button_past</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
-<span class="linenos">21</span><span class="w">  </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">button_now</span><span class="p">;</span><span class="w"></span>
-<span class="linenos">22</span><span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">timer_active</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
-<span class="linenos">23</span><span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">start_time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
-<span class="linenos">24</span><span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">stop_time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">20</span><span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">button_past</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="linenos">21</span><span class="w">  </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">button_now</span><span class="p">;</span>
+<span class="linenos">22</span><span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">timer_active</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="linenos">23</span><span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">start_time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="linenos">24</span><span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">stop_time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="linenos">25</span>
-<span class="linenos">26</span><span class="w">  </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">delta_time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
-<span class="linenos">27</span><span class="w">  </span><span class="kt">float</span><span class="w"> </span><span class="n">timer_seconds</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">26</span><span class="w">  </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">delta_time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="linenos">27</span><span class="w">  </span><span class="kt">float</span><span class="w"> </span><span class="n">timer_seconds</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="linenos">28</span>
-<span class="linenos">29</span><span class="w">  </span><span class="n">button_now</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">digitalRead</span><span class="p">(</span><span class="n">button_pin</span><span class="p">);</span><span class="w"></span>
+<span class="linenos">29</span><span class="w">  </span><span class="n">button_now</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">digitalRead</span><span class="p">(</span><span class="n">button_pin</span><span class="p">);</span>
 <span class="linenos">30</span>
 <span class="linenos">31</span><span class="w">  </span><span class="k">if</span><span class="p">((</span><span class="n">button_now</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">(</span><span class="n">button_past</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">)){</span><span class="w"> </span><span class="c1">// Falling edge is less prone to bounce</span>
 <span class="linenos">32</span>
-<span class="linenos">33</span><span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">timer_active</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">){</span><span class="w"></span>
-<span class="linenos">34</span><span class="w">      </span><span class="n">start_time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">millis</span><span class="p">();</span><span class="w"></span>
+<span class="linenos">33</span><span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">timer_active</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">){</span>
+<span class="linenos">34</span><span class="w">      </span><span class="n">start_time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">millis</span><span class="p">();</span>
 <span class="linenos">35</span>
-<span class="linenos">36</span><span class="w">      </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;Starttid: &quot;</span><span class="p">);</span><span class="w"></span>
-<span class="linenos">37</span><span class="w">      </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">start_time</span><span class="p">);</span><span class="w"></span>
+<span class="linenos">36</span><span class="w">      </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;Starttid: &quot;</span><span class="p">);</span>
+<span class="linenos">37</span><span class="w">      </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">start_time</span><span class="p">);</span>
 <span class="linenos">38</span>
-<span class="linenos">39</span><span class="w">      </span><span class="n">timer_active</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
-<span class="linenos">40</span><span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="linenos">41</span><span class="w">    </span><span class="k">else</span><span class="p">{</span><span class="w"></span>
+<span class="linenos">39</span><span class="w">      </span><span class="n">timer_active</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="linenos">40</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos">41</span><span class="w">    </span><span class="k">else</span><span class="p">{</span>
 <span class="linenos">42</span><span class="w">      </span>
-<span class="linenos">43</span><span class="w">      </span><span class="n">stop_time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">millis</span><span class="p">();</span><span class="w"></span>
-<span class="linenos">44</span><span class="w">      </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;Stopptid: &quot;</span><span class="p">);</span><span class="w"></span>
-<span class="linenos">45</span><span class="w">      </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">stop_time</span><span class="p">);</span><span class="w"></span>
+<span class="linenos">43</span><span class="w">      </span><span class="n">stop_time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">millis</span><span class="p">();</span>
+<span class="linenos">44</span><span class="w">      </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;Stopptid: &quot;</span><span class="p">);</span>
+<span class="linenos">45</span><span class="w">      </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">stop_time</span><span class="p">);</span>
 <span class="linenos">46</span>
-<span class="linenos">47</span><span class="w">      </span><span class="n">delta_time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stop_time</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">start_time</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">47</span><span class="w">      </span><span class="n">delta_time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stop_time</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">start_time</span><span class="p">;</span>
 <span class="linenos">48</span>
-<span class="linenos">49</span><span class="w">      </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;Delta tid: &quot;</span><span class="p">);</span><span class="w"></span>
-<span class="linenos">50</span><span class="w">      </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">delta_time</span><span class="p">);</span><span class="w"></span>
+<span class="linenos">49</span><span class="w">      </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;Delta tid: &quot;</span><span class="p">);</span>
+<span class="linenos">50</span><span class="w">      </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">delta_time</span><span class="p">);</span>
 <span class="linenos">51</span>
-<span class="linenos">52</span><span class="w">      </span><span class="n">timer_seconds</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">delta_time</span><span class="o">/</span><span class="mf">1000.0</span><span class="p">;</span><span class="w"></span>
-<span class="linenos">53</span><span class="w">      </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;Delta tid sekunder: &quot;</span><span class="p">);</span><span class="w"></span>
-<span class="linenos">54</span><span class="w">      </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">timer_seconds</span><span class="p">);</span><span class="w"></span>
-<span class="linenos">55</span><span class="w">      </span><span class="n">timer_active</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
-<span class="linenos">56</span><span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="linenos">57</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="linenos">52</span><span class="w">      </span><span class="n">timer_seconds</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">delta_time</span><span class="o">/</span><span class="mf">1000.0</span><span class="p">;</span>
+<span class="linenos">53</span><span class="w">      </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;Delta tid sekunder: &quot;</span><span class="p">);</span>
+<span class="linenos">54</span><span class="w">      </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">timer_seconds</span><span class="p">);</span>
+<span class="linenos">55</span><span class="w">      </span><span class="n">timer_active</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="linenos">56</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos">57</span><span class="w"> </span><span class="p">}</span>
 <span class="linenos">58</span>
-<span class="linenos">59</span><span class="w">  </span><span class="n">button_past</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">button_now</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">59</span><span class="w">  </span><span class="n">button_past</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">button_now</span><span class="p">;</span>
 <span class="linenos">60</span>
-<span class="linenos">61</span><span class="w">  </span><span class="n">delay</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
-<span class="linenos">62</span><span class="p">}</span><span class="w"></span>
+<span class="linenos">61</span><span class="w">  </span><span class="n">delay</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="linenos">62</span><span class="p">}</span>
 </pre></div>
 </div>
 <div class="admonition note">
@@ -471,133 +478,133 @@
 </div>
 </section>
 <section id="triple-button-triple-led">
-<h3>Triple button, triple LED<a class="headerlink" href="#triple-button-triple-led" title="Permalink to this heading">¶</a></h3>
+<h3>Triple button, triple LED<a class="headerlink" href="#triple-button-triple-led" title="Permalink to this headline">¶</a></h3>
 <div class="admonition-todo admonition" id="id1">
 <p class="admonition-title">Todo</p>
 <p>Start with regular long way with 2 buttons+2LED first.</p>
 </div>
 <p>With arrays, a better way:</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">inputPins</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">};</span><span class="w"></span>
-<span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">ledPins</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">9</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">11</span><span class="p">};</span><span class="w"></span>
-<span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">(){</span><span class="w"></span>
-<span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">){</span><span class="w"></span>
-<span class="w">        </span><span class="n">pinMode</span><span class="p">(</span><span class="n">ledPins</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="n">OUTPUT</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">delay</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">pinMode</span><span class="p">(</span><span class="n">inputPins</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="n">INPUT</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">delay</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-<span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">(){</span><span class="w"></span>
-<span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">){</span><span class="w"></span>
-<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">digitalRead</span><span class="p">(</span><span class="n">inputPins</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span><span class="w"></span>
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">val</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">LOW</span><span class="p">){</span><span class="w"></span>
-<span class="w">            </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ledPins</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="n">HIGH</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
-<span class="w">        </span><span class="k">else</span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ledPins</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="n">LOW</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">inputPins</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">};</span>
+<span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">ledPins</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">9</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">11</span><span class="p">};</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">(){</span>
+<span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+<span class="w">        </span><span class="n">pinMode</span><span class="p">(</span><span class="n">ledPins</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="n">OUTPUT</span><span class="p">);</span>
+<span class="w">        </span><span class="n">delay</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">        </span><span class="n">pinMode</span><span class="p">(</span><span class="n">inputPins</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="n">INPUT</span><span class="p">);</span>
+<span class="w">        </span><span class="n">delay</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">(){</span>
+<span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">digitalRead</span><span class="p">(</span><span class="n">inputPins</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">val</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">LOW</span><span class="p">){</span>
+<span class="w">            </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ledPins</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="n">HIGH</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">else</span><span class="p">{</span>
+<span class="w">            </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ledPins</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="n">LOW</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </section>
 <section id="serial-ui-for-led-control">
-<h3>Serial UI for LED control<a class="headerlink" href="#serial-ui-for-led-control" title="Permalink to this heading">¶</a></h3>
+<h3>Serial UI for LED control<a class="headerlink" href="#serial-ui-for-led-control" title="Permalink to this headline">¶</a></h3>
 <p>Let’s design a serial UI for controlling the button state.</p>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1">//LED on off through Serial</span>
 <span class="linenos"> 2</span>
-<span class="linenos"> 3</span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">led_pin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">8</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 3</span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">led_pin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">8</span><span class="p">;</span>
 <span class="linenos"> 4</span>
-<span class="linenos"> 5</span><span class="kt">char</span><span class="w"> </span><span class="n">rx_byte</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 5</span><span class="kt">char</span><span class="w"> </span><span class="n">rx_byte</span><span class="p">;</span>
 <span class="linenos"> 6</span>
-<span class="linenos"> 7</span><span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">(){</span><span class="w"></span>
-<span class="linenos"> 8</span><span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span><span class="w"></span>
-<span class="linenos"> 9</span><span class="p">}</span><span class="w"></span>
+<span class="linenos"> 7</span><span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">(){</span>
+<span class="linenos"> 8</span><span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span>
+<span class="linenos"> 9</span><span class="p">}</span>
 <span class="linenos">10</span>
-<span class="linenos">11</span><span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">(){</span><span class="w"></span>
-<span class="linenos">12</span><span class="w">  </span><span class="k">if</span><span class="p">(</span><span class="n">Serial</span><span class="p">.</span><span class="n">available</span><span class="p">()</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"></span>
-<span class="linenos">13</span><span class="w">  </span><span class="p">{</span><span class="w"></span>
-<span class="linenos">14</span><span class="w">    </span><span class="n">rx_byte</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Serial</span><span class="p">.</span><span class="n">read</span><span class="p">();</span><span class="w"></span>
+<span class="linenos">11</span><span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">(){</span>
+<span class="linenos">12</span><span class="w">  </span><span class="k">if</span><span class="p">(</span><span class="n">Serial</span><span class="p">.</span><span class="n">available</span><span class="p">()</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+<span class="linenos">13</span><span class="w">  </span><span class="p">{</span>
+<span class="linenos">14</span><span class="w">    </span><span class="n">rx_byte</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Serial</span><span class="p">.</span><span class="n">read</span><span class="p">();</span>
 <span class="linenos">15</span>
-<span class="linenos">16</span><span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">rx_byte</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="sc">&#39;1&#39;</span><span class="p">){</span><span class="w"></span>
-<span class="linenos">17</span><span class="w">      </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;LED is ON&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="linenos">18</span><span class="w">      </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">led_pin</span><span class="p">,</span><span class="w"> </span><span class="n">HIGH</span><span class="p">);</span><span class="w"></span>
-<span class="linenos">19</span><span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="linenos">16</span><span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">rx_byte</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="sc">&#39;1&#39;</span><span class="p">){</span>
+<span class="linenos">17</span><span class="w">      </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;LED is ON&quot;</span><span class="p">);</span>
+<span class="linenos">18</span><span class="w">      </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">led_pin</span><span class="p">,</span><span class="w"> </span><span class="n">HIGH</span><span class="p">);</span>
+<span class="linenos">19</span><span class="w">    </span><span class="p">}</span>
 <span class="linenos">20</span>
-<span class="linenos">21</span><span class="w">    </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="p">(</span><span class="n">rx_byte</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="sc">&#39;2&#39;</span><span class="p">){</span><span class="w"></span>
-<span class="linenos">22</span><span class="w">      </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;LED is OFF&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="linenos">23</span><span class="w">      </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">led_pin</span><span class="p">,</span><span class="w"> </span><span class="n">LOW</span><span class="p">);</span><span class="w"></span>
-<span class="linenos">24</span><span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="linenos">21</span><span class="w">    </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="p">(</span><span class="n">rx_byte</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="sc">&#39;2&#39;</span><span class="p">){</span>
+<span class="linenos">22</span><span class="w">      </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;LED is OFF&quot;</span><span class="p">);</span>
+<span class="linenos">23</span><span class="w">      </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">led_pin</span><span class="p">,</span><span class="w"> </span><span class="n">LOW</span><span class="p">);</span>
+<span class="linenos">24</span><span class="w">    </span><span class="p">}</span>
 <span class="linenos">25</span>
-<span class="linenos">26</span><span class="w">    </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="p">(</span><span class="n">rx_byte</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="sc">&#39;3&#39;</span><span class="p">){</span><span class="w"></span>
-<span class="linenos">27</span><span class="w">      </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;HELP MENU&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="linenos">28</span><span class="w">      </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;----------&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="linenos">29</span><span class="w">      </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;1. LED ON&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="linenos">30</span><span class="w">      </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;2. LED OFF&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="linenos">31</span><span class="w">      </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;3. HELP MENU&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="linenos">32</span><span class="w">      </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;----------&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="linenos">33</span><span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="linenos">26</span><span class="w">    </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="p">(</span><span class="n">rx_byte</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="sc">&#39;3&#39;</span><span class="p">){</span>
+<span class="linenos">27</span><span class="w">      </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;HELP MENU&quot;</span><span class="p">);</span>
+<span class="linenos">28</span><span class="w">      </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;----------&quot;</span><span class="p">);</span>
+<span class="linenos">29</span><span class="w">      </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;1. LED ON&quot;</span><span class="p">);</span>
+<span class="linenos">30</span><span class="w">      </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;2. LED OFF&quot;</span><span class="p">);</span>
+<span class="linenos">31</span><span class="w">      </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;3. HELP MENU&quot;</span><span class="p">);</span>
+<span class="linenos">32</span><span class="w">      </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;----------&quot;</span><span class="p">);</span>
+<span class="linenos">33</span><span class="w">    </span><span class="p">}</span>
 <span class="linenos">34</span>
 <span class="linenos">35</span>
-<span class="linenos">36</span><span class="w">    </span><span class="k">else</span><span class="p">{</span><span class="w"></span>
-<span class="linenos">37</span><span class="w">      </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Invalid Operation&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="linenos">38</span><span class="w">      </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;----------&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="linenos">39</span><span class="w">      </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;1. LED ON&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="linenos">40</span><span class="w">      </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;2. LED OFF&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="linenos">41</span><span class="w">      </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;3. HELP MENU&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="linenos">36</span><span class="w">    </span><span class="k">else</span><span class="p">{</span>
+<span class="linenos">37</span><span class="w">      </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Invalid Operation&quot;</span><span class="p">);</span>
+<span class="linenos">38</span><span class="w">      </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;----------&quot;</span><span class="p">);</span>
+<span class="linenos">39</span><span class="w">      </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;1. LED ON&quot;</span><span class="p">);</span>
+<span class="linenos">40</span><span class="w">      </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;2. LED OFF&quot;</span><span class="p">);</span>
+<span class="linenos">41</span><span class="w">      </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;3. HELP MENU&quot;</span><span class="p">);</span>
 <span class="linenos">42</span><span class="w">      </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;----------&quot;</span><span class="p">);</span><span class="w">      </span>
 <span class="linenos">43</span><span class="w">    </span><span class="p">}</span><span class="w">  </span>
-<span class="linenos">44</span><span class="w">  </span><span class="p">}</span><span class="w"></span>
-<span class="linenos">45</span><span class="p">}</span><span class="w"></span>
+<span class="linenos">44</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">45</span><span class="p">}</span>
 </pre></div>
 </div>
 </section>
 </section>
 <section id="switch-bouncing">
-<h2>Switch bouncing<a class="headerlink" href="#switch-bouncing" title="Permalink to this heading">¶</a></h2>
+<h2>Switch bouncing<a class="headerlink" href="#switch-bouncing" title="Permalink to this headline">¶</a></h2>
 <p>A mechanical switch will often generate spurious open/close transitions in a short period after it has been activated. It is a risk that these spurious transitions are interpreted as multiple signals from the switch. In order to avoid these problems some form of debounce remedy should be applied. This could be a hardware solution, a software solution or a combination of the two.</p>
 <p>The graph to the right in the following figure illustrates the spurious changes in voltage level at the node between the resistor and the switch.</p>
 <section id="debounce-methods">
-<h3>Debounce methods<a class="headerlink" href="#debounce-methods" title="Permalink to this heading">¶</a></h3>
+<h3>Debounce methods<a class="headerlink" href="#debounce-methods" title="Permalink to this headline">¶</a></h3>
 <p>If a software debounce solution is desired, one possibility is to check the button state twice, within a short time windows. I.e. check, delay, check again. The following source code listing illustrates one possibility:</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Arduino.h&gt;</span><span class="cp"></span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Arduino.h&gt;</span>
 <span class="linenos"> 2</span>
-<span class="linenos"> 3</span><span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">push_button_1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">11</span><span class="p">;</span><span class="w"></span>
-<span class="linenos"> 4</span><span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">greenLED</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 3</span><span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">push_button_1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">11</span><span class="p">;</span>
+<span class="linenos"> 4</span><span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">greenLED</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
 <span class="linenos"> 5</span>
-<span class="linenos"> 6</span><span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="linenos"> 7</span><span class="w">  </span><span class="n">pinMode</span><span class="p">(</span><span class="n">push_button_1</span><span class="p">,</span><span class="w"> </span><span class="n">INPUT</span><span class="p">);</span><span class="w"></span>
-<span class="linenos"> 8</span><span class="w">  </span><span class="n">pinMode</span><span class="p">(</span><span class="n">greenLED</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT</span><span class="p">);</span><span class="w"></span>
-<span class="linenos"> 9</span><span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span><span class="w"></span>
-<span class="linenos">10</span><span class="p">}</span><span class="w"></span>
+<span class="linenos"> 6</span><span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 7</span><span class="w">  </span><span class="n">pinMode</span><span class="p">(</span><span class="n">push_button_1</span><span class="p">,</span><span class="w"> </span><span class="n">INPUT</span><span class="p">);</span>
+<span class="linenos"> 8</span><span class="w">  </span><span class="n">pinMode</span><span class="p">(</span><span class="n">greenLED</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT</span><span class="p">);</span>
+<span class="linenos"> 9</span><span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span>
+<span class="linenos">10</span><span class="p">}</span>
 <span class="linenos">11</span>
-<span class="linenos">12</span><span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos">12</span><span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos">13</span>
-<span class="linenos">14</span><span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">latest_edge_millis</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
-<span class="linenos">15</span><span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">previous_button_state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">LOW</span><span class="p">;</span><span class="w"></span>
-<span class="linenos">16</span><span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">button_event</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">LOW</span><span class="p">;</span><span class="w"></span>
-<span class="linenos">17</span><span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">counter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">14</span><span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">latest_edge_millis</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="linenos">15</span><span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">previous_button_state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">LOW</span><span class="p">;</span>
+<span class="linenos">16</span><span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">button_event</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">LOW</span><span class="p">;</span>
+<span class="linenos">17</span><span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">counter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="linenos">18</span>
-<span class="linenos">19</span><span class="w">  </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">button_state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">digitalRead</span><span class="p">(</span><span class="n">push_button_1</span><span class="p">);</span><span class="w"></span>
+<span class="linenos">19</span><span class="w">  </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">button_state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">digitalRead</span><span class="p">(</span><span class="n">push_button_1</span><span class="p">);</span>
 <span class="linenos">20</span>
-<span class="linenos">21</span><span class="w">  </span><span class="k">if</span><span class="p">(</span><span class="n">button_state</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">previous_button_state</span><span class="p">){</span><span class="w"></span>
-<span class="linenos">22</span><span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">button_state</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">HIGH</span><span class="p">){</span><span class="w"></span>
-<span class="linenos">23</span><span class="w">      </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;Rising edge.&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="linenos">24</span><span class="w">      </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">counter</span><span class="p">);</span><span class="w"></span>
-<span class="linenos">25</span><span class="w">      </span><span class="n">counter</span><span class="o">++</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">21</span><span class="w">  </span><span class="k">if</span><span class="p">(</span><span class="n">button_state</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">previous_button_state</span><span class="p">){</span>
+<span class="linenos">22</span><span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">button_state</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">HIGH</span><span class="p">){</span>
+<span class="linenos">23</span><span class="w">      </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;Rising edge.&quot;</span><span class="p">);</span>
+<span class="linenos">24</span><span class="w">      </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">counter</span><span class="p">);</span>
+<span class="linenos">25</span><span class="w">      </span><span class="n">counter</span><span class="o">++</span><span class="p">;</span>
 <span class="linenos">26</span>
-<span class="linenos">27</span><span class="w">      </span><span class="n">latest_edge_millis</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">millis</span><span class="p">();</span><span class="w"></span>
-<span class="linenos">28</span><span class="w">      </span><span class="n">button_event</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">HIGH</span><span class="p">;</span><span class="w"></span>
-<span class="linenos">29</span><span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="linenos">30</span><span class="w">    </span><span class="n">previous_button_state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">button_state</span><span class="p">;</span><span class="w"></span>
-<span class="linenos">31</span><span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="linenos">27</span><span class="w">      </span><span class="n">latest_edge_millis</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">millis</span><span class="p">();</span>
+<span class="linenos">28</span><span class="w">      </span><span class="n">button_event</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">HIGH</span><span class="p">;</span>
+<span class="linenos">29</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos">30</span><span class="w">    </span><span class="n">previous_button_state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">button_state</span><span class="p">;</span>
+<span class="linenos">31</span><span class="w">  </span><span class="p">}</span>
 <span class="linenos">32</span>
-<span class="linenos">33</span><span class="w">  </span><span class="k">if</span><span class="p">(</span><span class="n">millis</span><span class="p">()</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">latest_edge_millis</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">100</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">(</span><span class="n">button_event</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">HIGH</span><span class="p">)){</span><span class="w"></span>
-<span class="linenos">34</span><span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Button event detected&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="linenos">35</span><span class="w">    </span><span class="n">button_event</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">LOW</span><span class="p">;</span><span class="w"></span>
-<span class="linenos">36</span><span class="w">  </span><span class="p">}</span><span class="w"></span>
-<span class="linenos">37</span><span class="p">}</span><span class="w"></span>
+<span class="linenos">33</span><span class="w">  </span><span class="k">if</span><span class="p">(</span><span class="n">millis</span><span class="p">()</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">latest_edge_millis</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">100</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">(</span><span class="n">button_event</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">HIGH</span><span class="p">)){</span>
+<span class="linenos">34</span><span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Button event detected&quot;</span><span class="p">);</span>
+<span class="linenos">35</span><span class="w">    </span><span class="n">button_event</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">LOW</span><span class="p">;</span>
+<span class="linenos">36</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">37</span><span class="p">}</span>
 </pre></div>
 </div>
 <p>Hardware solutions include analog filters using resistors and capacitors, or digital circuits as illustrated in the following figure:</p>
@@ -605,7 +612,7 @@
 <p>A really efficient and reliable debounce circuit can be built bu using a SR-latch in conjunction with a SPDT switch. In one position the switch is connected to the <em>set</em> input, while the other position of the switch is connected to <em>reset</em> input of the latch. That way you do not have to consider the time you expect the bouncing to last, or the duration between each of the spurious voltage pulses.</p>
 </section>
 <section id="exercise-push-button-de-bouncing">
-<h3>Exercise: Push button de-bouncing<a class="headerlink" href="#exercise-push-button-de-bouncing" title="Permalink to this heading">¶</a></h3>
+<h3>Exercise: Push button de-bouncing<a class="headerlink" href="#exercise-push-button-de-bouncing" title="Permalink to this headline">¶</a></h3>
 <ol class="arabic simple">
 <li><p>Write a program which toggles a LED on the rising edge of a push button. The program should also print a message to the serial port on the rising edge.</p></li>
 <li><p>Extend the program with the code required to avoid bouncing problems.</p></li>
@@ -613,23 +620,23 @@
 </ol>
 </section>
 <section id="exercise-stopwatch">
-<h3>Exercise: Stopwatch<a class="headerlink" href="#exercise-stopwatch" title="Permalink to this heading">¶</a></h3>
+<h3>Exercise: Stopwatch<a class="headerlink" href="#exercise-stopwatch" title="Permalink to this headline">¶</a></h3>
 <p>Since we know some ways of eliminating the glitches (or jitter) on the button, we can design a nice stopwatch timer.</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Arduino.h&gt;</span><span class="cp"></span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Arduino.h&gt;</span>
 <span class="linenos"> 2</span>
 <span class="linenos"> 3</span><span class="c1">// include Arduino.h library</span>
 <span class="linenos"> 4</span><span class="c1">// define led_pin attached to pin 2</span>
 <span class="linenos"> 5</span><span class="c1">// define button_pin attached to pin 10</span>
 <span class="linenos"> 6</span>
-<span class="linenos"> 7</span><span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos"> 7</span><span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos"> 8</span><span class="w">  </span><span class="c1">// set button_pin as input</span>
 <span class="linenos"> 9</span><span class="w">  </span><span class="c1">// set led_pin as output</span>
 <span class="linenos">10</span><span class="w">  </span><span class="c1">// start serial in 9600 hertz</span>
 <span class="linenos">11</span><span class="w">  </span><span class="c1">// turn off LED</span>
 <span class="linenos">12</span><span class="w">  </span><span class="c1">// notification on serial: &quot;Setup ready&quot;</span>
-<span class="linenos">13</span><span class="p">}</span><span class="w"></span>
+<span class="linenos">13</span><span class="p">}</span>
 <span class="linenos">14</span>
-<span class="linenos">15</span><span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos">15</span><span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos">16</span><span class="w">  </span><span class="c1">// define static 8-bit integer button_past</span>
 <span class="linenos">17</span><span class="w">  </span><span class="c1">// define 8-bit integer button_now</span>
 <span class="linenos">18</span><span class="w">  </span><span class="c1">// define static 8-bit integer timer_active</span>
@@ -641,27 +648,27 @@
 <span class="linenos">24</span><span class="w">  </span><span class="c1">//if((button_now equals to 0) and (button_past == equals to 1)){</span>
 <span class="linenos">25</span><span class="w">    </span><span class="c1">//if timer_active equals to 0{</span>
 <span class="linenos">26</span><span class="w">      </span><span class="c1">// start_time as milliseconds</span>
-<span class="linenos">27</span><span class="w">      </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;Starttid: &quot;</span><span class="p">);</span><span class="w"></span>
+<span class="linenos">27</span><span class="w">      </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;Starttid: &quot;</span><span class="p">);</span>
 <span class="linenos">28</span><span class="w">      </span><span class="c1">// print start_time</span>
 <span class="linenos">29</span><span class="w">      </span><span class="c1">// set timer_active to 1</span>
-<span class="linenos">30</span><span class="w">      </span><span class="p">}</span><span class="w"></span>
-<span class="linenos">31</span><span class="w">    </span><span class="k">else</span><span class="p">{</span><span class="w"></span>
+<span class="linenos">30</span><span class="w">      </span><span class="p">}</span>
+<span class="linenos">31</span><span class="w">    </span><span class="k">else</span><span class="p">{</span>
 <span class="linenos">32</span><span class="w">      </span><span class="c1">// stop_time as milliseconds</span>
-<span class="linenos">33</span><span class="w">      </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;Stopptid: &quot;</span><span class="p">);</span><span class="w"></span>
+<span class="linenos">33</span><span class="w">      </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;Stopptid: &quot;</span><span class="p">);</span>
 <span class="linenos">34</span><span class="w">      </span><span class="c1">// print stop_time</span>
 <span class="linenos">35</span><span class="w">      </span><span class="c1">// calculate delta_time</span>
-<span class="linenos">36</span><span class="w">      </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;Delta tid: &quot;</span><span class="p">);</span><span class="w"></span>
+<span class="linenos">36</span><span class="w">      </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;Delta tid: &quot;</span><span class="p">);</span>
 <span class="linenos">37</span><span class="w">      </span><span class="c1">// print delta_time</span>
 <span class="linenos">38</span><span class="w">      </span><span class="c1">// convert delta_time into seconds as &quot;timer_seconds&quot;</span>
-<span class="linenos">39</span><span class="w">      </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;Delta tid sekunder: &quot;</span><span class="p">);</span><span class="w"></span>
+<span class="linenos">39</span><span class="w">      </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;Delta tid sekunder: &quot;</span><span class="p">);</span>
 <span class="linenos">40</span><span class="w">      </span><span class="c1">// print timer_seconds</span>
 <span class="linenos">41</span><span class="w">      </span><span class="c1">// set timer_active to 0</span>
-<span class="linenos">42</span><span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="linenos">43</span><span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="linenos">42</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos">43</span><span class="w">  </span><span class="p">}</span>
 <span class="linenos">44</span><span class="w">  </span>
-<span class="linenos">45</span><span class="w">  </span><span class="n">button_past</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">button_now</span><span class="p">;</span><span class="w"></span>
-<span class="linenos">46</span><span class="w">  </span><span class="n">delay</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
-<span class="linenos">47</span><span class="p">}</span><span class="w"></span>
+<span class="linenos">45</span><span class="w">  </span><span class="n">button_past</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">button_now</span><span class="p">;</span>
+<span class="linenos">46</span><span class="w">  </span><span class="n">delay</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="linenos">47</span><span class="p">}</span>
 </pre></div>
 </div>
 <div class="admonition note">
@@ -702,7 +709,7 @@
       <!-- footer -->
       <footer role="contentinfo">
           &copy; Copyright 2022, Gizem Ateş &amp; Eirik Haustveit.
-        Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 5.3.0.
+        Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 4.5.0.
       </footer>
       <!-- /footer -->
 

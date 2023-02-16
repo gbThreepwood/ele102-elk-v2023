@@ -6,7 +6,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <title>Additional material for lesson 9 &mdash; ELE102 Microcontroller course v1.1.0 documentation</title>
     <meta name="description" content="">
@@ -45,9 +45,7 @@
     <script type="text/javascript" src="../../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../../_static/js/jquery.min.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
-    <script type="text/javascript" src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../_static/sphinx_highlight.js"></script>
     <script type="text/javascript" src="../../_static/js/bootstrap3.min.js"></script>
 <script type="text/javascript" src="../../_static/js/jquery.cookie.min.js"></script>
 <script type="text/javascript" src="../../_static/js/basicstrap.js"></script>
@@ -55,7 +53,9 @@
 </script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="top" title="ELE102 Microcontroller course v1.1.0 documentation" href="../../index.html" /> 
+    <link rel="top" title="ELE102 Microcontroller course v1.1.0 documentation" href="../../index.html" />
+    <link rel="next" title="Additional material for lesson 10" href="L10_additional.html" />
+    <link rel="prev" title="Additional material for lesson 8" href="L8_additional.html" /> 
   </head>
   <body role="document">
     <div id="navbar-top" class="navbar navbar-fixed-top navbar-default" role="navigation" aria-label="top navigation">
@@ -109,6 +109,8 @@
               </li>
 
             
+              <li><a href="L8_additional.html" title="Additional material for lesson 8" accesskey="P">previous </a></li>
+              <li><a href="L10_additional.html" title="Additional material for lesson 10" accesskey="N">next </a></li>
               <li><a href="../../genindex.html" title="General Index" accesskey="I">index </a></li>
             
 
@@ -153,14 +155,50 @@
 <li class="toctree-l1"><a class="reference internal" href="../Lessons/L3_digital_io_and_timing.html">Lesson 3: Use of digital I/O and timing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Lessons/L4_dac_pwm.html">Lesson 4: Analog output (PWM)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Lessons/L5_adc.html">Lesson 5: Analog to digital conversion (ADC)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons/L6_serial_io.html">Lesson 6: Serial I/O</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Additional material:</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="L1_additional.html">Additional material lesson 1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="L2_additional.html">Additional material lesson 2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="L3_additional.html">Additional material lesson 3</a></li>
 <li class="toctree-l1"><a class="reference internal" href="L4_additional.html">Additional material lesson 4</a></li>
 <li class="toctree-l1"><a class="reference internal" href="L5_additional.html">Additional material lesson 5</a></li>
+<li class="toctree-l1"><a class="reference internal" href="L6_additional.html">Additional material lesson 6</a></li>
+<li class="toctree-l1"><a class="reference internal" href="L7_additional.html">Additional material lesson 7</a></li>
+<li class="toctree-l1"><a class="reference internal" href="L8_additional.html">Additional material lesson 8</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Additional material lesson 9</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#changing-the-variable-through-its-adress-pointers">Changing the variable through its adress: Pointers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#exercise-blink-a-led-connected-to-pin-8">Exercise: blink a LED connected to pin 8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#reading-and-manipulating-single-bits">Reading and manipulating single bits</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#exercise-analyze-the-above-example">Exercise: analyze the above example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#exercise-read-a-digital-input-on-pin-a5">Exercise: read a digital input on pin A5</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#determine-ram-memory-usage">Determine RAM memory usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#exercise-determine-stack-usage">Exercise: determine stack usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#using-the-eeprom">Using the EEPROM</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#manage-the-memory-stucture-for-complex-projects">Manage the memory stucture for complex projects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nand-flash">NAND Flash</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nor-flash">NOR Flash</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#using-external-memory">Using external memory</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#external-eeprom">External EEPROM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sd-card">SD-card</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#special-memory-types">Special memory types</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#historical-memory-types">Historical memory types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#random-access-memory-ram">Random access memory (RAM)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="L10_additional.html">Additional material lesson 10</a></li>
+<li class="toctree-l1"><a class="reference internal" href="L11_additional.html">Additional material lesson 11</a></li>
+<li class="toctree-l1"><a class="reference internal" href="L12_additional.html">Additional material lesson 12</a></li>
+<li class="toctree-l1"><a class="reference internal" href="L13_additional.html">Additional material lesson 13</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Projects:</span></p>
 <ul>
@@ -213,6 +251,16 @@
     Enter search terms or a module, class or function name.
     </p>
 </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="L8_additional.html"
+                          title="previous chapter">Additional material for lesson 8</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="L10_additional.html"
+                          title="next chapter">Additional material for lesson 10</a></p>
+  </div>
   </div>
 </div> 
         
@@ -224,15 +272,15 @@
                 <div class="body">
                   
   <section id="additional-material-for-lesson-9">
-<h1>Additional material for lesson 9<a class="headerlink" href="#additional-material-for-lesson-9" title="Permalink to this heading">¶</a></h1>
+<h1>Additional material for lesson 9<a class="headerlink" href="#additional-material-for-lesson-9" title="Permalink to this headline">¶</a></h1>
 <section id="changing-the-variable-through-its-adress-pointers">
-<span id="l9-memory-pointer"></span><h2>Changing the variable through its adress: Pointers<a class="headerlink" href="#changing-the-variable-through-its-adress-pointers" title="Permalink to this heading">¶</a></h2>
+<span id="l9-memory-pointer"></span><h2>Changing the variable through its adress: Pointers<a class="headerlink" href="#changing-the-variable-through-its-adress-pointers" title="Permalink to this headline">¶</a></h2>
 <p>Create a pointer to memory address 0x002b:</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">uint8_t</span><span class="w"> </span><span class="o">*</span><span class="n">port_d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">uint8_t</span><span class="o">*</span><span class="p">)</span><span class="mh">0x002b</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">uint8_t</span><span class="w"> </span><span class="o">*</span><span class="n">port_d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">uint8_t</span><span class="o">*</span><span class="p">)</span><span class="mh">0x002b</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>Write a 1 to bit number 4 (note the asterisk <code class="code docutils literal notranslate"><span class="pre">*</span></code> in front of the variable name):</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="o">*</span><span class="n">port_d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mb">0b00001000</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="o">*</span><span class="n">port_d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mb">0b00001000</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>Without the asterisk we are changing the contents of the variable, rather than the memory location to which it points:</p>
@@ -240,35 +288,35 @@
 </pre></div>
 </div>
 <p>The following example illustrates how to blink a LED connected to pin 3 on the Arduino UNO:</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Arduino.h&gt;</span><span class="cp"></span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Arduino.h&gt;</span>
 <span class="linenos"> 2</span>
-<span class="linenos"> 3</span><span class="kt">uint8_t</span><span class="w"> </span><span class="o">*</span><span class="n">port_d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">uint8_t</span><span class="o">*</span><span class="p">)</span><span class="mh">0x002b</span><span class="p">;</span><span class="w"></span>
-<span class="linenos"> 4</span><span class="kt">uint8_t</span><span class="w"> </span><span class="o">*</span><span class="n">ddr_d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">uint8_t</span><span class="o">*</span><span class="p">)</span><span class="mh">0x002a</span><span class="p">;</span><span class="w"></span>
-<span class="linenos"> 5</span><span class="kt">uint8_t</span><span class="w"> </span><span class="o">*</span><span class="n">pin_d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">uint8_t</span><span class="o">*</span><span class="p">)</span><span class="mh">0x0029</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 3</span><span class="kt">uint8_t</span><span class="w"> </span><span class="o">*</span><span class="n">port_d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">uint8_t</span><span class="o">*</span><span class="p">)</span><span class="mh">0x002b</span><span class="p">;</span>
+<span class="linenos"> 4</span><span class="kt">uint8_t</span><span class="w"> </span><span class="o">*</span><span class="n">ddr_d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">uint8_t</span><span class="o">*</span><span class="p">)</span><span class="mh">0x002a</span><span class="p">;</span>
+<span class="linenos"> 5</span><span class="kt">uint8_t</span><span class="w"> </span><span class="o">*</span><span class="n">pin_d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">uint8_t</span><span class="o">*</span><span class="p">)</span><span class="mh">0x0029</span><span class="p">;</span>
 <span class="linenos"> 6</span>
-<span class="linenos"> 7</span><span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos"> 7</span><span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos"> 8</span>
 <span class="linenos"> 9</span><span class="w">  </span><span class="c1">// Configure pin 4 as output</span>
-<span class="linenos">10</span><span class="w">  </span><span class="o">*</span><span class="n">ddr_d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mb">0b00001000</span><span class="p">;</span><span class="w"></span>
-<span class="linenos">11</span><span class="p">}</span><span class="w"></span>
+<span class="linenos">10</span><span class="w">  </span><span class="o">*</span><span class="n">ddr_d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mb">0b00001000</span><span class="p">;</span>
+<span class="linenos">11</span><span class="p">}</span>
 <span class="linenos">12</span>
-<span class="linenos">13</span><span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos">13</span><span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos">14</span>
 <span class="linenos">15</span><span class="w">  </span><span class="c1">// Set bit 4 (pin 3) high, all other pins low</span>
-<span class="linenos">16</span><span class="w">  </span><span class="o">*</span><span class="n">port_d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mb">0b00001000</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">16</span><span class="w">  </span><span class="o">*</span><span class="n">port_d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mb">0b00001000</span><span class="p">;</span>
 <span class="linenos">17</span>
-<span class="linenos">18</span><span class="w">  </span><span class="n">delay</span><span class="p">(</span><span class="mi">500</span><span class="p">);</span><span class="w"></span>
+<span class="linenos">18</span><span class="w">  </span><span class="n">delay</span><span class="p">(</span><span class="mi">500</span><span class="p">);</span>
 <span class="linenos">19</span>
 <span class="linenos">20</span><span class="w">  </span><span class="c1">// Set all pins (including bit 4 / pin 3) low</span>
-<span class="linenos">21</span><span class="w">  </span><span class="o">*</span><span class="n">port_d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mb">0b00000000</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">21</span><span class="w">  </span><span class="o">*</span><span class="n">port_d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mb">0b00000000</span><span class="p">;</span>
 <span class="linenos">22</span>
-<span class="linenos">23</span><span class="w">  </span><span class="n">delay</span><span class="p">(</span><span class="mi">500</span><span class="p">);</span><span class="w"></span>
-<span class="linenos">24</span><span class="p">}</span><span class="w"></span>
+<span class="linenos">23</span><span class="w">  </span><span class="n">delay</span><span class="p">(</span><span class="mi">500</span><span class="p">);</span>
+<span class="linenos">24</span><span class="p">}</span>
 </pre></div>
 </div>
 <p>Note that the register accesses modify all the bits in the register. E.g. if pin 5 was high before, it will be written low even though we are only interested in modifying pin 3. This can be solved by first reading the register and using some logic operations before writing back to the register.</p>
 <section id="exercise-blink-a-led-connected-to-pin-8">
-<h3>Exercise: blink a LED connected to pin 8<a class="headerlink" href="#exercise-blink-a-led-connected-to-pin-8" title="Permalink to this heading">¶</a></h3>
+<h3>Exercise: blink a LED connected to pin 8<a class="headerlink" href="#exercise-blink-a-led-connected-to-pin-8" title="Permalink to this headline">¶</a></h3>
 <ol class="arabic simple">
 <li><p>Use the Arduino UNO pinout diagram to figure out which port (bank of I/O pins) that pin 8 is connected to.</p></li>
 <li><p>Use the datasheet of the Atmega328p (page 280) to figure out the memory addresses of the registers which controls the bank of pins of which pin 8 is a member. Use the addresses in parentheses.</p></li>
@@ -277,58 +325,58 @@
 </ol>
 </section>
 <section id="reading-and-manipulating-single-bits">
-<h3>Reading and manipulating single bits<a class="headerlink" href="#reading-and-manipulating-single-bits" title="Permalink to this heading">¶</a></h3>
+<h3>Reading and manipulating single bits<a class="headerlink" href="#reading-and-manipulating-single-bits" title="Permalink to this headline">¶</a></h3>
 <p>In order to manipulate single bits of a register we have to read the register, make changes using logic operations, and finally write back the result.</p>
 <p>A very useful operator for this purpose is the left bit shift (<code class="code docutils literal notranslate"><span class="pre">&lt;&lt;</span></code>) operator. It allows us to shift a binary value to the left (a right shift operator <code class="code docutils literal notranslate"><span class="pre">&gt;&gt;</span></code> is also available).</p>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span><span class="w"> </span><span class="c1">// The value of &#39;b&#39; is 1 shifted 3 places to the left, i.e. 0b1000, or 8 in decimal.</span>
 </pre></div>
 </div>
 <p>Additionally the bitwise and (<code class="code docutils literal notranslate"><span class="pre">&amp;</span></code>), the bitwise or (<code class="code docutils literal notranslate"><span class="pre">|</span></code>), the bitwise xor (<code class="code docutils literal notranslate"><span class="pre">^</span></code>), and the bitwise not (<code class="code docutils literal notranslate"><span class="pre">~</span></code>) can be used in clever ways to set, clear, or flip the state of single bits while leaving the other bits untouched.</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Arduino.h&gt;</span><span class="cp"></span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Arduino.h&gt;</span>
 <span class="linenos"> 2</span>
-<span class="linenos"> 3</span><span class="kt">uint8_t</span><span class="w"> </span><span class="o">*</span><span class="n">port_d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">uint8_t</span><span class="o">*</span><span class="p">)</span><span class="mh">0x002b</span><span class="p">;</span><span class="w"></span>
-<span class="linenos"> 4</span><span class="kt">uint8_t</span><span class="w"> </span><span class="o">*</span><span class="n">ddr_d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">uint8_t</span><span class="o">*</span><span class="p">)</span><span class="mh">0x002a</span><span class="p">;</span><span class="w"></span>
-<span class="linenos"> 5</span><span class="kt">uint8_t</span><span class="w"> </span><span class="o">*</span><span class="n">pin_d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">uint8_t</span><span class="o">*</span><span class="p">)</span><span class="mh">0x0029</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 3</span><span class="kt">uint8_t</span><span class="w"> </span><span class="o">*</span><span class="n">port_d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">uint8_t</span><span class="o">*</span><span class="p">)</span><span class="mh">0x002b</span><span class="p">;</span>
+<span class="linenos"> 4</span><span class="kt">uint8_t</span><span class="w"> </span><span class="o">*</span><span class="n">ddr_d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">uint8_t</span><span class="o">*</span><span class="p">)</span><span class="mh">0x002a</span><span class="p">;</span>
+<span class="linenos"> 5</span><span class="kt">uint8_t</span><span class="w"> </span><span class="o">*</span><span class="n">pin_d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">uint8_t</span><span class="o">*</span><span class="p">)</span><span class="mh">0x0029</span><span class="p">;</span>
 <span class="linenos"> 6</span>
-<span class="linenos"> 7</span><span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos"> 7</span><span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos"> 8</span>
 <span class="linenos"> 9</span><span class="w">  </span><span class="c1">// Configure pin 4 as output</span>
-<span class="linenos">10</span><span class="w">  </span><span class="o">*</span><span class="n">ddr_d</span><span class="w"> </span><span class="o">|=</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span><span class="w"></span>
+<span class="linenos">10</span><span class="w">  </span><span class="o">*</span><span class="n">ddr_d</span><span class="w"> </span><span class="o">|=</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span>
 <span class="linenos">11</span>
 <span class="linenos">12</span><span class="w">  </span><span class="c1">// Configure pin 5 as input</span>
-<span class="linenos">13</span><span class="w">  </span><span class="o">*</span><span class="n">ddr_d</span><span class="w"> </span><span class="o">|=</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">4</span><span class="p">);</span><span class="w"></span>
-<span class="linenos">14</span><span class="p">}</span><span class="w"></span>
+<span class="linenos">13</span><span class="w">  </span><span class="o">*</span><span class="n">ddr_d</span><span class="w"> </span><span class="o">|=</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">4</span><span class="p">);</span>
+<span class="linenos">14</span><span class="p">}</span>
 <span class="linenos">15</span>
-<span class="linenos">16</span><span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos">16</span><span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos">17</span>
 <span class="linenos">18</span><span class="w">  </span><span class="c1">// Set bit 3 high, while not touching any other bits</span>
-<span class="linenos">19</span><span class="w">  </span><span class="o">*</span><span class="n">port_d</span><span class="w"> </span><span class="o">|=</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span><span class="w"></span>
+<span class="linenos">19</span><span class="w">  </span><span class="o">*</span><span class="n">port_d</span><span class="w"> </span><span class="o">|=</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span>
 <span class="linenos">20</span>
 <span class="linenos">21</span><span class="w">  </span><span class="c1">// Read the state of bit 4</span>
-<span class="linenos">22</span><span class="w">  </span><span class="k">if</span><span class="p">(((</span><span class="o">*</span><span class="n">pin_d</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="mi">4</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mh">0x01</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">){</span><span class="w"></span>
-<span class="linenos">23</span><span class="w">    </span><span class="n">delay</span><span class="p">(</span><span class="mi">800</span><span class="p">);</span><span class="w"></span>
-<span class="linenos">24</span><span class="w">  </span><span class="p">}</span><span class="w"></span>
-<span class="linenos">25</span><span class="w">  </span><span class="k">else</span><span class="p">{</span><span class="w"></span>
-<span class="linenos">26</span><span class="w">    </span><span class="n">delay</span><span class="p">(</span><span class="mi">200</span><span class="p">);</span><span class="w"></span>
-<span class="linenos">27</span><span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="linenos">22</span><span class="w">  </span><span class="k">if</span><span class="p">(((</span><span class="o">*</span><span class="n">pin_d</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="mi">4</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mh">0x01</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">){</span>
+<span class="linenos">23</span><span class="w">    </span><span class="n">delay</span><span class="p">(</span><span class="mi">800</span><span class="p">);</span>
+<span class="linenos">24</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">25</span><span class="w">  </span><span class="k">else</span><span class="p">{</span>
+<span class="linenos">26</span><span class="w">    </span><span class="n">delay</span><span class="p">(</span><span class="mi">200</span><span class="p">);</span>
+<span class="linenos">27</span><span class="w">  </span><span class="p">}</span>
 <span class="linenos">28</span>
 <span class="linenos">29</span><span class="w">  </span><span class="c1">// Set bit 3 low, while not touching any other bits</span>
-<span class="linenos">30</span><span class="w">  </span><span class="o">*</span><span class="n">port_d</span><span class="w"> </span><span class="o">&amp;=</span><span class="w"> </span><span class="o">~</span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span><span class="w"></span>
+<span class="linenos">30</span><span class="w">  </span><span class="o">*</span><span class="n">port_d</span><span class="w"> </span><span class="o">&amp;=</span><span class="w"> </span><span class="o">~</span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span>
 <span class="linenos">31</span>
-<span class="linenos">32</span><span class="w">  </span><span class="n">delay</span><span class="p">(</span><span class="mi">200</span><span class="p">);</span><span class="w"></span>
-<span class="linenos">33</span><span class="p">}</span><span class="w"></span>
+<span class="linenos">32</span><span class="w">  </span><span class="n">delay</span><span class="p">(</span><span class="mi">200</span><span class="p">);</span>
+<span class="linenos">33</span><span class="p">}</span>
 </pre></div>
 </div>
 </section>
 <section id="exercise-analyze-the-above-example">
-<h3>Exercise: analyze the above example<a class="headerlink" href="#exercise-analyze-the-above-example" title="Permalink to this heading">¶</a></h3>
+<h3>Exercise: analyze the above example<a class="headerlink" href="#exercise-analyze-the-above-example" title="Permalink to this headline">¶</a></h3>
 <ol class="arabic simple">
 <li><p>Verify the operation of the above code listing by testing it on a Arduino UNO. Connect a push button with pull-down resistor to pin 4, and a LED to pin 3.</p></li>
 <li><p>Use your knowledge about digital electronics to analyze the above code listing. Especially the lines which read or manipulate the registers. Consider the case that PORD = 0b11000000, PIND = 0, and DDRD = 0, before the program starts. Write down your explanation for each statement.</p></li>
 </ol>
 </section>
 <section id="exercise-read-a-digital-input-on-pin-a5">
-<h3>Exercise: read a digital input on pin A5<a class="headerlink" href="#exercise-read-a-digital-input-on-pin-a5" title="Permalink to this heading">¶</a></h3>
+<h3>Exercise: read a digital input on pin A5<a class="headerlink" href="#exercise-read-a-digital-input-on-pin-a5" title="Permalink to this headline">¶</a></h3>
 <p>The analog input pins can be reconfigured to work as digital input or output pins. In this exercise you are going to use the pin A5 as a digital input by means of direct manipulation of the memory registers.</p>
 <ol class="arabic simple">
 <li><p>Use the pinout diagram, and the datasheet of the Atmega328p to figure out the memory addresses of the registers which controls the bank of pins of which pin A5 is a member.</p></li>
@@ -338,32 +386,32 @@
 </section>
 </section>
 <section id="determine-ram-memory-usage">
-<h2>Determine RAM memory usage<a class="headerlink" href="#determine-ram-memory-usage" title="Permalink to this heading">¶</a></h2>
+<h2>Determine RAM memory usage<a class="headerlink" href="#determine-ram-memory-usage" title="Permalink to this headline">¶</a></h2>
 <p>In many applications it is not possible to determine the RAM usage during compile time. It might depend on the amount of external input that the micocontroller receives.</p>
 <p>The compiler defines some symbols that may be used to compute the RAM usage at run time.</p>
 <p><cite>__heap_start</cite>
 <cite>__brkval</cite></p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">extern</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">__bss_end</span><span class="p">;</span><span class="w"></span>
-<span class="k">extern</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">__heap_start</span><span class="p">;</span><span class="w"></span>
-<span class="k">extern</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">__brkval</span><span class="p">;</span><span class="w"></span>
-<span class="kt">int</span><span class="w"> </span><span class="nf">freeMemory</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">free_memory</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">extern</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">__bss_end</span><span class="p">;</span>
+<span class="k">extern</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">__heap_start</span><span class="p">;</span>
+<span class="k">extern</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">__brkval</span><span class="p">;</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">freeMemory</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">free_memory</span><span class="p">;</span>
 
-<span class="w">  </span><span class="k">if</span><span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="n">__brkval</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="n">free_memory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="o">&amp;</span><span class="n">free_memory</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="o">&amp;</span><span class="n">__bss_end</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="k">else</span><span class="w"></span>
-<span class="w">    </span><span class="n">free_memory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="o">&amp;</span><span class="n">free_memory</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="n">__brkval</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="k">if</span><span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="n">__brkval</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+<span class="w">    </span><span class="n">free_memory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="o">&amp;</span><span class="n">free_memory</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="o">&amp;</span><span class="n">__bss_end</span><span class="p">);</span>
+<span class="w">  </span><span class="k">else</span>
+<span class="w">    </span><span class="n">free_memory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="o">&amp;</span><span class="n">free_memory</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="n">__brkval</span><span class="p">);</span>
 
-<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">free_memory</span><span class="p">;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">free_memory</span><span class="p">;</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </section>
 <section id="exercise-determine-stack-usage">
-<span id="ex-stack-usage"></span><h2>Exercise: determine stack usage<a class="headerlink" href="#exercise-determine-stack-usage" title="Permalink to this heading">¶</a></h2>
+<span id="ex-stack-usage"></span><h2>Exercise: determine stack usage<a class="headerlink" href="#exercise-determine-stack-usage" title="Permalink to this headline">¶</a></h2>
 <p>There is a macro <code class="code docutils literal notranslate"><span class="pre">RAMEND</span></code> somewhere in the libraries that are included as part of your Atmega328p project. This macro is defined as the hexadecimal value of the highest address in the internal RAM (which according to the memory map in the datasheet of the Atmega328p page 18, is 0x8FF). By allocating a new variable, and obtaining the address of this variable by means of the <code class="code docutils literal notranslate"><span class="pre">&amp;</span></code> operator, it is possible to calculate the number of bytes on the stack.</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">variable_at_top_of_stack</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
-<span class="kt">uint16_t</span><span class="w"> </span><span class="n">stack_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">RAMEND</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="p">(</span><span class="kt">uint16_t</span><span class="p">)</span><span class="o">&amp;</span><span class="n">variable_at_top_of_stack</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">variable_at_top_of_stack</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="kt">uint16_t</span><span class="w"> </span><span class="n">stack_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">RAMEND</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="p">(</span><span class="kt">uint16_t</span><span class="p">)</span><span class="o">&amp;</span><span class="n">variable_at_top_of_stack</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
 <span class="c1">//uint16_t stack_size = RAMEND - SP;</span>
 </pre></div>
 </div>
@@ -375,39 +423,39 @@
 </ol>
 </section>
 <section id="using-the-eeprom">
-<h2>Using the EEPROM<a class="headerlink" href="#using-the-eeprom" title="Permalink to this heading">¶</a></h2>
+<h2>Using the EEPROM<a class="headerlink" href="#using-the-eeprom" title="Permalink to this headline">¶</a></h2>
 <section id="manage-the-memory-stucture-for-complex-projects">
-<h3>Manage the memory stucture for complex projects<a class="headerlink" href="#manage-the-memory-stucture-for-complex-projects" title="Permalink to this heading">¶</a></h3>
+<h3>Manage the memory stucture for complex projects<a class="headerlink" href="#manage-the-memory-stucture-for-complex-projects" title="Permalink to this headline">¶</a></h3>
 </section>
 <section id="nand-flash">
-<h3>NAND Flash<a class="headerlink" href="#nand-flash" title="Permalink to this heading">¶</a></h3>
+<h3>NAND Flash<a class="headerlink" href="#nand-flash" title="Permalink to this headline">¶</a></h3>
 </section>
 <section id="nor-flash">
-<h3>NOR Flash<a class="headerlink" href="#nor-flash" title="Permalink to this heading">¶</a></h3>
+<h3>NOR Flash<a class="headerlink" href="#nor-flash" title="Permalink to this headline">¶</a></h3>
 </section>
 </section>
 <section id="using-external-memory">
-<h2>Using external memory<a class="headerlink" href="#using-external-memory" title="Permalink to this heading">¶</a></h2>
+<h2>Using external memory<a class="headerlink" href="#using-external-memory" title="Permalink to this headline">¶</a></h2>
 <section id="external-eeprom">
-<h3>External EEPROM<a class="headerlink" href="#external-eeprom" title="Permalink to this heading">¶</a></h3>
+<h3>External EEPROM<a class="headerlink" href="#external-eeprom" title="Permalink to this headline">¶</a></h3>
 </section>
 <section id="sd-card">
-<h3>SD-card<a class="headerlink" href="#sd-card" title="Permalink to this heading">¶</a></h3>
+<h3>SD-card<a class="headerlink" href="#sd-card" title="Permalink to this headline">¶</a></h3>
 </section>
 </section>
 <section id="special-memory-types">
-<h2>Special memory types<a class="headerlink" href="#special-memory-types" title="Permalink to this heading">¶</a></h2>
+<h2>Special memory types<a class="headerlink" href="#special-memory-types" title="Permalink to this headline">¶</a></h2>
 <p>NVRAM</p>
 <p>NVSRAM</p>
 <p>NVSRAM is a special type of hybrid non-volatile random-access memory (NVRAM). One portion is a normal volatile SRAM, while the other is some form of EEPROM which has lower read and write speeds, but allows storing the memory contents in a non volatile manner.</p>
 <p>EERAM is similar in concept to NVSRAM. Whenever it detects a power failure it will transfer the contents of the SRAM to a non volatile storage.</p>
 <p>OTP EPROM</p>
 <section id="historical-memory-types">
-<h3>Historical memory types<a class="headerlink" href="#historical-memory-types" title="Permalink to this heading">¶</a></h3>
+<h3>Historical memory types<a class="headerlink" href="#historical-memory-types" title="Permalink to this headline">¶</a></h3>
 <p>In this section we will briefly discuss some of the memory technologies that are not used anymore.</p>
 </section>
 <section id="random-access-memory-ram">
-<h3>Random access memory (RAM)<a class="headerlink" href="#random-access-memory-ram" title="Permalink to this heading">¶</a></h3>
+<h3>Random access memory (RAM)<a class="headerlink" href="#random-access-memory-ram" title="Permalink to this headline">¶</a></h3>
 </section>
 </section>
 </section>
@@ -431,6 +479,8 @@
     </ul>
 <ul class="nav navbar-nav pull-right hidden-xs hidden-sm">
       
+        <li><a href="L8_additional.html" title="Additional material for lesson 8" >previous</a></li>
+        <li><a href="L10_additional.html" title="Additional material for lesson 10" >next</a></li>
         <li><a href="../../genindex.html" title="General Index" >index</a></li>
         <li><a href="#">top</a></li> 
       
@@ -442,7 +492,7 @@
       <!-- footer -->
       <footer role="contentinfo">
           &copy; Copyright 2022, Gizem Ateş &amp; Eirik Haustveit.
-        Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 5.3.0.
+        Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 4.5.0.
       </footer>
       <!-- /footer -->
 
