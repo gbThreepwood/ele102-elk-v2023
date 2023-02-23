@@ -20,10 +20,10 @@ On this page we will publish new lecture notes every week, as the course is prog
    Lesson 3: Use of digital I/O and timing <texts/Lessons/L3_digital_io_and_timing.rst>
    Lesson 4: Analog output (PWM) <texts/Lessons/L4_dac_pwm.rst>
    Lesson 5: Analog to digital conversion (ADC) <texts/Lessons/L5_adc.rst>
-   Lesson 6: Serial I/O <texts/Lessons/L6_serial_io.rst>
-
-.. 
+   Lesson 6: Serial I/O <texts/Lessons/L6_serial_io.rst> 
    Lesson 7: Timers and interrupts <texts/Lessons/L7_timer_interrupt.rst>
+
+..
    Lesson 8: LC-Display <texts/Lessons/L8_LC_display.rst>
    Lesson 9: Memory and MCU architecture <texts/Lessons/L9_memory_and_architecture.rst>
    Lesson 10: Motor drive <texts/Lessons/L10_motor_drive.rst>
