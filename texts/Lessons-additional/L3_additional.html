@@ -151,6 +151,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../Lessons/L7_timer_interrupt.html">Lesson 7: Timers and interrupts</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Lessons/L8_LC_display.html">Lesson 8: LC-Display</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Lessons/L9_memory_and_architecture.html">Lesson 9: Memory and MCU architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons/L10_motor_drive.html">Lesson 10: Motor drive</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Additional material:</span></p>
 <ul class="current">
@@ -641,6 +642,21 @@
 <section id="pin-change-interrupt-debounce-software-only">
 <h3>Pin change interrupt debounce software only<a class="headerlink" href="#pin-change-interrupt-debounce-software-only" title="Permalink to this headline">¶</a></h3>
 <p>In this section we are demonstrating one way of detecting and debouncing inputs using pin change interrupts. The following algorithm is used:</p>
+<p class="plantuml">
+<img src="../../_images/plantuml-353563bd0d3193723d379d04fb7961d5a857f378.png" alt="(*) --&gt; &quot;ISR fires on one of the inputs&quot;
+--&gt; &quot;Check wich input caused the interrupt&quot;
+--&gt; &quot;Set flag, or post message&quot;
+--&gt; &quot;Disable the pin change interrupt&quot;
+--&gt; (*)"/>
+</p>
+<p class="plantuml">
+<img src="../../_images/plantuml-f3c7d52a1e3c032daa505f86f42f427e36d1c56b.png" alt="(*) --&gt; &quot;Main loop or timer checks for new events&quot;
+If &quot;New event&quot; then
+--&gt; [Yes] &quot;Store&quot;
+else
+--&gt; (*)
+Endif"/>
+</p>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Arduino.h&gt;</span>
 
 <span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">pushButton1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>

@@ -141,6 +141,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../Lessons/L7_timer_interrupt.html">Lesson 7: Timers and interrupts</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Lessons/L8_LC_display.html">Lesson 8: LC-Display</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Lessons/L9_memory_and_architecture.html">Lesson 9: Memory and MCU architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lessons/L10_motor_drive.html">Lesson 10: Motor drive</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Additional material:</span></p>
 <ul class="current">
@@ -343,6 +344,23 @@ i_a
 <a class="reference internal image-reference" href="../../_images/dc_motor_drive_potmeter_control_bb.png"><img alt="../../_images/dc_motor_drive_potmeter_control_bb.png" src="../../_images/dc_motor_drive_potmeter_control_bb.png" style="width: 757.5px; height: 661.5px;" /></a>
 </figure>
 <p>The following state diagram depicts the operation of the software:</p>
+<p class="plantuml">
+<img src="../../_images/plantuml-9c16e50a39d7098f43e481dec8c0021b366459d7.png" alt="[*] --&gt; STOPPED
+
+STOPPED -&gt; RUNNING : enable_button
+RUNNING -&gt; STOPPED : enable_button
+STOPPED: motor_control(0, 0);
+
+RUNNING: duty_cycle = analogRead(control_voltage)/4;
+state RUNNING {
+  [*] --&gt; FORWARD
+  FORWARD -&gt; REVERSE : direction_button
+  REVERSE -&gt; FORWARD : direction_button
+
+  FORWARD: motor_control(duty_cycle, FORWARD);
+  REVERSE: motor_control(duty_cycle, REVERSE);
+}"/>
+</p>
 <p>The following source code listing is the complete software for the motor drive:</p>
 <div class="toggle docutils container">
 <div class="header docutils container">
@@ -510,6 +528,28 @@ i_a
 <a class="reference internal image-reference" href="../../_images/dc_motor_drive_potmeter_control_three_button_9v_battery_bb.png"><img alt="../../_images/dc_motor_drive_potmeter_control_three_button_9v_battery_bb.png" src="../../_images/dc_motor_drive_potmeter_control_three_button_9v_battery_bb.png" style="width: 757.5px; height: 661.5px;" /></a>
 </figure>
 <p>The following state diagram depicts the intended operation of the motor drive in the assignment:</p>
+<p class="plantuml">
+<img src="../../_images/plantuml-1b8c525a6f615e0ab932f955dd08b239fd4c370d.png" alt="STATE NORMAL {
+
+  [*] --&gt; STOPPED
+
+  STOPPED -&gt; ACCELERATING : start_stop_button
+  ACCELERATING -&gt; RUNNING : setpoint_reached
+  ACCELERATING -&gt; BREAKING : start_stop_button
+  RUNNING -&gt; BREAKING : start_stop_button
+  BREAKING -&gt; STOPPED : zero_reached
+  BREAKING -&gt; ACCELERATING : start_stop_button
+  STOPPED: motor_control(0, 0);
+
+}
+
+[*] --&gt; NORMAL
+
+NORMAL -&gt; EMERGENCY_STOP : emergency_stop_button
+EMERGENCY_STOP -&gt; NORMAL : start_stop_button
+
+EMERGENCY_STOP : motor_control(0, 0);"/>
+</p>
 </section>
 </section>
 

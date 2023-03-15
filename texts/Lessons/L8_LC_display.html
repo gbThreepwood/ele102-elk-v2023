@@ -191,6 +191,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="L9_memory_and_architecture.html">Lesson 9: Memory and MCU architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="L10_motor_drive.html">Lesson 10: Motor drive</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Additional material:</span></p>
 <ul>
@@ -649,6 +650,13 @@
 <h3>Voltmeter with selectable scaling<a class="headerlink" href="#voltmeter-with-selectable-scaling" title="Permalink to this headline">¶</a></h3>
 <p>The following example shows how to implement a simple state machine which allows the user to select the scaling prefix of the measured voltage.</p>
 <p>The following state diagram depicts the operation of the prefix display toggle functionality.</p>
+<p class="plantuml">
+<img src="../../_images/plantuml-d7a7b5f160f1bfb258d1914bf00accf950fdcc02.png" alt="[*] --&gt; MILLIVOLT
+
+MILLIVOLT -down-&gt; KILOVOLT : toggle_button
+KILOVOLT -down-&gt; VOLT : toggle_button
+VOLT -&gt; MILLIVOLT : toggle_button"/>
+</p>
 <p>The following source code implements the state machine, as well as the additional functionallity that is required:</p>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Arduino.h&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;LiquidCrystal.h&gt;</span>
