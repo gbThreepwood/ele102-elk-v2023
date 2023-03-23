@@ -55,7 +55,7 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="top" title="ELE102 Microcontroller course v1.1.0 documentation" href="../../index.html" />
-    <link rel="next" title="Additional material for lesson 1" href="../Lessons-additional/L1_additional.html" />
+    <link rel="next" title="Communication Protocols" href="L12_communication.html" />
     <link rel="prev" title="Microcontroller architecture and Memory technology" href="L9_memory_and_architecture.html" /> 
   </head>
   <body role="document">
@@ -102,6 +102,7 @@
 <li><a class="reference internal" href="#exercise-lm293d-motor-drive">Exercise: LM293D motor drive</a></li>
 <li><a class="reference internal" href="#exercise-motor-drive-with-acceleration-ramp">Exercise: motor drive with acceleration ramp</a></li>
 <li><a class="reference internal" href="#regenerative-braking-of-the-motor">Regenerative braking of the motor</a></li>
+<li><a class="reference internal" href="#simple-motor-drive-example-using-the-l293d">Simple motor drive example using the L293D</a></li>
 <li><a class="reference internal" href="#feature-rich-motor-drive-example-using-the-l293d">Feature rich motor drive example using the L293D</a></li>
 <li><a class="reference internal" href="#id7">Exercise: LM293D motor drive</a></li>
 <li><a class="reference internal" href="#id8">Exercise: motor drive with acceleration ramp</a></li>
@@ -117,7 +118,7 @@
 
             
               <li><a href="L9_memory_and_architecture.html" title="Microcontroller architecture and Memory technology" accesskey="P">previous </a></li>
-              <li><a href="../Lessons-additional/L1_additional.html" title="Additional material for lesson 1" accesskey="N">next </a></li>
+              <li><a href="L12_communication.html" title="Communication Protocols" accesskey="N">next </a></li>
               <li><a href="../../genindex.html" title="General Index" accesskey="I">index </a></li>
             
 
@@ -186,6 +187,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#exercise-lm293d-motor-drive">Exercise: LM293D motor drive</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#exercise-motor-drive-with-acceleration-ramp">Exercise: motor drive with acceleration ramp</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#regenerative-braking-of-the-motor">Regenerative braking of the motor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#simple-motor-drive-example-using-the-l293d">Simple motor drive example using the L293D</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#feature-rich-motor-drive-example-using-the-l293d">Feature rich motor drive example using the L293D</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id7">Exercise: LM293D motor drive</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id8">Exercise: motor drive with acceleration ramp</a></li>
@@ -194,6 +196,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#bibliography">Bibliography</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="L12_communication.html">Lesson 11: Communication Protocols</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Additional material:</span></p>
 <ul>
@@ -269,8 +272,8 @@
   </div>
   <div>
     <h4>Next topic</h4>
-    <p class="topless"><a href="../Lessons-additional/L1_additional.html"
-                          title="next chapter">Additional material for lesson 1</a></p>
+    <p class="topless"><a href="L12_communication.html"
+                          title="next chapter">Communication Protocols</a></p>
   </div>
   </div>
 </div> 
@@ -890,9 +893,132 @@
 </div></blockquote>
 <p>If the enable (EN) signal is low, the control signal (A) is ignored and the output goes in to a high impedance (high Z) state. When the enable signal is high, the output follows the control signal (A). By applying PWM to the enable signal and leaving the A signals fixed regenerative braking will be impossible. Whenever the output is in a high Z state, the motor current will have to circulate through the freewheeling diodes. If however the PWM signal is applied to e.g. 1A while 2A is low, a reduction in duty cycle will allow the voltage to be boosted by the motor inductance. For the opposite rotational direction the PWM signal should be applied to 2A while 1A is low.</p>
 </section>
+<section id="simple-motor-drive-example-using-the-l293d">
+<h3>Simple motor drive example using the L293D<a class="headerlink" href="#simple-motor-drive-example-using-the-l293d" title="Permalink to this headline">¶</a></h3>
+<p>Here is the simplest example with L298D motor driver and one single DC motor.</p>
+<blockquote>
+<div><figure class="align-center">
+<img alt="simple L293D" src="../../_images/l298d-simple.png" />
+</figure>
+</div></blockquote>
+<p>The simplest code for such a setup can be:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">in1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">9</span><span class="p">;</span>
+<span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">in2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+<span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">en</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">11</span><span class="p">;</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="n">pinMode</span><span class="p">(</span><span class="n">in1</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT</span><span class="p">);</span>
+<span class="n">pinMode</span><span class="p">(</span><span class="n">in2</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT</span><span class="p">);</span>
+<span class="n">pinMode</span><span class="p">(</span><span class="n">en</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT</span><span class="p">);</span>
+
+<span class="n">digitalWrite</span><span class="p">(</span><span class="n">in1</span><span class="p">,</span><span class="w"> </span><span class="n">LOW</span><span class="p">);</span>
+<span class="n">digitalWrite</span><span class="p">(</span><span class="n">in2</span><span class="p">,</span><span class="w"> </span><span class="n">HIGH</span><span class="p">);</span>
+<span class="n">analogWrite</span><span class="p">(</span><span class="n">en</span><span class="p">,</span><span class="w"> </span><span class="mi">127</span><span class="p">);</span>
+
+<span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">delay</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>As a next step, we can create some functions to simplify the motor control commands:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">in1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">9</span><span class="p">;</span>
+<span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">in2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+<span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">en</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">11</span><span class="p">;</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="n">pinMode</span><span class="p">(</span><span class="n">in1</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT</span><span class="p">);</span>
+<span class="n">pinMode</span><span class="p">(</span><span class="n">in2</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT</span><span class="p">);</span>
+<span class="n">pinMode</span><span class="p">(</span><span class="n">en</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT</span><span class="p">);</span>
+
+<span class="n">digitalWrite</span><span class="p">(</span><span class="n">in1</span><span class="p">,</span><span class="w"> </span><span class="n">LOW</span><span class="p">);</span>
+<span class="n">digitalWrite</span><span class="p">(</span><span class="n">in2</span><span class="p">,</span><span class="w"> </span><span class="n">HIGH</span><span class="p">);</span>
+<span class="n">analogWrite</span><span class="p">(</span><span class="n">en</span><span class="p">,</span><span class="w"> </span><span class="mi">127</span><span class="p">);</span>
+
+<span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="n">rotate_right</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">rotate_right</span><span class="p">(){</span>
+
+<span class="n">digitalWrite</span><span class="p">(</span><span class="n">in1</span><span class="p">,</span><span class="w"> </span><span class="n">LOW</span><span class="p">);</span>
+<span class="n">digitalWrite</span><span class="p">(</span><span class="n">in2</span><span class="p">,</span><span class="w"> </span><span class="n">HIGH</span><span class="p">);</span>
+<span class="n">analogWrite</span><span class="p">(</span><span class="n">en</span><span class="p">,</span><span class="w"> </span><span class="mi">127</span><span class="p">);</span>
+
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">rotate_left</span><span class="p">(){</span>
+
+<span class="n">digitalWrite</span><span class="p">(</span><span class="n">in1</span><span class="p">,</span><span class="w"> </span><span class="n">HIGH</span><span class="p">);</span>
+<span class="n">digitalWrite</span><span class="p">(</span><span class="n">in2</span><span class="p">,</span><span class="w"> </span><span class="n">LOW</span><span class="p">);</span>
+<span class="n">analogWrite</span><span class="p">(</span><span class="n">en</span><span class="p">,</span><span class="w"> </span><span class="mi">127</span><span class="p">);</span>
+
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Also, the motor speed can be defined as a function input:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">in1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">9</span><span class="p">;</span>
+<span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">in2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+<span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">en</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">11</span><span class="p">;</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="n">pinMode</span><span class="p">(</span><span class="n">in1</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT</span><span class="p">);</span>
+<span class="n">pinMode</span><span class="p">(</span><span class="n">in2</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT</span><span class="p">);</span>
+<span class="n">pinMode</span><span class="p">(</span><span class="n">en</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT</span><span class="p">);</span>
+
+<span class="n">digitalWrite</span><span class="p">(</span><span class="n">in1</span><span class="p">,</span><span class="w"> </span><span class="n">LOW</span><span class="p">);</span>
+<span class="n">digitalWrite</span><span class="p">(</span><span class="n">in2</span><span class="p">,</span><span class="w"> </span><span class="n">HIGH</span><span class="p">);</span>
+<span class="n">analogWrite</span><span class="p">(</span><span class="n">en</span><span class="p">,</span><span class="w"> </span><span class="mi">127</span><span class="p">);</span>
+
+<span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">speed_1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">255</span><span class="p">;</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">speed_2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">127</span><span class="p">;</span>
+<span class="n">rotate_right</span><span class="p">(</span><span class="n">speed_1</span><span class="p">);</span>
+<span class="n">delay</span><span class="p">(</span><span class="mi">2000</span><span class="p">);</span>
+<span class="n">rotate_left</span><span class="p">(</span><span class="n">speed_2</span><span class="p">);</span>
+<span class="n">delay</span><span class="p">(</span><span class="mi">2000</span><span class="p">);</span>
+
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">rotate_right</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">speed</span><span class="p">){</span>
+
+<span class="n">digitalWrite</span><span class="p">(</span><span class="n">in1</span><span class="p">,</span><span class="w"> </span><span class="n">LOW</span><span class="p">);</span>
+<span class="n">digitalWrite</span><span class="p">(</span><span class="n">in2</span><span class="p">,</span><span class="w"> </span><span class="n">HIGH</span><span class="p">);</span>
+<span class="n">analogWrite</span><span class="p">(</span><span class="n">en</span><span class="p">,</span><span class="w"> </span><span class="n">speed</span><span class="p">);</span>
+
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">rotate_left</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">speed</span><span class="p">){</span>
+
+<span class="n">digitalWrite</span><span class="p">(</span><span class="n">in1</span><span class="p">,</span><span class="w"> </span><span class="n">HIGH</span><span class="p">);</span>
+<span class="n">digitalWrite</span><span class="p">(</span><span class="n">in2</span><span class="p">,</span><span class="w"> </span><span class="n">LOW</span><span class="p">);</span>
+<span class="n">analogWrite</span><span class="p">(</span><span class="n">en</span><span class="p">,</span><span class="w"> </span><span class="n">speed</span><span class="p">);</span>
+
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
 <section id="feature-rich-motor-drive-example-using-the-l293d">
 <h3>Feature rich motor drive example using the L293D<a class="headerlink" href="#feature-rich-motor-drive-example-using-the-l293d" title="Permalink to this headline">¶</a></h3>
 <p>The following example is a slightly more complete implementation of motor control using the L293D driver. The implementation uses one push button for starting, and one for stopping the motor. The voltage on analog input <cite>A0</cite> is used to control the duty cycle of the pulse width modulation.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You will see the :code::<cite>typedef</cite> usage in the coming code. It is a beautiful way of creating new object types in C-based languages. Although this keyword is not within the scope of this course, it is still an important/nice feature to know the usage. The rest of the code is easy to follow, nonetheless.</p>
+</div>
 <figure class="align-center">
 <a class="reference internal image-reference" href="../../_images/dc_motor_drive_potmeter_control_bb.png"><img alt="../../_images/dc_motor_drive_potmeter_control_bb.png" src="../../_images/dc_motor_drive_potmeter_control_bb.png" style="width: 757.5px; height: 661.5px;" /></a>
 </figure>
@@ -1076,7 +1202,7 @@
 <ul class="nav navbar-nav pull-right hidden-xs hidden-sm">
       
         <li><a href="L9_memory_and_architecture.html" title="Microcontroller architecture and Memory technology" >previous</a></li>
-        <li><a href="../Lessons-additional/L1_additional.html" title="Additional material for lesson 1" >next</a></li>
+        <li><a href="L12_communication.html" title="Communication Protocols" >next</a></li>
         <li><a href="../../genindex.html" title="General Index" >index</a></li>
         <li><a href="#">top</a></li> 
       

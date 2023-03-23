@@ -54,7 +54,9 @@
 </script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="top" title="ELE102 Microcontroller course v1.1.0 documentation" href="../../index.html" /> 
+    <link rel="top" title="ELE102 Microcontroller course v1.1.0 documentation" href="../../index.html" />
+    <link rel="next" title="Additional material for lesson 1" href="../Lessons-additional/L1_additional.html" />
+    <link rel="prev" title="Motor Drives" href="L10_motor_drive.html" /> 
   </head>
   <body role="document">
     <div id="navbar-top" class="navbar navbar-fixed-top navbar-default" role="navigation" aria-label="top navigation">
@@ -76,6 +78,10 @@
                 <ul>
 <li><a class="reference internal" href="#">Communication Protocols</a><ul>
 <li><a class="reference internal" href="#universal-asynchronous-receive-transmit-uart">Universal Asynchronous Receive-Transmit (UART)</a></li>
+<li><a class="reference internal" href="#software-uart">Software UART</a><ul>
+<li><a class="reference internal" href="#exercise-message-relay">Exercise: Message relay</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#inter-integrated-circuit-i2c">Inter Integrated Circuit (I2C)</a><ul>
 <li><a class="reference internal" href="#i2c-operation">I2C operation</a></li>
 <li><a class="reference internal" href="#system-management-bus-smbus">System Management Bus (SMBus)</a></li>
@@ -106,10 +112,6 @@
 </li>
 </ul>
 </li>
-<li><a class="reference internal" href="#software-uart">Software UART</a><ul>
-<li><a class="reference internal" href="#exercise-message-relay">Exercise: Message relay</a></li>
-</ul>
-</li>
 </ul>
 </li>
 </ul>
@@ -118,6 +120,8 @@
               </li>
 
             
+              <li><a href="L10_motor_drive.html" title="Motor Drives" accesskey="P">previous </a></li>
+              <li><a href="../Lessons-additional/L1_additional.html" title="Additional material for lesson 1" accesskey="N">next </a></li>
               <li><a href="../../genindex.html" title="General Index" accesskey="I">index </a></li>
             
 
@@ -153,7 +157,7 @@
   <div class="sidebar hidden-xs" role="navigation" aria-label="main navigation">
 <h3><a href="../../index.html">Table of Contents</a></h3>
 <p class="caption" role="heading"><span class="caption-text">Lessons:</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="L0_Introduction_elk.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="software_hardware_preparations.html">Software and hardware preparations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="L1a_UC_intro.html">Lesson 1a: What is a Microcontroller</a></li>
@@ -167,6 +171,29 @@
 <li class="toctree-l1"><a class="reference internal" href="L8_LC_display.html">Lesson 8: LC-Display</a></li>
 <li class="toctree-l1"><a class="reference internal" href="L9_memory_and_architecture.html">Lesson 9: Memory and MCU architecture</a></li>
 <li class="toctree-l1"><a class="reference internal" href="L10_motor_drive.html">Lesson 10: Motor drive</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Lesson 11: Communication Protocols</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#universal-asynchronous-receive-transmit-uart">Universal Asynchronous Receive-Transmit (UART)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#software-uart">Software UART</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#exercise-message-relay">Exercise: Message relay</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#inter-integrated-circuit-i2c">Inter Integrated Circuit (I2C)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#i2c-operation">I2C operation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#system-management-bus-smbus">System Management Bus (SMBus)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#i2c-in-arduino">I2C in Arduino</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#connecting-two-arduino-s-using-i2c">Connecting two Arduino’s using I2C</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#exercise-remote-controlled-led">Exercise: Remote controlled LED</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#exercise-chat-service-between-two-arduinos">Exercise: Chat service between two arduinos</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#serial-peripheral-interface-spi">Serial Peripheral Interface (SPI)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#spi-operation">SPI operation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spi-in-arduino">SPI in Arduino</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spi-i-o-port-expander">SPI I/O port expander</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Additional material:</span></p>
 <ul>
@@ -235,6 +262,16 @@
     Enter search terms or a module, class or function name.
     </p>
 </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="L10_motor_drive.html"
+                          title="previous chapter">Motor Drives</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="../Lessons-additional/L1_additional.html"
+                          title="next chapter">Additional material for lesson 1</a></p>
+  </div>
   </div>
 </div> 
         
@@ -256,20 +293,79 @@
 <p>A communication protocol is often associated with some physical connector, such as the USB-C, or 8P8C connector. There are many others, but luckily standardization is slowly limiting the number of different ports which are used in consumer electronics.</p>
 <blockquote>
 <div><p>Why do we need ports?
-<em>There was a dark era before some protocols are decided…</em></p>
+<em>There was a dark era before we started to converge to some standards…</em></p>
 <a class="reference internal image-reference" href="../../_images/port_fuck.jpeg"><img alt="To avoid from mess" class="align-center" src="../../_images/port_fuck.jpeg" style="width: 1122.0px; height: 1394.0px;" /></a>
 </div></blockquote>
 <section id="universal-asynchronous-receive-transmit-uart">
 <h2>Universal Asynchronous Receive-Transmit (UART)<a class="headerlink" href="#universal-asynchronous-receive-transmit-uart" title="Permalink to this headline">¶</a></h2>
-<p>Since we have talked about UART a lot in Serial I/O chapter, I will not get into details again. Just some bullet points to know:</p>
+<p>Since we have talked about UART a lot in Serial I/O chapter, we will not get into details again. Just some bullet points to know:</p>
 <ul class="simple">
-<li><p>Asynchronous: There is no clock pin.</p></li>
-<li><p>3 pins are required (generally): GND, Tx, Rx. Often times VCC is also included on a separate wire.</p></li>
-<li><p>Since there is no CLK, the receiver does not know when to start reading. Therefore, we set a bunch of configurations e.g. transmission speed, data package size, start/stop bits type.</p></li>
-<li><p><em>To make sure</em> the bit is read correct, it is read in the middle of the bit. Let’s say you set the baud rate as 9600 bits/sec. This means that you send/read 1 bit in every 104 microseconds. So, your receiver does not <code class="code docutils literal notranslate"><span class="pre">digitalRead(RX_pin)</span></code> immediately after the start bit is received but it reads after 104/2 = 52 microseconds. So lame, I know… but cmon, parity is still in use!</p></li>
+<li><p>Asynchronous: There is no clock signal.</p></li>
+<li><p>3 wires are required (generally): GND, Tx, and Rx. Often times VCC is also included on a separate wire.</p></li>
+<li><p>Since there is no CLK, the receiver does not know when to start reading. Therefore, the sender uses a start flag to signal start of transmission. Additionally we need to have the same configuration in sender and receiver of e.g. transmission speed, data package size, start/stop bits type.</p></li>
+<li><p><em>To make sure</em> the bit is read correct, the signal level (high or low) is checked in the middle of the timeframe for the current bit. Let’s say you set the baud rate as 9600 bits/sec. This means that you send/read 1 bit in every 104 microseconds. So, your receiver does not <code class="code docutils literal notranslate"><span class="pre">digitalRead(RX_pin)</span></code> immediately after the start bit is received but it reads after 104/2 = 52 microseconds.</p></li>
+</ul>
+<ul class="simple">
 <li><p>Remember to cross Rx and Tx when you connect two devices - either two Arduinos or sensors or if you are connecting your PC manually (<a class="reference external" href="https://components101.com/modules/pl2303-usb-to-ttl-serial-converter-module">why?</a> ).</p></li>
 </ul>
-<p>Let’s make two Arduino to talk to each other. Please follow this simple and quite common <a class="reference external" href="https://microcontrollerslab.com/serial-uart-communication-between-two-arduino-boards/">UART communication between two Arduinos tutorial</a>. You may want to add the generic <code class="code docutils literal notranslate"><span class="pre">Serial.begin(BAUDRATE)</span></code> to see data from your side.</p>
+</section>
+<section id="software-uart">
+<h2>Software UART<a class="headerlink" href="#software-uart" title="Permalink to this headline">¶</a></h2>
+<p>The Atmega328p only has a single UART in hardware. It is however possible to implement additional UART’s in software as long as your performance requirements are modest. A software UART is implemented by quickly writing and reading digital outputs. For every single bit which is received, the CPU has to perform some action. This stands in contrast to the hardware UART where the CPU only need to perform some action when a complete byte of payload is received. Thus it should be obvious that the software UART puts a much higher load on the CPU.</p>
+<p><strong>Sender:</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Arduino.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;SoftwareSerial.h&gt;</span>
+
+<span class="n">SoftwareSerial</span><span class="w"> </span><span class="nf">softSerial</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span><span class="w">  </span><span class="c1">// RX, TX</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w">  </span><span class="p">{</span>
+<span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span>
+<span class="w">  </span><span class="n">softSerial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w">  </span><span class="p">{</span>
+<span class="c1">// Check for received characters from the computer</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Serial</span><span class="p">.</span><span class="n">available</span><span class="p">())</span><span class="w">  </span><span class="p">{</span>
+<span class="c1">// Write what is received to the soft serial</span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Serial</span><span class="p">.</span><span class="n">read</span><span class="p">();</span>
+<span class="w">    </span><span class="n">softSerial</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+<span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;Sending:&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Receiver:</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Arduino.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;SoftwareSerial.h&gt;</span>
+
+<span class="n">SoftwareSerial</span><span class="w"> </span><span class="nf">softSerial</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w">  </span><span class="p">{</span>
+<span class="n">softSerial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span>
+<span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span>
+<span class="c1">// pinMode(LED, OUTPUT);</span>
+<span class="p">}</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w">  </span><span class="p">{</span>
+<span class="c1">// When our comm channel is active:</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">softSerial</span><span class="p">.</span><span class="n">available</span><span class="p">())</span><span class="w">  </span><span class="p">{</span>
+
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">data_received</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">softSerial</span><span class="p">.</span><span class="n">read</span><span class="p">();</span>
+<span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;Received:&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">data_received</span><span class="p">);</span>
+<span class="w">    </span><span class="c1">//Connect an LED later</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<section id="exercise-message-relay">
+<h3>Exercise: Message relay<a class="headerlink" href="#exercise-message-relay" title="Permalink to this headline">¶</a></h3>
+<p>In this exercise you will be working together in groups of three or more. You are going to connect your arduinos using software UART’s.</p>
+<ol class="arabic simple">
+<li><p>Use pin 2 for RX, and pin 3 for TX. Connect the TX pin on the first arduino to the RX pin of the next. The first Arduino should have a free RX pin, and the last Arduino should have a free TX pin. Make sure that ground (GND) of all the Arduinos are connected together.</p></li>
+<li><p>Write a program which receive data on the software UART (on pin 2), and retransmits it on both the software and the hardware UART (on pin 3, and on the USB). All the microcontrollers should run the same firmware. Use a baud rate of 9600 for both the software and the hardware UART.</p></li>
+<li><p>Add the functionality for the first Arduino to receive data on the hardware UART (on the USB), and retransmit it on the software UART (on pin 3). The program should operate on single bytes, i.e. it should transmit a character as soon as it is received on the hardware UART. The existing functionality of transmitting everything it receives on pin 2 back to pin 3 should still remain intact.</p></li>
+<li><p>Close the loop by connecting the TX pin of the last arduino to the RX pin of the first. Inject some data in to the loop and observe the consequences.</p></li>
+</ol>
+</section>
 </section>
 <section id="inter-integrated-circuit-i2c">
 <h2>Inter Integrated Circuit (I2C)<a class="headerlink" href="#inter-integrated-circuit-i2c" title="Permalink to this headline">¶</a></h2>
@@ -627,67 +723,9 @@
 <span class="p">}</span>
 </pre></div>
 </div>
-</section>
-</section>
-</section>
-<section id="software-uart">
-<h2>Software UART<a class="headerlink" href="#software-uart" title="Permalink to this headline">¶</a></h2>
-<p>The Atmega328p only has a single UART in hardware. It is however possible to implement additional UART’s in software as long as your performance requirements are modest. A software UART is implemented by quickly writing and reading digital outputs. For every single bit which is received, the CPU has to perform some action. This stands in contrast to the hardware UART where the CPU only need to perform some action when a complete byte of payload is received. Thus it should be obvious that the software UART puts a much higher load on the CPU.</p>
-<p><strong>Sender:</strong></p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Arduino.h&gt;</span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;SoftwareSerial.h&gt;</span>
-
-<span class="n">SoftwareSerial</span><span class="w"> </span><span class="nf">softSerial</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span><span class="w">  </span><span class="c1">// RX, TX</span>
-<span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w">  </span><span class="p">{</span>
-<span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span>
-<span class="w">  </span><span class="n">softSerial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span>
-<span class="p">}</span>
-<span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w">  </span><span class="p">{</span>
-<span class="c1">// Check for received characters from the computer</span>
-<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Serial</span><span class="p">.</span><span class="n">available</span><span class="p">())</span><span class="w">  </span><span class="p">{</span>
-<span class="c1">// Write what is received to the soft serial</span>
-<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Serial</span><span class="p">.</span><span class="n">read</span><span class="p">();</span>
-<span class="w">    </span><span class="n">softSerial</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
-<span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;Sending:&quot;</span><span class="p">);</span>
-<span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-<p><strong>Receiver:</strong></p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Arduino.h&gt;</span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;SoftwareSerial.h&gt;</span>
-
-<span class="n">SoftwareSerial</span><span class="w"> </span><span class="nf">softSerial</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span>
-
-<span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w">  </span><span class="p">{</span>
-<span class="n">softSerial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span>
-<span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span>
-<span class="c1">// pinMode(LED, OUTPUT);</span>
-<span class="p">}</span>
-<span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w">  </span><span class="p">{</span>
-<span class="c1">// When our comm channel is active:</span>
-<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">softSerial</span><span class="p">.</span><span class="n">available</span><span class="p">())</span><span class="w">  </span><span class="p">{</span>
-
-<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">data_received</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">softSerial</span><span class="p">.</span><span class="n">read</span><span class="p">();</span>
-<span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;Received:&quot;</span><span class="p">);</span>
-<span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">data_received</span><span class="p">);</span>
-<span class="w">    </span><span class="c1">//Connect an LED later</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-<section id="exercise-message-relay">
-<h3>Exercise: Message relay<a class="headerlink" href="#exercise-message-relay" title="Permalink to this headline">¶</a></h3>
-<p>In this exercise you will be working together in groups of three or more. You are going to connect your arduinos using software UART’s.</p>
-<ol class="arabic simple">
-<li><p>Use pin 2 for RX, and pin 3 for TX. Connect the TX pin on the first arduino to the RX pin of the next. The first Arduino should have a free RX pin, and the last Arduino should have a free TX pin. Make sure that ground (GND) of all the Arduinos are connected together.</p></li>
-<li><p>Write a program which receive data on the software UART (on pin 2), and retransmits it on both the software and the hardware UART (on pin 3, and on the USB). All the microcontrollers should run the same firmware. Use a baud rate of 9600 for both the software and the hardware UART.</p></li>
-<li><p>Add the functionality for the first Arduino to receive data on the hardware UART (on the USB), and retransmit it on the software UART (on pin 3). The program should operate on single bytes, i.e. it should transmit a character as soon as it is received on the hardware UART. The existing functionality of transmitting everything it receives on pin 2 back to pin 3 should still remain intact.</p></li>
-<li><p>Close the loop by connecting the TX pin of the last arduino to the RX pin of the first. Inject some data in to the loop and observe the consequences.</p></li>
-</ol>
 <p>Summary</p>
 <p>A summary of everything video:</p>
+</section>
 </section>
 </section>
 </section>
@@ -711,6 +749,8 @@
     </ul>
 <ul class="nav navbar-nav pull-right hidden-xs hidden-sm">
       
+        <li><a href="L10_motor_drive.html" title="Motor Drives" >previous</a></li>
+        <li><a href="../Lessons-additional/L1_additional.html" title="Additional material for lesson 1" >next</a></li>
         <li><a href="../../genindex.html" title="General Index" >index</a></li>
         <li><a href="#">top</a></li> 
       

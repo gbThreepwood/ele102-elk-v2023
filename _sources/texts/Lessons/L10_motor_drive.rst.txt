@@ -497,10 +497,141 @@ For each of the four drivers we have the following truth (function) table:
 
 If the enable (EN) signal is low, the control signal (A) is ignored and the output goes in to a high impedance (high Z) state. When the enable signal is high, the output follows the control signal (A). By applying PWM to the enable signal and leaving the A signals fixed regenerative braking will be impossible. Whenever the output is in a high Z state, the motor current will have to circulate through the freewheeling diodes. If however the PWM signal is applied to e.g. 1A while 2A is low, a reduction in duty cycle will allow the voltage to be boosted by the motor inductance. For the opposite rotational direction the PWM signal should be applied to 2A while 1A is low.
 
+Simple motor drive example using the L293D
+------------------------------------------------
+
+Here is the simplest example with L298D motor driver and one single DC motor.
+
+    .. figure:: ../../../external/fig/l298d-simple.png
+            :align: center
+            :alt: simple L293D 
+
+    
+The simplest code for such a setup can be:
+
+.. code-block:: c
+
+    const uint8_t in1 = 9;
+    const uint8_t in2 = 10;
+    const uint8_t en = 11;
+
+    void setup()
+    {
+    pinMode(in1, OUTPUT);
+    pinMode(in2, OUTPUT);
+    pinMode(en, OUTPUT);
+    
+    digitalWrite(in1, LOW);
+    digitalWrite(in2, HIGH);
+    analogWrite(en, 127);
+    
+    Serial.begin(9600);
+    }
+
+    void loop()
+    {
+        delay(1000);
+    }
+
+        
+As a next step, we can create some functions to simplify the motor control commands:
+
+.. code-block:: c
+
+    const uint8_t in1 = 9;
+    const uint8_t in2 = 10;
+    const uint8_t en = 11;
+
+    void setup()
+    {
+    pinMode(in1, OUTPUT);
+    pinMode(in2, OUTPUT);
+    pinMode(en, OUTPUT);
+    
+    digitalWrite(in1, LOW);
+    digitalWrite(in2, HIGH);
+    analogWrite(en, 127);
+    
+    Serial.begin(9600);
+    }
+
+    void loop()
+    {
+    rotate_right();  
+    }
+
+    void rotate_right(){
+    
+    digitalWrite(in1, LOW);
+    digitalWrite(in2, HIGH);
+    analogWrite(en, 127);
+    
+    }
+
+    void rotate_left(){
+    
+    digitalWrite(in1, HIGH);
+    digitalWrite(in2, LOW);
+    analogWrite(en, 127);
+    
+    }
+
+
+Also, the motor speed can be defined as a function input:
+
+.. code-block:: c
+
+    const uint8_t in1 = 9;
+    const uint8_t in2 = 10;
+    const uint8_t en = 11;
+
+    void setup()
+    {
+    pinMode(in1, OUTPUT);
+    pinMode(in2, OUTPUT);
+    pinMode(en, OUTPUT);
+    
+    digitalWrite(in1, LOW);
+    digitalWrite(in2, HIGH);
+    analogWrite(en, 127);
+    
+    Serial.begin(9600);
+    }
+
+    void loop()
+    {
+    int speed_1 = 255;
+    int speed_2 = 127;
+    rotate_right(speed_1);
+    delay(2000);
+    rotate_left(speed_2);
+    delay(2000);
+    
+    }
+
+    void rotate_right(int speed){
+    
+    digitalWrite(in1, LOW);
+    digitalWrite(in2, HIGH);
+    analogWrite(en, speed);
+    
+    }
+
+    void rotate_left(int speed){
+    
+    digitalWrite(in1, HIGH);
+    digitalWrite(in2, LOW);
+    analogWrite(en, speed);
+    
+    }
+
+
 Feature rich motor drive example using the L293D
 ------------------------------------------------
 
 The following example is a slightly more complete implementation of motor control using the L293D driver. The implementation uses one push button for starting, and one for stopping the motor. The voltage on analog input `A0` is used to control the duty cycle of the pulse width modulation.
+
+.. note:: You will see the :code::`typedef` usage in the coming code. It is a beautiful way of creating new object types in C-based languages. Although this keyword is not within the scope of this course, it is still an important/nice feature to know the usage. The rest of the code is easy to follow, nonetheless.
 
 .. figure:: ../../fig/dc_motor_drive_potmeter_control_bb.png
     :scale: 50

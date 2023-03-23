@@ -25,9 +25,9 @@ On this page we will publish new lecture notes every week, as the course is prog
    Lesson 8: LC-Display <texts/Lessons/L8_LC_display.rst>
    Lesson 9: Memory and MCU architecture <texts/Lessons/L9_memory_and_architecture.rst>
    Lesson 10: Motor drive <texts/Lessons/L10_motor_drive.rst>
+   Lesson 11: Communication Protocols <texts/Lessons/L12_communication.rst>
 
 ..
-   Lesson 11: Communication Protocols <texts/Lessons/L12_communication.rst>
    Lesson 12: PC (C#) - Arduino Communication <texts/Lessons/L11_VS_Arduino.rst>
    Lesson 13: Repetition <texts/Lessons/L13_repetition.rst>
    Course summary <texts/Lessons/course_summary.rst>

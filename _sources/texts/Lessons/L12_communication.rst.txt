@@ -55,7 +55,7 @@ A communication protocol is sometimes linked to a specific physical means of tra
 A communication protocol is often associated with some physical connector, such as the USB-C, or 8P8C connector. There are many others, but luckily standardization is slowly limiting the number of different ports which are used in consumer electronics.
 
   Why do we need ports?
-  *There was a dark era before some protocols are decided...*
+  *There was a dark era before we started to converge to some standards...*
 
   .. image:: ../../fig/port_fuck.jpeg
           :alt: To avoid from mess
@@ -65,17 +65,99 @@ A communication protocol is often associated with some physical connector, such 
 
 Universal Asynchronous Receive-Transmit (UART)
 ===============================================
-Since we have talked about UART a lot in Serial I/O chapter, I will not get into details again. Just some bullet points to know:
 
-- Asynchronous: There is no clock pin.
-- 3 pins are required (generally): GND, Tx, Rx. Often times VCC is also included on a separate wire.
-- Since there is no CLK, the receiver does not know when to start reading. Therefore, we set a bunch of configurations e.g. transmission speed, data package size, start/stop bits type.
-- *To make sure* the bit is read correct, it is read in the middle of the bit. Let's say you set the baud rate as 9600 bits/sec. This means that you send/read 1 bit in every 104 microseconds. So, your receiver does not :code:`digitalRead(RX_pin)` immediately after the start bit is received but it reads after 104/2 = 52 microseconds. So lame, I know... but cmon, parity is still in use!
+Since we have talked about UART a lot in Serial I/O chapter, we will not get into details again. Just some bullet points to know:
+
+- Asynchronous: There is no clock signal.
+- 3 wires are required (generally): GND, Tx, and Rx. Often times VCC is also included on a separate wire.
+- Since there is no CLK, the receiver does not know when to start reading. Therefore, the sender uses a start flag to signal start of transmission. Additionally we need to have the same configuration in sender and receiver of e.g. transmission speed, data package size, start/stop bits type.
+- *To make sure* the bit is read correct, the signal level (high or low) is checked in the middle of the timeframe for the current bit. Let's say you set the baud rate as 9600 bits/sec. This means that you send/read 1 bit in every 104 microseconds. So, your receiver does not :code:`digitalRead(RX_pin)` immediately after the start bit is received but it reads after 104/2 = 52 microseconds.
+
+.. So lame, I know... but cmon, parity is still in use!
+
 - Remember to cross Rx and Tx when you connect two devices - either two Arduinos or sensors or if you are connecting your PC manually (`why? <https://components101.com/modules/pl2303-usb-to-ttl-serial-converter-module>`_ ).
 
-Let's make two Arduino to talk to each other. Please follow this simple and quite common `UART communication between two Arduinos tutorial <https://microcontrollerslab.com/serial-uart-communication-between-two-arduino-boards/>`_. You may want to add the generic :code:`Serial.begin(BAUDRATE)` to see data from your side.
+.. Let's make two Arduino talk to each other. Please follow this simple and quite common `UART communication between two Arduinos tutorial <https://microcontrollerslab.com/serial-uart-communication-between-two-arduino-boards/>`_. You may want to add the generic :code:`Serial.begin(BAUDRATE)` to see data from your side.
 
+
+Software UART
+==============
+
+The Atmega328p only has a single UART in hardware. It is however possible to implement additional UART's in software as long as your performance requirements are modest. A software UART is implemented by quickly writing and reading digital outputs. For every single bit which is received, the CPU has to perform some action. This stands in contrast to the hardware UART where the CPU only need to perform some action when a complete byte of payload is received. Thus it should be obvious that the software UART puts a much higher load on the CPU.
+
+..  
+  Suggested reading:
+  https://www.circuitbasics.com/how-to-set-up-uart-communication-for-arduino/
+
+..
+  .. figure:: /home/gizem/snap/typora/33/.config/Typora/typora-user-images/image-20210325100740492.png
+     :alt: image-20210325100740492
+
+     image-20210325100740492
+
+**Sender:**
+
+.. code:: c
+
+   #include <Arduino.h>
+   #include <SoftwareSerial.h>
     
+   SoftwareSerial softSerial(2,3);  // RX, TX 
+   void setup()  {
+     Serial.begin(9600); 
+     softSerial.begin(9600);
+   } 
+   void loop()  { 
+   // Check for received characters from the computer 
+     if (Serial.available())  { 
+   // Write what is received to the soft serial 
+       char x = Serial.read();
+       softSerial.write(x); 
+       Serial.print("Sending:");
+       Serial.println(x);
+     }
+   }
+
+**Receiver:**
+
+.. code:: c
+
+   #include <Arduino.h>
+   #include <SoftwareSerial.h>
+
+   SoftwareSerial softSerial(2,3);
+
+   void setup()  { 
+   softSerial.begin(9600); 
+   Serial.begin(9600);
+   // pinMode(LED, OUTPUT);
+   } 
+   void loop()  { 
+   // When our comm channel is active: 
+     if (softSerial.available())  { 
+
+       char data_received = softSerial.read(); 
+       Serial.print("Received:");
+       Serial.println(data_received);
+       //Connect an LED later
+     } 
+   }
+
+
+Exercise: Message relay
+------------------------
+
+In this exercise you will be working together in groups of three or more. You are going to connect your arduinos using software UART's.
+
+#. Use pin 2 for RX, and pin 3 for TX. Connect the TX pin on the first arduino to the RX pin of the next. The first Arduino should have a free RX pin, and the last Arduino should have a free TX pin. Make sure that ground (GND) of all the Arduinos are connected together.
+#. Write a program which receive data on the software UART (on pin 2), and retransmits it on both the software and the hardware UART (on pin 3, and on the USB). All the microcontrollers should run the same firmware. Use a baud rate of 9600 for both the software and the hardware UART.
+#. Add the functionality for the first Arduino to receive data on the hardware UART (on the USB), and retransmit it on the software UART (on pin 3). The program should operate on single bytes, i.e. it should transmit a character as soon as it is received on the hardware UART. The existing functionality of transmitting everything it receives on pin 2 back to pin 3 should still remain intact.
+#. Close the loop by connecting the TX pin of the last arduino to the RX pin of the first. Inject some data in to the loop and observe the consequences.
+
+
+
+
+
 Inter Integrated Circuit (I2C)
 =====================================
 
@@ -282,80 +364,6 @@ Slave
 
 .. General suggested reading: Canvas > Modules > Oreilly Arduino Cookbook
 .. 2nd Edition > Chapter 13 - Communicating Using I2C and SPI
-
-Software UART
-==============
-
-The Atmega328p only has a single UART in hardware. It is however possible to implement additional UART's in software as long as your performance requirements are modest. A software UART is implemented by quickly writing and reading digital outputs. For every single bit which is received, the CPU has to perform some action. This stands in contrast to the hardware UART where the CPU only need to perform some action when a complete byte of payload is received. Thus it should be obvious that the software UART puts a much higher load on the CPU.
-
-..  
-  Suggested reading:
-  https://www.circuitbasics.com/how-to-set-up-uart-communication-for-arduino/
-
-..
-  .. figure:: /home/gizem/snap/typora/33/.config/Typora/typora-user-images/image-20210325100740492.png
-     :alt: image-20210325100740492
-
-     image-20210325100740492
-
-**Sender:**
-
-.. code:: c
-
-   #include <Arduino.h>
-   #include <SoftwareSerial.h>
-    
-   SoftwareSerial softSerial(2,3);  // RX, TX 
-   void setup()  {
-     Serial.begin(9600); 
-     softSerial.begin(9600);
-   } 
-   void loop()  { 
-   // Check for received characters from the computer 
-     if (Serial.available())  { 
-   // Write what is received to the soft serial 
-       char x = Serial.read();
-       softSerial.write(x); 
-       Serial.print("Sending:");
-       Serial.println(x);
-     }
-   }
-
-**Receiver:**
-
-.. code:: c
-
-   #include <Arduino.h>
-   #include <SoftwareSerial.h>
-
-   SoftwareSerial softSerial(2,3);
-
-   void setup()  { 
-   softSerial.begin(9600); 
-   Serial.begin(9600);
-   // pinMode(LED, OUTPUT);
-   } 
-   void loop()  { 
-   // When our comm channel is active: 
-     if (softSerial.available())  { 
-
-       char data_received = softSerial.read(); 
-       Serial.print("Received:");
-       Serial.println(data_received);
-       //Connect an LED later
-     } 
-   }
-
-
-Exercise: Message relay
-------------------------
-
-In this exercise you will be working together in groups of three or more. You are going to connect your arduinos using software UART's.
-
-#. Use pin 2 for RX, and pin 3 for TX. Connect the TX pin on the first arduino to the RX pin of the next. The first Arduino should have a free RX pin, and the last Arduino should have a free TX pin. Make sure that ground (GND) of all the Arduinos are connected together.
-#. Write a program which receive data on the software UART (on pin 2), and retransmits it on both the software and the hardware UART (on pin 3, and on the USB). All the microcontrollers should run the same firmware. Use a baud rate of 9600 for both the software and the hardware UART.
-#. Add the functionality for the first Arduino to receive data on the hardware UART (on the USB), and retransmit it on the software UART (on pin 3). The program should operate on single bytes, i.e. it should transmit a character as soon as it is received on the hardware UART. The existing functionality of transmitting everything it receives on pin 2 back to pin 3 should still remain intact.
-#. Close the loop by connecting the TX pin of the last arduino to the RX pin of the first. Inject some data in to the loop and observe the consequences.
 
 Summary
 
